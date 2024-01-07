@@ -1,0 +1,169 @@
+<template>
+  <v-parallax dark src="./background.png" :height="windowHeight">
+    <v-col class="d-flex justify-center align-center" style="margin-top: 150px">
+      <div>
+        <h1 style="text-align: center; font-weight: 900; font-size: 60px">
+          Think for All
+        </h1>
+        <h1 style="text-align: center; font-weight: 900; font-size: 60px">
+          Link All
+        </h1>
+
+        <div class="d-flex justify-center mb-8 mt-5">
+          <v-btn rounded="lg" to="/donation" color="primary" width="200" height="75">
+            <h2>DONATE</h2>
+          </v-btn>
+        </div>
+
+        <v-container fluid>
+          <v-row justify="center">
+            <v-col cols="12" sm="6" md="4">
+              <div class="text-center" elevation="10">
+                <v-card-text class="headline"> 0 </v-card-text>
+
+                <v-card-text> taught students </v-card-text>
+              </div>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="4">
+              <div class="text-center" elevation="10">
+                <v-card-text class="headline"> 0 </v-card-text>
+
+                <v-card-text> ₩ donated </v-card-text>
+              </div>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="4">
+              <div class="text-center" elevation="10">
+                <v-card-text class="headline"> 0 </v-card-text>
+
+                <v-card-text> hours of volunteering </v-card-text>
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+    </v-col>
+  </v-parallax>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" sm="6" md="3">
+        <v-card elevation="8">
+          <v-card-text class="headline text-center"> English </v-card-text>
+
+          <v-card-text>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="3">
+        <v-card elevation="8">
+          <v-card-text class="headline text-center"> Korean </v-card-text>
+
+          <v-card-text>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="3">
+        <v-card elevation="8">
+          <v-card-text class="headline text-center"> Arts </v-card-text>
+
+          <v-card-text>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="3">
+        <v-card elevation="8">
+          <v-card-text class="headline text-center"> Tech </v-card-text>
+
+          <v-card-text>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+            <p>1. What is engils</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" sm="6" md="4">
+        <v-img
+          src="https://picsum.photos/seed/picsum/800/350"
+          aspect-ratio="2.5"
+        ></v-img>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="4">
+        <v-img
+          src="https://picsum.photos/seed/picsum/800/350"
+          aspect-ratio="2.5"
+        ></v-img>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="4">
+        <v-img
+          src="https://picsum.photos/seed/picsum/800/350"
+          aspect-ratio="2.5"
+        ></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <br />
+  <br />
+  <br />
+
+  <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
+    <div>
+      <v-btn class="mx-4" icon="mdi-facebook" variant="text"></v-btn>
+      <v-btn class="mx-4" icon="mdi-twitter" variant="text"></v-btn>
+      <v-btn class="mx-4" icon="mdi-instagram" variant="text"></v-btn>
+    </div>
+
+    <v-divider></v-divider>
+
+    <div>
+      Copyright © LinkAll {{ new Date().getFullYear() }} — All rights reserved
+    </div>
+  </v-footer>
+</template>
+
+<script setup>
+const windowHeight = ref(0);
+
+onMounted(() => {
+  windowHeight.value = window.innerHeight;
+});
+</script>
+
+<style>
+.headline {
+  font-weight: 900;
+  font-size: 40px;
+  padding-top: 30px;
+}
+</style>
