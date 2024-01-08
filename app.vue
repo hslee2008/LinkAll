@@ -29,13 +29,16 @@
             <div v-if="userInfo">
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-img
-                    v-bind="props"
-                    :src="userInfo.photoURL"
-                    style="width: 40px; height: 40px"
-                    class="rounded-lg"
-                  />
+                  <v-avatar>
+                    <v-img
+                      v-bind="props"
+                      :src="userInfo.photoURL"
+                      style="width: 40px; height: 40px"
+                      class="rounded-lg"
+                    />
+                  </v-avatar>
                 </template>
+                
                 <v-list>
                   <v-list-item to="/account">
                     <v-list-item-title> My Account </v-list-item-title>

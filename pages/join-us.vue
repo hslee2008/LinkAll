@@ -2,7 +2,7 @@
   <div style="margin-top: 180px">
     <h1 class="text-center" style="font-size: 50px">JOIN US</h1>
 
-    <div>
+    <div v-if="userInfo">
       <v-form v-model="valid">
         <div class="d-flex justify-center align-center">
           <v-container>
@@ -69,6 +69,7 @@
                   ></v-radio>
                   <v-radio label="Researcher" value="Researcher"></v-radio>
                   <v-radio label="Designer" value="Designer"></v-radio>
+                  <v-radio label="other" value="other"></v-radio>
                 </v-radio-group>
               </v-col>
               <v-col cols="12" md="4">
@@ -82,25 +83,48 @@
                     label="Event / Tournament"
                     value="Event / Tournament"
                   ></v-radio>
+                  <v-radio label="other" value="other"></v-radio>
                 </v-radio-group>
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field
+                <v-textarea
                   v-model="brief"
                   label="Brief introduction of yourself (ex. abilities, motive of application)"
                   required
                   hide-details
-                ></v-text-field>
+                ></v-textarea>
               </v-col>
             </v-row>
           </v-container>
         </div>
+
+        <div class="d-flex justify-center align-center">
+          <v-btn
+            class="mt-10"
+            color="primary"
+            :disabled="!valid"
+            @click="submit"
+          >
+            Submit
+          </v-btn>
+        </div>
       </v-form>
+    </div>
+    <div v-else>
+      <h2 class="text-center mt-10">로그인이 필요합니다.</h2>
+
+      <div class="d-flex justify-center align-center">
+        <v-btn to="/account/join" class="mt-2" color="primary"> 로그인 </v-btn>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { doc, setDoc, collection } from "firebase/firestore";
+
+const { $firestore, $auth } = useNuxtApp();
+
 const valid = ref(true);
 const fullName = ref("");
 const phone = ref("");
@@ -111,6 +135,26 @@ const grade = ref("");
 const radios = ref("");
 const howFound = ref("");
 const brief = ref("");
+
+const userInfo = ref(null);
+
+onMounted(async () => {
+  userInfo.value = await $auth.currentUser;
+});
+
+const submit = async () => {
+  await setDoc(doc(collection($firestore, "join-us")), {
+    fullName: fullName.value,
+    phone: phone.value,
+    email: email.value,
+    schoolName: schoolName.value,
+    country: country.value,
+    grade: grade.value,
+    radios: radios.value,
+    howFound: howFound.value,
+    brief: brief.value,
+  });
+};
 
 const emailRules = [
   (value) => {
