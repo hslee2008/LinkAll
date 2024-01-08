@@ -11,7 +11,7 @@
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
         }`"
       >
-        <v-btn to="/">LinkAll</v-btn>
+        <h2>LinkAll</h2>
 
         <v-spacer />
 
@@ -38,7 +38,7 @@
                     />
                   </v-avatar>
                 </template>
-                
+
                 <v-list>
                   <v-list-item to="/account">
                     <v-list-item-title> My Account </v-list-item-title>

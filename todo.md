@@ -1,0 +1,7 @@
+- payment
+- login/create account feature
+- payment/donation feature
+- schedule meetings
+- account setting page
+- admin feature
+- admin accept new memebers e.t.c
