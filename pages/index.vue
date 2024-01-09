@@ -1,16 +1,22 @@
 <template>
   <v-parallax dark src="./background.png" :height="windowHeight">
-    <v-col class="d-flex justify-center align-center" style="margin-top: 150px">
+    <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
       <div>
-        <h1 style="text-align: center; font-weight: 900; font-size: 60px">
+        <h1 style="text-align: center; font-weight: 700; font-size: 60px">
           Think for All
         </h1>
-        <h1 style="text-align: center; font-weight: 900; font-size: 60px">
+        <h1 style="text-align: center; font-weight: 900; font-size: 70px">
           Link All
         </h1>
 
         <div class="d-flex justify-center mb-8 mt-5">
-          <v-btn rounded="lg" to="/donation" color="primary" width="200" height="75">
+          <v-btn
+            rounded="lg"
+            to="/donation"
+            color="primary"
+            width="200"
+            height="75"
+          >
             <h2>DONATE</h2>
           </v-btn>
         </div>
@@ -46,6 +52,8 @@
     </v-col>
   </v-parallax>
 
+  <br />
+  <br />
   <br />
   <br />
   <br />
@@ -108,6 +116,10 @@
     </v-row>
   </v-container>
 
+  <br />
+  <br />
+  <br />
+
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="4">
@@ -134,14 +146,24 @@
   </v-container>
 
   <br />
-  <br />
-  <br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
     <div>
       <v-btn class="mx-4" icon="mdi-facebook" variant="text"></v-btn>
-      <v-btn class="mx-4" icon="mdi-twitter" variant="text"></v-btn>
-      <v-btn class="mx-4" icon="mdi-instagram" variant="text"></v-btn>
+      <v-btn
+        class="mx-4"
+        icon="mdi-instagram"
+        variant="text"
+        href="https://www.instagram.com/linkall2024/"
+        target="_blank"
+      ></v-btn>
+      <v-btn
+        class="mx-4"
+        icon="mdi-youtube"
+        variant="text"
+        href="https://www.youtube.com/@LinkAllCommunity"
+        target="_blank"
+      ></v-btn>
     </div>
 
     <v-divider></v-divider>

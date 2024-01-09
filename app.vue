@@ -52,7 +52,7 @@
             <v-btn
               v-else
               rounded="lg"
-              to="/account/join"
+              to="/account/login"
               icon="mdi-account-circle"
             />
           </div>
@@ -94,7 +94,7 @@
       </v-app-bar>
 
       <v-main>
-        <NuxtPage class="mb-10" />
+        <NuxtPage />
       </v-main>
     </NuxtLayout>
   </v-app>

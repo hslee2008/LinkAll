@@ -2,119 +2,151 @@
   <div style="margin-top: 180px">
     <h1 class="text-center" style="font-size: 50px">JOIN US</h1>
 
-    <div v-if="userInfo">
-      <v-form v-model="valid">
-        <div class="d-flex justify-center align-center">
-          <v-container>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="email"
-                  :rules="emailRules"
-                  label="이메일"
-                  required
-                  hide-details
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="fullName"
-                  label="Full Name"
-                  required
-                  hide-details
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="phone"
-                  :rules="phoneNumRules"
-                  label="전화번호 (010-1234-5678)"
-                  required
-                  hide-details
-                ></v-text-field>
-              </v-col>
-            </v-row>
+    <div v-if="userInfo" style="margin-left: calc(50% - 400px)">
+      <div>
+        <v-form v-model="valid">
+          <div class="d-flex justify-center align-center">
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="firstName"
+                    label="First Name"
+                    required
+                    variant="outlined"
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="lastName"
+                    label="Last Name"
+                    required
+                    variant="outlined"
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="이메일"
+                    prepend-inner-icon="mdi-email"
+                    variant="outlined"
+                    required
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="phone"
+                    :rules="phoneNumRules"
+                    label="전화번호 (010-1234-5678)"
+                    prepend-inner-icon="mdi-phone"
+                    variant="outlined"
+                    required
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+              </v-row>
 
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-select
-                  v-model="country"
-                  :items="items"
-                  label="Country of Residence"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="schoolName"
-                  label="School Name"
-                  required
-                  hide-details
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-select
-                  v-model="grade"
-                  :items="itemsGrade"
-                  label="Current Grade"
-                ></v-select>
-              </v-col>
-            </v-row>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-combobox
+                    v-model="country"
+                    :items="items"
+                    required
+                    label="Country of Residence"
+                  ></v-combobox>
+                </v-col>
+              </v-row>
 
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-radio-group v-model="radios">
-                  <v-radio
-                    label="Educator / Mentor"
-                    value="Educator / Mentor"
-                  ></v-radio>
-                  <v-radio label="Researcher" value="Researcher"></v-radio>
-                  <v-radio label="Designer" value="Designer"></v-radio>
-                  <v-radio label="other" value="other"></v-radio>
-                </v-radio-group>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-radio-group v-model="howFound">
-                  <v-radio label="Social Media" value="Social Media"></v-radio>
-                  <v-radio
-                    label="Friend or Teacher"
-                    value="Friend or Teacher"
-                  ></v-radio>
-                  <v-radio
-                    label="Event / Tournament"
-                    value="Event / Tournament"
-                  ></v-radio>
-                  <v-radio label="other" value="other"></v-radio>
-                </v-radio-group>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-textarea
-                  v-model="brief"
-                  label="Brief introduction of yourself (ex. abilities, motive of application)"
-                  required
-                  hide-details
-                ></v-textarea>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="schoolName"
+                    label="School Name"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-school"
+                    required
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-select
+                    v-model="grade"
+                    :items="itemsGrade"
+                    required
+                    variant="outlined"
+                    label="Current Grade"
+                  ></v-select>
+                </v-col>
+              </v-row>
 
-        <div class="d-flex justify-center align-center">
-          <v-btn
-            class="mt-10"
-            color="primary"
-            :disabled="!valid"
-            @click="submit"
-          >
-            Submit
-          </v-btn>
-        </div>
-      </v-form>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-radio-group v-model="radios">
+                    <v-radio
+                      label="Educator / Mentor"
+                      value="Educator / Mentor"
+                    ></v-radio>
+                    <v-radio label="Researcher" value="Researcher"></v-radio>
+                    <v-radio label="Designer" value="Designer"></v-radio>
+                    <v-radio label="other" value="other"></v-radio>
+                  </v-radio-group>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-radio-group v-model="howFound">
+                    <v-radio
+                      label="Social Media"
+                      value="Social Media"
+                    ></v-radio>
+                    <v-radio
+                      label="Friend or Teacher"
+                      value="Friend or Teacher"
+                    ></v-radio>
+                    <v-radio
+                      label="Event / Tournament"
+                      value="Event / Tournament"
+                    ></v-radio>
+                    <v-radio label="other" value="other"></v-radio>
+                  </v-radio-group>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col cols="24" md="8">
+                  <v-textarea
+                    v-model="brief"
+                    label="Brief introduction of yourself (ex. abilities, motive of application)"
+                    required
+                    variant="outlined"
+                    hide-details
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+
+          <div class="my-10" style="margin-left: 350px;">
+            <v-btn
+              color="primary"
+              :disabled="!valid"
+              @click="submit"
+            >
+              Submit
+            </v-btn>
+          </div>
+        </v-form>
+      </div>
     </div>
     <div v-else>
       <h2 class="text-center mt-10">로그인이 필요합니다.</h2>
 
       <div class="d-flex justify-center align-center">
-        <v-btn to="/account/join" class="mt-2" color="primary"> 로그인 </v-btn>
+        <v-btn to="/account/login" class="mt-2" color="primary"> 로그인 </v-btn>
       </div>
     </div>
   </div>
@@ -126,7 +158,8 @@ import { doc, setDoc, collection } from "firebase/firestore";
 const { $firestore, $auth } = useNuxtApp();
 
 const valid = ref(true);
-const fullName = ref("");
+const firstName = ref("");
+const lastName = ref("");
 const phone = ref("");
 const email = ref("");
 const schoolName = ref("");
@@ -139,12 +172,19 @@ const brief = ref("");
 const userInfo = ref(null);
 
 onMounted(async () => {
-  userInfo.value = await $auth.currentUser;
+  $auth.onAuthStateChanged((user) => {
+    if (user) {
+      userInfo.value = user;
+    } else {
+      userInfo.value = null;
+    }
+  });
 });
 
 const submit = async () => {
   await setDoc(doc(collection($firestore, "join-us")), {
-    fullName: fullName.value,
+    firstName: firstName.value,
+    lastName: lastName.value,
     phone: phone.value,
     email: email.value,
     schoolName: schoolName.value,
