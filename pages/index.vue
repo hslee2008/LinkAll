@@ -1,3 +1,11 @@
+<script setup>
+const windowHeight = ref(0);
+
+onMounted(() => {
+  windowHeight.value = window.innerHeight;
+});
+</script>
+
 <template>
   <v-parallax dark src="./background.png" :height="windowHeight">
     <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
@@ -17,7 +25,7 @@
             width="200"
             height="75"
           >
-            <h2>DONATE</h2>
+            <h2>{{ $t("donate") }}</h2>
           </v-btn>
         </div>
 
@@ -173,14 +181,6 @@
     </div>
   </v-footer>
 </template>
-
-<script setup>
-const windowHeight = ref(0);
-
-onMounted(() => {
-  windowHeight.value = window.innerHeight;
-});
-</script>
 
 <style>
 .headline {

@@ -1,8 +1,11 @@
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import vuetify from "vite-plugin-vuetify";
+import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "url";
 
 export default defineNuxtConfig({
   build: {
-    transpile: ["vuetify"],
+    transpile: ["vuetify", "vue-i18n"],
   },
   css: [
     "vuetify/lib/styles/main.sass",
@@ -14,5 +17,20 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({}))
       );
     },
+    "@nuxtjs/google-fonts",
   ],
+  vite: {
+    resolve: {
+      alias: {
+        "vue-i18n": "vue-i18n/dist/vue-i18n.runtime.esm-bundler.js",
+      },
+    },
+    plugins: [
+      VueI18nVitePlugin({
+        include: [
+          resolve(dirname(fileURLToPath(import.meta.url)), "./locales/*.json"),
+        ],
+      }),
+    ],
+  },
 });

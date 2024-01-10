@@ -17,6 +17,15 @@
 
         <div>
           <div style="display: flex; justify-content: right; gap: 10px">
+            <v-responsive max-width="180">
+              <v-select
+                v-model="$i18n.locale"
+                :items="['ko', 'en']"
+                variant="outlined"
+                density="compact"
+              ></v-select>
+            </v-responsive>
+
             <v-responsive max-width="180" style="margin-top: 5px">
               <v-text-field
                 prepend-inner-icon="mdi-magnify"
@@ -101,8 +110,6 @@
 </template>
 
 <script setup>
-const isScrolledToTop = ref(true);
-
 const route = useRoute();
 const router = useRouter();
 const url = computed(() => route.path);
@@ -121,12 +128,6 @@ const logout = () => {
   userInfo.value = null;
   router.push("/");
 };
-
-onMounted(() => {
-  window.addEventListener("scroll", () => {
-    isScrolledToTop.value = window.scrollY < 10;
-  });
-});
 </script>
 
 <style>
