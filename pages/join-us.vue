@@ -2,7 +2,13 @@
   <div style="margin-top: 180px">
     <h1 class="text-center" style="font-size: 50px">JOIN US</h1>
 
-    <div v-if="userInfo" style="margin-left: calc(50% - 400px)">
+    <div v-if="registering">
+      <h1 class="text-center">
+        Your data is being examined by the maintainers
+      </h1>
+    </div>
+
+    <div v-else-if="userInfo" style="margin-left: calc(50% - 400px)">
       <div>
         <v-form v-model="valid">
           <div class="d-flex justify-center align-center">
@@ -130,12 +136,8 @@
             </v-container>
           </div>
 
-          <div class="my-10" style="margin-left: 350px;">
-            <v-btn
-              color="primary"
-              :disabled="!valid"
-              @click="submit"
-            >
+          <div class="my-10" style="margin-left: 350px">
+            <v-btn color="primary" :disabled="!valid" @click="submit">
               Submit
             </v-btn>
           </div>
@@ -153,9 +155,10 @@
 </template>
 
 <script setup>
-import { doc, setDoc, collection } from "firebase/firestore";
+const { $db, $auth } = useNuxtApp();
 
-const { $firestore, $auth } = useNuxtApp();
+const router = useRouter();
+const registering = ref(false);
 
 const valid = ref(true);
 const firstName = ref("");
@@ -172,17 +175,26 @@ const brief = ref("");
 const userInfo = ref(null);
 
 onMounted(async () => {
-  $auth.onAuthStateChanged((user) => {
+  await $auth.onAuthStateChanged((user) => {
     if (user) {
       userInfo.value = user;
     } else {
       userInfo.value = null;
     }
   });
+
+  $db.ref("join-us-waiting").on("value", (snapshot) => {
+    const keys = Object.keys(snapshot.val());
+    if (keys.includes(userInfo.value.uid)) {
+      registering.value = true;
+    } else {
+      registering.value = false;
+    }
+  });
 });
 
 const submit = async () => {
-  await setDoc(doc(collection($firestore, "join-us")), {
+  $db.ref(`join-us-waiting/${userInfo.value.uid}`).set({
     firstName: firstName.value,
     lastName: lastName.value,
     phone: phone.value,
@@ -193,7 +205,15 @@ const submit = async () => {
     radios: radios.value,
     howFound: howFound.value,
     brief: brief.value,
+    userInfo: {
+      uid: userInfo.value.uid,
+      displayName: userInfo.value.displayName,
+      email: userInfo.value.email,
+      photoURL: userInfo.value.photoURL,
+    },
   });
+
+  router.go(0);
 };
 
 const emailRules = [

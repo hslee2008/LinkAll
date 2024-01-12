@@ -1,14 +1,14 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
+import "firebase/compat/auth";
+import "firebase/compat/storage";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const config = useRuntimeConfig();
-
   const firebaseConfig = {
     apiKey: "AIzaSyDAL5lTZYE57q0W15TzM9XptCWW1Oh9ycA",
     authDomain: "thinkforall-linkall.firebaseapp.com",
+    databaseURL:
+      "https://thinkforall-linkall-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "thinkforall-linkall",
     storageBucket: "thinkforall-linkall.appspot.com",
     messagingSenderId: "216528776478",
@@ -16,14 +16,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     measurementId: "G-0HQQD54YMS",
   };
 
-  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
-  const auth = getAuth(app);
-  const firestore = getFirestore(app);
+  const auth = firebase.auth();
+  const storage = firebase.storage();
+  const db = firebase.database();
 
   nuxtApp.vueApp.provide("auth", auth);
   nuxtApp.provide("auth", auth);
 
-  nuxtApp.vueApp.provide("firestore", firestore);
-  nuxtApp.provide("firestore", firestore);
+  nuxtApp.vueApp.provide("storage", storage);
+  nuxtApp.provide("storage", storage);
+
+  nuxtApp.vueApp.provide("db", db);
+  nuxtApp.provide("db", db);
 });
