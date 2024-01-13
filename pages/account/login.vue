@@ -10,7 +10,7 @@
           <h3 class="text-center">- Link All -</h3>
 
           <div class="text-center">
-            <v-btn class="mt-4">SIGN UP</v-btn>
+            <v-btn class="mt-4" to="/account/create">SIGN UP</v-btn>
           </div>
         </div>
       </div>

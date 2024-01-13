@@ -75,10 +75,10 @@ onMounted(() => {
           <v-card-text class="headline text-center"> English </v-card-text>
 
           <v-card-text>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
+            <p>1. LinkAll Reading Project</p>
+            <p>2. Become a writer!</p>
+            <p>3. Debating Startup</p>
+            <p>4. Journey to Knowledge</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -87,12 +87,7 @@ onMounted(() => {
         <v-card elevation="8">
           <v-card-text class="headline text-center"> Korean </v-card-text>
 
-          <v-card-text>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </v-card>
       </v-col>
 
@@ -100,12 +95,7 @@ onMounted(() => {
         <v-card elevation="8">
           <v-card-text class="headline text-center"> Arts </v-card-text>
 
-          <v-card-text>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </v-card>
       </v-col>
 
@@ -113,12 +103,7 @@ onMounted(() => {
         <v-card elevation="8">
           <v-card-text class="headline text-center"> Tech </v-card-text>
 
-          <v-card-text>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-            <p>1. What is engils</p>
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </v-card>
       </v-col>
     </v-row>
