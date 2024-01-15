@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <NuxtLoadingIndicator />
+
     <NuxtLayout>
       <v-app-bar
         absolute
@@ -25,24 +27,21 @@
         <v-spacer />
 
         <div>
-          <div style="display: flex; justify-content: right; gap: 10px">
-            <v-responsive max-width="180">
-              <v-select
-                v-model="$i18n.locale"
-                :items="['ko', 'en']"
-                variant="outlined"
-                density="compact"
-              ></v-select>
-            </v-responsive>
+          <div style="gap: 10px" class="d-flex justify-right">
+            <v-select
+              v-model="$i18n.locale"
+              :items="['ko', 'en']"
+              variant="outlined"
+              density="compact"
+              prepend-inner-icon="mdi-translate"
+            ></v-select>
 
-            <v-responsive max-width="180" style="margin-top: 5px">
-              <v-text-field
-                prepend-inner-icon="mdi-magnify"
-                label="SEARCH"
-                variant="outlined"
-                density="compact"
-              ></v-text-field>
-            </v-responsive>
+            <v-text-field
+              prepend-inner-icon="mdi-magnify"
+              label="SEARCH"
+              variant="outlined"
+              density="compact"
+            ></v-text-field>
 
             <div v-if="userInfo">
               <v-menu>
@@ -141,7 +140,7 @@ $auth.onAuthStateChanged((user) => {
 const logout = () => {
   $auth.signOut();
   userInfo.value = null;
-  router.push("/")
+  router.push("/");
   router.go("0");
 };
 
