@@ -36,12 +36,14 @@
               prepend-inner-icon="mdi-translate"
             ></v-select>
 
-            <v-text-field
+            <v-autocomplete
               prepend-inner-icon="mdi-magnify"
               label="SEARCH"
+              v-model="search"
+              :items="searchItems"
               variant="outlined"
               density="compact"
-            ></v-text-field>
+            ></v-autocomplete>
 
             <div v-if="userInfo">
               <v-menu>
@@ -152,6 +154,34 @@ onMounted(() => {
   locale.value = localStorage.getItem("locale") ?? "en";
 });
 
+const search = ref("");
+const searchItems = [
+  "Home",
+  "About Us",
+  "Actions",
+  "Education",
+  "Member",
+  "Join Us",
+  "Donation",
+];
+const links = {
+  Home: "/",
+  "About Us": "/about-us",
+  Actions: "/actions",
+  Education: "/actions/education",
+  Member: "/member",
+  "Join Us": "/join-us",
+  Donation: "/donation",
+};
+
+watch(search, (newSearch) => {
+  if (newSearch in links) {
+    router.push(links[newSearch]);
+  }
+
+  search.value = "";
+});
+
 const logout = () => {
   $auth.signOut();
   userInfo.value = null;
@@ -168,7 +198,7 @@ const verifyEmail = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .v-main {
   --v-layout-top: 0px !important;
 }

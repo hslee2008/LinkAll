@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 180px">
-    <h1 class="text-center" style="font-size: 50px">JOIN US</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">JOIN US</h1>
 
     <div v-if="registering">
       <h1 class="text-center">

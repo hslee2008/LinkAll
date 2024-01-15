@@ -22,7 +22,14 @@
         style="width: calc(100vw - 400px)"
       >
         <div class="text-center">
-          <h1 style="font-size: 50px; margin-top: 10px; margin-bottom: 10px">
+          <h1
+            style="
+              font-size: 50px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              text-decoration: underline;
+            "
+          >
             Login
           </h1>
 

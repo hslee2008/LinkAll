@@ -13,7 +13,9 @@
       background-attachment: fixed;
     "
   >
-    <h1 class="text-center" style="font-size: 50px">ACTIONS</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      ACTIONS
+    </h1>
 
     <br />
 

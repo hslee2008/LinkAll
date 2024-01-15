@@ -8,7 +8,9 @@
       height: calc(100vh - 140px);
     "
   >
-    <h1 class="text-center" style="font-size: 50px">SIGN UP</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      SIGN UP
+    </h1>
 
     <div class="d-flex justify-center align-center">
       <div style="width: 400px">
@@ -58,7 +60,11 @@
 </template>
 
 <script setup>
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
 const router = useRouter();
 
@@ -100,7 +106,6 @@ const createAccount = () => {
 
   createUserWithEmailAndPassword(auth, email.value, password.value).then(
     (user) => {
-
       $auth.onAuthStateChanged((user) => {
         if (user) {
           console.log("user", user);

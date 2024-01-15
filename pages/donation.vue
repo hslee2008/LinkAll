@@ -13,7 +13,7 @@
       background-attachment: fixed;
     "
   >
-    <h1 class="text-center" style="font-size: 50px">DONATION</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">DONATION</h1>
 
     <div class="d-flex justify-center align-center">
       <v-card width="300" class="ml-10 mt-8" elevation="8">

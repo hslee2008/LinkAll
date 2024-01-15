@@ -10,14 +10,12 @@
         </h1>
 
         <div class="d-flex justify-center mb-6 mt-5">
-          <v-btn
-            rounded="lg"
-            to="/donation"
-            color="primary"
-            width="200"
-            height="75"
-          >
-            <h2>{{ $t("donate") }}</h2>
+          <v-btn rounded="lg" to="/donation" color="primary" height="75">
+            <h2>
+              <v-icon start>mdi-gift</v-icon>
+              {{ $t("donate") }}
+              <v-icon end>mdi-gift</v-icon>
+            </h2>
           </v-btn>
         </div>
 
@@ -67,7 +65,11 @@
           <v-card-text class="headline text-center"> English </v-card-text>
 
           <v-card-text>
-            <p>1. LinkAll Reading Project</p>
+            <p>
+              <a href="/video-player?video=temp&title=LinkAll-Reading-Project">
+                1. LinkAll Reading Project
+              </a>
+            </p>
             <p>2. Become a writer!</p>
             <p>3. Debating Startup</p>
             <p>4. Journey to Knowledge</p>
@@ -110,21 +112,28 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="https://picsum.photos/seed/picsum/800/350"
-          aspect-ratio="2.5"
+          class="rounded-lg"
         ></v-img>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="https://picsum.photos/seed/picsum/800/350"
-          aspect-ratio="2.5"
+          class="rounded-lg"
         ></v-img>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="https://picsum.photos/seed/picsum/800/350"
-          aspect-ratio="2.5"
+          class="rounded-lg"
+        ></v-img>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="4">
+        <v-img
+          src="https://picsum.photos/seed/picsum/800/350"
+          class="rounded-lg"
         ></v-img>
       </v-col>
     </v-row>
@@ -171,10 +180,20 @@ useHead({
 });
 </script>
 
-<style>
+<style scoped>
 .headline {
   font-weight: 900;
   font-size: 40px;
   padding-top: 30px;
+}
+
+p > a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+p > a:hover {
+  color: #2196f3;
+  text-decoration: underline;
 }
 </style>

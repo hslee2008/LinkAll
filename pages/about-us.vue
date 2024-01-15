@@ -12,7 +12,9 @@
       background-attachment: fixed;
     "
   >
-    <h1 class="text-center" style="font-size: 50px">ABOUT US</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      ABOUT US
+    </h1>
 
     <br /><br />
 
@@ -64,5 +66,3 @@ useHead({
   title: "LinkAll - About Us",
 });
 </script>
-
-

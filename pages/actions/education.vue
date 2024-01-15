@@ -13,7 +13,9 @@
       background-attachment: fixed;
     "
   >
-    <h1 class="text-center" style="font-size: 50px">EDUCATION</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      EDUCATION
+    </h1>
 
     <v-card width="500" class="ml-10 mt-8" elevation="8">
       <v-card-item>
@@ -25,7 +27,9 @@
         <div>
           <ul>
             <li>
-              <a href="/video-player?title=temp">LinkAll Reading Project</a>
+              <a href="/video-player?video=temp&title=LinkAll-Reading-Project">
+                LinkAll Reading Project
+              </a>
             </li>
             <li>Become a writer!</li>
           </ul>
@@ -47,3 +51,15 @@ useHead({
   title: "Actions - Education",
 });
 </script>
+
+<style scoped>
+a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #2196f3;
+  text-decoration: underline;
+}
+</style>

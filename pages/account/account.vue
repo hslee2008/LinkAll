@@ -1,5 +1,5 @@
 <template>
- <div
+  <div
     style="
       margin-top: 140px;
       padding-top: 50px;
@@ -8,8 +8,9 @@
       height: calc(100vh - 140px);
     "
   >
-    <h1 class="text-center" style="font-size: 50px">MY ACCOUNT</h1>
-
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      MY ACCOUNT
+    </h1>
 
     <div class="mx-10 mt-4">
       <v-text-field
@@ -19,12 +20,16 @@
         required
       ></v-text-field>
 
-      <v-text-field
-        v-model="photoURL"
-        :rules="photoURLRules"
-        label="Photo URL"
-        required
-      ></v-text-field>
+      <div class="d-flex">
+        <v-textarea
+          v-model="photoURL"
+          :rules="photoURLRules"
+          label="Photo URL"
+          required
+        ></v-textarea>
+
+        <v-img :src="photoURL" class="ma-auto" width="70" height="70"></v-img>
+      </div>
 
       <v-text-field
         v-model="email"
@@ -37,15 +42,10 @@
         v-if="!emailVerified"
         type="warning"
         class="mt-3"
-        text="Email is not verified" 
+        text="Email is not verified"
       ></v-alert>
 
-      <v-btn
-        class="mt-3"
-        color="primary"
-        @click="update"
-        :disabled="!valid"
-      >
+      <v-btn class="mt-3" color="primary" @click="update" :disabled="!valid">
         Update Profile
       </v-btn>
     </div>
@@ -90,7 +90,7 @@ const valid = computed(() => {
 $auth.onAuthStateChanged((user) => {
   if (user) {
     name.value = user.displayName;
-    photoURL.value = user.photoURL ?? '';
+    photoURL.value = user.photoURL ?? "";
     email.value = user.email;
     emailVerified.value = user.emailVerified;
   } else {
@@ -105,7 +105,7 @@ const update = () => {
     })
     .catch((error) => {
       console.log(error);
-    }); 
+    });
 
   updateProfile($auth.currentUser, {
     displayName: name.value,
