@@ -4,8 +4,6 @@ import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const config = useRuntimeConfig();
-
   const firebaseConfig = {
     apiKey: "AIzaSyDAL5lTZYE57q0W15TzM9XptCWW1Oh9ycA",
     authDomain: "thinkforall-linkall.firebaseapp.com",
@@ -20,13 +18,13 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const auth = getAuth(app);
   const firestore = getFirestore(app);
-  const database = getDatabase(app);
+  const db = getDatabase(app);
 
   nuxtApp.vueApp.provide("auth", auth);
   nuxtApp.provide("auth", auth);
 
-  nuxtApp.vueApp.provide("database", database);
-  nuxtApp.provide("database", database);
+  nuxtApp.vueApp.provide("db", db);
+  nuxtApp.provide("db", db);
 
   nuxtApp.vueApp.provide("firestore", firestore);
   nuxtApp.provide("firestore", firestore);

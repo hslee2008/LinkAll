@@ -155,6 +155,8 @@
 </template>
 
 <script setup>
+import { ref as dbRef, set, onValue } from "firebase/database";
+
 const { $db, $auth } = useNuxtApp();
 
 const router = useRouter();
@@ -183,7 +185,7 @@ onMounted(async () => {
     }
   });
 
-  $db.ref("join-us-waiting").on("value", (snapshot) => {
+  onValue(dbRef($db, "join-us-waiting"), (snapshot) => {
     const keys = Object.keys(snapshot.val());
     if (keys.includes(userInfo.value.uid)) {
       registering.value = true;
@@ -194,24 +196,26 @@ onMounted(async () => {
 });
 
 const submit = async () => {
-  $db.ref(`join-us-waiting/${userInfo.value.uid}`).set({
-    firstName: firstName.value,
-    lastName: lastName.value,
-    phone: phone.value,
-    email: email.value,
-    schoolName: schoolName.value,
-    country: country.value,
-    grade: grade.value,
-    radios: radios.value,
-    howFound: howFound.value,
-    brief: brief.value,
-    userInfo: {
-      uid: userInfo.value.uid,
-      displayName: userInfo.value.displayName,
-      email: userInfo.value.email,
-      photoURL: userInfo.value.photoURL,
-    },
-  });
+  set(
+    dbRef($db, `join-us-waiting/${userInfo.value.uid}`, {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      phone: phone.value,
+      email: email.value,
+      schoolName: schoolName.value,
+      country: country.value,
+      grade: grade.value,
+      radios: radios.value,
+      howFound: howFound.value,
+      brief: brief.value,
+      userInfo: {
+        uid: userInfo.value.uid,
+        displayName: userInfo.value.displayName,
+        email: userInfo.value.email,
+        photoURL: userInfo.value.photoURL,
+      },
+    })
+  );
 
   router.go(0);
 };
