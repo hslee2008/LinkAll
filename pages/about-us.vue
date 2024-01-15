@@ -59,6 +59,10 @@ onMounted(() => {
   const month = date.getMonth() + 1;
   yearmonth.value = `${year}.${month}`;
 });
+
+useHead({
+  title: "LinkAll - About Us",
+});
 </script>
 
-<style></style>
+

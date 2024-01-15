@@ -118,4 +118,8 @@ const createAccount = () => {
     }
   );
 };
+
+useHead({
+  title: "Create Account",
+});
 </script>

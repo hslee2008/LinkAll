@@ -447,4 +447,8 @@ const items = [
   "Zambia",
   "Zimbabwe",
 ];
+
+useHead({
+  title: "Join Us",
+});
 </script>

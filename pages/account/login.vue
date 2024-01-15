@@ -79,4 +79,8 @@ const loginWithFacebook = () => {
     router.push("/");
   });
 };
+
+useHead({
+  title: "Login",
+});
 </script>

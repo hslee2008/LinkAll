@@ -118,4 +118,8 @@ const update = () => {
       console.log(error);
     });
 };
+
+useHead({
+  title: "My Account",
+});
 </script>

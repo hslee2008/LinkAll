@@ -61,4 +61,8 @@ const fetchJoiningUsers = async () => {
 onMounted(() => {
   fetchJoiningUsers();
 });
+
+useHead({
+  title: "Admin",
+});
 </script>

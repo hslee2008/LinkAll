@@ -10,4 +10,8 @@
 <script setup>
 const route = useRoute();
 const title = route.query.title;
+
+useHead({
+  title: "Video Player",
+});
 </script>

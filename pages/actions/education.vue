@@ -41,3 +41,9 @@
     </v-card>
   </div>
 </template>
+
+<script setup>
+useHead({
+  title: "Actions - Education",
+});
+</script>

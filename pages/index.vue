@@ -1,11 +1,3 @@
-<script setup>
-const windowHeight = ref(0);
-
-onMounted(() => {
-  windowHeight.value = window.innerHeight;
-});
-</script>
-
 <template>
   <v-parallax dark src="./background.png" :height="windowHeight">
     <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
@@ -166,6 +158,18 @@ onMounted(() => {
     </div>
   </v-footer>
 </template>
+
+<script setup>
+const windowHeight = ref(0);
+
+onMounted(() => {
+  windowHeight.value = window.innerHeight;
+});
+
+useHead({
+  title: "LinkAll - Home",
+});
+</script>
 
 <style>
 .headline {
