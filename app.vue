@@ -18,9 +18,9 @@
           type="warning"
           text="Email is not verified"
         >
-          <v-btn @click="verifyEmail" variant="outlined" class="ml-5"
-            >verify</v-btn
-          >
+          <v-btn @click="verifyEmail" variant="outlined" class="ml-5">
+            verify
+          </v-btn>
         </v-alert>
         <h2 v-else>LinkAll</h2>
 
@@ -29,7 +29,7 @@
         <div>
           <div style="gap: 10px" class="d-flex justify-right">
             <v-select
-              v-model="$i18n.locale"
+              v-model="locale"
               :items="['ko', 'en']"
               variant="outlined"
               density="compact"
@@ -121,12 +121,14 @@
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 
 const route = useRoute();
 const router = useRouter();
 const auth = getAuth();
 const url = computed(() => route.path);
+const { locale } = useI18n();
 
 const userInfo = ref(null);
 
@@ -135,6 +137,14 @@ $auth.onAuthStateChanged((user) => {
   if (user) {
     userInfo.value = user;
   }
+});
+
+watch(locale, (newLocale) => {
+  localStorage.setItem("locale", newLocale);
+});
+
+onMounted(() => {
+  locale.value = localStorage.getItem("locale") ?? "en";
 });
 
 const logout = () => {
