@@ -9,7 +9,7 @@
           Link All
         </h1>
 
-        <div class="d-flex justify-center mb-8 mt-5">
+        <div class="d-flex justify-center mb-6 mt-5">
           <v-btn
             rounded="lg"
             to="/donation"
@@ -27,7 +27,7 @@
               <div class="text-center" elevation="10">
                 <v-card-text class="headline"> 0 </v-card-text>
 
-                <v-card-text> taught students </v-card-text>
+                <v-card-text> {{ $t("taught_students") }} </v-card-text>
               </div>
             </v-col>
 
@@ -35,7 +35,7 @@
               <div class="text-center" elevation="10">
                 <v-card-text class="headline"> 0 </v-card-text>
 
-                <v-card-text> ₩ donated </v-card-text>
+                <v-card-text> {{ $t("won_donated") }} </v-card-text>
               </div>
             </v-col>
 
@@ -43,7 +43,7 @@
               <div class="text-center" elevation="10">
                 <v-card-text class="headline"> 0 </v-card-text>
 
-                <v-card-text> hours of volunteering </v-card-text>
+                <v-card-text> {{ $t("hours_of_volunteering") }} </v-card-text>
               </div>
             </v-col>
           </v-row>
