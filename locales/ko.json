@@ -10,6 +10,12 @@
   "my account": "내 계정",
   "logout": "로그아웃",
 
+  "display name": "닉네임",
+  "photo url": "사진 URL",
+  "email": "이메일",
+  "email not verified": "이메일 인증되지 않음",
+  "update profile": "프로필 업데이트",
+
   "donate": "기부하기",
   "taught_students": "명 학생 가르치고",
   "won_donated": "원 기부하고",

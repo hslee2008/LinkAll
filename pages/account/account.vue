@@ -9,14 +9,14 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      MY ACCOUNT
+      {{ t("my account") }}
     </h1>
 
     <div class="mx-10 mt-4">
       <v-text-field
         v-model="name"
         :rules="nameRules"
-        label="Display Name"
+        :label="t('display name')"
         required
       ></v-text-field>
 
@@ -24,7 +24,7 @@
         <v-textarea
           v-model="photoURL"
           :rules="photoURLRules"
-          label="Photo URL"
+          :label="t('photo url')"
           required
         ></v-textarea>
 
@@ -34,7 +34,7 @@
       <v-text-field
         v-model="email"
         :rules="emailRules"
-        label="Email"
+        :label="t('email')"
         :disabled="!emailVerified"
         required
       ></v-text-field>
@@ -42,11 +42,11 @@
         v-if="!emailVerified"
         type="warning"
         class="mt-3"
-        text="Email is not verified"
+        :text="t('email not verified')"
       ></v-alert>
 
       <v-btn class="mt-3" color="primary" @click="update" :disabled="!valid">
-        Update Profile
+        {{ t('update profile') }}
       </v-btn>
     </div>
   </div>
