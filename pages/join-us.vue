@@ -38,7 +38,7 @@
                   <v-text-field
                     v-model="email"
                     :rules="emailRules"
-                    label="이메일"
+                    label="Email"
                     prepend-inner-icon="mdi-email"
                     variant="outlined"
                     required
@@ -49,7 +49,7 @@
                   <v-text-field
                     v-model="phone"
                     :rules="phoneNumRules"
-                    label="전화번호 (010-1234-5678)"
+                    label="Phone Number (010-1234-5678)"
                     prepend-inner-icon="mdi-phone"
                     variant="outlined"
                     required
