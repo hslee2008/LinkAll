@@ -13,7 +13,7 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      ABOUT US
+      {{ t("about us") }}
     </h1>
 
     <br /><br />
@@ -53,6 +53,9 @@
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 const yearmonth = ref("");
 
 onMounted(() => {

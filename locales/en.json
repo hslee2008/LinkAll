@@ -1,4 +1,15 @@
 {
+  "search": "Search",
+  "home": "Home",
+  "about us": "About us",
+  "actions": "Actions",
+  "education": "Education",
+  "members": "Members",
+  "join us": "Join us",
+  "donation": "Donation",
+  "my account": "My account",
+  "logout": "Logout",
+
   "donate": "DONATE",
   "taught_students": "Taught Students",
   "won_donated": "won donated",

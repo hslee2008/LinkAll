@@ -52,6 +52,8 @@
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
 import {
   getAuth,
   signInWithPopup,
@@ -59,6 +61,7 @@ import {
   FacebookAuthProvider,
 } from "firebase/auth";
 
+const { t } = useI18n();
 const router = useRouter();
 
 const loginWithGoogle = () => {

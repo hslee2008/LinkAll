@@ -1,4 +1,15 @@
 {
+  "search": "검색하기",
+  "home": "홈",
+  "about us": "우리에 대해",
+  "actions": "더 보기",
+  "education": "교육",
+  "members": "팀",
+  "join us": "참여하기",
+  "donation": "기부",
+  "my account": "내 계정",
+  "logout": "로그아웃",
+
   "donate": "기부하기",
   "taught_students": "명 학생 가르치고",
   "won_donated": "원 기부하고",

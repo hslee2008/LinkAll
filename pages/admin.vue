@@ -50,7 +50,10 @@
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
 import { ref as dbRef, onValue } from "firebase/database";
+
+const { t } = useI18n();
 
 const passed = ref(false);
 const password = ref("");

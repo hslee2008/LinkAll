@@ -1,10 +1,16 @@
 <template>
   <div style="margin-top: 180px">
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">MEMBER</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      MEMBER
+    </h1>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
 useHead({
   title: "Member",
 });

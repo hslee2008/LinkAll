@@ -38,7 +38,7 @@
 
             <v-autocomplete
               prepend-inner-icon="mdi-magnify"
-              label="SEARCH"
+              :label="t('search')"
               v-model="search"
               :items="searchItems"
               variant="outlined"
@@ -64,10 +64,12 @@
 
                 <v-list>
                   <v-list-item to="/account/account">
-                    <v-list-item-title> My Account </v-list-item-title>
+                    <v-list-item-title>
+                      {{ t("my account") }}
+                    </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="logout">
-                    <v-list-item-title> Logout </v-list-item-title>
+                    <v-list-item-title> {{ t("logout") }} </v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -81,38 +83,38 @@
           </div>
 
           <div>
-            <v-btn to="/"> HOME </v-btn>
-            <v-btn to="/about-us"> ABOUT US </v-btn>
+            <v-btn to="/"> {{ t("home") }} </v-btn>
+            <v-btn to="/about-us"> {{ t("about us") }} </v-btn>
 
             <v-menu open-on-hover>
               <template v-slot:activator="{ props }">
                 <v-btn to="/actions" v-bind="props">
-                  ACTIONS <v-icon end> mdi-chevron-down </v-icon>
+                  {{ t("actions") }} <v-icon end> mdi-chevron-down </v-icon>
                 </v-btn>
               </template>
 
               <v-list>
                 <v-list-item to="/actions/education">
-                  <v-list-item-title> EDUCATION </v-list-item-title>
+                  <v-list-item-title> {{ t("education") }} </v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
 
-            <v-btn to="/member"> MEMBER </v-btn>
+            <v-btn to="/member"> {{ t("members") }} </v-btn>
 
             <v-menu open-on-hover>
               <template v-slot:activator="{ props }">
                 <v-btn to="/join-us" v-bind="props">
-                  JOIN US <v-icon end>mdi-chevron-down</v-icon>
+                  {{ t("join us") }} <v-icon end>mdi-chevron-down</v-icon>
                 </v-btn>
               </template>
 
               <v-list>
                 <v-list-item to="/join-us">
-                  <v-list-item-title> JOIN US </v-list-item-title>
+                  <v-list-item-title> {{ t("join us") }} </v-list-item-title>
                 </v-list-item>
                 <v-list-item to="/donation">
-                  <v-list-item-title> DONATION </v-list-item-title>
+                  <v-list-item-title> {{ t("donation") }} </v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -135,7 +137,7 @@ const route = useRoute();
 const router = useRouter();
 const auth = getAuth();
 const url = computed(() => route.path);
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 
 const userInfo = ref(null);
 

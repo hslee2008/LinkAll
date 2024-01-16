@@ -53,8 +53,11 @@
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
 import { updateProfile, updateEmail } from "firebase/auth";
 
+const { t } = useI18n();
 const { $auth } = useNuxtApp();
 const router = useRouter();
 
