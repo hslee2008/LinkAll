@@ -8,12 +8,28 @@
   "join us": "JOIN US",
   "donation": "DONATION",
   "my account": "MY ACCOUNT",
+
   "logout": "LOGOUT",
+  "login": "LOGIN",
+  "create account": "CREATE ACCOUNT",
+
+  "login with google": "Login with Google",
+  "login with facebook": "Login with Facebook",
+  "please try again": "Please try again",
 
   "display name": "Display Name",
+  "display name is required": "Display Name is required",
+  "password": "Password",
+  "password confirm": "Password Conform",
+  "please confirm password": "Please confirm password",
+  "password must match": "Password must match",
+  "password is required": "Password is required",
+  "password must be at least 6 characters": "Password must be at least 6 characters",
   "photo url": "Photo URL",
   "email": "Email",
   "email not verified": "Email Not Verified",
+  "email is required": "Email is required",
+  "email must be valid": "Email must be valid",
   "update profile": "Update Profile",
 
   "donate": "DONATE",

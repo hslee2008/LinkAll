@@ -9,40 +9,48 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      SIGN UP
+      {{ t("create account") }}
     </h1>
 
-    <div class="d-flex justify-center align-center">
+    <div class="d-flex justify-center align-center mt-3">
       <div style="width: 400px">
         <v-form ref="form" v-model="valid">
           <v-text-field
             v-model="name"
             :rules="nameRules"
-            label="Display Name"
+            :label="t('display name')"
             required
+            variant="outlined"
+            class="mb-3"
           ></v-text-field>
 
           <v-text-field
             v-model="email"
             :rules="emailRules"
-            label="Email"
+            :label="t('email')"
             required
+            variant="outlined"
+            class="mb-3"
           ></v-text-field>
 
           <v-text-field
             v-model="password"
             :rules="passwordRules"
-            label="Password"
+            :label="t('password')"
             type="password"
             required
+            variant="outlined"
+            class="mb-3"
           ></v-text-field>
 
           <v-text-field
             v-model="passwordConfirm"
             :rules="passwordConfirmRules"
-            label="Password Confirm"
+            :label="t('password confirm')"
             type="password"
             required
+            variant="outlined"
+            class="mb-3"
           ></v-text-field>
 
           <v-btn
@@ -51,7 +59,7 @@
             @click="createAccount"
             :disabled="!valid"
           >
-            Create Account
+            {{ t("create account") }}
           </v-btn>
         </v-form>
       </div>
@@ -76,17 +84,17 @@ const password = ref("");
 const passwordConfirm = ref("");
 
 const emailRules = [
-  (v) => !!v || "Email is required",
-  (v) => /.+@.+\..+/.test(v) || "Email must be valid",
+  (v) => !!v || t("email is required"),
+  (v) => /.+@.+\..+/.test(v) || t("email must be valid"),
 ];
-const nameRules = [(v) => !!v || "Display Name is required"];
 const passwordRules = [
-  (v) => !!v || "Password is required",
-  (v) => v.length >= 6 || "Password must be at least 6 characters",
+  (v) => !!v || t("password is required"),
+  (v) => v.length >= 6 || t("password must be at least 6 characters"),
 ];
+const nameRules = [(v) => !!v || t("display name is required")];
 const passwordConfirmRules = [
-  (v) => !!v || "Password Confirm is required",
-  (v) => v === password.value || "Password must match",
+  (v) => !!v || t("please confirm password"),
+  (v) => v === password.value || t("password must match"),
 ];
 
 let valid = computed(() => {

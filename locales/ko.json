@@ -8,13 +8,30 @@
   "join us": "참여하기",
   "donation": "기부",
   "my account": "내 계정",
+
   "logout": "로그아웃",
+  "login": "로그인",
+  "create account": "계정 만들기",
+
+  "login with google": "구글로 로그인",
+  "login with facebook": "페이스북으로 로그인",
+  "please try again": "다시 시도해주세요",
 
   "display name": "닉네임",
+  "display name is required": "닉네임을 입력해주세요",
+  "password": "비밀번호",
+  "password confirm": "비밀번호 확인",
+  "please confirm password": "비밀번호를 확인해주세요",
+  "password must match": "비밀번호가 일치하지 않습니다",
+  "password is required": "비밀번호를 입력해주세요",
+  "password must be at least 6 characters": "비밀번호는 6자 이상이어야 합니다",
   "photo url": "사진 URL",
   "email": "이메일",
   "email not verified": "이메일 인증되지 않음",
+  "email is required": "이메일을 입력해주세요",
+  "email must be valid": "이메일 형식이 올바르지 않습니다",
   "update profile": "프로필 업데이트",
+
 
   "donate": "기부하기",
   "taught_students": "명 학생 가르치고",
