@@ -179,7 +179,7 @@ onMounted(() => {
 });
 
 useHead({
-  title: "LinkAll - Home",
+  title: "LinkAll - " + t("home"),
 });
 </script>
 

@@ -4,14 +4,20 @@
   "about us": "우리에 대해",
   "actions": "더 보기",
   "education": "교육",
+  "coming soon": "곧 출시됩니다",
   "members": "팀",
   "join us": "참여하기",
   "donation": "기부",
   "my account": "내 계정",
+  "admin": "관리자",
+  "video player": "비디오 플레이어",
 
   "logout": "로그아웃",
   "login": "로그인",
+  "login is required": "로그인이 필요합니다",
   "create account": "계정 만들기",
+
+  "submit": "제출",
 
   "login with google": "구글로 로그인",
   "login with facebook": "페이스북으로 로그인",
@@ -26,15 +32,32 @@
   "password is required": "비밀번호를 입력해주세요",
   "password must be at least 6 characters": "비밀번호는 6자 이상이어야 합니다",
   "photo url": "사진 URL",
+  "photo url is required": "사진 URL을 입력해주세요",
+  "photo URL must be less than 1000 characters": "사진 URL은 1000자 이하여야 합니다",
   "email": "이메일",
   "email not verified": "이메일 인증되지 않음",
   "email is required": "이메일을 입력해주세요",
   "email must be valid": "이메일 형식이 올바르지 않습니다",
   "update profile": "프로필 업데이트",
 
-
   "donate": "기부하기",
   "taught_students": "명 학생 가르치고",
   "won_donated": "원 기부하고",
-  "hours_of_volunteering": "시간 봉사함"
+  "hours_of_volunteering": "시간 봉사함",
+
+  "your data is being examined": "데이터를 검토 중입니다",
+  "first name": "이름",
+  "last name": "성",
+  "phone number": "전화번호",
+  "Country of Residence": "거주 국가",
+  "school name": "학교 이름",
+  "current grade": "현재 학년",
+  "Educator / Mentor": "교육자 / 멘토",
+  "Researcher": "연구자",
+  "Designer": "디자이너",
+  "other": "기타",
+  "Social Media": "소셜 미디어",
+  "Friend or Teacher": "친구 또는 선생님",
+  "Event / Tournament": "이벤트 / 대회",
+  "brief introduction": "간단한 소개"
 }

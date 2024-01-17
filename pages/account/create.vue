@@ -114,27 +114,20 @@ const createAccount = () => {
 
   const { $auth } = useNuxtApp();
 
-  createUserWithEmailAndPassword(auth, email.value, password.value).then(
-    (user) => {
-      $auth.onAuthStateChanged((user) => {
-        if (user) {
-          console.log("user", user);
-          updateProfile(user, {
-            displayName: name.value,
-          }).then(() => {
-            console.log("update profile");
-          });
-        } else {
-          console.log("no user");
-        }
-      });
+  createUserWithEmailAndPassword(auth, email.value, password.value).then(() => {
+    $auth.onAuthStateChanged((user) => {
+      if (user) {
+        updateProfile(user, {
+          displayName: name.value,
+        });
+      }
+    });
 
-      router.push("/");
-    }
-  );
+    router.push("/");
+  });
 };
 
 useHead({
-  title: "Create Account",
+  title: t("create account"),
 });
 </script>

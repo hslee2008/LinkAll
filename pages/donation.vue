@@ -14,7 +14,7 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      DONATION
+      {{ t("donation") }}
     </h1>
 
     <div class="d-flex justify-center align-center">
@@ -139,7 +139,7 @@ onMounted(() => {
 });
 
 useHead({
-  title: "Donation",
+  title: t("donation"),
   script: [
     {
       src: "https://www.paypalobjects.com/donate/sdk/donate-sdk.js",

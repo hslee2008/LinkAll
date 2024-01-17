@@ -18,7 +18,12 @@
     </div>
 
     <div v-else style="margin-left: 140px">
-      <h1 class="text-center" style="font-size: 50px; text-decoration: underline">Admin</h1>
+      <h1
+        class="text-center"
+        style="font-size: 50px; text-decoration: underline"
+      >
+        Admin
+      </h1>
 
       <v-list>
         <v-list-item
@@ -78,6 +83,6 @@ onMounted(() => {
 });
 
 useHead({
-  title: "Admin",
+  title: t("admin"),
 });
 </script>

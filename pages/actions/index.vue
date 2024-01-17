@@ -14,19 +14,25 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      ACTIONS
+      {{ t("actions") }}
     </h1>
 
     <br />
 
     <div class="text-center">
-      <v-btn width="300" height="50" to="/actions/education">Education</v-btn>
+      <v-btn width="300" height="50" to="/actions/education">
+        {{ t("education") }}
+      </v-btn>
       <br />
       <br />
-      <v-btn width="300" height="50">Coming Soon</v-btn>
+      <v-btn width="300" height="50">
+        {{ t("coming soon") }}
+      </v-btn>
       <br />
       <br />
-      <v-btn width="300" height="50">Coming Soon</v-btn>
+      <v-btn width="300" height="50">
+        {{ t("coming soon") }}
+      </v-btn>
     </div>
   </div>
 </template>
@@ -37,6 +43,6 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 useHead({
-  title: "Actions",
+  title: t("actions"),
 });
 </script>

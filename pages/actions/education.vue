@@ -14,7 +14,7 @@
     "
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
-      EDUCATION
+      {{ t("education") }}
     </h1>
 
     <v-card width="500" class="ml-10 mt-8" elevation="8">
@@ -52,7 +52,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 useHead({
-  title: "Actions - Education",
+  title: t("education"),
 });
 </script>
 

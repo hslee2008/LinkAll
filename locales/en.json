@@ -4,14 +4,20 @@
   "about us": "ABOUT US",
   "actions": "ACTIONS",
   "education": "EDUCATION",
+  "coming soon": "COMING SOON",
   "members": "MEMBERS",
   "join us": "JOIN US",
   "donation": "DONATION",
   "my account": "MY ACCOUNT",
+  "admin": "ADMIN",
+  "video player": "VIDEO PLAYER",
 
   "logout": "LOGOUT",
   "login": "LOGIN",
+  "login is required": "Login is required",
   "create account": "CREATE ACCOUNT",
+
+  "submit": "Submit",
 
   "login with google": "Login with Google",
   "login with facebook": "Login with Facebook",
@@ -26,6 +32,8 @@
   "password is required": "Password is required",
   "password must be at least 6 characters": "Password must be at least 6 characters",
   "photo url": "Photo URL",
+  "photo url is required": "Photo URL is required",
+  "photo URL must be less than 1000 characters": "Photo URL must be less than 1000 characters",
   "email": "Email",
   "email not verified": "Email Not Verified",
   "email is required": "Email is required",
@@ -35,5 +43,21 @@
   "donate": "DONATE",
   "taught_students": "Taught Students",
   "won_donated": "won donated",
-  "hours_of_volunteering": "hours of volunteering"
+  "hours_of_volunteering": "hours of volunteering",
+
+  "your data is being examined": "Your data is being examined",
+  "first name": "First Name",
+  "last name": "Last Name",
+  "phone number": "Phone Number",
+  "Country of Residence": "Country of Residence",
+  "school name": "School Name",
+  "current grade": "Current Grade",
+  "Educator / Mentor": "Educator / Mentor",
+  "Researcher": "Researcher",
+  "Designer": "Designer",
+  "other": "Other",
+  "Social Media": "Social Media",
+  "Friend or Teacher": "Friend or Teacher",
+  "Event / Tournament": "Event / Tournament",
+  "brief introduction": "Brief Introduction of yourself (ex. abilities, motive of application)"
 }

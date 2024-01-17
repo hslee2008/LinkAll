@@ -23,6 +23,6 @@ const route = useRoute();
 const { video, title } = route.query;
 
 useHead({
-  title: "Video Player",
+  title: t("video player"),
 });
 </script>

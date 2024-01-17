@@ -66,6 +66,6 @@ onMounted(() => {
 });
 
 useHead({
-  title: "LinkAll - About Us",
+  title: t("about us"),
 });
 </script>

@@ -46,7 +46,7 @@
       ></v-alert>
 
       <v-btn class="mt-3" color="primary" @click="update" :disabled="!valid">
-        {{ t('update profile') }}
+        {{ t("update profile") }}
       </v-btn>
     </div>
   </div>
@@ -66,17 +66,14 @@ const photoURL = ref("");
 const email = ref("");
 const emailVerified = ref(false);
 
-const nameRules = [
-  (v) => !!v || "Name is required",
-  (v) => v.length <= 20 || "Name must be less than 20 characters",
-];
+const nameRules = [(v) => !!v || t("display name is required")];
 const photoURLRules = [
-  (v) => !!v || "Photo URL is required",
-  (v) => v.length <= 1000 || "Photo URL must be less than 1000 characters",
+  (v) => !!v || t("photo URL is required"),
+  (v) => v.length <= 1000 || t("photo URL must be less than 1000 characters"),
 ];
 const emailRules = [
-  (v) => !!v || "Email is required",
-  (v) => /.+@.+\..+/.test(v) || "Email must be valid",
+  (v) => !!v || t("email is required"),
+  (v) => /.+@.+\..+/.test(v) || t("email must be valid"),
 ];
 
 const valid = computed(() => {
@@ -102,27 +99,14 @@ $auth.onAuthStateChanged((user) => {
 });
 
 const update = () => {
-  updateEmail($auth.currentUser, email.value)
-    .then(() => {
-      console.log("Email updated");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
+  updateEmail($auth.currentUser, email.value);
   updateProfile($auth.currentUser, {
     displayName: name.value,
     photoURL: photoURL.value,
-  })
-    .then(() => {
-      router.go(0);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  }).then(() => router.go(0));
 };
 
 useHead({
-  title: "My Account",
+  title: t("my account"),
 });
 </script>

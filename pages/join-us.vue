@@ -1,10 +1,12 @@
 <template>
   <div style="margin-top: 180px">
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">JOIN US</h1>
+    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+      {{ t("join us") }}
+    </h1>
 
     <div v-if="registering">
       <h1 class="text-center">
-        Your data is being examined by the maintainers
+        {{ t("your data is being examined") }}
       </h1>
     </div>
 
@@ -17,7 +19,7 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="firstName"
-                    label="First Name"
+                    :label="t('first name')"
                     required
                     variant="outlined"
                     hide-details
@@ -26,7 +28,7 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="lastName"
-                    label="Last Name"
+                    :label="t('last name')"
                     required
                     variant="outlined"
                     hide-details
@@ -38,7 +40,7 @@
                   <v-text-field
                     v-model="email"
                     :rules="emailRules"
-                    label="Email"
+                    :label="t('email')"
                     prepend-inner-icon="mdi-email"
                     variant="outlined"
                     required
@@ -49,7 +51,7 @@
                   <v-text-field
                     v-model="phone"
                     :rules="phoneNumRules"
-                    label="Phone Number (010-1234-5678)"
+                    :label="t('phone number') + ' (010-1234-5678)'"
                     prepend-inner-icon="mdi-phone"
                     variant="outlined"
                     required
@@ -64,7 +66,7 @@
                     v-model="country"
                     :items="items"
                     required
-                    label="Country of Residence"
+                    :label="t('Country of Residence')"
                   ></v-combobox>
                 </v-col>
               </v-row>
@@ -73,7 +75,7 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="schoolName"
-                    label="School Name"
+                    :label="t('school name')"
                     variant="outlined"
                     prepend-inner-icon="mdi-school"
                     required
@@ -83,10 +85,10 @@
                 <v-col cols="12" md="4">
                   <v-select
                     v-model="grade"
+                    :label="t('current grade')"
                     :items="itemsGrade"
                     required
                     variant="outlined"
-                    label="Current Grade"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -95,29 +97,32 @@
                 <v-col cols="12" md="4">
                   <v-radio-group v-model="radios">
                     <v-radio
-                      label="Educator / Mentor"
+                      :label="t('Educator / Mentor')"
                       value="Educator / Mentor"
                     ></v-radio>
-                    <v-radio label="Researcher" value="Researcher"></v-radio>
-                    <v-radio label="Designer" value="Designer"></v-radio>
-                    <v-radio label="other" value="other"></v-radio>
+                    <v-radio
+                      :label="t('Researcher')"
+                      value="Researcher"
+                    ></v-radio>
+                    <v-radio :label="t('Designer')" value="Designer"></v-radio>
+                    <v-radio :label="t('other')" value="other"></v-radio>
                   </v-radio-group>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-radio-group v-model="howFound">
                     <v-radio
-                      label="Social Media"
+                      :label="t('Social Media')"
                       value="Social Media"
                     ></v-radio>
                     <v-radio
-                      label="Friend or Teacher"
+                      :label="t('Friend or Teacher')"
                       value="Friend or Teacher"
                     ></v-radio>
                     <v-radio
-                      label="Event / Tournament"
+                      :label="t('Event / Tournament')"
                       value="Event / Tournament"
                     ></v-radio>
-                    <v-radio label="other" value="other"></v-radio>
+                    <v-radio :label="t('other')" value="other"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
@@ -126,7 +131,7 @@
                 <v-col cols="24" md="8">
                   <v-textarea
                     v-model="brief"
-                    label="Brief introduction of yourself (ex. abilities, motive of application)"
+                    :label="t('brief introduction')"
                     required
                     variant="outlined"
                     hide-details
@@ -138,17 +143,21 @@
 
           <div class="my-10" style="margin-left: 350px">
             <v-btn color="primary" :disabled="!valid" @click="submit">
-              Submit
+              {{ t("submit") }}
             </v-btn>
           </div>
         </v-form>
       </div>
     </div>
     <div v-else>
-      <h2 class="text-center mt-10">로그인이 필요합니다.</h2>
+      <h2 class="text-center mt-10">
+        {{ t("login is required") }}
+      </h2>
 
       <div class="d-flex justify-center align-center">
-        <v-btn to="/account/login" class="mt-2" color="primary"> 로그인 </v-btn>
+        <v-btn to="/account/login" class="mt-2" color="primary">
+          {{ t("login") }}
+        </v-btn>
       </div>
     </div>
   </div>
@@ -455,6 +464,6 @@ const items = [
 ];
 
 useHead({
-  title: "Join Us",
+  title: t("join us"),
 });
 </script>

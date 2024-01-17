@@ -142,6 +142,6 @@ const passwordRules = [
 ];
 
 useHead({
-  title: "Login",
+  title: t("login"),
 });
 </script>
