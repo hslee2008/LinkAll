@@ -83,6 +83,22 @@
             <p>3. Debating Startup</p>
             <p>4. Journey to Knowledge</p>
           </v-card-text>
+
+          <v-card
+            v-if="schedule?.English"
+            variant="tonal"
+            class="ma-3"
+            :href="schedule?.English.link"
+            target="_blank"
+          >
+            <v-card-title>
+              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+                schedule.English.date
+              }})
+            </v-card-title>
+
+            <v-card-text> Click here to join the class </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
 
@@ -91,6 +107,22 @@
           <v-card-text class="headline text-center"> Korean </v-card-text>
 
           <v-card-text> </v-card-text>
+
+          <v-card
+            v-if="schedule?.Korean"
+            variant="tonal"
+            class="ma-3"
+            :href="schedule?.Korean.link"
+            target="_blank"
+          >
+            <v-card-title>
+              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+                schedule.Korean.date
+              }})
+            </v-card-title>
+
+            <v-card-text> Click here to join the class </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
 
@@ -99,6 +131,22 @@
           <v-card-text class="headline text-center"> Arts </v-card-text>
 
           <v-card-text> </v-card-text>
+
+          <v-card
+            v-if="schedule?.Arts"
+            variant="tonal"
+            class="ma-3"
+            :href="schedule?.Arts.link"
+            target="_blank"
+          >
+            <v-card-title>
+              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+                schedule.Arts.date
+              }})
+            </v-card-title>
+
+            <v-card-text> Click here to join the class </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
 
@@ -107,6 +155,22 @@
           <v-card-text class="headline text-center"> Tech </v-card-text>
 
           <v-card-text> </v-card-text>
+
+          <v-card
+            v-if="schedule?.Tech"
+            variant="tonal"
+            class="ma-3"
+            :href="schedule?.Tech.link"
+            target="_blank"
+          >
+            <v-card-title>
+              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+                schedule.Tech.date
+              }})
+            </v-card-title>
+
+            <v-card-text> Click here to join the class </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
     </v-row>
@@ -179,12 +243,30 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import { onValue, ref as dbRef, set } from "firebase/database";
 
+const { $db } = useNuxtApp();
 const { t } = useI18n();
 const windowHeight = ref(0);
+const schedule = ref({});
 
 onMounted(() => {
   windowHeight.value = window.innerHeight;
+
+  onValue(dbRef($db, "schedule"), (snapshot) => {
+    schedule.value = snapshot.val();
+
+    const keys = Object.keys(schedule.value);
+
+    for (const key of keys) {
+      const date = new Date(schedule.value[key].date);
+      const now = new Date();
+
+      if (now - date > 24 * 60 * 60 * 1000) {
+        set(dbRef($db, "schedule", key), null);
+      }
+    }
+  });
 });
 
 useHead({
