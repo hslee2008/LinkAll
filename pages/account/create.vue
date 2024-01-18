@@ -1,14 +1,6 @@
 <template>
-  <div
-    style="
-      margin-top: 140px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      width: 100vw;
-      height: calc(100vh - 140px);
-    "
-  >
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+  <div class="top-div-without-bg">
+    <h1 class="text-center header-u">
       {{ t("create account") }}
     </h1>
 

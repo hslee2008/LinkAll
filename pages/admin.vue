@@ -1,8 +1,8 @@
 <template>
-  <div style="margin-top: 150px; padding: 10px">
+  <div class="mt-180 pa-3">
     <div
       v-if="!passed"
-      style="display: flex; justify-content: center; align-items: center"
+      class="d-flex justify-content-center align-items-center"
     >
       <v-card width="500px" elevation="10">
         <v-card-title>Admin</v-card-title>
@@ -18,12 +18,7 @@
     </div>
 
     <div v-else class="mx-12">
-      <h1
-        class="text-center"
-        style="font-size: 50px; text-decoration: underline"
-      >
-        Admin
-      </h1>
+      <h1 class="text-center header-u">Admin</h1>
 
       <v-dialog width="500">
         <template v-slot:activator="{ props }">
@@ -141,7 +136,7 @@ const save = (close) => {
   selectedClass.value = "";
   classLink.value = "";
 
-  close()
+  close();
 };
 
 watch(password, (val) => {

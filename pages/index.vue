@@ -11,15 +11,16 @@
 
     <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
       <div>
-        <h1 style="text-align: center; font-weight: 700; font-size: 60px">
-          Think for All
-        </h1>
-        <h1 style="text-align: center; font-weight: 900; font-size: 70px">
-          Link All
-        </h1>
+        <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
+        <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">Link All</h1>
 
         <div class="d-flex justify-center mb-6 mt-5">
-          <v-btn rounded="lg" to="/join-us/donation" color="primary" height="75">
+          <v-btn
+            rounded="lg"
+            to="/join-us/donation"
+            color="primary"
+            height="75"
+          >
             <h2>
               <v-icon start>mdi-gift</v-icon>
               {{ $t("donate") }}

@@ -10,7 +10,9 @@ export default defineNuxtConfig({
   css: [
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
+
     "/assets/css/div.css",
+    "/assets/css/title.css",
   ],
   modules: [
     (_, nuxt) => {
@@ -33,5 +35,5 @@ export default defineNuxtConfig({
         ],
       }),
     ],
-  }
+  },
 });

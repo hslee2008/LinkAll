@@ -24,14 +24,7 @@
         style="width: calc(100vw - 400px)"
       >
         <div class="text-center" style="width: 400px">
-          <h1
-            style="
-              font-size: 50px;
-              margin-top: 10px;
-              margin-bottom: 10px;
-              text-decoration: underline;
-            "
-          >
+          <h1 class="header-u my-8">
             {{ t("login") }}
           </h1>
 

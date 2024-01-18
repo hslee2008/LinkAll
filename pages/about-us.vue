@@ -1,6 +1,9 @@
 <template>
-  <div style="background-image: url('/background/about-us.png')" class="top-div-with-bg">
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+  <div
+    style="background-image: url('/background/about-us.png')"
+    class="top-div-with-bg"
+  >
+    <h1 class="text-center header-u">
       {{ t("about us") }}
     </h1>
 

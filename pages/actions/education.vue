@@ -3,7 +3,7 @@
     style="background-image: url('/background/education.png')"
     class="top-div-with-bg"
   >
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+    <h1 class="text-center header-u">
       {{ t("education") }}
     </h1>
 

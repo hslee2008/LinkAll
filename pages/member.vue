@@ -1,6 +1,6 @@
 <template>
-  <div style="margin-top: 180px">
-    <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
+  <div class="mt-180">
+    <h1 class="text-center header-u">
       {{ t("members") }}
     </h1>
   </div>

@@ -9,3 +9,15 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.top-div-without-bg {
+  margin-top: 140px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100vw;
+  height: calc(100vh - 140px);
+}
+
+.mt-180 {
+  margin-top: 180px;
+}
