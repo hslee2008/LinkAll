@@ -92,12 +92,12 @@
             target="_blank"
           >
             <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
                 schedule.English.date
               }})
             </v-card-title>
 
-            <v-card-text> Click here to join the class </v-card-text>
+            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
           </v-card>
         </v-card>
       </v-col>
@@ -116,12 +116,12 @@
             target="_blank"
           >
             <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
                 schedule.Korean.date
               }})
             </v-card-title>
 
-            <v-card-text> Click here to join the class </v-card-text>
+            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
           </v-card>
         </v-card>
       </v-col>
@@ -140,12 +140,12 @@
             target="_blank"
           >
             <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
                 schedule.Arts.date
               }})
             </v-card-title>
 
-            <v-card-text> Click here to join the class </v-card-text>
+            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
           </v-card>
         </v-card>
       </v-col>
@@ -164,12 +164,12 @@
             target="_blank"
           >
             <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> Class ({{
+              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
                 schedule.Tech.date
               }})
             </v-card-title>
 
-            <v-card-text> Click here to join the class </v-card-text>
+            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
           </v-card>
         </v-card>
       </v-col>

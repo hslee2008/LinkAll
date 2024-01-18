@@ -12,6 +12,10 @@
   "admin": "관리자",
   "video player": "비디오 플레이어",
 
+  "language": "언어",
+  "class": "수업",
+  "click here to join the class": "수업에 참여하려면 여기를 클릭하세요",
+
   "logout": "로그아웃",
   "login": "로그인",
   "login is required": "로그인이 필요합니다",

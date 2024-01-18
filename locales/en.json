@@ -12,6 +12,10 @@
   "admin": "ADMIN",
   "video player": "VIDEO PLAYER",
 
+  "language": "Language",
+  "class": "Class",
+  "click here to join the class": "Click here to join the class",
+
   "logout": "LOGOUT",
   "login": "LOGIN",
   "login is required": "Login is required",

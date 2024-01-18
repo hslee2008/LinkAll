@@ -29,12 +29,24 @@
         <div>
           <div style="gap: 10px" class="d-flex justify-right">
             <v-select
-              v-model="locale"
-              :items="['ko', 'en']"
+              v-model="tempLocaleObject"
+              :label="t('language')"
+              :items="[
+                { languageCode: 'ko', name: '한국어' },
+                { languageCode: 'en', name: 'English' },
+              ]"
+              item-title="name"
               variant="outlined"
               density="compact"
               prepend-inner-icon="mdi-translate"
-            ></v-select>
+            >
+              <template v-slot:item="{ props, item }">
+                <v-list-item
+                  v-bind="props"
+                  :subtitle="item.languageCode"
+                ></v-list-item>
+              </template>
+            </v-select>
 
             <v-autocomplete
               prepend-inner-icon="mdi-magnify"
@@ -66,7 +78,7 @@
                   <v-list>
                     <v-list-item v-if="isAdmin" to="/admin">
                       <v-list-item-title>
-                        <v-icon start>mdi-incognito</v-icon> ADMIN 
+                        <v-icon start>mdi-incognito</v-icon> ADMIN
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item to="/account/account">
@@ -146,6 +158,7 @@ const auth = getAuth();
 const url = computed(() => route.path);
 const { t, locale } = useI18n();
 
+const tempLocaleObject = ref(locale === 'ko' ? '한국어' : 'English');
 const isAdmin = ref(false);
 const userInfo = ref(null);
 
@@ -167,8 +180,17 @@ watch(locale, (newLocale) => {
   localStorage.setItem("locale", newLocale);
 });
 
+watch(tempLocaleObject, (newLocale) => {
+  if (newLocale === "한국어") {
+    locale.value = "ko";
+  } else if (newLocale === "English") {
+    locale.value = "en";
+  }
+});
+
 onMounted(() => {
   locale.value = localStorage.getItem("locale") ?? "en";
+  tempLocaleObject.value = locale.value === 'ko' ? '한국어' : 'English';
 });
 
 const search = ref("");
