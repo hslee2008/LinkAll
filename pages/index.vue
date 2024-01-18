@@ -256,7 +256,7 @@ onMounted(() => {
   onValue(dbRef($db, "schedule"), (snapshot) => {
     schedule.value = snapshot.val();
 
-    const keys = Object.keys(schedule.value);
+    const keys = Object.keys(schedule.value ?? {});
 
     for (const key of keys) {
       const date = new Date(schedule.value[key].date);
