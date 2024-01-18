@@ -6,7 +6,7 @@
 
     <div class="d-flex justify-center align-center mt-3">
       <div style="width: 400px">
-        <v-form ref="form" v-model="valid">
+        <v-form ref="form">
           <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -49,7 +49,7 @@
             class="mt-3"
             color="primary"
             @click="createAccount"
-            :disabled="!valid"
+            :disabled="valid"
           >
             {{ t("create account") }}
           </v-btn>
@@ -89,15 +89,15 @@ const passwordConfirmRules = [
   (v) => v === password.value || t("password must match"),
 ];
 
-let valid = computed(() => {
+const valid = computed(() => {
   return (
-    emailRules[0](email.value) &&
-    emailRules[1](email.value) &&
-    passwordRules[0](password.value) &&
-    passwordRules[1](password.value) &&
-    passwordConfirmRules[0](passwordConfirm.value) &&
-    passwordConfirmRules[1](passwordConfirm.value) &&
-    nameRules[0](name.value)
+    emailRules[0](email.value) !== true ||
+    emailRules[1](email.value) !== true ||
+    passwordRules[0](password.value) !== true ||
+    passwordRules[1](password.value) !== true ||
+    nameRules[0](name.value) !== true ||
+    passwordConfirmRules[0](passwordConfirm.value) !== true ||
+    passwordConfirmRules[1](passwordConfirm.value) !== true
   );
 });
 

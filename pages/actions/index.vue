@@ -1,6 +1,9 @@
 <template>
   <div
-    style="background-image: url('/background/actions.png')"
+    style="
+      background-image: url('/background/actions.png');
+      height: calc(100vh - 140px);
+    "
     class="top-div-with-bg"
   >
     <h1 class="text-center header-u">
