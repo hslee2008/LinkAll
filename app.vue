@@ -62,16 +62,23 @@
                   </v-avatar>
                 </template>
 
-                <v-list>
-                  <v-list-item to="/account/account">
-                    <v-list-item-title>
-                      {{ t("my account") }}
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="logout">
-                    <v-list-item-title> {{ t("logout") }} </v-list-item-title>
-                  </v-list-item>
-                </v-list>
+                <v-card>
+                  <v-list>
+                    <v-list-item v-if="isAdmin" to="/admin">
+                      <v-list-item-title>
+                        <v-icon start>mdi-incognito</v-icon> ADMIN 
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item to="/account/account">
+                      <v-list-item-title>
+                        {{ t("my account") }}
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="logout">
+                      <v-list-item-title> {{ t("logout") }} </v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
               </v-menu>
             </div>
             <v-btn
@@ -139,12 +146,20 @@ const auth = getAuth();
 const url = computed(() => route.path);
 const { t, locale } = useI18n();
 
+const isAdmin = ref(false);
 const userInfo = ref(null);
 
 const { $auth } = useNuxtApp();
 $auth.onAuthStateChanged((user) => {
   if (user) {
     userInfo.value = user;
+
+    if (
+      user.email === "hyunseunglee2008@gmail.com" ||
+      user.email === "h.junho420@gmail.com"
+    ) {
+      isAdmin.value = true;
+    }
   }
 });
 
