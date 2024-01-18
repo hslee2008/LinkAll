@@ -1,0 +1,11 @@
+.top-div-with-bg {
+  margin-top: 140px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100vw;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

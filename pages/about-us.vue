@@ -1,17 +1,5 @@
 <template>
-  <div
-    style="
-      margin-top: 140px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      width: 100vw;
-      background-image: url('/background/about-us.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    "
-  >
+  <div style="background-image: url('/background/about-us.png')" class="top-div-with-bg">
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
       {{ t("about us") }}
     </h1>

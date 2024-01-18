@@ -1,17 +1,7 @@
 <template>
   <div
-    style="
-      margin-top: 140px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      width: 100vw;
-      min-height: calc(100vh - 140px);
-      background-image: url('/background/donation.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    "
+    style="background-image: url('/background/donation.png')"
+    class="top-div-with-bg"
   >
     <h1 class="text-center" style="font-size: 50px; text-decoration: underline">
       {{ t("donation") }}
