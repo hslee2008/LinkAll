@@ -197,7 +197,7 @@ onMounted(async () => {
   });
 
   onValue(dbRef($db, "join-us-waiting"), (snapshot) => {
-    const keys = Object.keys(snapshot.val());
+    const keys = Object.keys(snapshot.val() ?? {});
     if (keys.includes(userInfo.value.uid)) {
       registering.value = true;
     } else {
