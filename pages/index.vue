@@ -1,5 +1,14 @@
 <template>
   <v-parallax dark src="./background.png" :height="windowHeight">
+    <template v-slot:placeholder>
+      <div class="d-flex align-center justify-center fill-height">
+        <v-progress-circular
+          color="grey-lighten-4"
+          indeterminate
+        ></v-progress-circular>
+      </div>
+    </template>
+
     <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
       <div>
         <h1 style="text-align: center; font-weight: 700; font-size: 60px">

@@ -17,13 +17,65 @@
       </v-card>
     </div>
 
-    <div v-else style="margin-left: 140px">
+    <div v-else class="mx-12">
       <h1
         class="text-center"
         style="font-size: 50px; text-decoration: underline"
       >
         Admin
       </h1>
+
+      <v-dialog width="500">
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" variant="outlined" class="my-3">
+            Schedule Class
+          </v-btn>
+        </template>
+
+        <template v-slot:default="{ isActive }">
+          <v-card
+            title="Schedule Google Meet Class"
+            subtitle="Note that only one meeting is allowed per class"
+          >
+            <v-card-text>
+              <v-select
+                v-model="selectedClass"
+                :items="classes"
+                label="Select Class"
+                outlined
+                class="my-3"
+              ></v-select>
+
+              <v-date-picker v-model="currentDate"></v-date-picker>
+
+              <v-textarea
+                v-model="classLink"
+                label="Class Link"
+                outlined
+                class="my-3"
+              ></v-textarea>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn
+                text
+                color="primary"
+                @click="() => save(() => (isActive.value = false))"
+                class="mr-4"
+              >
+                Save
+              </v-btn>
+              <v-btn
+                text="Cancel"
+                color="red"
+                @click="isActive.value = false"
+              ></v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
 
       <v-list>
         <v-list-item
@@ -56,19 +108,46 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { ref as dbRef, onValue } from "firebase/database";
+import { ref as dbRef, onValue, set } from "firebase/database";
 
 const { t } = useI18n();
 
 const passed = ref(false);
 const password = ref("");
 const waiting = ref([]);
+const selectedClass = ref("");
+const classes = ["English", "Korean", "Tech", "Arts"];
+const classLink = ref("");
 
 const { $db } = useNuxtApp();
+
+const cd = new Date();
+const date = cd.getFullYear() + "-" + (cd.getMonth() + 1) + "-" + cd.getDate();
+const currentDate = ref(new Date(date));
+
+const save = (close) => {
+  const date = currentDate.value;
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const dateStr = year + "-" + month + "-" + day;
+
+  set(dbRef($db, `schedule/${selectedClass.value}`), {
+    date: dateStr,
+    link: classLink.value,
+  });
+
+  selectedClass.value = "";
+  classLink.value = "";
+
+  close()
+};
 
 watch(password, (val) => {
   if (val === "30002024") {
     passed.value = true;
+    localStorage.setItem("adminPassed", "true");
   }
 });
 
@@ -80,6 +159,10 @@ const fetchJoiningUsers = async () => {
 
 onMounted(() => {
   fetchJoiningUsers();
+
+  if (localStorage.getItem("adminPassed") === "true") {
+    passed.value = true;
+  }
 });
 
 useHead({
