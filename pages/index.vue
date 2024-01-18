@@ -1,5 +1,5 @@
 <template>
-  <v-parallax dark src="./background.png" :height="windowHeight">
+  <v-parallax dark src="/background/background.png" :height="windowHeight">
     <template v-slot:placeholder>
       <div class="d-flex align-center justify-center fill-height">
         <v-progress-circular

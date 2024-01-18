@@ -1,3 +1,4 @@
 - payment
-- schedule meetings
-- admin feature -> to be continued
+- schedule meetings (see on actions page)
+- admin feature -> to be continued (accept/deny)
+- pwa

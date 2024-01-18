@@ -6,7 +6,7 @@
       padding-bottom: 50px;
       width: 100vw;
       height: calc(100vh - 140px);
-      background-image: url('/education.png');
+      background-image: url('/background/education.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;

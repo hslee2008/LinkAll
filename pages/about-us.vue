@@ -5,7 +5,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       width: 100vw;
-      background-image: url('/about-us.png');
+      background-image: url('/background/about-us.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;

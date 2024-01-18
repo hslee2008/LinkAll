@@ -6,7 +6,7 @@
       padding-bottom: 50px;
       width: 100vw;
       min-height: calc(100vh - 140px);
-      background-image: url('/donation.png');
+      background-image: url('/background/donation.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
