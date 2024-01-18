@@ -123,16 +123,16 @@
 
             <v-menu open-on-hover>
               <template v-slot:activator="{ props }">
-                <v-btn to="/join-us" v-bind="props">
+                <v-btn to="/join-us/join-us" v-bind="props">
                   {{ t("join us") }} <v-icon end>mdi-chevron-down</v-icon>
                 </v-btn>
               </template>
 
               <v-list>
-                <v-list-item to="/join-us">
+                <v-list-item to="/join-us/join-us">
                   <v-list-item-title> {{ t("join us") }} </v-list-item-title>
                 </v-list-item>
-                <v-list-item to="/donation">
+                <v-list-item to="/join-us/donation">
                   <v-list-item-title> {{ t("donation") }} </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -209,8 +209,8 @@ const links = {
   Actions: "/actions",
   Education: "/actions/education",
   Member: "/member",
-  "Join Us": "/join-us",
-  Donation: "/donation",
+  "Join Us": "/join-us/join-us",
+  Donation: "/join-us/donation",
 };
 
 watch(search, (newSearch) => {

@@ -19,7 +19,7 @@
         </h1>
 
         <div class="d-flex justify-center mb-6 mt-5">
-          <v-btn rounded="lg" to="/donation" color="primary" height="75">
+          <v-btn rounded="lg" to="/join-us/donation" color="primary" height="75">
             <h2>
               <v-icon start>mdi-gift</v-icon>
               {{ $t("donate") }}
