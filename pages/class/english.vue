@@ -202,7 +202,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { set, ref as dbRef } from "firebase/database";
+import { push, ref as dbRef } from "firebase/database";
 
 const { t, locale } = useI18n();
 const { $db } = useNuxtApp();
@@ -216,8 +216,11 @@ const d_name = ref("");
 const thankYou = ref(false);
 
 const saveToDatabase = () => {
-  const classRef = dbRef($db, `classes/junho/to-join/${classNumber.value}`);
-  set(classRef, {
+  const classRef = dbRef(
+    $db,
+    `classes/h_junho420/to-join/${classNumber.value}`
+  );
+  push(classRef, {
     classNumber: classNumber.value,
     s_name: s_name.value,
     s_email: s_email.value,
