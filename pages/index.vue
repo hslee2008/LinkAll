@@ -9,7 +9,7 @@
       </div>
     </template>
 
-    <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
+    <div class="d-flex justify-center align-center" style="margin-top: 175px">
       <div>
         <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
         <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">
@@ -59,7 +59,7 @@
           </v-row>
         </v-container>
       </div>
-    </v-col>
+    </div>
   </v-parallax>
 
   <br />
@@ -67,11 +67,13 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px">
+        <v-card elevation="8" height="400px" to="/class/english">
           <v-card-text class="headline text-center"> English </v-card-text>
 
           <v-card-text class="d-flex justify-center align-center h-75 text-h3">
-            Coming Soon
+            Click<br /><br /><br />
+            to see<br /><br /><br />
+            test page
           </v-card-text>
 
           <v-card
@@ -243,6 +245,7 @@ import { onValue, ref as dbRef, set } from "firebase/database";
 
 const { $db } = useNuxtApp();
 const { t } = useI18n();
+
 const windowHeight = ref(0);
 const schedule = ref({});
 
