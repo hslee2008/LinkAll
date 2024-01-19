@@ -16,8 +16,8 @@
               class="rounded-shaped ma-auto"
             ></v-img>
 
-            <p class="mt-3">Founder</p>
-            <b>Junho Hwang</b>
+            <p class="mt-3">{{ t("founder") }}</p>
+            <b>{{ t("Junho Hwang") }}</b>
           </div>
 
           <div style="flex: 2">
@@ -57,7 +57,12 @@
                     2023 Top 24
                   </li>
                   <li>E-ICON World Contest 2023 Champion (1st)</li>
-                  <li>Hankyung Economy Experience Competition 2023 (Grand)</li>
+                  <li>
+                    <span style="font-size: 13px">
+                      Hankyung Economy Experience
+                    </span>
+                    Competition 2023 (Grand)
+                  </li>
                 </ul>
               </div>
             </div>
@@ -83,8 +88,8 @@
               class="rounded-shaped ma-auto"
             ></v-img>
 
-            <p class="mt-3">Co-Founder</p>
-            <b>Hyunseung Lee</b>
+            <p class="mt-3">{{ t("co-founder") }}</p>
+            <b>{{ t("Hyunseung Lee") }}</b>
           </div>
 
           <div style="flex: 2">

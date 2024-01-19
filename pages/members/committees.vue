@@ -13,7 +13,7 @@
               style="width: 150px; height: 198px"
               class="mb-3 rounded-shaped"
             ></v-img>
-            <b class="ml-5">Junho Hwang</b>
+            <b class="ml-5">{{ t("Junho Hwang") }}</b>
           </div>
 
           <div class="ml-7">
@@ -22,7 +22,7 @@
               style="width: 150px; height: 198px"
               class="mb-3 rounded-shaped"
             ></v-img>
-            <b class="ml-4">Hyunseung Lee</b>
+            <b class="ml-4">{{ t("Hyunseung Lee") }}</b>
           </div>
         </div>
       </div>
