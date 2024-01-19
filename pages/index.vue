@@ -75,22 +75,6 @@
             to see<br /><br /><br />
             test page
           </v-card-text>
-
-          <v-card
-            v-if="schedule?.English"
-            variant="tonal"
-            class="ma-3"
-            :href="schedule?.English.link"
-            target="_blank"
-          >
-            <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
-                schedule.English.date
-              }})
-            </v-card-title>
-
-            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
-          </v-card>
         </v-card>
       </v-col>
 
@@ -101,22 +85,6 @@
           <v-card-text class="d-flex justify-center align-center h-75 text-h3">
             Coming Soon
           </v-card-text>
-
-          <v-card
-            v-if="schedule?.Korean"
-            variant="tonal"
-            class="ma-3"
-            :href="schedule?.Korean.link"
-            target="_blank"
-          >
-            <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
-                schedule.Korean.date
-              }})
-            </v-card-title>
-
-            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
-          </v-card>
         </v-card>
       </v-col>
 
@@ -127,22 +95,6 @@
           <v-card-text class="d-flex justify-center align-center h-75 text-h3">
             Coming Soon
           </v-card-text>
-
-          <v-card
-            v-if="schedule?.Arts"
-            variant="tonal"
-            class="ma-3"
-            :href="schedule?.Arts.link"
-            target="_blank"
-          >
-            <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
-                schedule.Arts.date
-              }})
-            </v-card-title>
-
-            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
-          </v-card>
         </v-card>
       </v-col>
 
@@ -153,22 +105,6 @@
           <v-card-text class="d-flex justify-center align-center h-75 text-h3">
             Coming Soon
           </v-card-text>
-
-          <v-card
-            v-if="schedule?.Tech"
-            variant="tonal"
-            class="ma-3"
-            :href="schedule?.Tech.link"
-            target="_blank"
-          >
-            <v-card-title>
-              <v-icon start>mdi-laptop-account</v-icon> {{ t("class") }} ({{
-                schedule.Tech.date
-              }})
-            </v-card-title>
-
-            <v-card-text> {{ t("click here to join the class") }} </v-card-text>
-          </v-card>
         </v-card>
       </v-col>
     </v-row>
@@ -247,26 +183,8 @@ const { $db } = useNuxtApp();
 const { t } = useI18n();
 
 const windowHeight = ref(0);
-const schedule = ref({});
 
-onMounted(() => {
-  windowHeight.value = window.innerHeight;
-
-  onValue(dbRef($db, "schedule"), (snapshot) => {
-    schedule.value = snapshot.val();
-
-    const keys = Object.keys(schedule.value ?? {});
-
-    for (const key of keys) {
-      const date = new Date(schedule.value[key].date);
-      const now = new Date();
-
-      if (now - date > 24 * 60 * 60 * 1000) {
-        set(dbRef($db, "schedule", key), null);
-      }
-    }
-  });
-});
+onMounted(() => (windowHeight.value = window.innerHeight));
 
 useHead({
   title: "LinkAll - " + t("home"),

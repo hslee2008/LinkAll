@@ -10,14 +10,59 @@
       {{ t("education") }}
     </h1>
 
-    <v-card width="500" class="ml-10 mt-8" elevation="8">
-      <v-card-item>
-        <v-card-title>English</v-card-title>
-        <v-card-subtitle>This is a subtitle</v-card-subtitle>
-      </v-card-item>
+    <div>
+      <v-container fluid>
+        <v-row justify="center">
+          <v-col cols="12" sm="6" md="3">
+            <v-card elevation="8" height="200px" width="200px" to="/class/english">
+              <v-card-text class="headline text-center"> English </v-card-text>
 
-      <v-card-text class="ml-6 d-flex" style="gap: 60px"> </v-card-text>
-    </v-card>
+              <v-card-text
+                class="d-flex justify-center align-center h-75 text-h6"
+              >
+                Test
+              </v-card-text>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3">
+            <v-card elevation="8" height="200px" width="200px">
+              <v-card-text class="headline text-center"> Korean </v-card-text>
+
+              <v-card-text
+                class="d-flex justify-center align-center h-75 text-h6"
+              >
+                Coming Soon
+              </v-card-text>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3">
+            <v-card elevation="8" height="200px" width="200px">
+              <v-card-text class="headline text-center"> Arts </v-card-text>
+
+              <v-card-text
+                class="d-flex justify-center align-center h-75 text-h6"
+              >
+                Coming Soon
+              </v-card-text>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3">
+            <v-card elevation="8" height="200px" width="200px">
+              <v-card-text class="headline text-center"> Tech </v-card-text>
+
+              <v-card-text
+                class="d-flex justify-center align-center h-75 text-h6"
+              >
+                Coming Soon
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
   </div>
 </template>
 

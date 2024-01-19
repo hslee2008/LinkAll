@@ -39,13 +39,11 @@
 
               <div class="ml-13">
                 <ul>
-                  <li>
-                    <span style="font-size: 12px">YTN-HUFS</span> English
-                    Debating Championship 2020 Champion
-                  </li>
+                  <li>YTN-HUFS English Debating Championship 2020 Champion</li>
                   <li>School Debating Championship 2021 Champion</li>
                   <li>
-                    School Debating Championship 2021 Individual Speaker (1st)
+                    School Debating Championship 2021 Individual Speaker (1st
+                    place)
                   </li>
                   <li>
                     Korea
@@ -56,12 +54,9 @@
                     </abbr>
                     2023 Top 24
                   </li>
-                  <li>E-ICON World Contest 2023 Champion (1st)</li>
+                  <li>E-ICON World Contest 2023 Champion (1st place)</li>
                   <li>
-                    <span style="font-size: 13px">
-                      Hankyung Economy Experience
-                    </span>
-                    Competition 2023 (Grand)
+                    Hankyung Economy Experience Competition 2023 (Grand Prize)
                   </li>
                 </ul>
               </div>
@@ -111,16 +106,23 @@
               <div class="ml-13">
                 <ul v-if="locale === 'ko'">
                   <li>
-                    <abbr title="한국과학창의재단">KFASC</abbr> 이사장상
-                    <b>(x 2)</b>
+                    한국과학창의재단 2022년 청소년과학탐구반 융합탐구과제
+                    최우수상 (과학기술정보통신부 장관상)
                   </li>
                   <li>
-                    <abbr title="과학기술정보통신부">과기부</abbr> 장관상
-                    <b>(x 2)</b>
+                    2023년 신나는 SW·AI 교육수기공모전 최우수상
+                    (과학기술정보통신부 장관상)
                   </li>
-                  <li><abbr title="한국정보과학회">KIISE</abbr> 회장상</li>
-                  <li>경기도교육감상</li>
-                  <li>경기도교원단체총연합회장상</li>
+                  <li>경기도교육감 표창장 (경기미래교육)</li>
+                  <li>
+                    한국과학창의재단 2021년 청소년 과학 탐구 동아리 금상
+                    (한국과학창의재단 이사장상)
+                  </li>
+                  <li>
+                    한국과학창의재단 2021년 청소년 과학 탐구 동아리 개인 활동
+                    은상 (한국과학창의재단 이사장상)
+                  </li>
+                  <li>한국코드페어 해커톤 동상 (한국정보과학학회 회장상)</li>
                 </ul>
                 <ul v-else-if="locale === 'en'">
                   <li>
@@ -129,27 +131,54 @@
                     >
                       KFASC
                     </abbr>
-                    Chairman's Award
-                    <b>(x 2)</b>
+                    2022 Youth Science Exploration Group Convergence Exploration
+                    Project (Grand Prize)
                   </li>
                   <li>
-                    <abbr title="Ministry of Science and ICT">MSIT</abbr>
-                    Ministry's Award
-                    <b>(x 2)</b>
+                    <abbr title="Ministry of Science and ICT"> MSIT </abbr>
+                    2023 Exciting SW·AI Education Essay Contest (Grand Prize)
+                  </li>
+                  <li>
+                    Gyeonggi Provincial Superintendent of Education Commendation
+                    (Gyeonggi Future Education)
                   </li>
                   <li>
                     <abbr
-                      title="Korean Institute of Information Scientists and Engineers"
-                      >KIISE</abbr
+                      title="Korea Foundation for the Advancement of Science & Creativity"
                     >
-                    Chairman's Award
+                      KFASC
+                    </abbr>
+                    2021 Youth Science Exploration Club Gold Award
+                    <abbr
+                      title="Korea Foundation for the Advancement of Science & Creativity"
+                    >
+                      (KFASC
+                    </abbr>
+                    Award)
                   </li>
-                  <li>Superintendent of Education Award (Gyeongi-do)</li>
                   <li>
-                    <abbr title="Korean Federation of Teachers' Associations"
-                      >KFTA</abbr
+                    <abbr
+                      title="Korea Foundation for the Advancement of Science & Creativity"
                     >
-                    Chairman's Award
+                      KFASC
+                    </abbr>
+                    2021 Youth Science Exploration Individual Activities Silver
+                    Award
+                    <abbr
+                      title="Korea Foundation for the Advancement of Science & Creativity"
+                    >
+                      (KFASC
+                    </abbr>
+                    Award)
+                  </li>
+                  <li>
+                    Korea Code Fair Hackathon Bronze Prize
+                    <abbr
+                      title="Korean Institute of Information Scientists and Engineers"
+                    >
+                      (KIISE
+                    </abbr>
+                    Chairman's Award)
                   </li>
                 </ul>
               </div>
