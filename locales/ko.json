@@ -2,10 +2,10 @@
   "search": "검색하기",
   "home": "홈",
   "about us": "우리에 대해",
-  "actions": "더 보기",
+  "actions": "주요 활동",
   "education": "교육",
   "coming soon": "곧 출시됩니다",
-  "members": "팀",
+  "members": "멤버들",
   "join us": "참여하기",
   "donation": "기부",
   "my account": "내 계정",
@@ -63,5 +63,13 @@
   "Social Media": "소셜 미디어",
   "Friend or Teacher": "친구 또는 선생님",
   "Event / Tournament": "이벤트 / 대회",
-  "brief introduction": "간단한 소개"
+  "brief introduction": "간단한 소개",
+
+  "purpose": "LinkAll의 목적",
+  "purpose_text": "LinkAll은 2024년에 설립된 비정부 및 비영리 기구로, 기부의 진정한 의미를 전파하고 전 세계 인류가 참여하기를 단순화하는 기본 목적을 가지고 있습니다.",
+  "vision": "LinkAll의 비전",
+  "vision_text": "현재의 사회에서 많은 개인과 단체들은 기부 행위를 한 그룹에서 다른 그룹으로 하는 애석한 행동으로만 보고 있습니다. 우리는 그 시각을 바꾸고자 합니다. 우리의 신념은 모든 개인이 언젠가는 도움의 손길이 필요한 순간이 오며, 기부 행위가 그 손길이 되어 한 사람을 다른 사람과 연결시키는 물질적인 표현이라고 믿습니다. 우리의 목적을 달성하기 위한 다양한 방법 가운데, 우리의 주요 가치는 사회 전체에 필수적인 교육을 보장하는 것입니다.",
+  "impact": "LinkAll의 영향",
+  "impact_text": "현재 LinkAll 커뮤니티는 2개의 다른 학교와 1개 국가의 회원으로 이루어져 있습니다. 교육 활동을 통해 우리는 0명의 학생에게 가르치고, 0원을 기부할 수 있었습니다. 우리는 LinkAll입니다."
+
 }

@@ -38,6 +38,7 @@
               item-title="name"
               variant="outlined"
               density="compact"
+              class="w-0"
               prepend-inner-icon="mdi-translate"
             >
               <template v-slot:item="{ props, item }">

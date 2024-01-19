@@ -11,33 +11,22 @@
 
     <div style="display: flex; justify-content: center; align-items: center">
       <div style="width: 500px">
-        <h2>Purpose</h2>
+        <h2>{{ t("purpose") }}</h2>
         <p>
-          LinkAll is a nongovernmental, nonprofit organization established in
-          2024, under the fundamental purpose of spreading the real meaning of
-          donation and simplifying the action for the whole humanity to
-          participate
+          {{ t("purpose_text") }}
         </p>
 
         <br /><br />
 
-        <h2>Vision</h2>
+        <h2>{{ t("vision") }}</h2>
         <p>
-          In the current status quo, many individuals and organizations view the
-          act of donation as a pitiful action done from one certain group to
-          another. We wish to change that view. Our belief is that all
-          individuals reach a period where he/she needs a hand, and the act of
-          donation is that hand, a material linking a person to a person.
+          {{ t("vision_text") }}
         </p>
 
         <br /><br />
 
-        <h2>Impact</h2>
-        <p>
-          The LinkAll Community currently has members from 2 different schools,
-          and 1 nation. Through our actions of education, we were able to teach
-          0 students and donate 0 won. We are LinkAll. (2024.1)
-        </p>
+        <h2>{{ t("impact") }}</h2>
+        <p>{{ t("impact_text") }} ({{ yearmonth }})</p>
       </div>
     </div>
   </div>
