@@ -16,25 +16,7 @@
         <v-card-subtitle>This is a subtitle</v-card-subtitle>
       </v-card-item>
 
-      <v-card-text class="ml-6 d-flex" style="gap: 60px">
-        <div>
-          <ul>
-            <li>
-              <a href="/video-player?video=temp&title=LinkAll-Reading-Project">
-                LinkAll Reading Project
-              </a>
-            </li>
-            <li>Become a writer!</li>
-          </ul>
-        </div>
-
-        <div>
-          <ul>
-            <li>Debating Startup</li>
-            <li>Journey to Knowledge</li>
-          </ul>
-        </div>
-      </v-card-text>
+      <v-card-text class="ml-6 d-flex" style="gap: 60px"> </v-card-text>
     </v-card>
   </div>
 </template>

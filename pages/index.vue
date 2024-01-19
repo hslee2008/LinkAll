@@ -1,5 +1,5 @@
 <template>
-  <v-parallax dark src="/background/background.png" :height="windowHeight">
+  <v-parallax src="/background/original.png" :height="windowHeight">
     <template v-slot:placeholder>
       <div class="d-flex align-center justify-center fill-height">
         <v-progress-circular
@@ -63,28 +63,15 @@
   </v-parallax>
 
   <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
 
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8">
+        <v-card elevation="8" height="400px">
           <v-card-text class="headline text-center"> English </v-card-text>
 
-          <v-card-text>
-            <p>
-              <a href="/video-player?video=temp&title=LinkAll-Reading-Project">
-                1. LinkAll Reading Project
-              </a>
-            </p>
-            <p>2. Become a writer!</p>
-            <p>3. Debating Startup</p>
-            <p>4. Journey to Knowledge</p>
+          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
+            Coming Soon
           </v-card-text>
 
           <v-card
@@ -106,10 +93,12 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8">
+        <v-card elevation="8" height="400px">
           <v-card-text class="headline text-center"> Korean </v-card-text>
 
-          <v-card-text> </v-card-text>
+          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
+            Coming Soon
+          </v-card-text>
 
           <v-card
             v-if="schedule?.Korean"
@@ -130,10 +119,12 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8">
+        <v-card elevation="8" height="400px">
           <v-card-text class="headline text-center"> Arts </v-card-text>
 
-          <v-card-text> </v-card-text>
+          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
+            Coming Soon
+          </v-card-text>
 
           <v-card
             v-if="schedule?.Arts"
@@ -154,10 +145,12 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8">
+        <v-card elevation="8" height="400px">
           <v-card-text class="headline text-center"> Tech </v-card-text>
 
-          <v-card-text> </v-card-text>
+          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
+            Coming Soon
+          </v-card-text>
 
           <v-card
             v-if="schedule?.Tech"
@@ -180,37 +173,35 @@
   </v-container>
 
   <br />
-  <br />
-  <br />
 
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="https://picsum.photos/seed/picsum/800/350"
-          class="rounded-lg"
-        ></v-img>
+        <v-img src="/background/background.png" class="rounded-lg">
+          <div class="d-flex justify-center align-center h-100">
+            <h1 class="text-h1">Coming</h1>
+          </div>
+        </v-img>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="https://picsum.photos/seed/picsum/800/350"
-          class="rounded-lg"
-        ></v-img>
+        <v-img src="/background/background.png" class="rounded-lg">
+          <div class="d-flex justify-center align-center h-100">
+            <h1 class="text-h1">Very</h1>
+          </div>
+        </v-img>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="https://picsum.photos/seed/picsum/800/350"
-          class="rounded-lg"
-        ></v-img>
+        <v-img src="/background/background.png" class="rounded-lg">
+          <div class="d-flex justify-center align-center h-100">
+            <h1 class="text-h1">Soon</h1>
+          </div>
+        </v-img>
       </v-col>
     </v-row>
   </v-container>
 
-  <br />
-  <br />
-  <br />
   <br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
