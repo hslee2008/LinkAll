@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getPerformance } from "firebase/performance";
+import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const firebaseConfig = {
@@ -22,6 +24,11 @@ export default defineNuxtPlugin((nuxtApp) => {
   const firestore = getFirestore(app);
   const db = getDatabase(app);
 
+  nuxtApp.hook("page:transition:finish", () => {
+    getPerformance(app);
+    getAnalytics(app);
+  });
+ 
   nuxtApp.vueApp.provide("auth", auth);
   nuxtApp.provide("auth", auth);
 
