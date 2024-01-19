@@ -1,6 +1,9 @@
 <template>
   <div
-    style="background-image: url('/background/donation.png')"
+    style="
+      background-image: url('/background/donation.png');
+      height: calc(100vh - 140px);
+    "
     class="top-div-with-bg"
   >
     <h1 class="text-center header-u">
@@ -43,17 +46,60 @@
     </div>
 
     <div class="d-flex justify-center mt-12">
-      <div style="width: 500px">
-        <v-select
-          v-model="donateAmount"
-          :items="[0.5, 1, 3, 5, 10, 15, 25, 50]"
-          label="Donate Amount (USD)"
-          variant="outlined"
-        ></v-select>
-
-        <div id="paypal-button-container"></div>
-        <div id="payment-method"></div>
+      <div style="margin-right: 20px">
+        <img
+          @click="openDialog1"
+          style="cursor: pointer; width: 100px; height: 100px"
+          class="rounded-lg"
+          src="https://motionarray.imgix.net/preview-333752-BI7G7GSUEgRdD7Q3-large.jpg?w=660&q=60&fit=max&auto=format"
+        />
+        <h2>{{ t("transfer") }}</h2>
       </div>
+
+      <div style="margin-left: 20px">
+        <img
+          @click="openDialog2"
+          style="cursor: pointer; width: 100px; height: 100px"
+          class="rounded-lg"
+          src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/352383286_217268490641033_7276792902224323196_n.png?_nc_cat=103&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=M7x9ceOrykEAX_a60-l&_nc_ht=scontent-ssn1-1.xx&oh=00_AfAme9tmu2jcUs0lD8ummf70kTCTIVZ5vU1ELLc1Ct38Ug&oe=65AED870"
+        />
+        <h2 class="text-center">{{ t("paypal") }}</h2>
+      </div>
+
+      <v-dialog v-model="dialog1" width="500">
+        <v-card :title="t('transfer')">
+          <v-card-text class="my-3">
+            3333294607629 카카오뱅크<br />
+            (예금주: 김현희)
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text="Close" color="red" @click="dialog1 = false"></v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="dialog2" width="500">
+        <v-card :title="t('paypal')">
+          <v-card-text class="my-3">
+            <v-select
+              v-model="donateAmount"
+              :items="[0.5, 1, 3, 5, 10, 15, 25, 50]"
+              label="Donate Amount (USD)"
+              variant="outlined"
+            ></v-select>
+
+            <div id="paypal-button-container"></div>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text="Close" color="red" @click="dialog2 = false"></v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -62,19 +108,26 @@
 import { loadScript } from "@paypal/paypal-js";
 import { ref as dbRef, set, onValue } from "firebase/database";
 import { useI18n } from "vue-i18n";
-import { v4 as uuidv4 } from 'uuid';
-import { loadPaymentWidget, ANONYMOUS } from "@tosspayments/payment-widget-sdk";
 
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
 const userInfo = ref(null);
 
+const dialog1 = ref(false);
+const dialog2 = ref(false);
 const donateAmount = ref("0.5");
 
 onMounted(() => {
   $auth.onAuthStateChanged(() => {
     userInfo.value = $auth.currentUser;
   });
+});
+
+const openDialog1 = () => {
+  dialog1.value = true;
+};
+const openDialog2 = () => {
+  dialog2.value = true;
 
   loadScript({
     "client-id":
@@ -129,24 +182,9 @@ onMounted(() => {
       })
       .render("#paypal-button-container");
   });
-
-  const clientKey = "test_ck_pP2YxJ4K879AYJeYaNXLVRGZwXLO";
-  const customerKey = uuidv4();
-
-  const paymentWidget = PaymentWidget(clientKey, customerKey);
-
-  const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-    "#payment-method",
-    {
-      value: 10000,
-      currency: "KRW",
-      country: "KR",
-    },
-    { variantKey: "widgetA" }
-  );
-});
+};
 
 useHead({
-  title: t("donation")
+  title: t("donation"),
 });
 </script>
