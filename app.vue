@@ -120,7 +120,22 @@
               </v-list>
             </v-menu>
 
-            <v-btn to="/member"> {{ t("members") }} </v-btn>
+            <v-menu open-on-hover>
+              <template v-slot:activator="{ props }">
+                <v-btn to="/members/members" v-bind="props">
+                  {{ t("members") }} <v-icon end> mdi-chevron-down </v-icon>
+                </v-btn>
+              </template>
+
+              <v-list>
+                <v-list-item to="/members/members">
+                  <v-list-item-title> {{ t("members") }} </v-list-item-title>
+                </v-list-item>
+                <v-list-item to="/members/committees">
+                  <v-list-item-title> {{ t("committees") }} </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
 
             <v-menu open-on-hover>
               <template v-slot:activator="{ props }">

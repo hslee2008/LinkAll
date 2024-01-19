@@ -12,7 +12,9 @@
     <v-col class="d-flex justify-center align-center" style="margin-top: 165px">
       <div>
         <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
-        <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">Link All</h1>
+        <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">
+          Link All
+        </h1>
 
         <div class="d-flex justify-center mb-6 mt-5">
           <v-btn
@@ -203,21 +205,23 @@
           class="rounded-lg"
         ></v-img>
       </v-col>
-
-      <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="https://picsum.photos/seed/picsum/800/350"
-          class="rounded-lg"
-        ></v-img>
-      </v-col>
     </v-row>
   </v-container>
 
   <br />
+  <br />
+  <br />
+  <br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
     <div>
-      <v-btn class="mx-4" icon="mdi-facebook" variant="text"></v-btn>
+      <v-btn
+        class="mx-4"
+        icon="mdi-gmail"
+        variant="text"
+        href="mailto:linkallcommunity@gmail.com"
+        target="_blank"
+      ></v-btn>
       <v-btn
         class="mx-4"
         icon="mdi-instagram"

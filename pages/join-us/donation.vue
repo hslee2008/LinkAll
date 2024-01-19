@@ -46,25 +46,33 @@
     </div>
 
     <div class="d-flex justify-center mt-12">
-      <div style="margin-right: 20px">
+      <v-card
+        @click="openDialog1"
+        style="margin-right: 20px"
+        color="transparent"
+        elevation="0"
+      >
         <img
-          @click="openDialog1"
-          style="cursor: pointer; width: 100px; height: 100px"
+          height="150px"
           class="rounded-lg"
-          src="https://motionarray.imgix.net/preview-333752-BI7G7GSUEgRdD7Q3-large.jpg?w=660&q=60&fit=max&auto=format"
+          src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/two-hands-holding-mobile-phones-transferring-money-between-accounts-isolated-on-a-pink-background-marina-demeshko.jpg"
         />
-        <h2>{{ t("transfer") }}</h2>
-      </div>
+        <v-card-title class="text-center">{{ t("transfer") }}</v-card-title>
+      </v-card>
 
-      <div style="margin-left: 20px">
+      <v-card
+        @click="openDialog2"
+        style="margin-left: 20px"
+        color="transparent"
+        elevation="0"
+      >
         <img
-          @click="openDialog2"
-          style="cursor: pointer; width: 100px; height: 100px"
+          height="150px"
           class="rounded-lg"
           src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/352383286_217268490641033_7276792902224323196_n.png?_nc_cat=103&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=M7x9ceOrykEAX_a60-l&_nc_ht=scontent-ssn1-1.xx&oh=00_AfAme9tmu2jcUs0lD8ummf70kTCTIVZ5vU1ELLc1Ct38Ug&oe=65AED870"
         />
-        <h2 class="text-center">{{ t("paypal") }}</h2>
-      </div>
+        <v-card-title class="text-center">{{ t("paypal") }}</v-card-title>
+      </v-card>
 
       <v-dialog v-model="dialog1" width="500">
         <v-card :title="t('transfer')">
