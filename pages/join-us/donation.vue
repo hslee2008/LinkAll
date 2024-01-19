@@ -52,6 +52,7 @@
         ></v-select>
 
         <div id="paypal-button-container"></div>
+        <div id="payment-method"></div>
       </div>
     </div>
   </div>
@@ -61,6 +62,8 @@
 import { loadScript } from "@paypal/paypal-js";
 import { ref as dbRef, set, onValue } from "firebase/database";
 import { useI18n } from "vue-i18n";
+import { v4 as uuidv4 } from 'uuid';
+import { loadPaymentWidget, ANONYMOUS } from "@tosspayments/payment-widget-sdk";
 
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
@@ -126,14 +129,24 @@ onMounted(() => {
       })
       .render("#paypal-button-container");
   });
+
+  const clientKey = "test_ck_pP2YxJ4K879AYJeYaNXLVRGZwXLO";
+  const customerKey = uuidv4();
+
+  const paymentWidget = PaymentWidget(clientKey, customerKey);
+
+  const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+    "#payment-method",
+    {
+      value: 10000,
+      currency: "KRW",
+      country: "KR",
+    },
+    { variantKey: "widgetA" }
+  );
 });
 
 useHead({
-  title: t("donation"),
-  script: [
-    {
-      src: "https://www.paypalobjects.com/donate/sdk/donate-sdk.js",
-    },
-  ],
+  title: t("donation")
 });
 </script>
