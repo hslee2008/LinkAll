@@ -21,3 +21,19 @@
 .mt-180 {
   margin-top: 180px;
 }
+
+@media (max-width: 1275px) {
+  .top-div-with-bg {
+    margin-top: 65px;
+    height: auto;
+  }
+
+  .top-div-without-bg {
+    margin-top: 75px;
+    height: auto;
+  }
+
+  .mt-180 {
+    margin-top: 75px;
+  }
+}

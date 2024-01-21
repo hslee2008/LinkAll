@@ -6,8 +6,8 @@
 
     <div class="d-flex justify-center">
       <div class="d-flex flex-column">
-        <div class="d-flex mt-10">
-          <div class="text-center my-auto" style="flex: 0.3">
+        <div class="container mt-10">
+          <v-col class="text-center ma-auto" style="flex: 0.3">
             <v-img
               src="/members/junho.jpeg"
               draggable="false"
@@ -18,26 +18,19 @@
 
             <p class="mt-3">{{ t("founder") }}</p>
             <b>{{ t("Junho Hwang") }}</b>
-          </div>
+          </v-col>
 
-          <div style="flex: 2">
-            <div class="d-flex align-center mt-4">
-              <div
-                style="
-                  inline-size: 500px;
-                  overflow-wrap: break-word;
-                  border-right: solid;
-                "
-                class="ml-5 pr-14 py-auto text-justify"
-              >
+          <v-col style="flex: 2">
+            <div class="container align-center mt-4">
+              <v-col class="inner-col ml-5 pr-14 py-auto text-justify">
                 Hello, I'm currently in the international track of the HAFS
                 graduating class of 2026. I founded LinkAll with the support of
                 our co-founder in January 2024 for a revolutionary shift in the
                 focus on donations and to activate direct methods to help
                 individuals in need.
-              </div>
+              </v-col>
 
-              <div class="ml-13">
+              <v-col class="ml-13">
                 <ul>
                   <li>YTN-HUFS English Debating Championship 2020 Champion</li>
                   <li>School Debating Championship 2021 Champion</li>
@@ -59,10 +52,10 @@
                     Hankyung Economy Experience Competition 2023 (Grand Prize)
                   </li>
                 </ul>
-              </div>
+              </v-col>
             </div>
 
-            <div class="ml-2 d-flex">
+            <div class="sns-container">
               <v-btn
                 href="https://www.instagram.com/h.junho420"
                 target="_blank"
@@ -70,11 +63,11 @@
                 elevation="0"
               ></v-btn>
             </div>
-          </div>
+          </v-col>
         </div>
 
-        <div class="d-flex mt-10">
-          <div class="text-center my-auto" style="flex: 0.3">
+        <div class="container mt-10">
+          <v-col class="text-center ma-auto" style="flex: 0.3">
             <v-img
               src="/members/hyunseung.jpg"
               draggable="false"
@@ -85,25 +78,18 @@
 
             <p class="mt-3">{{ t("co-founder") }}</p>
             <b>{{ t("Hyunseung Lee") }}</b>
-          </div>
+          </v-col>
 
-          <div style="flex: 2">
-            <div class="d-flex align-center mt-4">
-              <div
-                style="
-                  inline-size: 500px;
-                  overflow-wrap: break-word;
-                  border-right: solid;
-                "
-                class="ml-5 pr-14 py-auto text-justify"
-              >
+          <v-col style="flex: 2">
+            <div class="container align-center mt-4">
+              <v-col class="inner-col ml-5 pr-14 py-auto text-justify">
                 Hi! I co-founded LinkAll with the visionary of our founder.
                 Together, we embarked on a mission like mentioned above. As a
                 high school junior, I took charge of the technical aspects,
                 coding and shaping the technological foundation of LinkAll.
-              </div>
+              </v-col>
 
-              <div class="ml-13">
+              <v-col class="ml-13">
                 <ul v-if="locale === 'ko'">
                   <li>
                     한국과학창의재단 2022년 청소년과학탐구반 융합탐구과제
@@ -181,10 +167,10 @@
                     Chairman's Award)
                   </li>
                 </ul>
-              </div>
+              </v-col>
             </div>
 
-            <div class="ml-2 d-flex">
+            <div class="sns-container">
               <v-btn
                 href="https://play.google.com/store/apps/dev?id=7815903651523223132"
                 target="_blank"
@@ -206,7 +192,7 @@
                 elevation="0"
               ></v-btn>
             </div>
-          </div>
+          </v-col>
         </div>
       </div>
     </div>
@@ -219,10 +205,43 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import { useDisplay } from "vuetify";
 
+const { mobile } = useDisplay();
 const { t, locale } = useI18n();
 
 useHead({
   title: t("members"),
 });
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.inner-col {
+  inline-size: 500px;
+  overflow-wrap: break-word;
+  border-right: solid;
+}
+
+.sns-container {
+  margin-left: 20px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .inner-col {
+    border-right: none;
+    inline-size: auto;
+  }
+}
+</style>
