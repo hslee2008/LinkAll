@@ -7,44 +7,53 @@
       {{ t("donation") }}
     </h1>
 
-    <v-container fluid>
+    <v-container>
       <v-row justify="center">
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="10" sm="6" md="3">
           <v-card elevation="8">
-            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+            <v-card-text class="headline text-center">
+              Donation of x$ will do y
+            </v-card-text>
           </v-card>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="10" sm="6" md="3">
           <v-card elevation="8">
-            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+            <v-card-text class="headline text-center">
+              Donation of x$ will do y
+            </v-card-text>
           </v-card>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="10" sm="6" md="3">
           <v-card elevation="8">
-            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+            <v-card-text class="headline text-center">
+              Donation of x$ will do y
+            </v-card-text>
           </v-card>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="10" sm="6" md="3">
           <v-card elevation="8">
-            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+            <v-card-text class="headline text-center">
+              Donation of x$ will do y
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
 
-    <div class="d-flex justify-center mt-12">
+    <div class="pay-container mt-14 pb-5 ga-5">
       <v-card
         @click="openDialog1"
-        style="margin-right: 20px"
         color="transparent"
         :elevation="0"
+        class="ma-auto"
       >
         <img
           height="150px"
-          class="rounded-lg"
+          width="150px"
+          class="rounded-pill"
           src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/two-hands-holding-mobile-phones-transferring-money-between-accounts-isolated-on-a-pink-background-marina-demeshko.jpg"
         />
         <v-card-title class="text-center">{{ t("transfer") }}</v-card-title>
@@ -52,13 +61,14 @@
 
       <v-card
         @click="openDialog2"
-        style="margin-left: 20px"
         color="transparent"
         :elevation="0"
+        class="ma-auto"
       >
         <img
           height="150px"
-          class="rounded-lg"
+          width="150px"
+          class="rounded-pill"
           src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/352383286_217268490641033_7276792902224323196_n.png?_nc_cat=103&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=M7x9ceOrykEAX_a60-l&_nc_ht=scontent-ssn1-1.xx&oh=00_AfAme9tmu2jcUs0lD8ummf70kTCTIVZ5vU1ELLc1Ct38Ug&oe=65AED870"
         />
         <v-card-title class="text-center">{{ t("paypal") }}</v-card-title>
@@ -192,9 +202,27 @@ useHead({
   height: calc(100vh - 140px);
 }
 
+.top-div-with-bg {
+  height: calc(100vh - 140px);
+}
+
+.pay-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 1275px) {
   .container {
     height: calc(100vh - 65px);
+  }
+
+  .top-div-with-bg {
+    height: auto;
+  }
+
+  .pay-container {
+    flex-direction: column;
   }
 }
 </style>

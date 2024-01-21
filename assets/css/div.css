@@ -26,6 +26,7 @@
   .top-div-with-bg {
     margin-top: 65px;
     height: auto;
+    padding-bottom: 0px;
   }
 
   .top-div-without-bg {
