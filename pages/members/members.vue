@@ -8,13 +8,11 @@
       <div class="d-flex flex-column">
         <div class="container mt-10">
           <v-col class="text-center ma-auto" style="flex: 0.3">
-            <v-img
+            <ImgMember
               src="/members/junho.jpeg"
-              draggable="false"
-              height="150px"
-              width="100px"
-              class="rounded-shaped ma-auto"
-            ></v-img>
+              class="ma-auto"
+              :elevation="0"
+            ></ImgMember>
 
             <p class="mt-3">{{ t("founder") }}</p>
             <b>{{ t("Junho Hwang") }}</b>
@@ -60,7 +58,7 @@
                 href="https://www.instagram.com/h.junho420"
                 target="_blank"
                 icon="mdi-instagram"
-                elevation="0"
+                :elevation="0"
               ></v-btn>
             </div>
           </v-col>
@@ -68,13 +66,11 @@
 
         <div class="container mt-10">
           <v-col class="text-center ma-auto" style="flex: 0.3">
-            <v-img
+            <ImgMember
               src="/members/hyunseung.jpg"
-              draggable="false"
-              height="150px"
-              width="100px"
-              class="rounded-shaped ma-auto"
-            ></v-img>
+              class="ma-auto"
+              :elevation="0"
+            ></ImgMember>
 
             <p class="mt-3">{{ t("co-founder") }}</p>
             <b>{{ t("Hyunseung Lee") }}</b>
@@ -90,10 +86,10 @@
               </v-col>
 
               <v-col class="ml-13">
-                <ul v-if="locale === 'ko'">
+                <ul v-if="locale === 'ko'" style="width: 90%">
                   <li>
-                    한국과학창의재단 2022년 청소년과학탐구반 융합탐구과제
-                    최우수상 (과학기술정보통신부 장관상)
+                    한국과학창의재단 2022 청소년과학탐구반 융합탐구과제 최우수상
+                    (과학기술정보통신부 장관상)
                   </li>
                   <li>
                     2023년 신나는 SW·AI 교육수기공모전 최우수상
@@ -175,21 +171,21 @@
                 href="https://play.google.com/store/apps/dev?id=7815903651523223132"
                 target="_blank"
                 icon="mdi-google-play"
-                elevation="0"
+                :elevation="0"
               ></v-btn>
 
               <v-btn
                 href="https://github.com/hslee2008"
                 target="_blank"
                 icon="mdi-github"
-                elevation="0"
+                :elevation="0"
               ></v-btn>
 
               <v-btn
                 href="mailto:hyunseunglee2008@gmail.com"
                 target="_blank"
                 icon="mdi-email"
-                elevation="0"
+                :elevation="0"
               ></v-btn>
             </div>
           </v-col>
@@ -205,9 +201,6 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { useDisplay } from "vuetify";
-
-const { mobile } = useDisplay();
 const { t, locale } = useI18n();
 
 useHead({
@@ -225,7 +218,7 @@ useHead({
 .inner-col {
   inline-size: 500px;
   overflow-wrap: break-word;
-  border-right: solid;
+  border-right: dotted;
 }
 
 .sns-container {

@@ -10,155 +10,126 @@
       </h1>
     </div>
 
-    <div v-else-if="userInfo" style="margin-left: calc(50% - 400px)">
-      <div>
-        <v-form v-model="valid">
-          <div class="d-flex justify-center align-center">
-            <v-container>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="firstName"
-                    :label="t('first name')"
-                    required
-                    variant="outlined"
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="lastName"
-                    :label="t('last name')"
-                    required
-                    variant="outlined"
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
-                    :label="t('email')"
-                    prepend-inner-icon="mdi-email"
-                    variant="outlined"
-                    required
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="phone"
-                    :rules="phoneNumRules"
-                    :label="t('phone number') + ' (010-1234-5678)'"
-                    prepend-inner-icon="mdi-phone"
-                    variant="outlined"
-                    required
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+    <DivCenter v-else-if="userInfo" class="pa-10">
+      <v-row class="ga-5 mb-5">
+        <v-text-field
+          v-model="firstName"
+          :label="t('first name')"
+          required
+          variant="outlined"
+          hide-details
+        ></v-text-field>
+        <v-text-field
+          v-model="lastName"
+          :label="t('last name')"
+          required
+          variant="outlined"
+          hide-details
+        ></v-text-field>
+      </v-row>
 
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-combobox
-                    v-model="country"
-                    :items="items"
-                    required
-                    :label="t('Country of Residence')"
-                  ></v-combobox>
-                </v-col>
-              </v-row>
+      <v-row class="ga-5 my-5">
+        <v-text-field
+          v-model="email"
+          :rules="emailRules"
+          :label="t('email')"
+          prepend-inner-icon="mdi-email"
+          variant="outlined"
+          required
+          hide-details
+          style="min-width: 200px"
+        ></v-text-field>
+        <v-text-field
+          v-model="phone"
+          :rules="phoneNumRules"
+          :label="t('phone number') + ' (010-1234-5678)'"
+          prepend-inner-icon="mdi-phone"
+          variant="outlined"
+          required
+          hide-details
+          style="min-width: 300px"
+        ></v-text-field>
+      </v-row>
 
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-text-field
-                    v-model="schoolName"
-                    :label="t('school name')"
-                    variant="outlined"
-                    prepend-inner-icon="mdi-school"
-                    required
-                    hide-details
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-select
-                    v-model="grade"
-                    :label="t('current grade')"
-                    :items="itemsGrade"
-                    required
-                    variant="outlined"
-                  ></v-select>
-                </v-col>
-              </v-row>
+      <v-row class="ga-5 my-5">
+        <v-combobox
+          v-model="country"
+          :items="items"
+          required
+          :label="t('Country of Residence')"
+          variant="outlined"
+        ></v-combobox>
+      </v-row>
 
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-radio-group v-model="radios">
-                    <v-radio
-                      :label="t('Educator / Mentor')"
-                      value="Educator / Mentor"
-                    ></v-radio>
-                    <v-radio
-                      :label="t('Researcher')"
-                      value="Researcher"
-                    ></v-radio>
-                    <v-radio :label="t('Designer')" value="Designer"></v-radio>
-                    <v-radio :label="t('other')" value="other"></v-radio>
-                  </v-radio-group>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-radio-group v-model="howFound">
-                    <v-radio
-                      :label="t('Social Media')"
-                      value="Social Media"
-                    ></v-radio>
-                    <v-radio
-                      :label="t('Friend or Teacher')"
-                      value="Friend or Teacher"
-                    ></v-radio>
-                    <v-radio
-                      :label="t('Event / Tournament')"
-                      value="Event / Tournament"
-                    ></v-radio>
-                    <v-radio :label="t('other')" value="other"></v-radio>
-                  </v-radio-group>
-                </v-col>
-              </v-row>
+      <v-row class="ga-5 my-5">
+        <v-text-field
+          v-model="schoolName"
+          :label="t('school name')"
+          variant="outlined"
+          prepend-inner-icon="mdi-school"
+          required
+          density="compact"
+          hide-details
+        ></v-text-field>
+        <v-select
+          v-model="grade"
+          :label="t('current grade')"
+          :items="itemsGrade"
+          required
+          variant="outlined"
+        ></v-select>
+      </v-row>
 
-              <v-row>
-                <v-col cols="24" md="8">
-                  <v-textarea
-                    v-model="brief"
-                    :label="t('brief introduction')"
-                    required
-                    variant="outlined"
-                    hide-details
-                  ></v-textarea>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
+      <v-row class="ga-5">
+        <v-radio-group v-model="radios">
+          <v-radio
+            :label="t('Educator / Mentor')"
+            value="Educator / Mentor"
+          ></v-radio>
+          <v-radio :label="t('Researcher')" value="Researcher"></v-radio>
+          <v-radio :label="t('Designer')" value="Designer"></v-radio>
+          <v-radio :label="t('other')" value="other"></v-radio>
+        </v-radio-group>
+        <v-radio-group v-model="howFound">
+          <v-radio :label="t('Social Media')" value="Social Media"></v-radio>
+          <v-radio
+            :label="t('Friend or Teacher')"
+            value="Friend or Teacher"
+          ></v-radio>
+          <v-radio
+            :label="t('Event / Tournament')"
+            value="Event / Tournament"
+          ></v-radio>
+          <v-radio :label="t('other')" value="other"></v-radio>
+        </v-radio-group>
+      </v-row>
 
-          <div class="my-10" style="margin-left: 350px">
-            <v-btn color="primary" :disabled="!valid" @click="submit">
-              {{ t("submit") }}
-            </v-btn>
-          </div>
-        </v-form>
-      </div>
-    </div>
+      <v-row class="ga-5">
+        <v-textarea
+          v-model="brief"
+          :label="t('brief introduction')"
+          required
+          variant="outlined"
+          hide-details
+        ></v-textarea>
+      </v-row>
+
+      <DivCenter class="my-10">
+        <v-btn color="primary" :disabled="!valid" @click="submit">
+          {{ t("submit") }}
+        </v-btn>
+      </DivCenter>
+    </DivCenter>
     <div v-else>
       <h2 class="text-center mt-10">
         {{ t("login is required") }}
       </h2>
 
-      <div class="d-flex justify-center align-center">
+      <DivCenter>
         <v-btn to="/account/login" class="mt-2" color="primary">
           {{ t("login") }}
         </v-btn>
-      </div>
+      </DivCenter>
     </div>
   </div>
 </template>

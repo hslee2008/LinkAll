@@ -9,8 +9,8 @@
       </div>
     </template>
 
-    <div class="d-flex justify-center align-center" style="margin-top: 175px">
-      <div>
+    <div class="d-flex justify-center align-center index" style="width: 100%">
+      <div style="width: 100%">
         <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
         <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">
           Link All
@@ -31,33 +31,22 @@
           </v-btn>
         </div>
 
-        <v-container fluid>
-          <v-row justify="center">
-            <v-col cols="12" sm="6" md="4">
-              <div class="text-center" elevation="10">
-                <v-card-text class="headline"> 0 </v-card-text>
+        <div class="d-flex justify-center container" style="gap: 50px">
+          <div class="text-center" elevation="10">
+            <p class="headline">0</p>
+            <p class="text">{{ $t("taught_students") }}</p>
+          </div>
 
-                <v-card-text> {{ $t("taught_students") }} </v-card-text>
-              </div>
-            </v-col>
+          <div class="text-center" elevation="10">
+            <p class="headline">0</p>
+            <p class="text">{{ $t("won_donated") }}</p>
+          </div>
 
-            <v-col cols="12" sm="6" md="4">
-              <div class="text-center" elevation="10">
-                <v-card-text class="headline"> 0 </v-card-text>
-
-                <v-card-text> {{ $t("won_donated") }} </v-card-text>
-              </div>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="4">
-              <div class="text-center" elevation="10">
-                <v-card-text class="headline"> 0 </v-card-text>
-
-                <v-card-text> {{ $t("hours_of_volunteering") }} </v-card-text>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
+          <div class="text-center" elevation="10">
+            <p class="headline">0</p>
+            <p class="text">{{ $t("hours_of_volunteering") }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </v-parallax>
@@ -198,6 +187,21 @@ useHead({
   padding-top: 30px;
 }
 
+@media (max-width: 600px) {
+  .headline {
+    font-size: 25px;
+  }
+
+  .text-h1 {
+    font-size: 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 p > a {
   color: #1976d2;
   text-decoration: none;
@@ -206,5 +210,15 @@ p > a {
 p > a:hover {
   color: #2196f3;
   text-decoration: underline;
+}
+
+.index {
+  margin-top: 175px;
+}
+
+@media (max-width: 1275px) {
+  .index {
+    margin-top: 100px;
+  }
 }
 </style>

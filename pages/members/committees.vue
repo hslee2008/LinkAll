@@ -4,35 +4,20 @@
       {{ t("committees") }}
     </h1>
 
-    <div class="d-flex justify-center mt-6">
-      <div>
-        <div class="d-flex">
-          <div class="mr-7">
-            <v-sheet elevation="10" class="rounded-lg">
-              <v-img
-                src="/members/junho.jpeg"
-                style="width: 150px; height: 198px"
-                class="mb-3 rounded-lg"
-              ></v-img>
-            </v-sheet>
-            <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-          </div>
+    <DivCenter class="mt-3">
+      <div class="d-flex">
+        <div class="mr-7">
+          <ImgMember src="/members/junho.jpeg"></ImgMember>
+          <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
+        </div>
 
-          <div class="ml-7">
-            <v-sheet elevation="10" class="rounded-lg">
-              <v-img
-                src="/members/hyunseung.jpg"
-                style="width: 150px; height: 198px"
-                class="mb-3 rounded-lg"
-              ></v-img>
-            </v-sheet>
-            <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
-          </div>
+        <div class="ml-7">
+          <ImgMember src="/members/hyunseung.jpg"></ImgMember>
+          <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
         </div>
       </div>
-    </div>
+    </DivCenter>
 
-    <br />
     <br />
     <br />
   </div>

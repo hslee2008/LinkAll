@@ -9,8 +9,8 @@
 
     <br /><br />
 
-    <div style="display: flex; justify-content: center; align-items: center">
-      <div style="width: 500px">
+    <div class="d-flex justify-center align-center">
+      <div style="width: 500px" class="pa-9">
         <h2>{{ t("purpose") }}</h2>
         <p>
           {{ t("purpose_text") }}

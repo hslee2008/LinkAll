@@ -1,8 +1,8 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
-    <div class="d-flex">
+    <div class="top-div">
       <div class="mr-7">
-        <div class="d-flex">
+        <div class="title-container">
           <h1 class="mr-3">LinkAll English Debate 2024 February</h1>
           <h2 class="my-auto">| Junho Hwang</h2>
         </div>
@@ -88,22 +88,18 @@
         </div>
       </div>
 
-      <div class="ml-7">
+      <div class="side-div">
         <h2 class="text-center text-decoration-underline">Junho Hwang</h2>
 
-        <v-img
-          src="/members/junho.jpeg"
-          width="250px"
-          class="rounded-shaped"
-          elevation="3"
-        ></v-img>
+        <ImgMember src="/members/junho.jpeg" :elevation="0" :width="200" />
 
-        <p class="text-justify my-4" style="width: 250px">
+        <p class="text-justify my-4 ma-auto" style="width: 250px">
           Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola
           imperdiet nec ut, sed euismod convenire principes at. Est et nobis
           iisque percipit, an vim zril disputando voluptatibus, vix an salutandi
           sententiae.
         </p>
+
         <v-dialog width="500" transition="dialog-bottom-transition">
           <template v-slot:activator="{ props }">
             <v-btn
@@ -111,7 +107,7 @@
               block
               class="my-4 mb-10 rounded-lg"
               color="yellow-darken-1"
-              elevation="0"
+              :elevation="0"
             >
               Apply Now
             </v-btn>
@@ -181,9 +177,9 @@
         <p>
           Thank you for your submission. We will contact you via email to
           confirm your submission. If you have any questions, please contact
-          <a href="mailto:linkallcommunity@gmail.com"
-            >linkallcommunity@gmail.com</a
-          >
+          <a href="mailto:linkallcommunity@gmail.com">
+            linkallcommunity@gmail.com
+          </a>
         </p>
 
         <v-btn
@@ -191,7 +187,7 @@
           block
           color="primary"
           class="mt-3"
-          elevation="0"
+          :elevation="0"
         >
           Got it!
         </v-btn>
@@ -234,3 +230,41 @@ useHead({
   title: t("class"),
 });
 </script>
+
+<style scoped>
+.top-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.side-div {
+  margin-left: 28px;
+}
+
+.title-container {
+  display: flex;
+}
+
+@media (max-width: 650px) {
+  .top-div {
+    flex-direction: column-reverse;
+  }
+
+  .side-div {
+    margin-left: 0px;
+  }
+
+  .title-container {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+}
+</style>

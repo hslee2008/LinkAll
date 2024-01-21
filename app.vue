@@ -45,12 +45,12 @@
         <v-divider class="mt-4 mb-7"></v-divider>
 
         <div class="d-flex flex-column">
-          <v-btn to="/" elevation="0"> {{ t("home") }} </v-btn>
-          <v-btn to="/about-us" elevation="0"> {{ t("about us") }} </v-btn>
+          <v-btn to="/" :elevation="0"> {{ t("home") }} </v-btn>
+          <v-btn to="/about-us" :elevation="0"> {{ t("about us") }} </v-btn>
 
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-btn v-bind="props" elevation="0">
+              <v-btn v-bind="props" :elevation="0">
                 {{ t("actions") }} <v-icon end> mdi-chevron-down </v-icon>
               </v-btn>
             </template>
@@ -64,7 +64,7 @@
 
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-btn elevation="0" v-bind="props">
+              <v-btn :elevation="0" v-bind="props">
                 {{ t("members") }} <v-icon end> mdi-chevron-down </v-icon>
               </v-btn>
             </template>
@@ -81,7 +81,7 @@
 
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-btn elevation="0" v-bind="props">
+              <v-btn :elevation="0" v-bind="props">
                 {{ t("join us") }} <v-icon end>mdi-chevron-down</v-icon>
               </v-btn>
             </template>
@@ -101,7 +101,7 @@
       <v-app-bar
         v-if="mobile"
         absolute
-        elevation="0"
+        :elevation="0"
         class="pl-5"
         :style="`background-color: transparent;${
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
@@ -165,7 +165,7 @@
         height="140"
         clipped-left
         class="px-5"
-        elevation="0"
+        :elevation="0"
         :style="`background-color: transparent;${
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
         }`"

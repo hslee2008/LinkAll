@@ -1,56 +1,46 @@
 <template>
   <div
-    style="
-      background-image: url('/background/donation.png');
-      height: calc(100vh - 140px);
-    "
-    class="top-div-with-bg"
+    style="background-image: url('/background/donation.png')"
+    class="top-div-with-bg container"
   >
     <h1 class="text-center header-u">
       {{ t("donation") }}
     </h1>
 
-    <div class="d-flex justify-center align-center">
-      <v-card width="300" class="ml-10 mt-8" elevation="8">
-        <v-card-item>
-          <v-card-title>BLA</v-card-title>
-          <v-card-subtitle>BLIBLA</v-card-subtitle>
-        </v-card-item>
+    <v-container fluid>
+      <v-row justify="center">
+        <v-col cols="12" sm="6" md="3">
+          <v-card elevation="8">
+            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+          </v-card>
+        </v-col>
 
-        <v-card-text> BLABv-card-text </v-card-text>
-      </v-card>
-      <v-card width="300" class="ml-10 mt-8" elevation="8">
-        <v-card-item>
-          <v-card-title>BLA</v-card-title>
-          <v-card-subtitle>BLIBLA</v-card-subtitle>
-        </v-card-item>
+        <v-col cols="12" sm="6" md="3">
+          <v-card elevation="8">
+            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+          </v-card>
+        </v-col>
 
-        <v-card-text> BLABv-card-text </v-card-text>
-      </v-card>
-      <v-card width="300" class="ml-10 mt-8" elevation="8">
-        <v-card-item>
-          <v-card-title>BLA</v-card-title>
-          <v-card-subtitle>BLIBLA</v-card-subtitle>
-        </v-card-item>
+        <v-col cols="12" sm="6" md="3">
+          <v-card elevation="8">
+            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+          </v-card>
+        </v-col>
 
-        <v-card-text> BLABv-card-text </v-card-text>
-      </v-card>
-      <v-card width="300" class="ml-10 mt-8" elevation="8">
-        <v-card-item>
-          <v-card-title>BLA</v-card-title>
-          <v-card-subtitle>BLIBLA</v-card-subtitle>
-        </v-card-item>
-
-        <v-card-text> BLABv-card-text </v-card-text>
-      </v-card>
-    </div>
+        <v-col cols="12" sm="6" md="3">
+          <v-card elevation="8">
+            <v-card-text class="headline text-center"> Donation of x$ will do y </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <div class="d-flex justify-center mt-12">
       <v-card
         @click="openDialog1"
         style="margin-right: 20px"
         color="transparent"
-        elevation="0"
+        :elevation="0"
       >
         <img
           height="150px"
@@ -64,7 +54,7 @@
         @click="openDialog2"
         style="margin-left: 20px"
         color="transparent"
-        elevation="0"
+        :elevation="0"
       >
         <img
           height="150px"
@@ -196,3 +186,15 @@ useHead({
   title: t("donation"),
 });
 </script>
+
+<style scoped>
+.container {
+  height: calc(100vh - 140px);
+}
+
+@media (max-width: 1275px) {
+  .container {
+    height: calc(100vh - 65px);
+  }
+}
+</style>
