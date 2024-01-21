@@ -1,14 +1,9 @@
 <template>
-  <v-parallax src="/background/original.png" :height="windowHeight">
-    <template v-slot:placeholder>
-      <div class="d-flex align-center justify-center fill-height">
-        <v-progress-circular
-          color="grey-lighten-4"
-          indeterminate
-        ></v-progress-circular>
-      </div>
-    </template>
-
+  <v-parallax
+    src="/background/original.png"
+    lazy-src="/background/original-compressed.png"
+    :height="windowHeight"
+  >
     <div class="d-flex justify-center align-center index" style="width: 100%">
       <div style="width: 100%">
         <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
@@ -104,7 +99,11 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="4">
-        <v-img src="/background/background.png" class="rounded-lg">
+        <v-img
+          src="/background/background.png"
+          lazy-src="/background/original-compressed.png"
+          class="rounded-lg"
+        >
           <div class="d-flex justify-center align-center h-100">
             <h1 class="text-h1">Coming</h1>
           </div>
@@ -112,7 +111,11 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
-        <v-img src="/background/background.png" class="rounded-lg">
+        <v-img
+          src="/background/background.png"
+          lazy-src="/background/original-compressed.png"
+          class="rounded-lg"
+        >
           <div class="d-flex justify-center align-center h-100">
             <h1 class="text-h1">Very</h1>
           </div>
@@ -120,7 +123,11 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
-        <v-img src="/background/background.png" class="rounded-lg">
+        <v-img
+          src="/background/background.png"
+          lazy-src="/background/original-compressed.png"
+          class="rounded-lg"
+        >
           <div class="d-flex justify-center align-center h-100">
             <h1 class="text-h1">Soon</h1>
           </div>
