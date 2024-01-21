@@ -4,7 +4,7 @@
       {{ t("create account") }}
     </h1>
 
-    <div class="d-flex justify-center align-center mt-3">
+    <div class="d-flex justify-center align-center mt-3 ma-4">
       <div style="width: 400px">
         <v-form ref="form">
           <v-text-field

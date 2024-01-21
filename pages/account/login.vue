@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex" style="margin-top: 150px">
-    <div style="border-right: 10px solid black">
+  <div class="container top-div-without-bg">
+    <div class="sign-up-container">
       <div
         class="d-flex justify-center align-center mx-12"
         style="height: calc(100vh - 160px)"
@@ -138,3 +138,25 @@ useHead({
   title: t("login"),
 });
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-container {
+  border-right: 10px solid black;
+}
+
+@media (max-width: 1275px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+
+  .sign-up-container {
+    border-right: none;
+  }
+}
+</style>

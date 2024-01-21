@@ -159,12 +159,11 @@
           @click.stop="drawer = !drawer"
         ></v-app-bar-nav-icon>
       </v-app-bar>
+
       <v-app-bar
         v-else
         absolute
         height="140"
-        clipped-left
-        class="px-5"
         :elevation="0"
         :style="`background-color: transparent;${
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
@@ -179,7 +178,7 @@
             verify
           </v-btn>
         </v-alert>
-        <h2 v-else><NuxtLink href="/">LinkAll</NuxtLink></h2>
+        <h2 v-else class="ml-6"><NuxtLink href="/">LinkAll</NuxtLink></h2>
 
         <v-spacer />
 
@@ -256,6 +255,7 @@
               rounded="lg"
               to="/account/login"
               icon="mdi-account-circle"
+              class="mr-5"
             />
           </div>
 
