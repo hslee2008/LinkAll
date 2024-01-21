@@ -10,17 +10,15 @@
       {{ t("education") }}
     </h1>
 
-    <div>
-      <v-container fluid>
+    <DivCenter>
+      <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="6" md="3">
-            <v-card elevation="8" height="200px" width="200px" to="/class/english">
+            <v-card elevation="8" to="/class/english">
               <v-card-text class="headline text-center"> English </v-card-text>
 
-              <v-card-text
-                class="d-flex justify-center align-center h-75 text-h6"
-              >
-                Test
+              <v-card-text class="text-h6">
+                LinkAll English Book Club Open!
               </v-card-text>
             </v-card>
           </v-col>
@@ -62,7 +60,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </DivCenter>
   </div>
 </template>
 

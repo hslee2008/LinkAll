@@ -233,9 +233,9 @@
 
                 <v-card>
                   <v-list>
-                    <v-list-item v-if="isAdmin" to="/admin">
+                    <v-list-item v-if="isAdmin" to="/class/teacherpage">
                       <v-list-item-title>
-                        <v-icon start>mdi-incognito</v-icon> ADMIN
+                        <v-icon start>mdi-incognito</v-icon> Teacher's Page
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item to="/account/account">
@@ -344,7 +344,10 @@ $auth.onAuthStateChanged((user) => {
   if (user) {
     userInfo.value = user;
 
-    if (user.email === "h.junho420@gmail.com") {
+    if (
+      user.email === "h.junho420@gmail.com" ||
+      user.email === "hyunseunglee2008@gmail.com"
+    ) {
       isAdmin.value = true;
     }
   }
