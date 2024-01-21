@@ -26,21 +26,44 @@
           </v-btn>
         </div>
 
-        <div class="d-flex justify-center container" style="gap: 50px">
-          <div class="text-center" elevation="10">
+        <div
+          v-if="!mobile"
+          class="d-flex justify-center container"
+          style="gap: 150px"
+        >
+          <div class="text-center">
             <p class="headline">0</p>
             <p class="text">{{ $t("taught_students") }}</p>
           </div>
 
-          <div class="text-center" elevation="10">
+          <div class="text-center">
             <p class="headline">0</p>
             <p class="text">{{ $t("won_donated") }}</p>
           </div>
 
-          <div class="text-center" elevation="10">
+          <div class="text-center">
             <p class="headline">0</p>
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </div>
+        </div>
+        <div v-else class="d-flex justify-center ga-5 mt-14">
+          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+            <p class="headline">0</p>
+            <br />
+            <p class="text">{{ $t("taught_students") }}</p>
+          </v-card>
+
+          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+            <p class="headline">0</p>
+            <br />
+            <p class="text">{{ $t("won_donated") }}</p>
+          </v-card>
+
+          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+            <p class="headline">0</p>
+            <br />
+            <p class="text">{{ $t("hours_of_volunteering") }}</p>
+          </v-card>
         </div>
       </div>
     </div>
@@ -173,10 +196,10 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { onValue, ref as dbRef, set } from "firebase/database";
+import { useDisplay } from "vuetify";
 
-const { $db } = useNuxtApp();
 const { t } = useI18n();
+const { mobile } = useDisplay();
 
 const windowHeight = ref(0);
 

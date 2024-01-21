@@ -9,7 +9,7 @@
         <div class="container mt-10">
           <v-col class="text-center ma-auto" style="flex: 0.3">
             <ImgMember
-              src="/members/junho.jpeg"
+              src="/members/junho.png"
               class="ma-auto"
               :elevation="0"
             ></ImgMember>
@@ -19,8 +19,8 @@
           </v-col>
 
           <v-col style="flex: 2">
-            <div class="container align-center mt-4">
-              <v-col class="inner-col ml-5 pr-14 py-auto text-justify">
+            <div class="container align-center mt-4 ga-5">
+              <v-col class="inner-col py-auto text-justify">
                 <div>
                   <span v-if="locale === 'en'">
                     Hello, I'm currently in the international track of the HAFS
@@ -46,7 +46,6 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
-                    density="dense"
                   ></v-btn>
 
                   <v-btn
@@ -54,12 +53,11 @@
                     target="_blank"
                     icon="mdi-instagram"
                     :elevation="0"
-                    density="dense"
                   ></v-btn>
                 </div>
               </v-col>
 
-              <v-col class="ml-13">
+              <v-col class="ml-5">
                 <ul v-if="locale === 'en'">
                   <li>YTN DC Champion (2020)</li>
                   <li>KSDO Champion, Individual 1st Place (2021)</li>
@@ -90,7 +88,7 @@
         <div class="container mt-10">
           <v-col class="text-center ma-auto" style="flex: 0.3">
             <ImgMember
-              src="/members/hyunseung.jpg"
+              src="/members/hyunseung.png"
               class="ma-auto"
               :elevation="0"
             ></ImgMember>
@@ -100,8 +98,8 @@
           </v-col>
 
           <v-col style="flex: 2">
-            <div class="container align-center mt-4">
-              <v-col class="inner-col ml-5 pr-14 py-auto text-justify">
+            <div class="container align-center mt-4 ga-5">
+              <v-col class="inner-col py-auto text-justify">
                 <div>
                   <span v-if="locale === 'en'">
                     Hi! I co-founded LinkAll with the visionary of our founder.
@@ -125,7 +123,6 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
-                    density="dense"
                   ></v-btn>
 
                   <v-btn
@@ -133,12 +130,11 @@
                     target="_blank"
                     icon="mdi-github"
                     :elevation="0"
-                    density="dense"
                   ></v-btn>
                 </div>
               </v-col>
 
-              <v-col class="ml-13">
+              <v-col class="ml-5">
                 <ul v-if="locale === 'en'">
                   <li>
                     <abbr

@@ -7,12 +7,12 @@
     <DivCenter class="mt-3">
       <div class="d-flex">
         <div class="mr-7">
-          <ImgMember src="/members/junho.jpeg"></ImgMember>
+          <ImgMember src="/members/junho.png"></ImgMember>
           <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
         </div>
 
         <div class="ml-7">
-          <ImgMember src="/members/hyunseung.jpg"></ImgMember>
+          <ImgMember src="/members/hyunseung.png"></ImgMember>
           <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
         </div>
       </div>

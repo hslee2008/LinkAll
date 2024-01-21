@@ -56,6 +56,9 @@
             </template>
 
             <v-list>
+              <v-list-item to="/actions">
+                <v-list-item-title> {{ t("actions") }} </v-list-item-title>
+              </v-list-item>
               <v-list-item to="/actions/education">
                 <v-list-item-title> {{ t("education") }} </v-list-item-title>
               </v-list-item>

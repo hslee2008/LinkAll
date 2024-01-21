@@ -39,19 +39,23 @@
             과정을 통해 우리는 사회 전체를 위해 생각하는 기술을 향상하기를
             기대합니다. 이 수업을 통한 모든 기부는 공식 기관을 통해 이루어질
             예정이며, 기부 활동은 모두 저희 웹 사이트를 통해 공유될 것입니다.
-            저희 모두를 위해 생각하고, 모두를 연결합니다. * 각 수업 후 기부를
-            적극 권장합니다. 여러분의 기부는 필요한 이들을 연결하는 힘을 가지고
-            있습니다.
+            저희 모두를 위해 생각하고, 모두를 연결합니다.
           </span>
         </p>
         <p style="color: red">
-          * Note that donations after each lesson are highly encouraged. Your
-          donations have the power to help and link the people in need.
+          <span v-if="locale === 'en'">
+            * Note that donations after each lesson are highly encouraged. Your
+            donations have the power to help and link the people in need.
+          </span>
+          <span v-else-if="locale === 'ko'">
+            * 각 수업 후 기부를 적극 권장합니다. 여러분의 기부는 필요한 이들을
+            연결하는 힘을 가지고 있습니다.
+          </span>
         </p>
         <br />
         <i>- Think for All, Link All.</i>
 
-        <div class="d-flex my-10">
+        <div class="my-10">
           <div class="my-auto">
             <v-table v-if="locale === 'en'">
               <thead>
@@ -99,7 +103,7 @@
             </v-table>
           </div>
 
-          <v-table class="ml-5">
+          <v-table>
             <thead>
               <tr>
                 <th class="text">Month</th>
@@ -150,7 +154,7 @@
         <p class="text-center">Teacher</p>
         <h2 class="text-center text-decoration-underline">Junho Hwang</h2>
 
-        <ImgMember src="/members/junho.jpeg" :elevation="0" :width="200" />
+        <ImgMember src="/members/junho.png" :elevation="0" :width="200" />
 
         <p class="text-justify my-4 ma-auto" style="width: 250px">
           안녕하세요, 저는 LinkAll 창립자 황준호입니다. 현재 저는
@@ -300,9 +304,13 @@ useHead({
   display: flex;
 }
 
+.table-container {
+  display: flex;
+}
+
 @media (max-width: 650px) {
   .top-div {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .side-div {
@@ -310,6 +318,10 @@ useHead({
   }
 
   .title-container {
+    flex-direction: column;
+  }
+
+  .table-container {
     flex-direction: column;
   }
 
