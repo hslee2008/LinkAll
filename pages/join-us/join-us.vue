@@ -136,7 +136,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { ref as dbRef, set, onValue } from "firebase/database";
+import { ref as dbRef, push, onValue } from "firebase/database";
 
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
@@ -167,12 +167,8 @@ onMounted(async () => {
     }
   });
 
-  if (!userInfo.value) {
-    return;
-  }
-
-  onValue(dbRef($db, "join-us-waiting"), (snapshot) => {
-    const keys = Object.keys(snapshot.val() ?? {});
+  onValue(dbRef($db, "join-us-waiting"), async (snapshot) => {
+    const keys = Object.keys((await snapshot.val()) ?? {});
 
     if (keys.includes(userInfo.value.uid)) {
       registering.value = true;
@@ -182,27 +178,19 @@ onMounted(async () => {
   });
 });
 
-const submit = async () => {
-  set(
-    dbRef($db, `join-us-waiting/${userInfo.value.uid}`, {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      phone: phone.value,
-      email: email.value,
-      schoolName: schoolName.value,
-      country: country.value,
-      grade: grade.value,
-      radios: radios.value,
-      howFound: howFound.value,
-      brief: brief.value,
-      userInfo: {
-        uid: userInfo.value.uid,
-        displayName: userInfo.value.displayName,
-        email: userInfo.value.email,
-        photoURL: userInfo.value.photoURL,
-      },
-    })
-  );
+const submit = () => {
+  push(dbRef($db, `join-us-waiting/${userInfo.value.uid}`), {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    phone: phone.value,
+    email: email.value,
+    schoolName: schoolName.value,
+    country: country.value,
+    grade: grade.value,
+    radios: radios.value,
+    howFound: howFound.value,
+    brief: brief.value,
+  });
 
   router.go(0);
 };

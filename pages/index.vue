@@ -27,8 +27,7 @@
         </div>
 
         <div
-          v-if="!mobile"
-          class="d-flex justify-center container"
+          class="only-desktop-flex d-flex justify-center container"
           style="gap: 150px"
         >
           <div class="text-center">
@@ -46,7 +45,7 @@
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </div>
         </div>
-        <div v-else class="d-flex justify-center ga-5 mt-14">
+        <div class="only-mobile-flex d-flex justify-center ga-5 mt-14">
           <v-card elevation="0" class="text-center pa-2" variant="outlined">
             <p class="headline">0</p>
             <br />

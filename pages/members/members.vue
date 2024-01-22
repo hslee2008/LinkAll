@@ -47,6 +47,7 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
+                    density="dense"
                   ></v-btn>
 
                   <v-btn
@@ -54,6 +55,7 @@
                     target="_blank"
                     icon="mdi-instagram"
                     :elevation="0"
+                    density="dense"
                   ></v-btn>
                 </div>
               </v-col>
@@ -124,6 +126,7 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
+                    density="dense"
                   ></v-btn>
 
                   <v-btn
@@ -131,6 +134,7 @@
                     target="_blank"
                     icon="mdi-github"
                     :elevation="0"
+                    density="dense"
                   ></v-btn>
                 </div>
               </v-col>

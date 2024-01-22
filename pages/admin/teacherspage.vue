@@ -81,7 +81,7 @@ const classes = ref({});
 
 $auth.onAuthStateChanged((user) => {
   if (user) {
-    parsedEmail.value = user.email.split("@")[0].replaceAll(".", "_");
+    parsedEmail.value = user.email?.split("@")[0].replaceAll(".", "_");
   }
 });
 

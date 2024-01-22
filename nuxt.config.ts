@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 
     "/assets/css/div.css",
     "/assets/css/title.css",
+    "/assets/css/screen.css",
   ],
   modules: [
     (_, nuxt) => {
