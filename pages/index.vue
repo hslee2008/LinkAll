@@ -75,6 +75,7 @@
       <v-col cols="12" sm="6" md="3">
         <v-card elevation="8" height="400px" to="/class/english">
           <v-card-text class="headline text-center"> English </v-card-text>
+          <br />
           <v-card-title class="text-center">
             LinkAll Book Club Open!
             <v-icon size="x-small">mdi-open-in-new</v-icon>

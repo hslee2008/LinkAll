@@ -135,7 +135,12 @@
               <v-list>
                 <v-list-item v-if="isAdmin" to="/admin/teacherspage">
                   <v-list-item-title>
-                    <v-icon start>mdi-incognito</v-icon> (Secret) Teacher page
+                    <v-icon start>mdi-incognito</v-icon> (Secret) Teacher's page
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item v-if="isAdmin" to="/admin/admin">
+                  <v-list-item-title>
+                    <v-icon start>mdi-incognito</v-icon> (Secret) Admin page
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item to="/account/account">
@@ -238,7 +243,13 @@
                   <v-list>
                     <v-list-item v-if="isAdmin" to="/admin/teacherspage">
                       <v-list-item-title>
-                        <v-icon start>mdi-incognito</v-icon> Teacher's Page
+                        <v-icon start>mdi-incognito</v-icon> (Secret) Teacher's
+                        Page
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item v-if="isAdmin" to="/admin/admin">
+                      <v-list-item-title>
+                        <v-icon start>mdi-incognito</v-icon> (Secret) Admin page
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item to="/account/account">
