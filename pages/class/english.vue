@@ -118,14 +118,9 @@
                 <td>2024. 01. 28</td>
               </tr>
               <tr>
-                <td>February</td>
-                <td>Animal Farm</td>
-                <td>2024. 02.</td>
-              </tr>
-              <tr>
                 <td>March</td>
-                <td>Coming Soon</td>
-                <td>Coming Soon</td>
+                <td></td>
+                <td>2024. 03.</td>
               </tr>
             </tbody>
           </v-table>
@@ -157,11 +152,21 @@
         <ImgMember src="/members/junho.png" :elevation="0" :width="200" />
 
         <p class="text-justify my-4 ma-auto" style="width: 250px">
-          안녕하세요, 저는 LinkAll 창립자 황준호입니다. 현재 저는
-          용인한국외국어대학교부설고등학교에 재학하고 있습니다. LinkAll 영어
-          독서 모임 수업은 우리 조직의 최초 수업입니다. 독서와 지식의 힘을 믿고
-          이 프로그램을 시작하게 되었습니다. 많은 관심 부탁드립니다!. 수업에서
-          만나요! :)
+          <span v-if="locale === 'en'">
+            Hello, I am Junho Hwang, the founder of LinkAll. I am currently
+            attending Hankuk Academy of Foreign Studies. The LinkAll English
+            Book Club class is the very first class of our organization.
+            Believing in the power of reading and knowledge, I was inspired to
+            start this program. Thank you for your interest. See you in class!
+            :)
+          </span>
+          <span v-else-if="locale === 'ko'">
+            안녕하세요, 저는 LinkAll 창립자 황준호입니다. 현재 저는
+            용인한국외국어대학교부설고등학교에 재학하고 있습니다. LinkAll 영어
+            독서 모임 수업은 저희 단체의 최초 수업입니다. 저는 독서와 지식의
+            힘을 믿고 이 프로그램의 시작을 결심하게 되었습니다. 많은 관심
+            부탁드립니다! 수업에서 만나요! :)
+          </span>
         </p>
 
         <v-dialog width="500" transition="dialog-bottom-transition">
@@ -183,9 +188,7 @@
                 <v-form>
                   <p>Select Class Date</p>
                   <v-radio-group v-model="classNumber">
-                    <v-radio label="(1) 2024/02/02" value="1"></v-radio>
-                    <v-radio label="(2) 2024/02/03" value="2"></v-radio>
-                    <v-radio label="(3) 2024/02/04" value="3"></v-radio>
+                    <v-radio label="(1) 2024/01/28" value="1"></v-radio>
                   </v-radio-group>
 
                   <v-text-field
@@ -222,6 +225,7 @@
                       thankYou = true;
                     }
                   "
+                  :disabled="s_name === '' || s_email === '' || g_name === '' || g_email === ''"
                 ></v-btn>
 
                 <v-spacer></v-spacer>

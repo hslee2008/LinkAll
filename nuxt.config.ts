@@ -36,4 +36,12 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  googleFonts: {
+    families: {
+      "Libre Baskerville": true,
+      "Grape Nuts": true,
+      "Noto Serif": true,
+    },
+    display: "swap",
+  },
 });

@@ -12,7 +12,9 @@
         <v-row justify="center">
           <v-col cols="12" sm="6" md="3">
             <v-card elevation="8" to="/class/english">
-              <v-card-title class="text-center"><v-icon>mdi-open-in-new</v-icon></v-card-title>
+              <v-card-title class="text-center"
+                ><v-icon>mdi-open-in-new</v-icon></v-card-title
+              >
 
               <v-card-text
                 class="headline text-center text-decoration-underline"
@@ -27,37 +29,55 @@
           </v-col>
 
           <v-col cols="12" sm="6" md="3">
-            <v-card elevation="8" height="200px" width="200px">
-              <v-card-text class="headline text-center"> Korean </v-card-text>
+            <v-card elevation="8">
+              <v-card-title class="text-center">
+                <v-icon>mdi-school</v-icon>
+              </v-card-title>
 
               <v-card-text
-                class="d-flex justify-center align-center h-75 text-h6"
+                class="headline text-center text-decoration-underline"
               >
-                Coming Soon
+                Korean
+              </v-card-text>
+
+              <v-card-text class="text-h6 text-center">
+                Coming Soon!
               </v-card-text>
             </v-card>
           </v-col>
 
           <v-col cols="12" sm="6" md="3">
-            <v-card elevation="8" height="200px" width="200px">
-              <v-card-text class="headline text-center"> Arts </v-card-text>
+            <v-card elevation="8">
+              <v-card-title class="text-center">
+                <v-icon>mdi-school</v-icon>
+              </v-card-title>
 
               <v-card-text
-                class="d-flex justify-center align-center h-75 text-h6"
+                class="headline text-center text-decoration-underline"
               >
-                Coming Soon
+                Arts
+              </v-card-text>
+
+              <v-card-text class="text-h6 text-center">
+                Coming Soon!
               </v-card-text>
             </v-card>
           </v-col>
 
           <v-col cols="12" sm="6" md="3">
-            <v-card elevation="8" height="200px" width="200px">
-              <v-card-text class="headline text-center"> Tech </v-card-text>
+            <v-card elevation="8">
+              <v-card-title class="text-center">
+                <v-icon>mdi-school</v-icon>
+              </v-card-title>
 
               <v-card-text
-                class="d-flex justify-center align-center h-75 text-h6"
+                class="headline text-center text-decoration-underline"
               >
-                Coming Soon
+                Tech
+              </v-card-text>
+
+              <v-card-text class="text-h6 text-center">
+                Coming Soon!
               </v-card-text>
             </v-card>
           </v-col>
@@ -85,6 +105,7 @@ useHead({
 @media (max-width: 1265px) {
   .top-div-with-bg {
     height: auto;
+    min-height: calc(100vh - 65px);
   }
 }
 

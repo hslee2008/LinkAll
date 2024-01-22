@@ -76,12 +76,10 @@
       <v-col cols="12" sm="6" md="3">
         <v-card elevation="8" height="400px" to="/class/english">
           <v-card-text class="headline text-center"> English </v-card-text>
-
-          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
-            Click<br /><br /><br />
-            to see<br /><br /><br />
-            test page
-          </v-card-text>
+          <v-card-title class="text-center">
+            LinkAll Book Club Open!
+            <v-icon size="x-small">mdi-open-in-new</v-icon>
+          </v-card-title>
         </v-card>
       </v-col>
 
@@ -174,7 +172,7 @@
         class="mx-4"
         icon="mdi-instagram"
         variant="text"
-        href="https://www.instagram.com/linkall2024/"
+        href="https://www.instagram.com/linkall_/"
         target="_blank"
       ></v-btn>
       <v-btn

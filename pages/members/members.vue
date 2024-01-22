@@ -31,12 +31,13 @@
                   </span>
 
                   <span v-else-if="locale === 'ko'">
-                    안녕하세요! 반갑습니다. 저는 현재 2026년도
-                    용인한국외국어대학교부설고등학교 졸업반 국제 트랙에 속해
-                    있습니다. 2024년 1월에 동료 창립자의 지원을 받아 LinkAll을
-                    설립했습니다. 이 프로젝트는 기부에 대한 관심을 혁신적으로
-                    전환하고 필요한 개인들을 직접 돕기 위한 방법을 활성화하는
-                    것에 목표를 두고 있습니다.
+                    안녕하세요, 반갑습니다. 저는 현재
+                    용인한국외국어대학교부설고등학교 2026년도 졸업반 국제 트랙에
+                    속해 있습니다. 저는 2024년 1월에 공동 창립자의 지원을 받아
+                    LinkAll 단체를 설립했습니다. 이 단체 및 프로젝트는 기부에
+                    대한 관심을 혁신적으로 전환하고 도움이 필요한 사회 속
+                    사람들을 직접 돕기 위한 방법을 활성화하는 것에 목표를 두고
+                    있습니다.
                   </span>
                 </div>
 
@@ -65,7 +66,7 @@
                   <li>E-ICON World Contest 1st Place (2023)</li>
                   <li>Middle School International MUN SC Head Chair (2023)</li>
                   <li>Hankyung Economy Competition 1st Place (2023)</li>
-                  <li>Ministry of Education Minister;s Award x 2 (2023)</li>
+                  <li>Ministry of Education Minister's Award x 2 (2023)</li>
                   <li>Cogito Debate Society 19th Captain</li>
                 </ul>
                 <ul v-if="locale === 'ko'">
