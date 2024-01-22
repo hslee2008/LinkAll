@@ -118,6 +118,11 @@
                 <td>2024. 01. 28</td>
               </tr>
               <tr>
+                <td>February</td>
+                <td></td>
+                <td>2024. 02.</td>
+              </tr>
+              <tr>
                 <td>March</td>
                 <td></td>
                 <td>2024. 03.</td>
