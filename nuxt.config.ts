@@ -22,6 +22,7 @@ export default defineNuxtConfig({
       );
     },
     "@nuxtjs/google-fonts",
+    "@vite-pwa/nuxt",
   ],
   vite: {
     resolve: {
@@ -45,4 +46,39 @@ export default defineNuxtConfig({
     },
     display: "swap",
   },
+  pwa: {
+    manifest: {
+      name: "Think for All - LinkAll",
+      short_name: "LinkAll",
+      description:
+        "LinkAll is a nongovernmental, nonprofit organization established in 2024, under the fundamental purpose of spreading the real meaning of donation and simplifying the action for the whole humanity to participate.",
+      lang: "ko",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+      orientation: "portrait",
+      scope: "/",
+      start_url: "/",
+      dir: "ltr",
+      icons: [
+        {
+          src: "icon.png",
+          sizes: "32x32",
+          type: "image/png",
+        },
+        {
+          src: "144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        }
+      ],
+    },
+    workbox: {
+      navigateFallback: "/",
+    },
+    devOptions: {
+      enabled: true,
+      type: "module",
+    },
+  }
 });
