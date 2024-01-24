@@ -70,7 +70,21 @@ export default defineNuxtConfig({
           src: "144x144.png",
           sizes: "144x144",
           type: "image/png",
-        }
+        },
+      ],
+      screenshots: [
+        {
+          src: "/screenshot/desktop.png",
+          sizes: "2554x1314",
+          type: "image/png",
+          form_factor: "wide"
+        },
+        {
+          src: "/screenshot/mobile.png",
+          sizes: "1074x1216",
+          type: "image/png",
+          form_factor: "narrow"
+        },
       ],
     },
     workbox: {
@@ -80,5 +94,5 @@ export default defineNuxtConfig({
       enabled: true,
       type: "module",
     },
-  }
+  },
 });
