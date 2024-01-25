@@ -58,6 +58,7 @@
         </DivCenter>
         <h2 class="text-center">{{ t("transfer") }}</h2>
         <p v-if="locale === 'en'" class="text-center">Domestic</p>
+        <p v-else-if="locale === 'ko'" class="text-center">국내</p>
       </v-card>
 
       <v-card
@@ -76,6 +77,7 @@
         </DivCenter>
         <h2 class="text-center">{{ t("paypal") }}</h2>
         <p v-if="locale === 'en'" class="text-center">Foreign</p>
+        <p v-else-if="locale === 'ko'" class="text-center">해외</p>
       </v-card>
 
       <v-dialog v-model="dialog1" width="500">
@@ -143,7 +145,7 @@ const openDialog2 = () => {
 
   loadScript({
     "client-id":
-      "Abac69CCZicy3Y8PbA2VJdZMp_UJPY-nbwhwy9fZA5Dlh2YQXBgYCUKVhtZCq3kO5Cd1iGZDMewBTcGx",
+      "Abac69CCZicy3Y8PbA2VJdZMp_UJPY-AfS9jbsEq7ax6TRoH58Q9DZ77vPw7KHbKCaYZq6mKxXr_pWmP11fVPH7FJSdEi2trD9rJtUGgWJC__FY",
   }).then((paypal) => {
     paypal
       .Buttons({
