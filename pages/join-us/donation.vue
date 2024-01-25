@@ -46,30 +46,36 @@
         @click="openDialog1"
         color="transparent"
         :elevation="0"
-        class="ma-4"
+        class="ma-2 pa-2"
       >
-        <img
-          height="150px"
-          width="150px"
-          class="rounded-pill"
-          src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/two-hands-holding-mobile-phones-transferring-money-between-accounts-isolated-on-a-pink-background-marina-demeshko.jpg"
-        />
-        <v-card-title class="text-center">{{ t("transfer") }}</v-card-title>
+        <DivCenter>
+          <img
+            height="150px"
+            width="150px"
+            class="rounded-pill"
+            src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/two-hands-holding-mobile-phones-transferring-money-between-accounts-isolated-on-a-pink-background-marina-demeshko.jpg"
+          />
+        </DivCenter>
+        <h2 class="text-center">{{ t("transfer") }}</h2>
+        <p v-if="locale === 'en'" class="text-center">Domestic</p>
       </v-card>
 
       <v-card
         @click="openDialog2"
         color="transparent"
         :elevation="0"
-        class="ma-4"
+        class="ma-2 pa-2"
       >
-        <img
-          height="150px"
-          width="150px"
-          class="rounded-pill"
-          src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/352383286_217268490641033_7276792902224323196_n.png?_nc_cat=103&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=M7x9ceOrykEAX_a60-l&_nc_ht=scontent-ssn1-1.xx&oh=00_AfAme9tmu2jcUs0lD8ummf70kTCTIVZ5vU1ELLc1Ct38Ug&oe=65AED870"
-        />
-        <v-card-title class="text-center">{{ t("paypal") }}</v-card-title>
+        <DivCenter>
+          <img
+            height="150px"
+            width="150px"
+            class="rounded-pill ma-auto"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCIiOw244LMuXnAk6IDgME5eFy30cxsKAJiQ&usqp=CAU"
+          />
+        </DivCenter>
+        <h2 class="text-center">{{ t("paypal") }}</h2>
+        <p v-if="locale === 'en'" class="text-center">Foreign</p>
       </v-card>
 
       <v-dialog v-model="dialog1" width="500">
