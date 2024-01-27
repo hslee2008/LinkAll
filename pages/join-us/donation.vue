@@ -145,8 +145,9 @@ const openDialog2 = () => {
 
   loadScript({
     "client-id":
-      "Abac69CCZicy3Y8PbA2VJdZMp_UJPY-AfS9jbsEq7ax6TRoH58Q9DZ77vPw7KHbKCaYZq6mKxXr_pWmP11fVPH7FJSdEi2trD9rJtUGgWJC__FY",
+      "AfS9jbsEq7ax6TRoH58Q9DZ77vPw7KHbKCaYZq6mKxXr_pWmP11fVPH7FJSdEi2trD9rJtUGgWJC__FY",
   }).then((paypal) => {
+  
     paypal
       .Buttons({
         createOrder: function (data, actions) {

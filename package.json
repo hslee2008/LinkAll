@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@paypal/funding-components": "^1.0.32",
     "@paypal/paypal-js": "^8.0.0",
     "@tosspayments/payment-widget-sdk": "^0.10.2",
     "firebase": "^10.7.2"
