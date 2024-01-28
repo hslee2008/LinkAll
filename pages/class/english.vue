@@ -133,17 +133,17 @@
 
         <!--<div class="d-flex" style="gap: 30px">
           <v-img
-            src="/background/original.png"
+            src="/background/background.png"
             width="50px"
             class="rounded-lg"
           ></v-img>
           <v-img
-            src="/background/original.png"
+            src="/background/background.png"
             width="50px"
             class="rounded-lg"
           ></v-img>
           <v-img
-            src="/background/original.png"
+            src="/background/background.png"
             width="50px"
             class="rounded-lg"
           ></v-img>
@@ -230,7 +230,12 @@
                       thankYou = true;
                     }
                   "
-                  :disabled="s_name === '' || s_email === '' || g_name === '' || g_email === ''"
+                  :disabled="
+                    s_name === '' ||
+                    s_email === '' ||
+                    g_name === '' ||
+                    g_email === ''
+                  "
                 ></v-btn>
 
                 <v-spacer></v-spacer>

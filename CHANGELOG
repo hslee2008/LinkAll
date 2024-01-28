@@ -1,0 +1,15 @@
+v0.0.1
+initial
+
+v0.0.2
+update co-founder explanation
+update members flex foundation
+fix density props warning
+add version to footer
+remove unused files / dependencies
+use icon public directory
+remove unused png files
+remove unused sass file
+use typescript for plugins files
+update README
+update packages

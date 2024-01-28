@@ -1,7 +1,7 @@
 <template>
   <v-parallax
-    src="/background/original.png"
-    lazy-src="/background/original-compressed.png"
+    src="/background/background.png"
+    lazy-src="/background/background-small.png"
     :height="windowHeight"
   >
     <div class="d-flex justify-center align-center index" style="width: 100%">
@@ -122,7 +122,7 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
-          lazy-src="/background/original-compressed.png"
+          lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
@@ -134,7 +134,7 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
-          lazy-src="/background/original-compressed.png"
+          lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
@@ -146,7 +146,7 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
-          lazy-src="/background/original-compressed.png"
+          lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
@@ -188,6 +188,10 @@
 
     <div>
       Copyright © LinkAll {{ new Date().getFullYear() }} — All rights reserved
+    </div>
+
+    <div style="position: absolute; right: 0; bottom: 0; margin: 10px">
+      v0.0.2
     </div>
   </v-footer>
 </template>

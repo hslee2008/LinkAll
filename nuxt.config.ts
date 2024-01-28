@@ -62,12 +62,12 @@ export default defineNuxtConfig({
       dir: "ltr",
       icons: [
         {
-          src: "icon.png",
+          src: "/icon/icon.png",
           sizes: "32x32",
           type: "image/png",
         },
         {
-          src: "144x144.png",
+          src: "/icon/144x144.png",
           sizes: "144x144",
           type: "image/png",
         },

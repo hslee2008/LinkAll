@@ -7,16 +7,18 @@
     <div class="d-flex justify-center">
       <div class="d-flex flex-column">
         <div class="container mt-10">
-          <v-col class="text-center ma-auto" style="flex: 0.3">
-            <ImgMember
-              src="/members/junho.png"
-              class="ma-auto"
-              :elevation="0"
-            ></ImgMember>
+          <div>
+            <v-col class="text-center ma-auto" style="flex: 0.2">
+              <ImgMember
+                src="/members/junho.png"
+                class="ma-auto"
+                :elevation="4"
+              ></ImgMember>
 
-            <p class="mt-3">{{ t("founder") }}</p>
-            <b>{{ t("Junho Hwang") }}</b>
-          </v-col>
+              <p class="mt-3">{{ t("founder") }}</p>
+              <b>{{ t("Junho Hwang") }}</b>
+            </v-col>
+          </div>
 
           <v-col style="flex: 2">
             <div class="container align-center mt-4 ga-5">
@@ -47,7 +49,7 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
-                    density="dense"
+                    density="compact"
                   ></v-btn>
 
                   <v-btn
@@ -55,7 +57,7 @@
                     target="_blank"
                     icon="mdi-instagram"
                     :elevation="0"
-                    density="dense"
+                    density="compact"
                   ></v-btn>
                 </div>
               </v-col>
@@ -89,16 +91,18 @@
         </div>
 
         <div class="container mt-10">
-          <v-col class="text-center ma-auto" style="flex: 0.3">
-            <ImgMember
-              src="/members/hyunseung.png"
-              class="ma-auto"
-              :elevation="0"
-            ></ImgMember>
+          <div>
+            <v-col class="text-center ma-auto" style="flex: 0.2">
+              <ImgMember
+                src="/members/hyunseung.png"
+                class="ma-auto"
+                :elevation="4"
+              ></ImgMember>
 
-            <p class="mt-3">{{ t("co-founder") }}</p>
-            <b>{{ t("Hyunseung Lee") }}</b>
-          </v-col>
+              <p class="mt-3">{{ t("co-founder") }}</p>
+              <b>{{ t("Hyunseung Lee") }}</b>
+            </v-col>
+          </div>
 
           <v-col style="flex: 2">
             <div class="container align-center mt-4 ga-5">
@@ -107,16 +111,16 @@
                   <span v-if="locale === 'en'">
                     Hi! I co-founded LinkAll with the visionary of our founder.
                     Together, we embarked on a mission like mentioned above. As
-                    a high school junior, I took charge of the technical
+                    a Pangyo High School junior, I took charge of the technical
                     aspects, coding and shaping the technological foundation of
                     LinkAll.
                   </span>
                   <span v-else-if="locale === 'ko'">
                     안녕하세요! LinkAll을 창립하면서 우리 창립자의 비전과 함께
                     힘을 모았고, 이를 통해 앞서 언급한 다양한 목표를 수행하고
-                    있습니다. 저는 고등학교 1학년생으로, 기술적인 부분에 대한
-                    책임을 지며 LinkAll의 기술적 기반을 코딩하고 형성하는 과정에
-                    있습니다.
+                    있습니다. 저는 판교고등학교 1학년생으로, 기술적인 부분에
+                    대한 책임을 지며 LinkAll의 기술적 기반을 코딩하고 형성하는
+                    과정에 있습니다.
                   </span>
                 </div>
 
@@ -126,7 +130,7 @@
                     target="_blank"
                     icon="mdi-gmail"
                     :elevation="0"
-                    density="dense"
+                    density="compact"
                   ></v-btn>
 
                   <v-btn
@@ -134,7 +138,7 @@
                     target="_blank"
                     icon="mdi-github"
                     :elevation="0"
-                    density="dense"
+                    density="compact"
                   ></v-btn>
                 </div>
               </v-col>
