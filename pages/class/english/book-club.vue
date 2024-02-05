@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                   <th>Est. Student</th>
-                  <td># 6 ~ 8 / class</td>
+                  <td>6 ~ 8 / class</td>
                 </tr>
                 <tr>
                   <th>Class Time</th>
@@ -119,7 +119,7 @@
               </tr>
               <tr>
                 <td>February</td>
-                <td></td>
+                <td>Animal Farm</td>
                 <td>2024. 02.</td>
               </tr>
               <tr>
@@ -287,14 +287,22 @@ const thankYou = ref(false);
 const saveToDatabase = () => {
   const classRef = dbRef(
     $db,
-    `classes/h_junho420/to-join/${classNumber.value}`
+    `classes/h_junho420/to-join/book-club/${classNumber.value}`
   );
+
+  let date = "";
+
+  if (classNumber.value === "1") {
+    date = "2024.01.28";
+  }
+
   push(classRef, {
     classNumber: classNumber.value,
     s_name: s_name.value,
     s_email: s_email.value,
     g_name: g_name.value,
     g_email: g_email.value,
+    date,
   });
 };
 

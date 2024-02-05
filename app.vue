@@ -134,16 +134,23 @@
 
             <v-card>
               <v-list>
-                <v-list-item v-if="isAdmin" to="/admin/teacherspage">
-                  <v-list-item-title>
-                    <v-icon start>mdi-incognito</v-icon> (Secret) Teacher's page
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item v-if="isAdmin" to="/admin/admin">
-                  <v-list-item-title>
-                    <v-icon start>mdi-incognito</v-icon> (Secret) Admin page
-                  </v-list-item-title>
-                </v-list-item>
+                <div v-if="isAdmin">
+                  <v-list-item to="/admin/teacherspage">
+                    <v-list-item-title>
+                      <v-icon start>mdi-incognito</v-icon> Teacher's page
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item to="/admin/admin">
+                    <v-list-item-title>
+                      <v-icon start>mdi-incognito</v-icon> Admin page
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item to="/admin/edit">
+                    <v-list-item-title>
+                      <v-icon start>mdi-incognito</v-icon> Edit page
+                    </v-list-item-title>
+                  </v-list-item>
+                </div>
                 <v-list-item to="/account/account">
                   <v-list-item-title>
                     {{ t("my account") }}
@@ -242,17 +249,23 @@
 
                 <v-card>
                   <v-list>
-                    <v-list-item v-if="isAdmin" to="/admin/teacherspage">
-                      <v-list-item-title>
-                        <v-icon start>mdi-incognito</v-icon> (Secret) Teacher's
-                        Page
-                      </v-list-item-title>
-                    </v-list-item>
-                    <v-list-item v-if="isAdmin" to="/admin/admin">
-                      <v-list-item-title>
-                        <v-icon start>mdi-incognito</v-icon> (Secret) Admin page
-                      </v-list-item-title>
-                    </v-list-item>
+                    <div v-if="isAdmin">
+                      <v-list-item to="/admin/teacherspage">
+                        <v-list-item-title>
+                          <v-icon start>mdi-incognito</v-icon> Teacher's page
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item to="/admin/admin">
+                        <v-list-item-title>
+                          <v-icon start>mdi-incognito</v-icon> Admin page
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item to="/admin/edit">
+                        <v-list-item-title>
+                          <v-icon start>mdi-incognito</v-icon> Edit page
+                        </v-list-item-title>
+                      </v-list-item>
+                    </div>
                     <v-list-item to="/account/account">
                       <v-list-item-title>
                         {{ t("my account") }}

@@ -12,22 +12,17 @@
   "my account": "내 계정",
   "admin": "관리자",
   "video player": "비디오 플레이어",
-
   "language": "언어",
   "class": "수업",
   "click here to join the class": "수업에 참여하려면 여기를 클릭하세요",
-
   "logout": "로그아웃",
   "login": "로그인",
   "login is required": "로그인이 필요합니다",
   "create account": "계정 만들기",
-
   "submit": "제출",
-
   "login with google": "구글로 로그인",
   "login with facebook": "페이스북으로 로그인",
   "please try again": "다시 시도해주세요",
-
   "display name": "닉네임",
   "display name is required": "닉네임을 입력해주세요",
   "password": "비밀번호",
@@ -44,13 +39,12 @@
   "email is required": "이메일을 입력해주세요",
   "email must be valid": "이메일 형식이 올바르지 않습니다",
   "update profile": "프로필 업데이트",
-
   "donate": "기부하기",
   "taught_students": "명 가르침",
   "won_donated": "원 기부함",
   "hours_of_volunteering": "시간 봉사함",
-
   "your data is being examined": "데이터를 검토 중입니다",
+  "accepted": "축하합니다! 당신은 LinkAll의 회원이 되었습니다",
   "first name": "이름",
   "last name": "성",
   "phone number": "전화번호",
@@ -65,17 +59,14 @@
   "Friend or Teacher": "친구 또는 선생님",
   "Event / Tournament": "이벤트 / 대회",
   "brief introduction": "간단한 소개",
-
   "purpose": "LinkAll의 목적",
   "purpose_text": "LinkAll은 2024년에 설립된 비정부 및 비영리 기구로, 기부의 진정한 의미를 전파하고 전 세계 인류가 참여하기를 단순화하는 기본 목적을 가지고 있습니다.",
   "vision": "LinkAll의 비전",
   "vision_text": "현재의 사회에서 많은 개인과 단체들은 기부 행위를 한 그룹에서 다른 그룹으로 하는 애석한 행동으로만 보고 있습니다. 우리는 그 시각을 바꾸고자 합니다. 우리의 신념은 모든 개인이 언젠가는 도움의 손길이 필요한 순간이 오며, 기부 행위가 그 손길이 되어 한 사람을 다른 사람과 연결시키는 물질적인 표현이라고 믿습니다. 우리의 목적을 달성하기 위한 다양한 방법 가운데, 우리의 주요 가치는 사회 전체에 필수적인 교육을 보장하는 것입니다.",
   "impact": "LinkAll의 영향",
   "impact_text": "현재 LinkAll 커뮤니티는 2개의 다른 학교와 1개 국가의 회원으로 이루어져 있습니다. 교육 활동을 통해 우리는 0명의 학생에게 가르치고, 0원을 기부할 수 있었습니다. 우리는 LinkAll입니다.",
-
   "transfer": "계좌이체",
   "paypal": "페이팔",
-
   "Junho Hwang": "황준호",
   "Hyunseung Lee": "이현승",
   "founder": "창립자",

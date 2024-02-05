@@ -31,35 +31,35 @@
           style="gap: 150px"
         >
           <div class="text-center">
-            <p class="headline">0</p>
+            <p class="headline">{{ taughtStudents }}</p>
             <p class="text">{{ $t("taught_students") }}</p>
           </div>
 
           <div class="text-center">
-            <p class="headline">0</p>
+            <p class="headline">{{ wonDonated }}</p>
             <p class="text">{{ $t("won_donated") }}</p>
           </div>
 
           <div class="text-center">
-            <p class="headline">0</p>
+            <p class="headline">{{ hoursOf }}</p>
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </div>
         </div>
         <div class="only-mobile-flex d-flex justify-center ga-5 mt-14">
           <v-card elevation="0" class="text-center pa-2" variant="outlined">
-            <p class="headline">0</p>
+            <p class="headline">{{ taughtStudents }}</p>
             <br />
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
 
           <v-card elevation="0" class="text-center pa-2" variant="outlined">
-            <p class="headline">0</p>
+            <p class="headline">{{ wonDonated }}</p>
             <br />
             <p class="text">{{ $t("won_donated") }}</p>
           </v-card>
 
           <v-card elevation="0" class="text-center pa-2" variant="outlined">
-            <p class="headline">0</p>
+            <p class="headline">{{ hoursOf }}</p>
             <br />
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </v-card>
@@ -73,13 +73,21 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px" to="/class/english">
+        <v-card elevation="8" height="400px">
           <v-card-text class="headline text-center"> English </v-card-text>
           <br />
-          <v-card-title class="text-center">
-            LinkAll Book Club Open!
-            <v-icon size="x-small">mdi-open-in-new</v-icon>
-          </v-card-title>
+          <v-card elevation="0" to="/class/english/book-club">
+            <v-card-title class="text-center">
+              LinkAll Book Club Open!
+              <v-icon size="x-small">mdi-open-in-new</v-icon>
+            </v-card-title>
+          </v-card>
+          <v-card elevation="0" to="/class/english/debate">
+            <v-card-title class="text-center">
+              LinkAll English Debate!
+              <v-icon size="x-small">mdi-open-in-new</v-icon>
+            </v-card-title>
+          </v-card>
         </v-card>
       </v-col>
 
@@ -179,7 +187,7 @@
         class="mx-4"
         icon="mdi-youtube"
         variant="text"
-        href="https://www.youtube.com/@LinkAllCommunity"
+        href="https://{{ mobile ? 'm' : 'www' }}.youtube.com/@LinkAllCommunity"
         target="_blank"
       ></v-btn>
     </div>
@@ -191,7 +199,7 @@
     </div>
 
     <div style="position: absolute; right: 0; bottom: 0; margin: 10px">
-      v0.0.2
+      v0.0.3
     </div>
   </v-footer>
 </template>
@@ -199,13 +207,28 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { useDisplay } from "vuetify";
+import { ref as dbRef, onValue } from "firebase/database";
 
 const { t } = useI18n();
+const { $db } = useNuxtApp();
 const { mobile } = useDisplay();
 
 const windowHeight = ref(0);
+const taughtStudents = ref("0");
+const wonDonated = ref("0");
+const hoursOf = ref("0");
 
-onMounted(() => (windowHeight.value = window.innerHeight));
+onMounted(() => {
+  windowHeight.value = window.innerHeight;
+
+  const siteValuesRef = dbRef($db, "edit");
+  onValue(siteValuesRef, (snapshot) => {
+    const data = snapshot.val();
+    taughtStudents.value = data.taughtStudents;
+    wonDonated.value = data.wonDonated;
+    hoursOf.value = data.hoursOf;
+  });
+});
 
 useHead({
   title: "LinkAll - " + t("home"),

@@ -13,3 +13,10 @@ remove unused sass file
 use typescript for plugins files
 update README
 update packages
+
+v0.0.3
+add second debate class
+make join-us text values required
+make edit function
+make accepted feature
+link mobile youtube in mobile screen

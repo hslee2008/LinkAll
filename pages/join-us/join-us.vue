@@ -10,6 +10,43 @@
       </h1>
     </div>
 
+    <div v-else-if="accepted">
+      <h1 class="text-center">
+        {{ t("accepted") }}
+      </h1>
+
+      <br /><br />
+
+      <DivCenter>
+        <div style="min-width: 500px">
+          <p>
+            use services like <a href="https://imgbb.com/">imgDB</a> to host
+            your image
+          </p>
+
+          <div class="d-flex">
+            <v-textarea
+              v-model="picOfMe"
+              :label="t('photo url')"
+              required
+            ></v-textarea>
+            <v-img
+              :src="picOfMe"
+              class="ma-auto"
+              width="70"
+              height="70"
+            ></v-img>
+          </div>
+
+          <br />
+
+          <DivCenter class="mb-15">
+            <v-btn @click="update">update</v-btn>
+          </DivCenter>
+        </div>
+      </DivCenter>
+    </div>
+
     <DivCenter v-else-if="userInfo" class="pa-10">
       <v-row class="ga-5 mb-5">
         <v-text-field
@@ -115,7 +152,22 @@
       </v-row>
 
       <DivCenter class="my-10">
-        <v-btn color="primary" :disabled="!valid" @click="submit">
+        <v-btn
+          color="primary"
+          :disabled="
+            firstName === '' ||
+            lastName === '' ||
+            phone === '' ||
+            email === '' ||
+            schoolName === '' ||
+            country === '' ||
+            grade === '' ||
+            radios === '' ||
+            howFound === '' ||
+            brief === ''
+          "
+          @click="submit"
+        >
           {{ t("submit") }}
         </v-btn>
       </DivCenter>
@@ -136,15 +188,23 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { ref as dbRef, push, onValue } from "firebase/database";
+import {
+  ref as dbRef,
+  push,
+  onValue,
+  update as dbUpdate,
+} from "firebase/database";
 
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
 
 const router = useRouter();
-const registering = ref(false);
 
-const valid = ref(true);
+const registering = ref(false);
+const accepted = ref(false);
+
+const picOfMe = ref("");
+
 const firstName = ref("");
 const lastName = ref("");
 const phone = ref("");
@@ -176,6 +236,24 @@ onMounted(async () => {
       registering.value = false;
     }
   });
+
+  onValue(dbRef($db, "accepted"), async (snapshot) => {
+    const keys = Object.keys((await snapshot.val()) ?? {});
+
+    if (keys.includes(userInfo.value.uid)) {
+      accepted.value = true;
+    } else {
+      accepted.value = false;
+    }
+  });
+
+  onValue(dbRef($db, `accepted/${userInfo.value.uid}`), async (snapshot) => {
+    const data = await snapshot.val();
+
+    if (data) {
+      picOfMe.value = data.picOfMe;
+    }
+  });
 });
 
 const submit = () => {
@@ -194,6 +272,14 @@ const submit = () => {
 
   router.go(0);
 };
+
+function update() {
+  dbUpdate(dbRef($db, `accepted/${userInfo.value.uid}`), {
+    picOfMe: picOfMe.value,
+  });
+
+  router.go(0);
+}
 
 const emailRules = [
   (value) => {
@@ -219,6 +305,7 @@ const phoneNumRules = [
     return "Phone number must be valid.";
   },
 ];
+
 const itemsGrade = [
   "Grade 1-6",
   "Grade 7",
