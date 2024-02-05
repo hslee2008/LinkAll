@@ -6,15 +6,15 @@
 
     <DivCenter class="mt-3">
       <div class="d-flex">
-        <div class="mr-7">
+        <NuxtLink to="/members/members/#junho" class="mr-7">
           <ImgMember src="/members/junho.png"></ImgMember>
           <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-        </div>
+        </NuxtLink>
 
-        <div class="ml-7">
+        <NuxtLink to="/members/members/#hyunseung" class="ml-7">
           <ImgMember src="/members/hyunseung.png"></ImgMember>
           <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
-        </div>
+        </NuxtLink>
       </div>
     </DivCenter>
 
@@ -32,3 +32,10 @@ useHead({
   title: t("committees"),
 });
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</style>

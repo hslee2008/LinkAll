@@ -20,3 +20,19 @@ make join-us text values required
 make edit function
 make accepted feature
 link mobile youtube in mobile screen
+
+v0.0.4
+make admin page into one, linking all to single index page
+remove single color background
+add transition
+update footer
+add gtag
+add spa-loading-template
+update packages
+add margin in mobile stats
+fix donation database bug
+use symbol for footer
+remove video player code
+update about-us page with live values, changed font
+update flex layout of members page
+add links to members in committees page

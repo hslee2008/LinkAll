@@ -1,8 +1,5 @@
 <template>
-  <div
-    style="background-image: url('/background/actions.png')"
-    class="top-div-with-bg"
-  >
+  <div style="background-color: #8dcee3" class="top-div-with-bg">
     <div>
       <h1 class="text-center header-u">
         {{ t("actions") }}

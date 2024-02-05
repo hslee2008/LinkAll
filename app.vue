@@ -134,23 +134,11 @@
 
             <v-card>
               <v-list>
-                <div v-if="isAdmin">
-                  <v-list-item to="/admin/teacherspage">
-                    <v-list-item-title>
-                      <v-icon start>mdi-incognito</v-icon> Teacher's page
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item to="/admin/admin">
-                    <v-list-item-title>
-                      <v-icon start>mdi-incognito</v-icon> Admin page
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item to="/admin/edit">
-                    <v-list-item-title>
-                      <v-icon start>mdi-incognito</v-icon> Edit page
-                    </v-list-item-title>
-                  </v-list-item>
-                </div>
+                <v-list-item v-if="isAdmin" to="/admin/">
+                  <v-list-item-title>
+                    <v-icon start>mdi-incognito</v-icon> Admin Page
+                  </v-list-item-title>
+                </v-list-item>
                 <v-list-item to="/account/account">
                   <v-list-item-title>
                     {{ t("my account") }}
@@ -249,23 +237,11 @@
 
                 <v-card>
                   <v-list>
-                    <div v-if="isAdmin">
-                      <v-list-item to="/admin/teacherspage">
-                        <v-list-item-title>
-                          <v-icon start>mdi-incognito</v-icon> Teacher's page
-                        </v-list-item-title>
-                      </v-list-item>
-                      <v-list-item to="/admin/admin">
-                        <v-list-item-title>
-                          <v-icon start>mdi-incognito</v-icon> Admin page
-                        </v-list-item-title>
-                      </v-list-item>
-                      <v-list-item to="/admin/edit">
-                        <v-list-item-title>
-                          <v-icon start>mdi-incognito</v-icon> Edit page
-                        </v-list-item-title>
-                      </v-list-item>
-                    </div>
+                    <v-list-item v-if="isAdmin" to="/admin/">
+                      <v-list-item-title>
+                        <v-icon start>mdi-incognito</v-icon> Admin Page
+                      </v-list-item-title>
+                    </v-list-item>
                     <v-list-item to="/account/account">
                       <v-list-item-title>
                         {{ t("my account") }}
@@ -450,5 +426,14 @@ const verifyEmail = () => {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
 }
 </style>

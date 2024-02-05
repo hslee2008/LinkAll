@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     },
     "@nuxtjs/google-fonts",
     "@vite-pwa/nuxt",
+    "nuxt-gtag",
   ],
   vite: {
     resolve: {
@@ -77,13 +78,13 @@ export default defineNuxtConfig({
           src: "/screenshot/desktop.png",
           sizes: "2554x1314",
           type: "image/png",
-          form_factor: "wide"
+          form_factor: "wide",
         },
         {
           src: "/screenshot/mobile.png",
           sizes: "1074x1216",
           type: "image/png",
-          form_factor: "narrow"
+          form_factor: "narrow",
         },
       ],
     },
@@ -95,4 +96,15 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
+  experimental: {
+    payloadExtraction: true,
+    viewTransition: true,
+    typedPages: true,
+  },
+  sourcemap: {
+    server: false,
+    client: false,
+  },
+  gtag: { id: "G-0HQQD54YMS" },
 });
+ 

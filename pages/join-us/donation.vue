@@ -147,7 +147,6 @@ const openDialog2 = () => {
     "client-id":
       "AfS9jbsEq7ax6TRoH58Q9DZ77vPw7KHbKCaYZq6mKxXr_pWmP11fVPH7FJSdEi2trD9rJtUGgWJC__FY",
   }).then((paypal) => {
-  
     paypal
       .Buttons({
         createOrder: function (data, actions) {
@@ -177,8 +176,14 @@ const openDialog2 = () => {
               dbRef($db, `users/${userInfo.value.uid}/total-donation`),
               (snapshot) => {
                 if (snapshot.exists()) {
-                  const total =
-                    parseInt(snapshot.val().amount) + donateAmount.value;
+                  let total;
+                  
+                  if (parseInt(snapshot.val().amount) === "NaN") {
+                    total = donateAmount.value;
+                  } else {
+                    total =
+                      parseInt(snapshot.val().amount) + donateAmount.value;
+                  }
 
                   set(
                     dbRef($db, `users/${userInfo.value.uid}/total-donation`),

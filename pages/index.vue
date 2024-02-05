@@ -27,7 +27,7 @@
         </div>
 
         <div
-          class="only-desktop-flex d-flex justify-center container"
+          class="only-desktop-flex d-flex justify-center container mx-3"
           style="gap: 150px"
         >
           <div class="text-center">
@@ -45,20 +45,25 @@
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </div>
         </div>
-        <div class="only-mobile-flex d-flex justify-center ga-5 mt-14">
-          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+        <div class="only-mobile-flex d-flex justify-center ga-5 mt-14 mx-3">
+          <v-card elevation="0" class="text-center pa-2" variant="tonal">
             <p class="headline">{{ taughtStudents }}</p>
             <br />
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
 
-          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+          <v-card
+            elevation="0"
+            class="text-center pa-2"
+            variant="tonal"
+            min-width="130px"
+          >
             <p class="headline">{{ wonDonated }}</p>
             <br />
             <p class="text">{{ $t("won_donated") }}</p>
           </v-card>
 
-          <v-card elevation="0" class="text-center pa-2" variant="outlined">
+          <v-card elevation="0" class="text-center pa-2" variant="tonal">
             <p class="headline">{{ hoursOf }}</p>
             <br />
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
@@ -187,7 +192,7 @@
         class="mx-4"
         icon="mdi-youtube"
         variant="text"
-        href="https://{{ mobile ? 'm' : 'www' }}.youtube.com/@LinkAllCommunity"
+        :href="`https://${mobile ? 'm' : 'www'}.youtube.com/@LinkAllCommunity`"
         target="_blank"
       ></v-btn>
     </div>
@@ -195,12 +200,11 @@
     <v-divider></v-divider>
 
     <div>
-      Copyright © LinkAll {{ new Date().getFullYear() }} — All rights reserved
+      Copyright &copy; LinkAll {{ new Date().getFullYear() }} &mdash; All rights
+      reserved
     </div>
 
-    <div style="position: absolute; right: 0; bottom: 0; margin: 10px">
-      v0.0.3
-    </div>
+    <div class="version">v0.0.4</div>
   </v-footer>
 </template>
 
@@ -242,6 +246,13 @@ useHead({
   padding-top: 30px;
 }
 
+.version {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+}
+
 @media (max-width: 600px) {
   .headline {
     font-size: 25px;
@@ -254,6 +265,10 @@ useHead({
   .container {
     flex-direction: column;
     width: 100%;
+  }
+
+  .version {
+    position: relative;
   }
 }
 

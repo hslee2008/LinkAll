@@ -8,7 +8,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     directives,
     theme: {
       defaultTheme: "light",
-    },
+    }
   });
 
   nuxtApp.vueApp.use(vuetify);

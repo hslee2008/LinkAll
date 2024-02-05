@@ -2,9 +2,9 @@
   <div class="top-div-without-bg">
     <h1 class="text-center">Edit Site Values</h1>
 
-    <br /><br />
+    <br />
 
-    <DivCenter>
+    <DivCenter class="ma-4">
       <div style="min-width: 400px">
         <v-label>Taught Students</v-label>
         <v-text-field

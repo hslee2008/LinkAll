@@ -1,8 +1,5 @@
 <template>
-  <div
-    style="background-image: url('/background/education.png')"
-    class="top-div-with-bg"
-  >
+  <div style="background-color: #8dd2e9" class="top-div-with-bg">
     <h1 class="text-center header-u">
       {{ t("education") }}
     </h1>

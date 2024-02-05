@@ -39,11 +39,9 @@
               style="background-color: rgb(221, 208, 208)"
               class="my-4"
             >
-              <template v-slot:prepend>
-                <v-icon icon="mdi-account"></v-icon>
-              </template>
-
-              <v-list-item-title>{{ student.s_name }}</v-list-item-title>
+              <v-list-item-title class="font-weight-black header-u">
+                {{ student.s_name }}
+              </v-list-item-title>
               <v-list-item-title>{{ student.s_email }}</v-list-item-title>
 
               <v-list-item-action class="mt-3">
@@ -59,11 +57,9 @@
               style="background-color: rgb(178, 172, 172)"
               class="my-4"
             >
-              <template v-slot:prepend>
-                <v-icon icon="mdi-account"></v-icon>
-              </template>
-
-              <v-list-item-title>{{ student.g_name }}</v-list-item-title>
+              <v-list-item-title class="font-weight-black header-u">
+                {{ student.g_name }}
+              </v-list-item-title>
               <v-list-item-title>{{ student.g_email }}</v-list-item-title>
 
               <v-list-item-action class="mt-3">
