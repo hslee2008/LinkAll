@@ -1,12 +1,12 @@
 <template>
-  <div class="top-div-without-bg">
+  <div class="top-div-without-bg pa-13">
     <h1 class="text-center">Edit Site Values</h1>
 
     <br />
 
-    <DivCenter class="ma-4">
+    <DivCenter>
       <div style="min-width: 400px">
-        <v-label>Taught Students</v-label>
+        <v-label>taught students</v-label>
         <v-text-field
           v-model="taughtStudents"
           variant="outlined"

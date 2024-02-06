@@ -6,7 +6,7 @@
         style="height: calc(100vh - 160px)"
       >
         <div>
-          <h1 class="text-center">"Join our journey"</h1>
+          <h2 class="text-center">"Join our journey"</h2>
           <h3 class="text-center mb-7">- LinkAll -</h3>
 
           <div class="text-center">
@@ -85,7 +85,6 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-
 import {
   getAuth,
   signInWithPopup,

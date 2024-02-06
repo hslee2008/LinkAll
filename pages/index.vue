@@ -6,12 +6,12 @@
   >
     <div class="d-flex justify-center align-center index" style="width: 100%">
       <div style="width: 100%">
-        <h1 class="text-center font-weight-medium text-h3">Think for All</h1>
+        <h2 class="text-center font-weight-medium text-h3">Think for All</h2>
         <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">
           Link All
         </h1>
 
-        <div class="d-flex justify-center mb-6 mt-5">
+        <div class="d-flex justify-center mb-10 mt-5">
           <v-btn
             rounded="lg"
             to="/join-us/donation"
@@ -135,11 +135,12 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
+          alt="index image"
           lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
-            <h1 class="text-h1">Coming</h1>
+            <h2 class="text-h1">Coming</h2>
           </div>
         </v-img>
       </v-col>
@@ -147,11 +148,12 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
+          alt="index image"
           lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
-            <h1 class="text-h1">Very</h1>
+            <h2 class="text-h1">Very</h2>
           </div>
         </v-img>
       </v-col>
@@ -159,11 +161,12 @@
       <v-col cols="12" sm="6" md="4">
         <v-img
           src="/background/background.png"
+          alt="index-image"
           lazy-src="/background/background-small.png"
           class="rounded-lg"
         >
           <div class="d-flex justify-center align-center h-100">
-            <h1 class="text-h1">Soon</h1>
+            <h2 class="text-h1">Soon</h2>
           </div>
         </v-img>
       </v-col>
@@ -204,7 +207,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.4</div>
+    <div class="version">v0.0.5</div>
   </v-footer>
 </template>
 

@@ -118,13 +118,14 @@
         <div v-if="userInfo">
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-avatar>
+              <v-avatar variant="elevated">
                 <v-img
                   v-bind="props"
                   :src="
                     userInfo.photoURL ??
                     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACUCAMAAAANv/M2AAAAMFBMVEX///+8vLz09PS4uLj5+fnw8PDCwsK1tbX8/Pzd3d3l5eXOzs7Z2dnr6+vh4eHHx8cAY/kEAAAFJklEQVR4nO2c25KjMAxEg6/c+f+/XUySSQIGt0PbpGrdT1M7teGMIsuyJHO7FRUVFRUVFRUVFRX9jGolhB7asZ81toMWStVXMx1KDG3TmcrOkk7uB1tNXdMO4mo2v/TYTdVMWm3k/nEm11cTrqUas4VdyzTqas6XVGusx8Aek1vT/ga3boxFiO+y5gfcRPQGMvKbuU1/7aqse8CVtzL9dVGwHn2xArK2HC/C1l2EL69lu0tcu4l15pWxTZOf+Stn/pTJjNyesvJTss3J3DCQnZp867FjMVeyy8ZM8Y2s1GIiMs/UU4b9kcych5rN7KhTMzP9+Y86rV/XKZgddcrI1yRhnqkTbulDGmSnIRl0Ijs7yVTMhBxpX4myJ1rC4VcSt9ZJDT2bOsGpIFG0eylF3BtPnK0w2ZHNXCe2s5Nkm7qPg5ZLCRKrO73+U89lFhGrUNpqatphVtt0VQy44eZ7fcST+6FWSixSSg0x9RyqqeFwJ6dGP4CfUgIvNlDDHpwo9WvkBVujXxQzcVKoodst8V0t+AGGVwlusRhthMfMTx/B/m7Lq4RgD5z0HrKTnrA/nMWsIEMfM6PUluUf2DIcjpmFgI4QlrUUEe+w7a4///k1tDRI/qERC011iHmmhsoPnFA9ItBB54AdhJPrAeVG2SHMQiBpF6UIIoBVbyBDz3sMsDwoVTLkO50wZqGRIjGjmoAU/ftg6LhLAUkIpT2AROlwvHtAAzkII2lCDrQmsBm++UfYqRkHXIWsQ5RZIHnTdH4nV+GnzI9BmRETVOehBbD3djg0ED7s+Zin80Of38iH/NDnAzWSmkX4NAJ9PlCPQJg21IUoz6dMSI5DjdOMQhNUD2PuiNmgmblHNmgwnRYCyfII0MhCrMxuleZTUM2GsBCh06jsMWjoayOEPGRzQeMHVsckbC7INj6rQ07jWGWesI0jCdNinnAAwb40RsKEpKZOYQeBi9yEfBorHAJhD518IhwC8P7hca6HpEqLKP1EuAsgD5M9eCKH0g3A5wbltFuzGfApIkoJIWLIQ5pG+Xou0PD9nxjFGqQs9pIZ6nV3qx6iPoEzPBY372jN+BH89BgzfV+RCpDRcx6y6vr23rF1LdvYpjqn1AsV1T+xZWWclp9iRep/wu1au8cY0dtntbfASG263VJup0UHNhJZjSKkJfdoiquhnz58YrkB5ZIppRskVtNacmH/mAP0symu9HLp7HHZzHRN+/oN0NnnDY2FTi+yX6V4WrvQMceP9b+HMmpimznQ0De+0QO/VCA/JTb0j5div9/H91CLoyoCdeb0yD4jTnzXQV+SO5u3Zx5ZAcestbH17vfGnbzaaztENC7etftpVGh/oUmGxiX25B+jYI+4eYcJv2Z21L7Po89tbsc2ZfUtstOWmT+26Tng4lVpr63Xfp3kYsDmKWDRcUebUnWKUeTNYaA5xTxr/XkpmD/zJnTC40gfDpfscuL7Q6L3lK3eK27JLjLc3twQnEo5hn5VJ1Jep3wmTmgRPaTnlpXycs5f3DsX7V56RKS016CeF85Ggkc7qfHOnBT5dr/ah44sAZpyXO1zlygtYxU+NNhMVz8N0F9BpUwO5vnEyEN2ynUJm4id8R0lNOqs71UheXXmd8FQqPO/4+O0i1zyyp2Txr7qDTAnjH3lm42+xL74ZUzrXhaEfP0b0mKxfwB5UQT2jxDfBXH/xnvF3lX7OsxvwL/iFmvVtZ9czb+4mi2gemF/6Pdxi4qKioqKioqKiv4z/QNmmUyMydc5WgAAAABJRU5ErkJggg=='
                   "
+                  alt="profile"
                   style="width: 40px; height: 40px"
                   draggable="false"
                   class="rounded-lg"
@@ -221,13 +222,14 @@
             <div v-if="userInfo" class="mr-5">
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-avatar>
+                  <v-avatar variant="elevated">
                     <v-img
                       v-bind="props"
                       :src="
                         userInfo.photoURL ??
                         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACUCAMAAAANv/M2AAAAMFBMVEX///+8vLz09PS4uLj5+fnw8PDCwsK1tbX8/Pzd3d3l5eXOzs7Z2dnr6+vh4eHHx8cAY/kEAAAFJklEQVR4nO2c25KjMAxEg6/c+f+/XUySSQIGt0PbpGrdT1M7teGMIsuyJHO7FRUVFRUVFRUVFRX9jGolhB7asZ81toMWStVXMx1KDG3TmcrOkk7uB1tNXdMO4mo2v/TYTdVMWm3k/nEm11cTrqUas4VdyzTqas6XVGusx8Aek1vT/ga3boxFiO+y5gfcRPQGMvKbuU1/7aqse8CVtzL9dVGwHn2xArK2HC/C1l2EL69lu0tcu4l15pWxTZOf+Stn/pTJjNyesvJTss3J3DCQnZp867FjMVeyy8ZM8Y2s1GIiMs/UU4b9kcych5rN7KhTMzP9+Y86rV/XKZgddcrI1yRhnqkTbulDGmSnIRl0Ijs7yVTMhBxpX4myJ1rC4VcSt9ZJDT2bOsGpIFG0eylF3BtPnK0w2ZHNXCe2s5Nkm7qPg5ZLCRKrO73+U89lFhGrUNpqatphVtt0VQy44eZ7fcST+6FWSixSSg0x9RyqqeFwJ6dGP4CfUgIvNlDDHpwo9WvkBVujXxQzcVKoodst8V0t+AGGVwlusRhthMfMTx/B/m7Lq4RgD5z0HrKTnrA/nMWsIEMfM6PUluUf2DIcjpmFgI4QlrUUEe+w7a4///k1tDRI/qERC011iHmmhsoPnFA9ItBB54AdhJPrAeVG2SHMQiBpF6UIIoBVbyBDz3sMsDwoVTLkO50wZqGRIjGjmoAU/ftg6LhLAUkIpT2AROlwvHtAAzkII2lCDrQmsBm++UfYqRkHXIWsQ5RZIHnTdH4nV+GnzI9BmRETVOehBbD3djg0ED7s+Zin80Of38iH/NDnAzWSmkX4NAJ9PlCPQJg21IUoz6dMSI5DjdOMQhNUD2PuiNmgmblHNmgwnRYCyfII0MhCrMxuleZTUM2GsBCh06jsMWjoayOEPGRzQeMHVsckbC7INj6rQ07jWGWesI0jCdNinnAAwb40RsKEpKZOYQeBi9yEfBorHAJhD518IhwC8P7hca6HpEqLKP1EuAsgD5M9eCKH0g3A5wbltFuzGfApIkoJIWLIQ5pG+Xou0PD9nxjFGqQs9pIZ6nV3qx6iPoEzPBY372jN+BH89BgzfV+RCpDRcx6y6vr23rF1LdvYpjqn1AsV1T+xZWWclp9iRep/wu1au8cY0dtntbfASG263VJup0UHNhJZjSKkJfdoiquhnz58YrkB5ZIppRskVtNacmH/mAP0symu9HLp7HHZzHRN+/oN0NnnDY2FTi+yX6V4WrvQMceP9b+HMmpimznQ0De+0QO/VCA/JTb0j5div9/H91CLoyoCdeb0yD4jTnzXQV+SO5u3Zx5ZAcestbH17vfGnbzaaztENC7etftpVGh/oUmGxiX25B+jYI+4eYcJv2Z21L7Po89tbsc2ZfUtstOWmT+26Tng4lVpr63Xfp3kYsDmKWDRcUebUnWKUeTNYaA5xTxr/XkpmD/zJnTC40gfDpfscuL7Q6L3lK3eK27JLjLc3twQnEo5hn5VJ1Jep3wmTmgRPaTnlpXycs5f3DsX7V56RKS016CeF85Ggkc7qfHOnBT5dr/ah44sAZpyXO1zlygtYxU+NNhMVz8N0F9BpUwO5vnEyEN2ynUJm4id8R0lNOqs71UheXXmd8FQqPO/4+O0i1zyyp2Txr7qDTAnjH3lm42+xL74ZUzrXhaEfP0b0mKxfwB5UQT2jxDfBXH/xnvF3lX7OsxvwL/iFmvVtZ9czb+4mi2gemF/6Pdxi4qKioqKioqKiv4z/QNmmUyMydc5WgAAAABJRU5ErkJggg=='
                       "
+                      alt="profile"
                       style="width: 40px; height: 40px"
                       draggable="false"
                       class="rounded-lg"
@@ -406,7 +408,6 @@ const logout = () => {
   $auth.signOut();
   userInfo.value = null;
   router.push("/");
-  router.go("0");
 };
 
 const verifyEmail = () => {

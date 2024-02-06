@@ -78,7 +78,10 @@
         <v-list-item v-for="(user, index) in accepted" :key="index">
           <template v-slot:prepend>
             <v-avatar v-if="user.picOfMe">
-              <v-img :src="user.picOfMe" />
+              <v-img
+                :src="user.picOfMe"
+                alt="accepted user profile image setting"
+              />
             </v-avatar>
             <v-avatar v-else>
               {{ user.grade.replaceAll("Grade ", "") }}

@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     "/assets/css/screen.css",
   ],
   modules: [
-    (_, nuxt) => {
+    (_: any, nuxt: any) => {
       nuxt.hooks.hook("vite:extendConfig", (config: any) =>
         config.plugins.push(vuetify({}))
       );
@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "@vite-pwa/nuxt",
     "nuxt-gtag",
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/html-validator",
   ],
   vite: {
     resolve: {
@@ -106,5 +109,16 @@ export default defineNuxtConfig({
     client: false,
   },
   gtag: { id: "G-0HQQD54YMS" },
+  robots: {
+    rules: {
+      UserAgent: "*",
+      Disallow: "/admin",
+    },
+  },
+  site: {
+    url: "https://thinkforall-linkall.com",
+  },
+  sitemap: {
+    exclude: ["/admin"],
+  },
 });
- 

@@ -1,5 +1,8 @@
 <template>
-  <div class="top-div-without-bg" style="background-color: #b5b5b5">
+  <div
+    class="top-div-with-bg"
+    style="background-color: #b5b5b5; height: calc(100vh - 140px)"
+  >
     <h1 class="text-center">Admin Pages</h1>
 
     <br />
@@ -22,3 +25,11 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 600px) {
+  .top-div-with-bg {
+    height: calc(100vh - 65px) !important;
+  }
+}
+</style>

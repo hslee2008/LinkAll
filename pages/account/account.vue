@@ -20,7 +20,13 @@
           required
         ></v-textarea>
 
-        <v-img :src="photoURL" class="ma-auto" width="70" height="70"></v-img>
+        <v-img
+          :src="photoURL"
+          alt="account setting photoURL"
+          class="ma-auto"
+          width="70"
+          height="70"
+        ></v-img>
       </div>
 
       <v-text-field

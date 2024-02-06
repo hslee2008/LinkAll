@@ -32,6 +32,7 @@
             ></v-textarea>
             <v-img
               :src="picOfMe"
+              alt="accepted user profile image setting"
               class="ma-auto"
               width="70"
               height="70"

@@ -182,6 +182,7 @@
               class="my-4 mb-10 rounded-lg"
               color="yellow-darken-1"
               :elevation="0"
+              :disabled="!loggedin"
             >
               Apply Now
             </v-btn>
@@ -273,6 +274,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { push, ref as dbRef } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const { t, locale } = useI18n();
 const { $db } = useNuxtApp();
@@ -282,7 +284,15 @@ const s_name = ref("");
 const s_email = ref("");
 const g_name = ref("");
 const g_email = ref("");
+const loggedin = ref(false);
 const thankYou = ref(false);
+
+onMounted(() => {
+  const auth = getAuth();
+  if (auth.currentUser) {
+    loggedin.value = true;
+  }
+});
 
 const saveToDatabase = () => {
   const classRef = dbRef(

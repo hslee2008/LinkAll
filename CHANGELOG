@@ -36,3 +36,11 @@ remove video player code
 update about-us page with live values, changed font
 update flex layout of members page
 add links to members in committees page
+
+v0.0.5
+fix background issue in admin index page
+add robots.txt
+add sitemap.xml
+use html validation
+compress background image
+add padding to edit.vue

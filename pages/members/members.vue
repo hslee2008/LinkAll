@@ -11,7 +11,7 @@
             <ImgMember
               src="/members/junho.png"
               class="ma-auto"
-              :elevation="4"
+              :elevation="10"
             ></ImgMember>
 
             <p class="mt-3">{{ t("founder") }}</p>
@@ -94,7 +94,7 @@
             <ImgMember
               src="/members/hyunseung.png"
               class="ma-auto"
-              :elevation="4"
+              :elevation="10"
             ></ImgMember>
 
             <p class="mt-3">{{ t("co-founder") }}</p>
