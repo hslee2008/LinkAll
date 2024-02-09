@@ -1,8 +1,5 @@
 <template>
-  <div
-    style="background-image: url('/background/about-us.png')"
-    class="top-div-with-bg"
-  >
+  <div style="background-color: #abd3f1" class="top-div-with-bg">
     <h1 class="text-center header-u">
       {{ t("about us") }}
     </h1>
@@ -10,7 +7,7 @@
     <br /><br />
 
     <div class="d-flex justify-center align-center">
-      <div style="width: 500px" class="pa-9">
+      <div style="width: 600px" class="pa-9">
         <h2>{{ t("purpose") }}</h2>
         <p>
           {{ t("purpose_text") }}
@@ -41,13 +38,15 @@
           <p>
             The LinkAll Community currently has members from 2 different
             schools, and 1 nation. Through our actions of education, we were
-            able to teach
-            {{ taughtStudents }} students and donate {{ wonDonated }} won.
+            able to teach {{ taughtStudents }} students and donate
+            {{ wonDonated }} won.
           </p>
+
           <br />
-          <p style="font-family: Grape Nuts" class="font-weight-black">
+
+          <h2 style="font-family: Grape Nuts" class="font-weight-black">
             We are LinkAll. ({{ yearmonth }})
-          </p>
+          </h2>
         </div>
       </div>
     </div>

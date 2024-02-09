@@ -57,9 +57,6 @@
             </template>
 
             <v-list>
-              <v-list-item to="/actions">
-                <v-list-item-title> {{ t("actions") }} </v-list-item-title>
-              </v-list-item>
               <v-list-item to="/actions/education">
                 <v-list-item-title> {{ t("education") }} </v-list-item-title>
               </v-list-item>
@@ -111,14 +108,14 @@
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
         }`"
       >
-        <h2><NuxtLink href="/">LinkAll</NuxtLink></h2>
+        <h2><NuxtLink href="/"> LinkAll</NuxtLink></h2>
 
         <v-spacer />
 
         <div v-if="userInfo">
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-avatar variant="elevated">
+              <v-avatar>
                 <v-img
                   v-bind="props"
                   :src="
@@ -183,7 +180,24 @@
             verify
           </v-btn>
         </v-alert>
-        <h2 v-else class="ml-6"><NuxtLink href="/">LinkAll</NuxtLink></h2>
+        <h2 v-else class="ml-6">
+          <NuxtLink href="/">
+            <v-hover>
+              <template v-slot:default="{ isHovering, props }">
+                <v-card v-bind="props" color="rgb(0, 0, 0, 0)" elevation="0">
+                  <v-slide-x-transition>
+                    <p v-if="isHovering" style="font-family: Grape Nuts">
+                      think for all -
+                    </p>
+                  </v-slide-x-transition>
+                  <v-slide-y-transition>
+                    <p style="font-family: Protest Guerrilla">LinkAll</p>
+                  </v-slide-y-transition>
+                </v-card>
+              </template>
+            </v-hover>
+          </NuxtLink>
+        </h2>
 
         <v-spacer />
 
@@ -222,7 +236,7 @@
             <div v-if="userInfo" class="mr-5">
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-avatar variant="elevated">
+                  <v-avatar>
                     <v-img
                       v-bind="props"
                       :src="
@@ -271,7 +285,7 @@
 
             <v-menu open-on-hover>
               <template v-slot:activator="{ props }">
-                <v-btn to="/actions" v-bind="props">
+                <v-btn v-bind="props">
                   {{ t("actions") }} <v-icon end> mdi-chevron-down </v-icon>
                 </v-btn>
               </template>
@@ -374,13 +388,22 @@ watch(tempLocaleObject, (newLocale) => {
 onMounted(() => {
   locale.value = localStorage.getItem("locale") ?? "en";
   tempLocaleObject.value = locale.value === "ko" ? "한국어" : "English";
+
+  // secret console.log() page
+  if (process.env.NODE_ENV === "production") {
+    console.clear();
+    console.log("Built by Hyunseung Lee");
+    console.log(
+      "https://instagram.com/ihxnsxng\nhttps://github.com/hslee2008\nhttps://play.google.com/store/apps/dev?id=7815903651523223132"
+    );
+  }
+  console.log();
 });
 
 const search = ref("");
 const searchItems = [
   "Home",
   "About Us",
-  "Actions",
   "Education",
   "Member",
   "Join Us",
@@ -389,7 +412,6 @@ const searchItems = [
 const links = {
   Home: "/",
   "About Us": "/about-us",
-  Actions: "/actions",
   Education: "/actions/education",
   Member: "/member",
   "Join Us": "/join-us/join-us",
@@ -417,6 +439,12 @@ const verifyEmail = () => {
     alert("Email sent. Come back and refresh the page.");
   });
 };
+
+useHead({
+  htmlAttrs: {
+    lang: locale,
+  },
+});
 </script>
 
 <style scoped>
@@ -436,5 +464,9 @@ a {
 .layout-enter-from,
 .layout-leave-to {
   filter: grayscale(1);
+}
+
+.slide-x-transition-enter-active {
+  transition-delay: 0.2s;
 }
 </style>

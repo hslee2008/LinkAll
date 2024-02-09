@@ -106,9 +106,11 @@
           variant="outlined"
           prepend-inner-icon="mdi-school"
           required
-          density="compact"
           hide-details
+          class=""
         ></v-text-field>
+      </v-row>
+      <v-row class="ga-5 my-5">
         <v-select
           v-model="grade"
           :label="t('current grade')"
@@ -127,7 +129,15 @@
           <v-radio :label="t('Researcher')" value="Researcher"></v-radio>
           <v-radio :label="t('Designer')" value="Designer"></v-radio>
           <v-radio :label="t('other')" value="other"></v-radio>
+
+          <v-text-field
+            v-if="radios === 'other'"
+            variant="outlined"
+            class="ml-2"
+            v-model="radiosOther"
+          ></v-text-field>
         </v-radio-group>
+
         <v-radio-group v-model="howFound">
           <v-radio :label="t('Social Media')" value="Social Media"></v-radio>
           <v-radio
@@ -139,6 +149,13 @@
             value="Event / Tournament"
           ></v-radio>
           <v-radio :label="t('other')" value="other"></v-radio>
+
+          <v-text-field
+            v-if="howFound === 'other'"
+            variant="outlined"
+            class="ml-2"
+            v-model="howFoundOther"
+          ></v-text-field>
         </v-radio-group>
       </v-row>
 
@@ -214,7 +231,9 @@ const schoolName = ref("");
 const country = ref("");
 const grade = ref("");
 const radios = ref("");
+const radiosOther = ref("");
 const howFound = ref("");
+const howFoundOther = ref("");
 const brief = ref("");
 
 const userInfo = ref(null);
@@ -266,8 +285,8 @@ const submit = () => {
     schoolName: schoolName.value,
     country: country.value,
     grade: grade.value,
-    radios: radios.value,
-    howFound: howFound.value,
+    radios: radios.value === "other" ? radiosOther.value : radios.value,
+    howFound: howFound.value === "other" ? howFoundOther.value : howFound.value,
     brief: brief.value,
   });
 

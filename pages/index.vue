@@ -1,7 +1,7 @@
 <template>
   <v-parallax
     src="/background/background.png"
-    lazy-src="/background/background-small.png"
+    lazy-src="/background/background.png"
     :height="windowHeight"
   >
     <div class="d-flex justify-center align-center index" style="width: 100%">
@@ -73,106 +73,113 @@
     </div>
   </v-parallax>
 
+  <br /><br /><br />
+
+  <h2 class="text-center text-h2">LinkAll Programs</h2>
+
+  <hr />
   <br />
 
-  <v-container fluid>
+  <v-container fluid style="width: 90%">
     <v-row justify="center">
-      <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px">
-          <v-card-text class="headline text-center"> English </v-card-text>
-          <br />
-          <v-card elevation="0" to="/class/english/book-club">
-            <v-card-title class="text-center">
-              LinkAll Book Club Open!
-              <v-icon size="x-small">mdi-open-in-new</v-icon>
-            </v-card-title>
-          </v-card>
-          <v-card elevation="0" to="/class/english/debate">
-            <v-card-title class="text-center">
-              LinkAll English Debate!
-              <v-icon size="x-small">mdi-open-in-new</v-icon>
-            </v-card-title>
-          </v-card>
-        </v-card>
-      </v-col>
+      <template v-for="(i, index) in classList" :key="index">
+        <v-col
+          v-for="item in Object.values(classList[index] ?? {})"
+          :key="item.classID"
+          cols="12"
+          sm="6"
+          md="3"
+        >
+          <v-hover>
+            <template v-slot:default="{ isHovering, props }">
+              <v-card
+                v-bind="props"
+                elevation="0"
+                height="300px"
+                varaint="tonal"
+                class="cardy rounded-lg"
+                :to="`/class/${item.subject}/${item.classID}`"
+              >
+                <div class="ml-2">
+                  <v-card-title class="headline">
+                    <v-icon start size="x-small">{{ item.icon }}</v-icon>
+                    {{ item.subject.toUpperCase() }}
+                  </v-card-title>
+                  <v-card-text class="text-h6 mt-2">
+                    {{ item.englishDisplayName }}
+                  </v-card-text>
+                </div>
 
-      <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px">
-          <v-card-text class="headline text-center"> Korean </v-card-text>
+                <img
+                  :src="`/members/${item.teacherID}.png`"
+                  height="200"
+                  style="right: 0; bottom: 0; position: absolute"
+                />
 
-          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
-            Coming Soon
-          </v-card-text>
-        </v-card>
-      </v-col>
+                <v-card
+                  style="position: absolute; bottom: 0; margin-bottom: 30px"
+                  class="d-flex ml-2"
+                  elevation="0"
+                  color="transparent"
+                >
+                  <div class="my-auto mr-6">
+                    <v-card-title class="text-left text-white">
+                      {{ item.englishTeacherName }}
+                    </v-card-title>
+                    <v-card-subtitle class="text-left text-white">
+                      {{ item.koreanTeacherName }}
+                    </v-card-subtitle>
+                  </div>
 
-      <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px">
-          <v-card-text class="headline text-center"> Arts </v-card-text>
-
-          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
-            Coming Soon
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" sm="6" md="3">
-        <v-card elevation="8" height="400px">
-          <v-card-text class="headline text-center"> Tech </v-card-text>
-
-          <v-card-text class="d-flex justify-center align-center h-75 text-h3">
-            Coming Soon
-          </v-card-text>
-        </v-card>
-      </v-col>
+                  <v-slide-x-transition>
+                    <v-btn
+                      v-if="isHovering"
+                      elevation="0"
+                      icon="mdi-arrow-right-drop-circle"
+                      size="large"
+                      class="mt-3"
+                      variant="elevated"
+                    ></v-btn>
+                  </v-slide-x-transition>
+                </v-card>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+      </template>
     </v-row>
   </v-container>
 
   <br />
 
-  <v-container fluid>
-    <v-row justify="center">
-      <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="/background/background.png"
-          alt="index image"
-          lazy-src="/background/background-small.png"
-          class="rounded-lg"
-        >
-          <div class="d-flex justify-center align-center h-100">
-            <h2 class="text-h1">Coming</h2>
-          </div>
-        </v-img>
-      </v-col>
+  <v-carousel
+    hide-delimiter-background
+    delimiter-icon="mdi-square"
+    color="#5C6BC0"
+    height="400"
+    show-arrows="hover"
+    cycle
+    continuous
+  >
+    <v-carousel-item rounded>
+      <v-sheet height="100%" tile>
+        <div class="d-flex fill-height justify-center align-center">
+          <div class="text-h2">Think for All</div>
+        </div>
+      </v-sheet>
+    </v-carousel-item>
 
-      <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="/background/background.png"
-          alt="index image"
-          lazy-src="/background/background-small.png"
-          class="rounded-lg"
-        >
-          <div class="d-flex justify-center align-center h-100">
-            <h2 class="text-h1">Very</h2>
-          </div>
-        </v-img>
-      </v-col>
+    <v-carousel-item rounded>
+      <v-sheet height="100%" tile>
+        <div class="d-flex fill-height justify-center align-center">
+          <div class="text-h2">LinkAll</div>
+        </div>
+      </v-sheet>
+    </v-carousel-item>
+  </v-carousel>
 
-      <v-col cols="12" sm="6" md="4">
-        <v-img
-          src="/background/background.png"
-          alt="index-image"
-          lazy-src="/background/background-small.png"
-          class="rounded-lg"
-        >
-          <div class="d-flex justify-center align-center h-100">
-            <h2 class="text-h1">Soon</h2>
-          </div>
-        </v-img>
-      </v-col>
-    </v-row>
-  </v-container>
-
+  <br />
+  <br />
   <br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
@@ -207,7 +214,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.5</div>
+    <div class="version">v0.0.6</div>
   </v-footer>
 </template>
 
@@ -221,9 +228,11 @@ const { $db } = useNuxtApp();
 const { mobile } = useDisplay();
 
 const windowHeight = ref(0);
+
 const taughtStudents = ref("0");
 const wonDonated = ref("0");
 const hoursOf = ref("0");
+const classList = ref([]);
 
 onMounted(() => {
   windowHeight.value = window.innerHeight;
@@ -234,6 +243,13 @@ onMounted(() => {
     taughtStudents.value = data.taughtStudents;
     wonDonated.value = data.wonDonated;
     hoursOf.value = data.hoursOf;
+  });
+
+  const classRef = dbRef($db, "class");
+  onValue(classRef, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data ?? {});
+    classList.value = values;
   });
 });
 
@@ -286,12 +302,27 @@ p > a:hover {
 }
 
 .index {
-  margin-top: 175px;
+  margin-top: 200px;
 }
 
 @media (max-width: 1275px) {
   .index {
     margin-top: 100px;
   }
+}
+
+.cardy:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    black 150%,
+    black 300%
+  );
 }
 </style>

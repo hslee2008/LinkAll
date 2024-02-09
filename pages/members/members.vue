@@ -223,6 +223,74 @@
           </div>
         </v-col>
       </div>
+
+      <br />
+      <hr />
+
+      <div id="doyung" class="container mt-10">
+        <div>
+          <v-col class="text-center ma-auto" style="flex: 0.2">
+            <ImgMember
+              src="/members/doyung.png"
+              class="ma-auto"
+              :elevation="10"
+            ></ImgMember>
+
+            <p class="mt-3">{{ t("teacher") }}</p>
+            <b>{{ t("Doyung Yun") }}</b>
+          </v-col>
+        </div>
+
+        <v-col style="flex: 2">
+          <div class="container align-center ga-5">
+            <v-col class="inner-col py-auto text-justify">
+              <div>
+                <span v-if="locale === 'en'">
+                  Hello! I am a student at Hankuk Academy of Foreign Studies,
+                  graduating in 2026. In LinkAll, I would like to share my
+                  knowledge about math and connect people across the globe with
+                  donations. Anyone who needs help in the education and learning
+                  process can get our support!
+                </span>
+                <span v-else-if="locale === 'ko'">
+                  안녕하세요! 저는 2026년에 졸업하는
+                  한국외국어대학교부설고등학교 학생입니다. LinkAll에서 수학에
+                  대한 지식을 공유하고 기부를 통해 사람들을 연결하고 싶습니다.
+                  학습 과정에서 도움 이 필요한 사람이라면 누구나 지원받을 수
+                  있습니다.
+                </span>
+              </div>
+
+              <div class="mt-3 d-flex ga-4">
+                <v-btn
+                  href="mailto:yundozero@gmail.com"
+                  target="_blank"
+                  icon="mdi-gmail"
+                  :elevation="0"
+                  density="compact"
+                ></v-btn>
+
+                <v-btn
+                  href="https://www.instagram.com/doyung___0/"
+                  target="_blank"
+                  icon="mdi-instagram"
+                  :elevation="0"
+                  density="compact"
+                ></v-btn>
+              </div>
+            </v-col>
+
+            <v-col class="ml-5">
+              <ul v-if="locale === 'en'">
+                <li>HAFS Medical Biology Organization 19th Captain</li>
+              </ul>
+              <ul v-else-if="locale === 'ko'" style="width: 90%">
+                <li>외대부고 의생명동아리 19기 부장</li>
+              </ul>
+            </v-col>
+          </div>
+        </v-col>
+      </div>
     </DivCenter>
 
     <br />

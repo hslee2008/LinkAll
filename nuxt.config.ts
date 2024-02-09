@@ -11,9 +11,11 @@ export default defineNuxtConfig({
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
 
+    "/assets/css/default.css",
     "/assets/css/div.css",
     "/assets/css/title.css",
     "/assets/css/screen.css",
+    "/assets/css/utils.css",
   ],
   modules: [
     (_: any, nuxt: any) => {
@@ -47,6 +49,7 @@ export default defineNuxtConfig({
       "Libre Baskerville": true,
       "Grape Nuts": true,
       "Noto Serif": true,
+      "Protest Guerrilla": true,
     },
     display: "swap",
   },
@@ -55,7 +58,7 @@ export default defineNuxtConfig({
       name: "Think for All - LinkAll",
       short_name: "LinkAll",
       description:
-        "LinkAll is a nongovernmental, nonprofit organization established in 2024, under the fundamental purpose of spreading the real meaning of donation and simplifying the action for the whole humanity to participate.",
+        "LinkAll is a nongovernmental, nonprofit organization established in January 2024, under the fundamental purpose of giving primary education for all students around the world, starting from South Korea. We wish to minimize the educational gap, and provide elemental happiness towards all children.",
       lang: "ko",
       theme_color: "#ffffff",
       background_color: "#ffffff",
@@ -108,7 +111,7 @@ export default defineNuxtConfig({
     server: false,
     client: false,
   },
-  gtag: { id: "G-0HQQD54YMS" },
+  gtag: { id: process.env.NODE_ENV === "production" ? "G-0HQQD54YMS" : "" },
   robots: {
     rules: {
       UserAgent: "*",

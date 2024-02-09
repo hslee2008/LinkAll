@@ -1,11 +1,11 @@
 <template>
-  <div class="top-div-without-bg pa-13">
+  <div class="top-div-without-bg">
     <h1 class="text-center">Edit Site Values</h1>
 
     <br />
 
     <DivCenter>
-      <div style="min-width: 400px">
+      <div class="container">
         <v-label>taught students</v-label>
         <v-text-field
           v-model="taughtStudents"
@@ -55,3 +55,16 @@ onMounted(() => {
   });
 });
 </script>
+
+<style scoped>
+.container {
+  min-width: 400px;
+}
+
+@media (max-width: 450px) {
+  .container {
+    width: calc(100vw - 50px);
+    min-width: initial;
+  }
+}
+</style>

@@ -44,3 +44,20 @@ add sitemap.xml
 use html validation
 compress background image
 add padding to edit.vue
+
+v0.0.6
+only enable gtag tracking in production
+update packages
+add todos link
+put more margin in homepage
+delete actions page
+update index page style (carousel, card)
+add new member
+add logial-math class
+add secret console.log message
+delete big size background
+firebase deploy for testing
+couple of bug fix
+contents change
+minor tweaks in style
+add automatic class make

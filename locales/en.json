@@ -11,22 +11,18 @@
   "donation": "DONATION",
   "my account": "MY ACCOUNT",
   "admin": "ADMIN",
-
   "language": "Language",
   "class": "Class",
   "click here to join the class": "Click here to join the class",
-
   "logout": "LOGOUT",
   "login": "LOGIN",
   "login is required": "Login is required",
   "create account": "CREATE ACCOUNT",
-
   "submit": "Submit",
-
   "login with google": "Login with Google",
   "login with facebook": "Login with Facebook",
+  "Apply Now": "Apply Now",
   "please try again": "Please try again",
-
   "display name": "Display Name",
   "display name is required": "Display Name is required",
   "password": "Password",
@@ -43,12 +39,10 @@
   "email is required": "Email is required",
   "email must be valid": "Email must be valid",
   "update profile": "Update Profile",
-
   "donate": "DONATE",
-  "taught_students": "Taught Students",
+  "taught_students": "taught students",
   "won_donated": "won donated",
   "hours_of_volunteering": "hours of volunteering",
-
   "your data is being examined": "Your data is being examined",
   "accepted": "Conrats! You are accepted",
   "first name": "First Name",
@@ -65,18 +59,23 @@
   "Friend or Teacher": "Friend or Teacher",
   "Event / Tournament": "Event / Tournament",
   "brief introduction": "Brief Introduction of yourself (ex. abilities, motive of application)",
-
   "purpose": "Purpose",
-  "purpose_text": "LinkAll is a nongovernmental, nonprofit organization established in 2024, under the fundamental purpose of spreading the real meaning of donation and simplifying the action for the whole humanity to participate",
+  "purpose_text": "LinkAll is a nongovernmental, nonprofit organization established in January 2024, under the fundamental purpose of giving primary education for all students around the world, starting from South Korea. We wish to minimize the educational gap, and provide elemental happiness towards all children.",
   "vision": "Vision",
   "vision_text": "In the current status quo, many individuals and organizations view the act of donation as a pitiful action done by one certain group to another. We wish to change that view. Our belief is that all individuals reach a point where they need a hand, and the act of donation is that hand, a material linking a person to a person. Within diverse methods to fulfill our purpose, our primary value is guaranteeing vital education for all in our society.",
   "impact": "Impact",
-
   "transfer": "Direct Transfer",
   "paypal": "Paypal",
-
+  "founder": "Founder",
+  "co-founder": "Co-Founder",
+  "designer": "Designer",
+  "teacher": "Teacher",
   "Junho Hwang": "Junho Hwang",
   "Hyunseung Lee": "Hyunseung Lee",
-  "founder": "Founder",
-  "co-founder": "Co-Founder"
+  "Doyung Yun": "Doyong Yun",
+  "Woojin Cho": "Woojin Cho",
+  "english": "English",
+  "math": "Math",
+  "arts": "Arts",
+  "tech": "Tech"
 }

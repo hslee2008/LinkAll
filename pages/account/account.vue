@@ -10,24 +10,25 @@
         :rules="nameRules"
         :label="t('display name')"
         required
+        variant="outlined"
       ></v-text-field>
 
-      <div class="d-flex">
-        <v-textarea
-          v-model="photoURL"
-          :rules="photoURLRules"
-          :label="t('photo url')"
-          required
-        ></v-textarea>
+      <v-textarea
+        v-model="photoURL"
+        :rules="photoURLRules"
+        :label="t('photo url')"
+        required
+        variant="outlined"
+      ></v-textarea>
 
-        <v-img
-          :src="photoURL"
-          alt="account setting photoURL"
-          class="ma-auto"
-          width="70"
-          height="70"
-        ></v-img>
-      </div>
+      <v-img
+        :src="photoURL"
+        alt="account setting photoURL"
+        height="80"
+        width="80"
+        class="ma-auto mt-4 mb-10 rounded-lg"
+        style="border-style: solid"
+      ></v-img>
 
       <v-text-field
         v-model="email"
@@ -35,6 +36,7 @@
         :label="t('email')"
         :disabled="!emailVerified"
         required
+        variant="outlined"
       ></v-text-field>
       <v-alert
         v-if="!emailVerified"
@@ -46,6 +48,8 @@
       <v-btn class="mt-3" color="primary" @click="update" :disabled="!valid">
         {{ t("update profile") }}
       </v-btn>
+
+      <br /><br /><br /><br />
     </div>
   </div>
 </template>

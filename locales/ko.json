@@ -21,6 +21,7 @@
   "submit": "제출",
   "login with google": "구글로 로그인",
   "login with facebook": "페이스북으로 로그인",
+  "Apply Now": "지금 당장 등록하기",
   "please try again": "다시 시도해주세요",
   "display name": "닉네임",
   "display name is required": "닉네임을 입력해주세요",
@@ -65,8 +66,16 @@
   "impact": "LinkAll의 영향",
   "transfer": "계좌이체",
   "paypal": "페이팔",
+  "founder": "창립자",
+  "co-founder": "공동 창립자",
+  "designer": "디자이너",
+  "teacher": "선생님",
   "Junho Hwang": "황준호",
   "Hyunseung Lee": "이현승",
-  "founder": "창립자",
-  "co-founder": "공동 창립자"
+  "Doyung Yun": "윤도영",
+  "Woojin Choi": "최우진",
+  "english": "영어",
+  "math": "수학",
+  "arts": "미술",
+  "tech": "기술"
 }

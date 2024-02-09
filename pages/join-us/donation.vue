@@ -1,29 +1,29 @@
 <template>
-  <div
-    class="top-div-with-bg"
-    style="background-image: url('/background/donation.png')"
-  >
+  <div class="top-div-with-bg">
     <h1 class="text-center header-u">
       {{ t("donation") }}
     </h1>
 
-    <v-card class="mt-10 mx-15" elevation="0">
+    <v-card class="mt-10 mx-15" elevation="0" variant="tonal">
       <v-card-text
         v-if="locale === 'en'"
+        class="text-justify"
         style="
           font-family: Libre Baskerville;
           font-size: 18px;
           line-height: 30px;
         "
       >
-        Thank you for your interest in donation. Your small actions have the
-        ability to support someone in need, linking many individuals to our
-        community. Your thoughtful donation will be used to support the ones in
-        need through an official organization. All of the donating activities
-        will be uploaded to our website.
+        Thank you for your interest in donation. Your steps of actions give the
+        precious opportunity for students to learn, and have education. Your
+        action is changing a person’s life. Your thoughtful donation will be
+        used to support young children receive primary education, and minimize
+        the educational inequality. All donating activities will be uploaded to
+        our website. Once again, we appreciate your kindness towards humanity.
       </v-card-text>
       <v-card-text
         v-else-if="locale === 'ko'"
+        class="text-justify"
         style="
           font-family: Noto Serif Korean;
           font-size: 18px;
@@ -36,9 +36,9 @@
         필요한 이들을 지원하는 데 사용될 것입니다. 기부 활동은 모두 우리
         웹사이트에 업로드될 것입니다.
       </v-card-text>
-      <p style="font-family: Grape Nuts" class="font-weight-black ml-3 mb-3">
+      <h2 style="font-family: Grape Nuts" class="font-weight-black ml-3 mb-3">
         - Think for All, Link All.
-      </p>
+      </h2>
     </v-card>
 
     <div class="pay-container mt-10 pb-5 ga-15">
@@ -53,7 +53,7 @@
             height="150px"
             width="150px"
             class="rounded-pill"
-            src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/two-hands-holding-mobile-phones-transferring-money-between-accounts-isolated-on-a-pink-background-marina-demeshko.jpg"
+            src="/used-images/direct-transfer.jpg"
           />
         </DivCenter>
         <h2 class="text-center">{{ t("transfer") }}</h2>
@@ -72,7 +72,8 @@
             height="150px"
             width="150px"
             class="rounded-pill ma-auto"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCIiOw244LMuXnAk6IDgME5eFy30cxsKAJiQ&usqp=CAU"
+            style="border-style: solid"
+            src="/used-images/paypal.png"
           />
         </DivCenter>
         <h2 class="text-center">{{ t("paypal") }}</h2>
@@ -177,7 +178,7 @@ const openDialog2 = () => {
               (snapshot) => {
                 if (snapshot.exists()) {
                   let total;
-                  
+
                   if (parseInt(snapshot.val().amount) === "NaN") {
                     total = donateAmount.value;
                   } else {

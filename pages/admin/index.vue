@@ -20,8 +20,13 @@
       <br />
       <br />
       <v-btn width="300" height="50" to="/admin/join-us">
-        Joining User <v-icon end>mdi-account</v-icon></v-btn
-      >
+        Joining User <v-icon end>mdi-account</v-icon>
+      </v-btn>
+      <br />
+      <br />
+      <v-btn width="300" height="50" to="/admin/newclass">
+        New Class <v-icon end>mdi-plus</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
