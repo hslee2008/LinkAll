@@ -224,9 +224,6 @@
         </v-col>
       </div>
 
-      <br />
-      <hr />
-
       <div id="doyung" class="container mt-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
@@ -235,8 +232,7 @@
               class="ma-auto"
               :elevation="10"
             ></ImgMember>
-
-            <p class="mt-3">{{ t("teacher") }}</p>
+            
             <b>{{ t("Doyung Yun") }}</b>
           </v-col>
         </div>
@@ -287,6 +283,54 @@
               <ul v-else-if="locale === 'ko'" style="width: 90%">
                 <li>외대부고 의생명동아리 19기 부장</li>
               </ul>
+            </v-col>
+          </div>
+        </v-col>
+      </div>
+
+      <div id="yoojong" class="container mt-10">
+        <div>
+          <v-col class="text-center ma-auto" style="flex: 0.2">
+            <ImgMember
+              src="/members/yoojong.png"
+              class="ma-auto"
+              :elevation="10"
+            ></ImgMember>
+
+            <b>{{ t("Yoojong Seo") }}</b>
+          </v-col>
+        </div>
+
+        <v-col style="flex: 2">
+          <div class="container align-center ga-5">
+            <v-col class="inner-col py-auto text-justify">
+              <div>
+                <span v-if="locale === 'en'">
+                  Hello, I'm YooJong Seo, a student in the international track
+                  of the HAFS class of 2026. Within LinkAll, I'm dedicated to
+                  promoting donations through direct person-to-person education.
+                </span>
+                <span v-else-if="locale === 'ko'">
+                  안녕하세요, 저는 2026년 HAFS 국제트랙에 속한 서유종입니다.
+                  LinkAll 내에서 직접 개인 간 교육을 통해 기부를 촉진하는 데
+                  전념하고 있습니다.
+                </span>
+              </div>
+
+              <div class="mt-3 d-flex ga-4">
+                <v-btn
+                  href="mailto:yjong2007@gmail.com"
+                  target="_blank"
+                  icon="mdi-gmail"
+                  :elevation="0"
+                  density="compact"
+                ></v-btn>
+              </div>
+            </v-col>
+
+            <v-col class="ml-5">
+              <ul v-if="locale === 'en'"></ul>
+              <ul v-else-if="locale === 'ko'" style="width: 90%"></ul>
             </v-col>
           </div>
         </v-col>

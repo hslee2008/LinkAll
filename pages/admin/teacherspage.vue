@@ -1,149 +1,71 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
-    <h1>Teacher's Page (id: {{ parsedEmail }})</h1>
-
-    <br /><br /><br />
-
-    <div v-if="classes[parsedEmail]">
-      <h2>Classes (Book Club)</h2>
-
-      <v-card
-        v-for="(classObj, index) in Object.values(
-          classes[parsedEmail]['to-join']['book-club'] ?? {}
-        )"
-        :key="
-          Object.keys(classes[parsedEmail]['to-join']['book-club'] ?? {})[index]
-        "
-        elevation="10"
-        class="pa-3 my-5"
-      >
-        <v-card-title>
-          Class
-          {{
-            Object.keys(classes[parsedEmail]["to-join"]["book-club"] ?? {})[
-              index
-            ]
-          }}
-        </v-card-title>
-
-        <v-list class="ml-4">
-          <div
-            v-for="student in Object.values(classObj ?? {})[index]"
-            :key="student"
-            class="d-flex"
-            style="gap: 50px"
-          >
-            <v-list-item
-              lines="two"
-              rounded
-              style="background-color: rgb(221, 208, 208)"
-              class="my-4"
-            >
-              <v-list-item-title class="font-weight-black header-u">
-                {{ student.s_name }}
-              </v-list-item-title>
-              <v-list-item-title>{{ student.s_email }}</v-list-item-title>
-
-              <v-list-item-action class="mt-3">
-                <v-btn color="primary" :href="`mailto:${student.s_email}`">
-                  Mail Student
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-
-            <v-list-item
-              lines="two"
-              rounded
-              style="background-color: rgb(178, 172, 172)"
-              class="my-4"
-            >
-              <v-list-item-title class="font-weight-black header-u">
-                {{ student.g_name }}
-              </v-list-item-title>
-              <v-list-item-title>{{ student.g_email }}</v-list-item-title>
-
-              <v-list-item-action class="mt-3">
-                <v-btn color="primary" :href="`mailto:${student.g_email}`">
-                  Mail Guardian
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-          </div>
-        </v-list>
-      </v-card>
-    </div>
-
-    <br /><br /><br />
+    <h1 class="text-center">
+      Teacher's Page [<span class="text-decoration-underline">
+        {{ parsedEmail }} </span
+      >]
+    </h1>
 
     <div v-if="classes[parsedEmail]">
-      <h2>Classes (Debate)</h2>
+      <div v-for="item in Object.keys(classes[parsedEmail]['to-join'])">
+        <br /><br /><br />
 
-      <v-card
-        v-for="(classObj, index) in Object.values(
-          classes[parsedEmail]['to-join']['debate'] ?? {}
-        )"
-        :key="
-          Object.keys(classes[parsedEmail]['to-join']['debate'] ?? {})[index]
-        "
-        elevation="10"
-        class="pa-3 my-5"
-      >
-        <v-card-title>
-          Class
-          {{
-            Object.keys(classes[parsedEmail]["to-join"]["debate"] ?? {})[index]
-          }}
-        </v-card-title>
+        <h2 class="text-center">{{ item }}</h2>
 
-        <v-list class="ml-4">
-          <div
-            v-for="student in Object.values(classObj ?? {})"
-            :key="student"
-            class="d-flex"
-            style="gap: 50px"
-          >
-            <v-list-item
-              lines="two"
-              rounded
-              style="background-color: rgb(221, 208, 208)"
-              class="my-4"
+        <v-card
+          v-for="(classObj, index) in Object.values(
+            classes[parsedEmail]['to-join'][item] ?? {}
+          )"
+          :key="Object.keys(classes[parsedEmail]['to-join'][item] ?? {})[index]"
+          elevation="0"
+          style="border: solid"
+        >
+          <v-card-title class="text-decoration-underline">
+            Class
+            {{
+              Object.keys(classes[parsedEmail]["to-join"][item] ?? {})[index]
+            }}
+          </v-card-title>
+          <v-card-subtitle v-if="collectedDates[item][index]">
+            date: {{ collectedDates[item][index] }}
+          </v-card-subtitle>
+          <v-card-subtitle v-else> date is not specified </v-card-subtitle>
+
+          <v-list>
+            <div
+              v-for="student in Object.values(classObj ?? {})"
+              :key="student"
+              class="d-flex"
             >
-              <template v-slot:prepend>
-                <v-icon icon="mdi-account"></v-icon>
-              </template>
+              <v-list-item lines="two">
+                <v-list-item-title class="font-weight-bold">{{
+                  student.s_name
+                }}</v-list-item-title>
+                <v-list-item-title>{{ student.s_email }}</v-list-item-title>
 
-              <v-list-item-title>{{ student.s_name }}</v-list-item-title>
-              <v-list-item-title>{{ student.s_email }}</v-list-item-title>
+                <v-list-item-action class="mt-1">
+                  <v-btn color="primary" :href="`mailto:${student.s_email}`">
+                    <v-icon start>mdi-gmail</v-icon> Student
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
 
-              <v-list-item-action class="mt-3">
-                <v-btn color="primary" :href="`mailto:${student.s_email}`">
-                  Mail Student
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
+              <v-list-item lines="two">
+                <v-list-item-title class="font-weight-bold">{{
+                  student.g_name
+                }}</v-list-item-title>
+                <v-list-item-title>{{ student.g_email }}</v-list-item-title>
 
-            <v-list-item
-              lines="two"
-              rounded
-              style="background-color: rgb(178, 172, 172)"
-              class="my-4"
-            >
-              <template v-slot:prepend>
-                <v-icon icon="mdi-account"></v-icon>
-              </template>
-
-              <v-list-item-title>{{ student.g_name }}</v-list-item-title>
-              <v-list-item-title>{{ student.g_email }}</v-list-item-title>
-
-              <v-list-item-action class="mt-3">
-                <v-btn color="primary" :href="`mailto:${student.g_email}`">
-                  Mail Guardian
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-          </div>
-        </v-list>
-      </v-card>
+                <v-list-item-action class="mt-1">
+                  <v-btn color="primary" :href="`mailto:${student.g_email}`">
+                    <v-icon start>mdi-gmail</v-icon> Guardian
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </div>
+          </v-list>
+        </v-card>
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +77,7 @@ const { $db, $auth } = useNuxtApp();
 
 const parsedEmail = ref("");
 const classes = ref({});
+const collectedDates = ref({});
 
 $auth.onAuthStateChanged((user) => {
   if (user) {
@@ -167,6 +90,18 @@ $auth.onAuthStateChanged((user) => {
 });
 
 onValue(dbRef($db, "classes"), (snapshot) => {
-  classes.value = snapshot.val();
+  const data = snapshot.val();
+  classes.value = data;
+
+  for (const item in data[parsedEmail.value]["to-join"]) {
+    collectedDates.value[item] = [];
+
+    for (const innerItem in data[parsedEmail.value]["to-join"][item]) {
+      collectedDates.value[item].push(
+        Object.values(data[parsedEmail.value]["to-join"][item][innerItem])[0]
+          .date
+      );
+    }
+  }
 });
 </script>

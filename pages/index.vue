@@ -31,12 +31,16 @@
           style="gap: 150px"
         >
           <div class="text-center">
-            <p class="headline">{{ taughtStudents }}</p>
+            <p class="headline">
+              {{ taughtStudents }}
+            </p>
             <p class="text">{{ $t("taught_students") }}</p>
           </div>
 
           <div class="text-center">
-            <p class="headline">{{ wonDonated }}</p>
+            <p class="headline">
+              {{ wonDonated }}
+            </p>
             <p class="text">{{ $t("won_donated") }}</p>
           </div>
 
@@ -214,7 +218,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.6</div>
+    <div class="version">v0.0.7</div>
   </v-footer>
 </template>
 

@@ -3,18 +3,20 @@
     <div class="sign-up-container">
       <div
         class="d-flex justify-center align-center mx-12"
-        style="height: calc(100vh - 160px)"
+        style="height: calc(100vh - 160px); width: calc(100vw - 1300px)"
       >
-        <div>
+        <DivCenter>
           <h2 class="text-center">"Join our journey"</h2>
-          <h3 class="text-center mb-7">- LinkAll -</h3>
+          <h3 class="text-center mb-7" style="font-family: Grape Nuts">
+            - LinkAll -
+          </h3>
 
           <div class="text-center">
             <v-btn to="/account/create" variant="outlined">
               {{ t("create account") }}
             </v-btn>
           </div>
-        </div>
+        </DivCenter>
       </div>
     </div>
 

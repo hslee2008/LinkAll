@@ -27,8 +27,7 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "nuxt-gtag",
     "@nuxtjs/robots",
-    "@nuxtjs/sitemap",
-    "@nuxtjs/html-validator",
+    "@nuxtjs/sitemap"
   ],
   vite: {
     resolve: {

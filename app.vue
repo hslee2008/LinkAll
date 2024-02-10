@@ -108,7 +108,11 @@
           url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
         }`"
       >
-        <h2><NuxtLink href="/"> LinkAll</NuxtLink></h2>
+        <h2>
+          <NuxtLink href="/">
+            <span style="font-family: Protest Guerrilla">LinkAll</span>
+          </NuxtLink>
+        </h2>
 
         <v-spacer />
 

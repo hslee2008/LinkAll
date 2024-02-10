@@ -258,12 +258,11 @@ onMounted(() => {
 const saveToDatabase = () => {
   const classRef = dbRef(
     $db,
-    `classes/${classInfo.teacherEmailID}/to-join/${classInfo.classID}/${classNumber.value}`
+    `classes/${classInfo.value.teacherEmailID}/to-join/${classInfo.value.classID}/${classNumber.value}`
   );
 
   let date = "";
-
-  date = classInfo.classDates[parseInt(classNumber.value) - 1];
+  date = classInfo.value.classDates[parseInt(classNumber.value) - 1];
 
   push(classRef, {
     classNumber: classNumber.value,

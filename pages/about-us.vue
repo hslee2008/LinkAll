@@ -44,6 +44,43 @@
 
           <br />
 
+          <v-card variant="tonal">
+            <v-container>
+              <v-row align="center" justify="center" style="height:">
+                <v-col>
+                  <v-card
+                    color="transparent"
+                    elevation="0"
+                    variant="tonal"
+                    target="_blank"
+                    href="http://hafs.hs.kr/?main"
+                  >
+                    <v-img
+                      src="/school/hafs.png"
+                      height="100px"
+                    ></v-img>
+                  </v-card>
+                </v-col>
+                <v-col>
+                  <v-card
+                    color="transparent"
+                    elevation="0"
+                    variant="tonal"
+                    target="_blank"
+                    href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
+                  >
+                    <v-img
+                      src="/school/pangyo.png"
+                      height="55px"
+                    ></v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+
+          <br />
+
           <h2 style="font-family: Grape Nuts" class="font-weight-black">
             We are LinkAll. ({{ yearmonth }})
           </h2>

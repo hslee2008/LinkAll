@@ -4,16 +4,8 @@
       {{ t("donation") }}
     </h1>
 
-    <v-card class="mt-10 mx-15" elevation="0" variant="tonal">
-      <v-card-text
-        v-if="locale === 'en'"
-        class="text-justify"
-        style="
-          font-family: Libre Baskerville;
-          font-size: 18px;
-          line-height: 30px;
-        "
-      >
+    <v-card class="mt-10 top-container" elevation="0" variant="tonal">
+      <v-card-text v-if="locale === 'en'" class="text-justify donation-text">
         Thank you for your interest in donation. Your steps of actions give the
         precious opportunity for students to learn, and have education. Your
         action is changing a person’s life. Your thoughtful donation will be
@@ -23,12 +15,7 @@
       </v-card-text>
       <v-card-text
         v-else-if="locale === 'ko'"
-        class="text-justify"
-        style="
-          font-family: Noto Serif Korean;
-          font-size: 18px;
-          line-height: 30px;
-        "
+        class="text-justify donation-text"
       >
         기부에 대한 관심에 정말 감사의 마음을 표합니다. 여러분의 작은 행동은
         누군가의 지원을 가능하게 하며 많은 개인들을 우리 사회와 연결할 수 있는
@@ -50,9 +37,7 @@
       >
         <DivCenter>
           <img
-            height="150px"
-            width="150px"
-            class="rounded-pill"
+            class="rounded-pill donation-image"
             src="/used-images/direct-transfer.jpg"
           />
         </DivCenter>
@@ -69,9 +54,7 @@
       >
         <DivCenter>
           <img
-            height="150px"
-            width="150px"
-            class="rounded-pill ma-auto"
+            class="rounded-pill ma-auto donation-image"
             style="border-style: solid"
             src="/used-images/paypal.png"
           />
@@ -221,6 +204,22 @@ useHead({
   align-items: center;
 }
 
+.donation-text {
+  font-family: Libre Baskerville;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.top-container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.donation-image {
+  height: 150px;
+  width: 150px;
+}
+
 @media (max-width: 1275px) {
   .container {
     height: calc(100vh - 65px);
@@ -230,8 +229,54 @@ useHead({
     height: auto;
   }
 
-  .pay-container {
-    flex-direction: column;
+  .donation-text {
+    font-family: Libre Baskerville;
+    font-size: 17px;
+    line-height: 30px;
+  }
+
+  .top-container {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .donation-image {
+    height: 150px;
+    width: 150px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1275px) {
+  .container {
+    height: calc(100vh - 65px);
+  }
+
+  .top-div-with-bg {
+    height: auto;
+  }
+
+  .donation-text {
+    font-family: Libre Baskerville;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .top-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .donation-image {
+    height: 50px;
+    width: 50px;
+  }
+
+  h2 {
+    font-size: 15px;
   }
 }
 </style>

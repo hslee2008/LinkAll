@@ -4,6 +4,7 @@
       :src="src"
       :style="`width: ${width}px; height: ${(width * 198) / 150}px`"
       alt="member image"
+      draggable="false"
       class="mb-3 rounded-lg ma-auto"
     ></v-img>
   </v-sheet>

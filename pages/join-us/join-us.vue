@@ -4,7 +4,19 @@
       {{ t("join us") }}
     </h1>
 
-    <div v-if="registering">
+    <div v-if="userInfo === null">
+      <h2 class="text-center mt-10">
+        {{ t("login is required") }}
+      </h2>
+
+      <DivCenter>
+        <v-btn to="/account/login" class="mt-2" color="primary">
+          {{ t("login") }}
+        </v-btn>
+      </DivCenter>
+    </div>
+
+    <div v-else-if="registering">
       <h1 class="text-center">
         {{ t("your data is being examined") }}
       </h1>
@@ -19,30 +31,40 @@
 
       <DivCenter>
         <div style="min-width: 500px">
-          <p>
-            use services like <a href="https://imgbb.com/">imgDB</a> to host
-            your image
-          </p>
+          <div id="error-image"></div>
 
-          <div class="d-flex">
-            <v-textarea
-              v-model="picOfMe"
-              :label="t('photo url')"
-              required
-            ></v-textarea>
-            <v-img
-              :src="picOfMe"
-              alt="accepted user profile image setting"
-              class="ma-auto"
-              width="70"
-              height="70"
-            ></v-img>
-          </div>
+          <v-img
+            :src="picOfMe"
+            alt="accepted user profile image setting"
+            class="ma-auto mb-3"
+            width="70"
+            height="70"
+          >
+            <template v-slot:error>
+              <Teleport to="#error-image">
+                <v-img src="/screenshot/postimg.png" class="rounded-lg"></v-img>
+                <p class="text-center">Your image is invalid</p>
+                <p class="text-center">Copy the second link from above</p>
+              </Teleport>
+            </template>
+          </v-img>
+
+          <p>
+            use services like
+            <a href="https://postimages.org/">post images</a> to host your image
+          </p>
+          <p class="mb-2">copy direct link [직접 링크]</p>
+
+          <v-text-field
+            v-model="picOfMe"
+            required
+            variant="outlined"
+          ></v-text-field>
 
           <br />
 
           <DivCenter class="mb-15">
-            <v-btn @click="update">update</v-btn>
+            <v-btn @click="update" variant="outlined">update</v-btn>
           </DivCenter>
         </div>
       </DivCenter>
@@ -190,17 +212,6 @@
         </v-btn>
       </DivCenter>
     </DivCenter>
-    <div v-else>
-      <h2 class="text-center mt-10">
-        {{ t("login is required") }}
-      </h2>
-
-      <DivCenter>
-        <v-btn to="/account/login" class="mt-2" color="primary">
-          {{ t("login") }}
-        </v-btn>
-      </DivCenter>
-    </div>
   </div>
 </template>
 
@@ -242,8 +253,6 @@ onMounted(async () => {
   await $auth.onAuthStateChanged((user) => {
     if (user) {
       userInfo.value = user;
-    } else {
-      userInfo.value = null;
     }
   });
 

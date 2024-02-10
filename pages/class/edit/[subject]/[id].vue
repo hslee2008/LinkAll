@@ -135,7 +135,18 @@
         <v-label>Class Dates</v-label>
         <v-list>
           <v-list-item v-for="(item, index) in classDates" :key="item">
-            Class {{ index + 1 }}. {{ item }}
+            <v-list-itme-title>
+              Class {{ index + 1 }}. {{ item }}
+            </v-list-itme-title>
+
+            <v-list-item-actions>
+              <v-btn
+                icon="mdi-delete"
+                variant="icon"
+                size="small"
+                @click="deleteClassDate(index)"
+              ></v-btn>
+            </v-list-item-actions>
           </v-list-item>
         </v-list>
         <v-text-field
@@ -221,7 +232,15 @@ onMounted(() => {
     estTime.value = data.estTime;
     classDates.value = data.classDates;
   });
+
+  if (classDates.value === undefined) {
+    classDates.value = []
+  }
 });
+
+function deleteClassDate(index) {
+  classDates.value.splice(index, 1);
+}
 
 function updateClass() {
   const classRef = dbRef($db, `class/${subjectID}/${idID}`);
