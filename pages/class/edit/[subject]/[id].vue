@@ -5,6 +5,41 @@
     <br />
 
     <DivCenter>
+      <v-dialog width="500">
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" elevation="0" color="red">Delete Class</v-btn>
+        </template>
+
+        <template v-slot:default="{ isActive }">
+          <v-card title="Delete Class">
+            <v-card-text>
+              Do you really want to delete this class?
+              <br />
+              It will be copletely erased from the database.<br />
+              There will be no way of recovering it.
+            </v-card-text>
+
+            <v-card-actions class="d-flex justify-center">
+              <v-btn
+                text="Delete Class"
+                prepend-icon="mdi-delete"
+                color="red"
+                @click="deleteClass"
+              ></v-btn>
+
+              <v-btn
+                text="Close Dialog"
+                @click="isActive.value = false"
+              ></v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
+    </DivCenter>
+
+    <br />
+
+    <DivCenter>
       <div style="min-width: 400px">
         <v-label>
           icon (<a
@@ -71,13 +106,15 @@
           disabled
         ></v-text-field>
 
-        <v-label class="text-red"> Teacher Email only before @ </v-label>
+        <v-label class="text-red">
+          Teacher Email only before @ (. should be replaced with _)
+        </v-label>
         <v-text-field
           v-model="teacherEmailID"
           variant="outlined"
           base-color="red"
           bg-color="red"
-          placeholder="ex) hslee.2008@gmail.com -> hslee.2008"
+          placeholder="ex) hslee.2008@gmail.com -> hslee_2008"
           disabled
         ></v-text-field>
 
@@ -170,7 +207,7 @@
 </template>
 
 <script setup>
-import { ref as dbRef, update, onValue } from "firebase/database";
+import { ref as dbRef, update, onValue, set } from "firebase/database";
 import { onMounted } from "vue";
 
 const router = useRouter();
@@ -234,12 +271,22 @@ onMounted(() => {
   });
 
   if (classDates.value === undefined) {
-    classDates.value = []
+    classDates.value = [];
   }
 });
 
 function deleteClassDate(index) {
   classDates.value.splice(index, 1);
+}
+
+function deleteClass() {
+  const classRef = dbRef($db, `class/${subjectID}/${idID}`);
+  set(classRef, null);
+
+  const studentsRef = dbRef($db, `classses/${teacherID.value}/to-join/${idID}`);
+  set(studentsRef, null);
+
+  router.go("/actions/education");
 }
 
 function updateClass() {

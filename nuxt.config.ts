@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
 
-    "/assets/css/default.css",
     "/assets/css/div.css",
     "/assets/css/title.css",
     "/assets/css/screen.css",
@@ -24,10 +23,9 @@ export default defineNuxtConfig({
       );
     },
     "@nuxtjs/google-fonts",
-    "@vite-pwa/nuxt",
     "nuxt-gtag",
     "@nuxtjs/robots",
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
   ],
   vite: {
     resolve: {
@@ -49,57 +47,11 @@ export default defineNuxtConfig({
       "Grape Nuts": true,
       "Noto Serif": true,
       "Protest Guerrilla": true,
+      Galada: true,
+      "Yatara One": true,
+      Comfortaa: true,
     },
     display: "swap",
-  },
-  pwa: {
-    manifest: {
-      name: "Think for All - LinkAll",
-      short_name: "LinkAll",
-      description:
-        "LinkAll is a nongovernmental, nonprofit organization established in January 2024, under the fundamental purpose of giving primary education for all students around the world, starting from South Korea. We wish to minimize the educational gap, and provide elemental happiness towards all children.",
-      lang: "ko",
-      theme_color: "#ffffff",
-      background_color: "#ffffff",
-      display: "standalone",
-      orientation: "portrait",
-      scope: "/",
-      start_url: "/",
-      dir: "ltr",
-      icons: [
-        {
-          src: "/icon/icon.png",
-          sizes: "32x32",
-          type: "image/png",
-        },
-        {
-          src: "/icon/144x144.png",
-          sizes: "144x144",
-          type: "image/png",
-        },
-      ],
-      screenshots: [
-        {
-          src: "/screenshot/desktop.png",
-          sizes: "2554x1314",
-          type: "image/png",
-          form_factor: "wide",
-        },
-        {
-          src: "/screenshot/mobile.png",
-          sizes: "1074x1216",
-          type: "image/png",
-          form_factor: "narrow",
-        },
-      ],
-    },
-    workbox: {
-      navigateFallback: "/",
-    },
-    devOptions: {
-      enabled: true,
-      type: "module",
-    },
   },
   experimental: {
     payloadExtraction: true,

@@ -22,6 +22,7 @@
   "login with google": "구글로 로그인",
   "login with facebook": "페이스북으로 로그인",
   "Apply Now": "지금 당장 등록하기",
+  "no class": "지금 열린 수업이 없습니다!",
   "please try again": "다시 시도해주세요",
   "display name": "닉네임",
   "display name is required": "닉네임을 입력해주세요",
@@ -73,10 +74,11 @@
   "Junho Hwang": "황준호",
   "Hyunseung Lee": "이현승",
   "Doyung Yun": "윤도영",
-  "Woojin Choi": "최우진",
+  "Woojin Choi": "조우진",
   "Yoojong Seo": "서유종",
   "english": "영어",
   "math": "수학",
   "arts": "미술",
-  "tech": "기술"
+  "tech": "기술",
+  "copied": "복사되었습니다."
 }

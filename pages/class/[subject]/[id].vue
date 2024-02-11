@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <p class="text-justify">
+        <p class="text-justify mt-3">
           <span v-if="locale === 'en'">
             {{ classInfo.englishClassDescription }}
           </span>
@@ -21,16 +21,24 @@
             {{ classInfo.koreanClassDescription }}
           </span>
         </p>
-        <p style="color: red">
+
+        <br />
+
+        <v-alert
+          border="start"
+          border-color="success"
+          icon="mdi-firework"
+          class="text-justify"
+        >
           <span v-if="locale === 'en'">
-            * Note that donations after each lesson are highly encouraged. Your
+            Note that donations after each lesson are highly encouraged. Your
             donations have the power to help and link the people in need.
           </span>
           <span v-else-if="locale === 'ko'">
-            * 각 수업 후 기부를 적극 권장합니다. 여러분의 기부는 필요한 이들을
+            각 수업 후 기부를 적극 권장합니다. 여러분의 기부는 필요한 이들을
             연결하는 힘을 가지고 있습니다.
           </span>
-        </p>
+        </v-alert>
         <br />
         <h2 style="font-family: Grape Nuts" class="font-weight-black ml-3 mb-3">
           - Think for All, Link All.
@@ -38,7 +46,7 @@
 
         <div class="my-10">
           <v-table style="border: 1px solid black; border-radius: 10px">
-            <thead>
+            <thead style="background-color: #b0d6b2">
               <tr>
                 <th class="text-left">Category</th>
                 <th class="text-left">Information</th>
@@ -72,13 +80,19 @@
           }}
         </h2>
 
-        <ImgMember
-          :src="`/members/${classInfo.teacherID}.png`"
-          elevation="0"
-          width="250"
-        />
+        <div>
+          <ImgMember
+            :src="`/members/${classInfo.teacherID}.png`"
+            elevation="0"
+            width="250"
+            :showLink="true"
+            :name="classInfo.teacherID"
+            class="mt-5"
+            bordered
+          />
+        </div>
 
-        <p class="text-justify my-4 ma-auto" style="width: 250px">
+        <p class="text-justify my-4 ma-auto about-me">
           <span v-if="locale === 'en'">
             {{ classInfo.englishAboutMe }}
           </span>
@@ -92,13 +106,23 @@
             <v-btn
               v-bind="props"
               block
-              class="my-4 mb-10 rounded-lg"
+              class="my-4 rounded-lg"
               color="yellow-darken-1"
               :elevation="0"
-              :disabled="!loggedin"
+              :disabled="
+                !loggedin ||
+                !Object.keys(classInfo ?? {}).includes('classDates')
+              "
             >
               {{ $t("Apply Now") }}
             </v-btn>
+
+            <p
+              v-if="!Object.keys(classInfo ?? {}).includes('classDates')"
+              class="text-red"
+            >
+              {{ $t("no class") }}
+            </p>
           </template>
 
           <template v-slot:default="{ isActive }">
@@ -286,15 +310,15 @@ useHead({
   gap: 30px;
 }
 
+.about-me {
+  width: 250px;
+}
+
 .side-div {
   margin-right: 20px;
 }
 
 .title-container {
-  display: flex;
-}
-
-.table-container {
   display: flex;
 }
 
@@ -311,16 +335,16 @@ useHead({
     flex-direction: column;
   }
 
-  .table-container {
-    flex-direction: column;
-  }
-
   h1 {
     font-size: 1.5rem;
   }
 
   h2 {
     font-size: 1rem;
+  }
+
+  .about-me {
+    width: 100%;
   }
 }
 </style>

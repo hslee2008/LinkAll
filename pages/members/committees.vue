@@ -10,25 +10,37 @@
       </div>
 
       <div class="d-flex my-3">
-        <NuxtLink to="/members/members/#junho" class="mx-7">
-          <ImgMember src="/members/junho.png"></ImgMember>
+        <div class="mx-7">
+          <ImgMember
+            :showLink="true"
+            src="/members/junho.png"
+            name="junho"
+          ></ImgMember>
           <p class="text-center">{{ t("founder") }}</p>
           <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-        </NuxtLink>
+        </div>
 
-        <NuxtLink to="/members/members/#hyunseung" class="mx-7">
-          <ImgMember src="/members/hyunseung.png"></ImgMember>
+        <div class="mx-7">
+          <ImgMember
+            :showLink="true"
+            src="/members/hyunseung.png"
+            name="hyunseung"
+          ></ImgMember>
           <p class="text-center">{{ t("co-founder") }}</p>
           <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
-        </NuxtLink>
+        </div>
       </div>
 
       <div class="d-flex justify-center my-3">
-        <NuxtLink to="/members/members/#woojin" class="mx-7">
-          <ImgMember src=""></ImgMember>
+        <div class="mx-7">
+          <ImgMember
+            :showLink="true"
+            src="/members/woojin.png"
+            name="woojin"
+          ></ImgMember>
           <p class="text-center">{{ t("designer") }}</p>
           <p class="text-center text-h6">{{ t("Woojin Cho") }}</p>
-        </NuxtLink>
+        </div>
       </div>
     </DivCenter>
 
@@ -41,25 +53,37 @@
 
       <div class="d-flex">
         <div class="d-flex-break">
-          <NuxtLink to="/members/members/#junho" class="flex-item">
-            <ImgMember src="/members/junho.png"></ImgMember>
+          <div class="flex-item">
+            <ImgMember
+              :showLink="true"
+              src="/members/junho.png"
+              name="junho"
+            ></ImgMember>
             <p class="text-center">{{ t("teacher") }}</p>
             <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-          </NuxtLink>
+          </div>
 
-          <NuxtLink to="/members/members/#doyung" class="flex-item">
-            <ImgMember src="/members/doyung.png"></ImgMember>
+          <div class="flex-item">
+            <ImgMember
+              :showLink="true"
+              src="/members/doyung.png"
+              name="doyung"
+            ></ImgMember>
             <p class="text-center">{{ t("teacher") }}</p>
             <p class="text-center text-h6">{{ t("Doyung Yun") }}</p>
-          </NuxtLink>
+          </div>
         </div>
 
         <div class="d-flex-break">
-          <NuxtLink to="/members/members/#yoojong" class="flex-item">
-            <ImgMember src="/members/yoojong.png"></ImgMember>
+          <div class="flex-item">
+            <ImgMember
+              :showLink="true"
+              src="/members/yoojong.png"
+              name="joojong"
+            ></ImgMember>
             <p class="text-center">{{ t("teacher") }}</p>
             <p class="text-center text-h6">{{ t("Yoojong Seo") }}</p>
-          </NuxtLink>
+          </div>
         </div>
       </div>
     </DivCenter>

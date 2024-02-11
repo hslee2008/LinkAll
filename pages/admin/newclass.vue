@@ -65,7 +65,9 @@
           placeholder="ex) hyunseung, junho"
         ></v-text-field>
 
-        <v-label class="text-red"> Teacher Email only before @ </v-label>
+        <v-label class="text-red">
+          Teacher Email only before @ (. should be replaced with _)
+        </v-label>
         <v-text-field
           v-model="teacherEmailID"
           variant="outlined"
@@ -194,8 +196,6 @@ function add() {
   classDates.value.push(toAdd.value);
   toAdd.value = "";
 }
-
-
 
 function deleteClassDate(index) {
   classDates.value.splice(index, 1);

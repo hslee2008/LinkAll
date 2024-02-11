@@ -6,8 +6,16 @@
   >
     <div class="d-flex justify-center align-center index" style="width: 100%">
       <div style="width: 100%">
-        <h2 class="text-center font-weight-medium text-h3">Think for All</h2>
-        <h1 class="text-center font-weight-bold text-h1 mt-3 mb-10">
+        <h2
+          class="text-center font-weight-medium text-h3"
+          style="font-family: Galada"
+        >
+          Think for All
+        </h2>
+        <h1
+          class="text-center font-weight-bold text-h1 mt-3 mb-10"
+          style="font-family: Galada"
+        >
           Link All
         </h1>
 
@@ -15,19 +23,19 @@
           <v-btn
             rounded="lg"
             to="/join-us/donation"
-            color="primary"
+            color="#368aea"
             height="75"
           >
             <h2>
-              <v-icon start>mdi-gift</v-icon>
-              {{ $t("donate") }}
-              <v-icon end>mdi-gift</v-icon>
+              <v-icon start>mdi-heart-box</v-icon>
+              <span style="font-family: Yatara One">{{ $t("donate") }}</span>
+              <v-icon end>mdi-heart-box</v-icon>
             </h2>
           </v-btn>
         </div>
 
         <div
-          class="only-desktop-flex d-flex justify-center container mx-3"
+          class="only-desktop-flex d-flex justify-center container mx-3 ml-13"
           style="gap: 150px"
         >
           <div class="text-center">
@@ -90,85 +98,36 @@
         <v-col
           v-for="item in Object.values(classList[index] ?? {})"
           :key="item.classID"
-          cols="12"
-          sm="6"
-          md="3"
         >
-          <v-hover>
-            <template v-slot:default="{ isHovering, props }">
-              <v-card
-                v-bind="props"
-                elevation="0"
-                height="300px"
-                varaint="tonal"
-                class="cardy rounded-lg"
-                :to="`/class/${item.subject}/${item.classID}`"
-              >
-                <div class="ml-2">
-                  <v-card-title class="headline">
-                    <v-icon start size="x-small">{{ item.icon }}</v-icon>
-                    {{ item.subject.toUpperCase() }}
-                  </v-card-title>
-                  <v-card-text class="text-h6 mt-2">
-                    {{ item.englishDisplayName }}
-                  </v-card-text>
-                </div>
-
-                <img
-                  :src="`/members/${item.teacherID}.png`"
-                  height="200"
-                  style="right: 0; bottom: 0; position: absolute"
-                />
-
-                <v-card
-                  style="position: absolute; bottom: 0; margin-bottom: 30px"
-                  class="d-flex ml-2"
-                  elevation="0"
-                  color="transparent"
-                >
-                  <div class="my-auto mr-6">
-                    <v-card-title class="text-left text-white">
-                      {{ item.englishTeacherName }}
-                    </v-card-title>
-                    <v-card-subtitle class="text-left text-white">
-                      {{ item.koreanTeacherName }}
-                    </v-card-subtitle>
-                  </div>
-
-                  <v-slide-x-transition>
-                    <v-btn
-                      v-if="isHovering"
-                      elevation="0"
-                      icon="mdi-arrow-right-drop-circle"
-                      size="large"
-                      class="mt-3"
-                      variant="elevated"
-                    ></v-btn>
-                  </v-slide-x-transition>
-                </v-card>
-              </v-card>
-            </template>
-          </v-hover>
+          <DivCenter>
+            <ClassInfo :item="item"></ClassInfo>
+          </DivCenter>
         </v-col>
       </template>
     </v-row>
   </v-container>
 
-  <br />
+  <br /><br />
+  <br /><br />
 
   <v-carousel
     hide-delimiter-background
     delimiter-icon="mdi-square"
     color="#5C6BC0"
-    height="400"
+    height="500"
     show-arrows="hover"
     cycle
     continuous
   >
     <v-carousel-item rounded>
       <v-sheet height="100%" tile>
-        <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2">Think for All</div>
+        <div class="d-flex fill-height justify-center align-center bg-image">
+          <div class="ml-3">
+            <div class="text-h2">
+              Think For All, <span class="font-weight-bold">Link All</span>
+            </div>
+            <div class="text-h6">A Revolution of Education</div>
+          </div>
         </div>
       </v-sheet>
     </v-carousel-item>
@@ -176,7 +135,52 @@
     <v-carousel-item rounded>
       <v-sheet height="100%" tile>
         <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2">LinkAll</div>
+          <div class="text-h2">GRAND OPEN</div>
+        </div>
+      </v-sheet>
+    </v-carousel-item>
+
+    <v-carousel-item rounded>
+      <v-sheet height="100%" tile>
+        <div class="d-flex fill-height justify-center align-center">
+          <div>
+            <div class="text-h3">Notification</div>
+
+            <v-list v-if="notificationList.length > 0">
+              <v-dialog
+                v-for="(item, i) in notificationList"
+                :key="item.title"
+                width="500"
+              >
+                <template v-slot:activator="{ props }">
+                  <v-list-item
+                    v-bind="props"
+                    :title="`(${i + 1}) ${item.title}`"
+                    :subtitle="new Date(item.time).toDateString()"
+                  >
+                  </v-list-item>
+                </template>
+
+                <template v-slot:default="{ isActive }">
+                  <v-card title="Notification">
+                    <v-card-text>
+                      {{ item.contents }}
+                    </v-card-text>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                        text="Close Dialog"
+                        @click="isActive.value = false"
+                      ></v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
+            </v-list>
+            <p v-else>No notification yet</p>
+          </div>
         </div>
       </v-sheet>
     </v-carousel-item>
@@ -218,7 +222,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.7</div>
+    <div class="version">v0.0.8</div>
   </v-footer>
 </template>
 
@@ -237,6 +241,7 @@ const taughtStudents = ref("0");
 const wonDonated = ref("0");
 const hoursOf = ref("0");
 const classList = ref([]);
+const notificationList = ref([]);
 
 onMounted(() => {
   windowHeight.value = window.innerHeight;
@@ -254,6 +259,13 @@ onMounted(() => {
     const data = snapshot.val();
     const values = Object.values(data ?? {});
     classList.value = values;
+  });
+
+  const notificationRef = dbRef($db, "notification");
+  onValue(notificationRef, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data ?? {});
+    notificationList.value = values;
   });
 });
 
@@ -276,13 +288,23 @@ useHead({
   margin: 10px;
 }
 
+.text-h1 {
+  font-size: 100px !important;
+}
+
+.bg-image {
+  background-image: url(/background/background.png);
+  background-position: center;
+  background-size: 80%;
+}
+
 @media (max-width: 600px) {
   .headline {
     font-size: 25px;
   }
 
-  .text-h1 {
-    font-size: 10px;
+  .text-h2 {
+    font-size: 50px !important;
   }
 
   .container {
@@ -292,6 +314,12 @@ useHead({
 
   .version {
     position: relative;
+  }
+
+  .bg-image {
+    background-image: url(/background/background.png);
+    background-position: center;
+    background-size: 100%;
   }
 }
 
@@ -313,20 +341,5 @@ p > a:hover {
   .index {
     margin-top: 100px;
   }
-}
-
-.cardy:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 30%,
-    black 150%,
-    black 300%
-  );
 }
 </style>

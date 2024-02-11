@@ -30,15 +30,13 @@
       <br /><br />
 
       <DivCenter>
-        <div style="min-width: 500px">
+        <div>
           <div id="error-image"></div>
 
           <v-img
             :src="picOfMe"
             alt="accepted user profile image setting"
-            class="ma-auto mb-3"
-            width="70"
-            height="70"
+            class="ma-auto mb-3 accepted-image"
           >
             <template v-slot:error>
               <Teleport to="#error-image">
@@ -49,11 +47,14 @@
             </template>
           </v-img>
 
-          <p>
-            use services like
-            <a href="https://postimages.org/">post images</a> to host your image
-          </p>
-          <p class="mb-2">copy direct link [직접 링크]</p>
+          <div v-if="!picOfMe">
+            <p>
+              use services like
+              <a href="https://postimages.org/">post images</a> to host your
+              image
+            </p>
+            <p class="mb-2">copy direct link [직접 링크]</p>
+          </div>
 
           <v-text-field
             v-model="picOfMe"
@@ -217,12 +218,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import {
-  ref as dbRef,
-  push,
-  onValue,
-  update as dbUpdate,
-} from "firebase/database";
+import { ref as dbRef, push, set, onValue } from "firebase/database";
 
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
@@ -255,6 +251,11 @@ onMounted(async () => {
       userInfo.value = user;
     }
   });
+
+  if (userInfo.value.uid === null) {
+    alert("에러 로그인을 안했습니다");
+    router.push("/");
+  }
 
   onValue(dbRef($db, "join-us-waiting"), async (snapshot) => {
     const keys = Object.keys((await snapshot.val()) ?? {});
@@ -303,9 +304,13 @@ const submit = () => {
 };
 
 function update() {
-  dbUpdate(dbRef($db, `accepted/${userInfo.value.uid}`), {
-    picOfMe: picOfMe.value,
-  });
+  try {
+    set(dbRef($db, `accepted/${userInfo.value.uid}`), {
+      picOfMe: picOfMe.value,
+    });
+  } catch (e) {
+    alert(e.message);
+  }
 
   router.go(0);
 }
@@ -547,3 +552,15 @@ useHead({
   title: t("join us"),
 });
 </script>
+
+<style scoped>
+.accepted-image {
+  width: 500px;
+}
+
+@media (max-width: 550px) {
+  .accepted-image {
+    width: 90vw;
+  }
+}
+</style>

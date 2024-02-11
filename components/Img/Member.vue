@@ -1,12 +1,22 @@
 <template>
-  <v-sheet :elevation="elevation" class="rounded-lg">
+  <v-sheet :elevation="elevation" class="rounded-lg mb-3">
     <v-img
       :src="src"
-      :style="`width: ${width}px; height: ${(width * 198) / 150}px`"
+      :style="`width: ${width}px; height: ${(width * 198) / 150}px; ${bordered ? 'border: 0.1px black solid' : ''}`"
       alt="member image"
       draggable="false"
-      class="mb-3 rounded-lg ma-auto"
-    ></v-img>
+      class="rounded-lg ma-auto"
+    >
+      <v-btn
+        v-if="showLink"
+        icon="mdi-open-in-new"
+        variant="icon"
+        class="text-white"
+        size="small"
+        :to="`/members/members/#${name}`"
+        style="position: absolute; bottom: 0; right: 0"
+      ></v-btn>
+    </v-img>
   </v-sheet>
 </template>
 
@@ -21,5 +31,14 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  showLink: {
+    type: Boolean,
+    default: false,
+  },
+  bordered: {
+    type: Boolean,
+    default: false,
+  },
+  name: String,
 });
 </script>

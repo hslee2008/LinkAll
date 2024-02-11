@@ -13,6 +13,15 @@
         variant="outlined"
       ></v-text-field>
 
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        :label="t('email')"
+        :disabled="!emailVerified"
+        required
+        variant="outlined"
+      ></v-text-field>
+
       <v-textarea
         v-model="photoURL"
         :rules="photoURLRules"
@@ -30,14 +39,6 @@
         style="border-style: solid"
       ></v-img>
 
-      <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        :label="t('email')"
-        :disabled="!emailVerified"
-        required
-        variant="outlined"
-      ></v-text-field>
       <v-alert
         v-if="!emailVerified"
         type="warning"
@@ -45,9 +46,17 @@
         :text="t('email not verified')"
       ></v-alert>
 
-      <v-btn class="mt-3" color="primary" @click="update" :disabled="!valid">
-        {{ t("update profile") }}
-      </v-btn>
+      <DivCenter>
+        <v-btn
+          class="mt-3"
+          color="primary"
+          @click="update"
+          elevation="0"
+          :disabled="!valid"
+        >
+          {{ t("update profile") }}
+        </v-btn>
+      </DivCenter>
 
       <br /><br /><br /><br />
     </div>

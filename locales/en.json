@@ -22,6 +22,7 @@
   "login with google": "Login with Google",
   "login with facebook": "Login with Facebook",
   "Apply Now": "Apply Now",
+  "no class": "Currently, no class is open",
   "please try again": "Please try again",
   "display name": "Display Name",
   "display name is required": "Display Name is required",
@@ -78,5 +79,6 @@
   "english": "English",
   "math": "Math",
   "arts": "Arts",
-  "tech": "Tech"
+  "tech": "Tech",
+  "copied": "Copied"
 }

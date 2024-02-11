@@ -4,11 +4,15 @@
       {{ t("donation") }}
     </h1>
 
-    <v-card class="mt-10 top-container" elevation="0" variant="tonal">
+    <v-card
+      class="mt-10 top-container rounded-lg"
+      elevation="0"
+      color="#ededed"
+    >
       <v-card-text v-if="locale === 'en'" class="text-justify donation-text">
         Thank you for your interest in donation. Your steps of actions give the
         precious opportunity for students to learn, and have education. Your
-        action is changing a person’s life. Your thoughtful donation will be
+        action is changing a person's life. Your thoughtful donation will be
         used to support young children receive primary education, and minimize
         the educational inequality. All donating activities will be uploaded to
         our website. Once again, we appreciate your kindness towards humanity.
@@ -46,6 +50,7 @@
         <p v-else-if="locale === 'ko'" class="text-center">국내</p>
       </v-card>
 
+      <!--
       <v-card
         @click="openDialog2"
         color="transparent"
@@ -63,12 +68,24 @@
         <p v-if="locale === 'en'" class="text-center">Foreign</p>
         <p v-else-if="locale === 'ko'" class="text-center">해외</p>
       </v-card>
+      -->
 
       <v-dialog v-model="dialog1" width="500">
         <v-card :title="t('transfer')">
           <v-card-text class="my-3">
-            3333294607629 카카오뱅크<br />
-            (예금주: 김현희)
+            <div class="d-flex">
+              <div class="mx-3">
+                <v-btn
+                  icon=" mdi-content-copy"
+                  variant="icon"
+                  @click="copy"
+                ></v-btn>
+              </div>
+              <div>
+                3333294607629 카카오뱅크<br />
+                (예금주: 김현희)
+              </div>
+            </div>
           </v-card-text>
 
           <v-card-actions>
@@ -78,7 +95,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog v-model="dialog2" width="500">
+      <!--<v-dialog v-model="dialog2" width="500">
         <v-card :title="t('paypal')">
           <v-card-text class="my-3">
             <v-select
@@ -97,8 +114,18 @@
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
-      </v-dialog>
+      </v-dialog>-->
     </div>
+
+    <v-snackbar v-model="snackbar">
+      {{ $t("copied") }}
+
+      <template v-slot:actions>
+        <v-btn color="pink" variant="text" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -111,6 +138,7 @@ const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();
 const userInfo = ref(null);
 
+const snackbar = ref(false);
 const dialog1 = ref(false);
 const dialog2 = ref(false);
 const donateAmount = ref("0.5");
@@ -188,6 +216,11 @@ const openDialog2 = () => {
   });
 };
 
+function copy() {
+  navigator.clipboard.writeText("3333294607629");
+  snackbar.value = true;
+}
+
 useHead({
   title: t("donation"),
 });
@@ -250,33 +283,15 @@ useHead({
   }
 }
 
-@media (max-width: 1275px) {
-  .container {
-    height: calc(100vh - 65px);
-  }
-
-  .top-div-with-bg {
-    height: auto;
-  }
-
-  .donation-text {
-    font-family: Libre Baskerville;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
+@media (max-width: 450px) {
   .top-container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .donation-image {
-    height: 50px;
-    width: 50px;
-  }
-
-  h2 {
-    font-size: 15px;
+    height: 70px;
+    width: 70px;
   }
 }
 </style>

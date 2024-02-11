@@ -138,6 +138,14 @@
                   :elevation="0"
                   density="compact"
                 ></v-btn>
+
+                <v-btn
+                  href="https://play.google.com/store/apps/dev?id=7815903651523223132"
+                  target="_blank"
+                  icon="mdi-google-play"
+                  :elevation="0"
+                  density="compact"
+                ></v-btn>
               </div>
             </v-col>
 
@@ -199,7 +207,7 @@
                   Chairman's Award)
                 </li>
               </ul>
-              <ul v-else-if="locale === 'ko'" style="width: 90%">
+              <ul v-else-if="locale === 'ko'">
                 <li>
                   한국과학창의재단 2022 청소년과학탐구반 융합탐구과제 최우수상
                   (과학기술정보통신부 장관상)
@@ -224,6 +232,69 @@
         </v-col>
       </div>
 
+      <div id="woojin" class="container mt-10">
+        <div>
+          <v-col class="text-center ma-auto" style="flex: 0.2">
+            <ImgMember
+              src="/members/woojin.png"
+              class="ma-auto"
+              :elevation="10"
+            ></ImgMember>
+
+            <p class="mt-3">{{ t("designer") }}</p>
+            <b>{{ t("Woojin Cho") }}</b>
+          </v-col>
+        </div>
+
+        <v-col style="flex: 2">
+          <div class="container align-center ga-5">
+            <v-col class="inner-col py-auto text-justify">
+              <div>
+                <span v-if="locale === 'en'">
+                  Hello, I am a student in the international track of the HAFS.
+                  I'm here to help fulfill the vision of Linkall of providing
+                  primary guidance for students’ education, and I'm mainly in
+                  charge of design-related works in LinkAll.
+                </span>
+                <span v-else-if="locale === 'ko'">
+                  자기소개 안녕하세요, 저는 용인한국외국어대학교부설고등학교
+                  국제 트랙에 재학 중인 학생입니다. 저는 학생들의 기본 교육을
+                  지원하고자하는 LinkAll의 비전 실현을 돕기 위해 함께하고
+                  있으며, 디자인 관련 업무를 주로 담당하고 있습니다.
+                </span>
+              </div>
+
+              <div class="mt-3 d-flex ga-4">
+                <v-btn
+                  href="mailto:clmau0810@gmail.com"
+                  target="_blank"
+                  icon="mdi-gmail"
+                  :elevation="0"
+                  density="compact"
+                ></v-btn>
+              </div>
+            </v-col>
+
+            <v-col class="ml-5">
+              <ul v-if="locale === 'en'">
+                <li>Business Black Box 2023 2nd Place</li>
+                <li>GS Retail Eco Creator 2023 Grand Prize</li>
+                <li>Outburst 19th Designer</li>
+                <li>Lux et Nox 19th Vice-Captain, Designer</li>
+                <li>Token Students Designer</li>
+              </ul>
+              <ul v-else-if="locale === 'ko'">
+                <li>비스니스 블랙 박스 2023 2등</li>
+                <li>GS 에코크리에이터 2023 대상</li>
+                <li>외대부고 아웃버스트 19대 디자이너</li>
+                <li>외대부고 영어영화평론동아리 19대 차장, 디자이너</li>
+                <li>Token Students 디자이너</li>
+              </ul>
+            </v-col>
+          </div>
+        </v-col>
+      </div>
+
       <div id="doyung" class="container mt-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
@@ -232,7 +303,7 @@
               class="ma-auto"
               :elevation="10"
             ></ImgMember>
-            
+
             <b>{{ t("Doyung Yun") }}</b>
           </v-col>
         </div>
@@ -280,7 +351,7 @@
               <ul v-if="locale === 'en'">
                 <li>HAFS Medical Biology Organization 19th Captain</li>
               </ul>
-              <ul v-else-if="locale === 'ko'" style="width: 90%">
+              <ul v-else-if="locale === 'ko'">
                 <li>외대부고 의생명동아리 19기 부장</li>
               </ul>
             </v-col>
@@ -330,7 +401,7 @@
 
             <v-col class="ml-5">
               <ul v-if="locale === 'en'"></ul>
-              <ul v-else-if="locale === 'ko'" style="width: 90%"></ul>
+              <ul v-else-if="locale === 'ko'"></ul>
             </v-col>
           </div>
         </v-col>

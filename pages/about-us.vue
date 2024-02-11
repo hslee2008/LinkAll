@@ -4,19 +4,17 @@
       {{ t("about us") }}
     </h1>
 
-    <br /><br />
-
     <div class="d-flex justify-center align-center">
       <div style="width: 600px" class="pa-9">
         <h2>{{ t("purpose") }}</h2>
-        <p>
+        <p class="text-justify">
           {{ t("purpose_text") }}
         </p>
 
         <br /><br />
 
         <h2>{{ t("vision") }}</h2>
-        <p>
+        <p class="text-justify">
           {{ t("vision_text") }}
         </p>
 
@@ -24,29 +22,17 @@
 
         <h2>{{ t("impact") }}</h2>
         <div v-if="locale === 'ko'">
-          <p>
+          <p cass="text-justify">
             현재 LinkAll 커뮤니티는 2개의 다른 학교와 1개 국가의 회원으로
             이루어져 있습니다. 교육 활동을 통해 우리는 {{ taughtStudents }}명의
             학생에게 가르치고, {{ wonDonated }}원을 기부할 수 있었습니다.
-          </p>
-          <br />
-          <p style="font-family: Grape Nuts" class="font-weight-black">
-            우리는 LinkAll입니다. ({{ yearmonth }})
-          </p>
-        </div>
-        <div v-else-if="locale === 'en'">
-          <p>
-            The LinkAll Community currently has members from 2 different
-            schools, and 1 nation. Through our actions of education, we were
-            able to teach {{ taughtStudents }} students and donate
-            {{ wonDonated }} won.
           </p>
 
           <br />
 
           <v-card variant="tonal">
             <v-container>
-              <v-row align="center" justify="center" style="height:">
+              <v-row align="center" justify="center">
                 <v-col>
                   <v-card
                     color="transparent"
@@ -55,10 +41,7 @@
                     target="_blank"
                     href="http://hafs.hs.kr/?main"
                   >
-                    <v-img
-                      src="/school/hafs.png"
-                      height="100px"
-                    ></v-img>
+                    <v-img src="/school/hafs.png" height="100px"></v-img>
                   </v-card>
                 </v-col>
                 <v-col>
@@ -69,10 +52,51 @@
                     target="_blank"
                     href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
                   >
-                    <v-img
-                      src="/school/pangyo.png"
-                      height="55px"
-                    ></v-img>
+                    <v-img src="/school/pangyo.png" height="55px"></v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+
+          <br />
+          <p style="font-family: Grape Nuts" class="font-weight-black">
+            우리는 LinkAll입니다. ({{ yearmonth }})
+          </p>
+        </div>
+        <div v-else-if="locale === 'en'">
+          <p class="text-justify">
+            The LinkAll Community currently has members from 2 different
+            schools, and 1 nation. Through our actions of education, we were
+            able to teach {{ taughtStudents }} students and donate
+            {{ wonDonated }} won.
+          </p>
+
+          <br />
+
+          <v-card variant="tonal">
+            <v-container>
+              <v-row align="center" justify="center">
+                <v-col>
+                  <v-card
+                    color="transparent"
+                    elevation="0"
+                    variant="tonal"
+                    target="_blank"
+                    href="http://hafs.hs.kr/?main"
+                  >
+                    <v-img src="/school/hafs.png" height="100px"></v-img>
+                  </v-card>
+                </v-col>
+                <v-col>
+                  <v-card
+                    color="transparent"
+                    elevation="0"
+                    variant="tonal"
+                    target="_blank"
+                    href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
+                  >
+                    <v-img src="/school/pangyo.png" height="55px"></v-img>
                   </v-card>
                 </v-col>
               </v-row>
@@ -84,6 +108,8 @@
           <h2 style="font-family: Grape Nuts" class="font-weight-black">
             We are LinkAll. ({{ yearmonth }})
           </h2>
+
+          <br />
         </div>
       </div>
     </div>

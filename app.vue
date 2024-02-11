@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <VitePwaManifest />
     <NuxtLoadingIndicator />
 
     <NuxtLayout>
@@ -46,8 +45,12 @@
         <v-divider class="mt-4 mb-7"></v-divider>
 
         <div class="d-flex flex-column">
-          <v-btn to="/" :elevation="0"> {{ t("home") }} </v-btn>
-          <v-btn to="/about-us" :elevation="0"> {{ t("about us") }} </v-btn>
+          <v-btn to="/" :elevation="0">
+            {{ t("home") }}
+          </v-btn>
+          <v-btn to="/about-us" :elevation="0">
+            {{ t("about us") }}
+          </v-btn>
 
           <v-menu>
             <template v-slot:activator="{ props }">
@@ -136,7 +139,12 @@
 
             <v-card>
               <v-list>
-                <v-list-item v-if="isAdmin" to="/admin/">
+                <v-list-item
+                  v-if="isAdmin"
+                  to="/admin/"
+                  bg-color="purple"
+                  base-color="purple"
+                >
                   <v-list-item-title>
                     <v-icon start>mdi-incognito</v-icon> Admin Page
                   </v-list-item-title>
@@ -147,7 +155,10 @@
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="logout">
-                  <v-list-item-title> {{ t("logout") }} </v-list-item-title>
+                  <v-list-item-title>
+                    <v-icon start>mdi-logout-variant</v-icon>
+                    {{ t("logout") }}
+                  </v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-card>
@@ -188,15 +199,28 @@
           <NuxtLink href="/">
             <v-hover>
               <template v-slot:default="{ isHovering, props }">
-                <v-card v-bind="props" color="rgb(0, 0, 0, 0)" elevation="0">
-                  <v-slide-x-transition>
-                    <p v-if="isHovering" style="font-family: Grape Nuts">
-                      think for all -
-                    </p>
-                  </v-slide-x-transition>
+                <v-card
+                  v-bind="props"
+                  color="rgb(0, 0, 0, 0)"
+                  elevation="0"
+                  class="d-flex"
+                >
                   <v-slide-y-transition>
-                    <p style="font-family: Protest Guerrilla">LinkAll</p>
+                    <span
+                      style="font-family: Protest Guerrilla; font-size: 40px"
+                    >
+                      LinkAll
+                    </span>
                   </v-slide-y-transition>
+                  <v-slide-x-transition>
+                    <span
+                      v-if="isHovering"
+                      style="font-family: Grape Nuts"
+                      class="ma-auto ml-3"
+                    >
+                      - think for all
+                    </span>
+                  </v-slide-x-transition>
                 </v-card>
               </template>
             </v-hover>
@@ -257,18 +281,27 @@
 
                 <v-card>
                   <v-list>
-                    <v-list-item v-if="isAdmin" to="/admin/">
+                    <v-list-item
+                      v-if="isAdmin"
+                      to="/admin/"
+                      bg-color="purple"
+                      base-color="purple"
+                    >
                       <v-list-item-title>
                         <v-icon start>mdi-incognito</v-icon> Admin Page
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item to="/account/account">
                       <v-list-item-title>
+                        <v-icon start>mdi-account-box</v-icon>
                         {{ t("my account") }}
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="logout">
-                      <v-list-item-title> {{ t("logout") }} </v-list-item-title>
+                      <v-list-item-title>
+                        <v-icon start>mdi-logout-variant</v-icon>
+                        {{ t("logout") }}
+                      </v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-card>
@@ -468,9 +501,5 @@ a {
 .layout-enter-from,
 .layout-leave-to {
   filter: grayscale(1);
-}
-
-.slide-x-transition-enter-active {
-  transition-delay: 0.2s;
 }
 </style>
