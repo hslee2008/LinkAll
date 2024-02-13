@@ -13,7 +13,6 @@ export default defineNuxtConfig({
 
     "/assets/css/div.css",
     "/assets/css/title.css",
-    "/assets/css/screen.css",
     "/assets/css/utils.css",
   ],
   modules: [
@@ -52,6 +51,7 @@ export default defineNuxtConfig({
       Comfortaa: true,
     },
     display: "swap",
+    overwriting: true,
   },
   experimental: {
     payloadExtraction: true,

@@ -34,30 +34,7 @@
           </v-btn>
         </div>
 
-        <div
-          class="only-desktop-flex d-flex justify-center container mx-3 ml-13"
-          style="gap: 150px"
-        >
-          <div class="text-center">
-            <p class="headline">
-              {{ taughtStudents }}
-            </p>
-            <p class="text">{{ $t("taught_students") }}</p>
-          </div>
-
-          <div class="text-center">
-            <p class="headline">
-              {{ wonDonated }}
-            </p>
-            <p class="text">{{ $t("won_donated") }}</p>
-          </div>
-
-          <div class="text-center">
-            <p class="headline">{{ hoursOf }}</p>
-            <p class="text">{{ $t("hours_of_volunteering") }}</p>
-          </div>
-        </div>
-        <div class="only-mobile-flex d-flex justify-center ga-5 mt-14 mx-3">
+        <div v-if="mobile" class="d-flex justify-center ga-5 mt-14 mx-3">
           <v-card elevation="0" class="text-center pa-2" variant="tonal">
             <p class="headline">{{ taughtStudents }}</p>
             <br />
@@ -81,11 +58,37 @@
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </v-card>
         </div>
+        <div
+          v-else
+          class="d-flex justify-center container mx-3 ml-13"
+          style="gap: 150px"
+        >
+          <div class="text-center">
+            <p class="headline">
+              {{ taughtStudents }}
+            </p>
+            <p class="text">{{ $t("taught_students") }}</p>
+          </div>
+
+          <div class="text-center">
+            <p class="headline">
+              {{ wonDonated }}
+            </p>
+            <p class="text">{{ $t("won_donated") }}</p>
+          </div>
+
+          <div class="text-center">
+            <p class="headline">{{ hoursOf }}</p>
+            <p class="text">{{ $t("hours_of_volunteering") }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </v-parallax>
 
-  <br /><br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
 
   <h2 class="text-center text-h2">LinkAll Programs</h2>
 
@@ -109,14 +112,13 @@
 
   <br /><br />
   <br /><br />
+  <br /><br />
 
   <v-carousel
-    hide-delimiter-background
     delimiter-icon="mdi-square"
     color="#5C6BC0"
-    height="500"
-    show-arrows="hover"
-    cycle
+    height="calc(100vw * 2731/3723 *2/3)"
+    width="100vw"
     continuous
   >
     <v-carousel-item rounded>
@@ -222,7 +224,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.8</div>
+    <div class="version">v0.0.9</div>
   </v-footer>
 </template>
 
@@ -295,7 +297,7 @@ useHead({
 .bg-image {
   background-image: url(/background/background.png);
   background-position: center;
-  background-size: 80%;
+  background-size: 100%;
 }
 
 @media (max-width: 600px) {

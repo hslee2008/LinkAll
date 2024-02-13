@@ -10,7 +10,7 @@
       <v-btn
         v-if="showLink"
         icon="mdi-open-in-new"
-        variant="icon"
+        variant="plain"
         class="text-white"
         size="small"
         :to="`/members/members/#${name}`"
@@ -28,7 +28,7 @@ const props = defineProps({
     default: 150,
   },
   elevation: {
-    type: Number,
+    type: Number || String,
     default: 10,
   },
   showLink: {

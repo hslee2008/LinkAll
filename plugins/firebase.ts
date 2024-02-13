@@ -28,7 +28,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     getPerformance(app);
     getAnalytics(app);
   });
- 
+
   nuxtApp.vueApp.provide("auth", auth);
   nuxtApp.provide("auth", auth);
 

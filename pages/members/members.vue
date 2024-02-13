@@ -114,11 +114,9 @@
                   LinkAll.
                 </span>
                 <span v-else-if="locale === 'ko'">
-                  안녕하세요! LinkAll을 창립하면서 우리 창립자의 비전과 함께
-                  힘을 모았고, 이를 통해 앞서 언급한 다양한 목표를 수행하고
-                  있습니다. 저는 판교고등학교 1학년생으로, 기술적인 부분에 대한
-                  책임을 지며 LinkAll의 기술적 기반을 코딩하고 형성하는 과정에
-                  있습니다.
+                  안녕하세요! 저는 판교고등학교 1학년입니다. 어려서부터 흥미를
+                  가지고 공부해 오던 코딩 지식을 바탕으로 LinkAll의 비전 실현을
+                  돕기 위해 LinkAll의 웹사이트 제작을 담당하고 있습니다.
                 </span>
               </div>
 
@@ -166,7 +164,7 @@
                 </li>
                 <li>
                   Gyeonggi Provincial Superintendent of Education Commendation
-                  (Gyeonggi Future Education)
+                  (2023 Gyeonggi Future Education)
                 </li>
                 <li>
                   <abbr
@@ -198,11 +196,11 @@
                   Award)
                 </li>
                 <li>
-                  Korea Code Fair Hackathon Bronze Prize
+                  Korea Code Fair Hackathon Bronze Prize (2023
                   <abbr
                     title="Korean Institute of Information Scientists and Engineers"
                   >
-                    (KIISE
+                    KIISE
                   </abbr>
                   Chairman's Award)
                 </li>
@@ -216,7 +214,7 @@
                   2023년 신나는 SW·AI 교육수기공모전 최우수상
                   (과학기술정보통신부 장관상)
                 </li>
-                <li>경기도교육감 표창장 (경기미래교육)</li>
+                <li>경기도교육감 표창장 (2023년 경기미래교육)</li>
                 <li>
                   한국과학창의재단 2021년 청소년 과학 탐구 동아리 금상
                   (한국과학창의재단 이사장상)
@@ -225,7 +223,9 @@
                   한국과학창의재단 2021년 청소년 과학 탐구 동아리 개인 활동 은상
                   (한국과학창의재단 이사장상)
                 </li>
-                <li>한국코드페어 해커톤 동상 (한국정보과학학회 회장상)</li>
+                <li>
+                  한국코드페어 해커톤 동상 (2023년 한국정보과학학회 회장상)
+                </li>
               </ul>
             </v-col>
           </div>
@@ -241,7 +241,6 @@
               :elevation="10"
             ></ImgMember>
 
-            <p class="mt-3">{{ t("designer") }}</p>
             <b>{{ t("Woojin Cho") }}</b>
           </v-col>
         </div>
@@ -253,7 +252,7 @@
                 <span v-if="locale === 'en'">
                   Hello, I am a student in the international track of the HAFS.
                   I'm here to help fulfill the vision of Linkall of providing
-                  primary guidance for students’ education, and I'm mainly in
+                  primary guidance for students' education, and I'm mainly in
                   charge of design-related works in LinkAll.
                 </span>
                 <span v-else-if="locale === 'ko'">

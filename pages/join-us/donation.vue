@@ -73,15 +73,14 @@
       <v-dialog v-model="dialog1" width="500">
         <v-card :title="t('transfer')">
           <v-card-text class="my-3">
-            <div class="d-flex">
-              <div class="mx-3">
-                <v-btn
-                  icon=" mdi-content-copy"
-                  variant="icon"
-                  @click="copy"
-                ></v-btn>
+            <div class="transfer">
+              <div class="ma-auto mb-2">
+                <v-btn variant="flat" @click="copy">
+                  <v-icon start>mdi-content-copy</v-icon> copy
+                </v-btn>
               </div>
-              <div>
+
+              <div class="ma-auto">
                 3333294607629 카카오뱅크<br />
                 (예금주: 김현희)
               </div>
@@ -253,6 +252,10 @@ useHead({
   width: 150px;
 }
 
+.transfer {
+  display: flex;
+}
+
 @media (max-width: 1275px) {
   .container {
     height: calc(100vh - 65px);
@@ -292,6 +295,12 @@ useHead({
   .donation-image {
     height: 70px;
     width: 70px;
+  }
+}
+
+@media (max-width: 400px) {
+  .transfer {
+    flex-direction: column;
   }
 }
 </style>

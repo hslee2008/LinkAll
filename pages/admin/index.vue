@@ -6,7 +6,7 @@
 
     <div class="text-center">
       <v-btn width="300" height="60" to="/admin/edit">
-        Edit Site Values <v-icon end>mdi-pencil</v-icon>
+        Edit Site Values <v-icon end>$edit</v-icon>
       </v-btn>
       <br />
       <br />

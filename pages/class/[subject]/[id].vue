@@ -1,7 +1,7 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
     <div class="top-div">
-      <div class="mr-7">
+      <div class="bottom-div">
         <div>
           <div v-if="locale === 'en'" class="title-container">
             <h1 class="mr-3">{{ classInfo.englishOfficialName }}</h1>
@@ -25,7 +25,7 @@
         <br />
 
         <v-alert
-          border="start"
+          :border="!mobile ? 'start' : 'top'"
           border-color="success"
           icon="mdi-firework"
           class="text-justify"
@@ -40,7 +40,10 @@
           </span>
         </v-alert>
         <br />
-        <h2 style="font-family: Grape Nuts" class="font-weight-black ml-3 mb-3">
+        <h2
+          style="font-family: Grape Nuts"
+          class="linkall-sign font-weight-black ml-3 mb-3"
+        >
           - Think for All, Link All.
         </h2>
 
@@ -221,7 +224,7 @@
     >
       <div class="ma-4">
         <v-btn
-          icon="mdi-pencil"
+          icon="$edit"
           size="large"
           color="primary"
           elevation="8"
@@ -236,9 +239,11 @@
 import { useI18n } from "vue-i18n";
 import { push, ref as dbRef, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { useDisplay } from "vuetify";
 
 const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();
+const { mobile } = useDisplay();
 const route = useRoute();
 
 const classInfo = ref({});
@@ -318,6 +323,10 @@ useHead({
   margin-right: 20px;
 }
 
+.bottom-div {
+  margin-right: 28px;
+}
+
 .title-container {
   display: flex;
 }
@@ -329,6 +338,11 @@ useHead({
 
   .side-div {
     margin-left: 0px;
+    margin-right: 5px;
+  }
+
+  .bottom-div {
+    margin-right: 5px;
   }
 
   .title-container {
@@ -341,6 +355,10 @@ useHead({
 
   h2 {
     font-size: 1rem;
+  }
+
+  .linkall-sign {
+    font-size: 3rem;
   }
 
   .about-me {

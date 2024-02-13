@@ -4,7 +4,6 @@
       <v-card
         v-bind="props"
         elevation="0"
-        height="300px"
         :width="width"
         varaint="tonal"
         class="cardy rounded-lg"
@@ -82,9 +81,19 @@ const props = defineProps({
   padding-top: 30px;
 }
 
+.cardy {
+  height: 300px;
+}
+
 @media (max-width: 600px) {
   .headline {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cardy {
+    width: 90vw !important;
   }
 }
 

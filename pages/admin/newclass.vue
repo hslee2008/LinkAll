@@ -137,7 +137,7 @@
             <v-list-item-actions>
               <v-btn
                 icon="mdi-delete"
-                variant="icon"
+                variant="plain"
                 size="small"
                 @click="deleteClassDate(index)"
               ></v-btn>

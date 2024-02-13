@@ -38,7 +38,7 @@
             src="/members/woojin.png"
             name="woojin"
           ></ImgMember>
-          <p class="text-center">{{ t("designer") }}</p>
+          <p class="text-center">{{ t("Designer") }}</p>
           <p class="text-center text-h6">{{ t("Woojin Cho") }}</p>
         </div>
       </div>
@@ -63,7 +63,7 @@
             <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
           </div>
 
-          <div class="flex-item">
+          <div :class="`flex-item ${mobile ? 'mt-5' : ''}`">
             <ImgMember
               :showLink="true"
               src="/members/doyung.png"
@@ -95,8 +95,10 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import { useDisplay } from "vuetify";
 
 const { t } = useI18n();
+const { mobile } = useDisplay();
 
 useHead({
   title: t("committees"),

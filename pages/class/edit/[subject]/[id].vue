@@ -5,42 +5,44 @@
     <br />
 
     <DivCenter>
-      <v-dialog width="500">
-        <template v-slot:activator="{ props }">
-          <v-btn v-bind="props" elevation="0" color="red">Delete Class</v-btn>
-        </template>
+      <div class="container">
+        <DivCenter>
+          <v-dialog width="500">
+            <template v-slot:activator="{ props }">
+              <v-btn v-bind="props" elevation="0" color="red"
+                >Delete Class</v-btn
+              >
+            </template>
 
-        <template v-slot:default="{ isActive }">
-          <v-card title="Delete Class">
-            <v-card-text>
-              Do you really want to delete this class?
-              <br />
-              It will be copletely erased from the database.<br />
-              There will be no way of recovering it.
-            </v-card-text>
+            <template v-slot:default="{ isActive }">
+              <v-card title="Delete Class">
+                <v-card-text>
+                  Do you really want to delete this class?
+                  <br />
+                  It will be copletely erased from the database.<br />
+                  There will be no way of recovering it.
+                </v-card-text>
 
-            <v-card-actions class="d-flex justify-center">
-              <v-btn
-                text="Delete Class"
-                prepend-icon="mdi-delete"
-                color="red"
-                @click="deleteClass"
-              ></v-btn>
+                <v-card-actions class="d-flex justify-center">
+                  <v-btn
+                    text="Delete Class"
+                    prepend-icon="mdi-delete"
+                    color="red"
+                    @click="deleteClass"
+                  ></v-btn>
 
-              <v-btn
-                text="Close Dialog"
-                @click="isActive.value = false"
-              ></v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-    </DivCenter>
+                  <v-btn
+                    text="Close Dialog"
+                    @click="isActive.value = false"
+                  ></v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </DivCenter>
 
-    <br />
+        <br />
 
-    <DivCenter>
-      <div style="min-width: 400px">
         <v-label>
           icon (<a
             target="_blank"
@@ -179,7 +181,7 @@
             <v-list-item-actions>
               <v-btn
                 icon="mdi-delete"
-                variant="icon"
+                variant="plain"
                 size="small"
                 @click="deleteClassDate(index)"
               ></v-btn>
@@ -316,3 +318,16 @@ function updateClass() {
   router.push("/actions/education");
 }
 </script>
+
+<style scoped>
+.container {
+  min-width: 400px;
+}
+
+@media (max-width: 450px) {
+  .container {
+    width: calc(100vw - 50px);
+    min-width: initial;
+  }
+}
+</style>
