@@ -156,8 +156,6 @@
 </template>
 
 <script setup>
-import { ref as dbRef, onValue, set } from "firebase/database";
-
 const router = useRouter();
 const { $db } = useNuxtApp();
 

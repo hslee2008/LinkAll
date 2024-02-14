@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import { ref as dbRef, update, onValue } from "firebase/database";
-
 const taughtStudents = ref("0");
 const wonDonated = ref("0");
 const hoursOf = ref("0");

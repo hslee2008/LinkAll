@@ -224,15 +224,11 @@
       reserved
     </div>
 
-    <div class="version">v0.0.9</div>
+    <div class="version">v0.0.10</div>
   </v-footer>
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import { useDisplay } from "vuetify";
-import { ref as dbRef, onValue } from "firebase/database";
-
 const { t } = useI18n();
 const { $db } = useNuxtApp();
 const { mobile } = useDisplay();

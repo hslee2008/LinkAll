@@ -11,18 +11,14 @@
 
       <div class="d-flex my-3">
         <div class="mx-7">
-          <ImgMember
-            :showLink="true"
-            src="/members/junho.png"
-            name="junho"
-          ></ImgMember>
+          <ImgMember showLink src="/members/junho.png" name="junho"></ImgMember>
           <p class="text-center">{{ t("founder") }}</p>
           <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
         </div>
 
         <div class="mx-7">
           <ImgMember
-            :showLink="true"
+            showLink
             src="/members/hyunseung.png"
             name="hyunseung"
           ></ImgMember>
@@ -34,7 +30,7 @@
       <div class="d-flex justify-center my-3">
         <div class="mx-7">
           <ImgMember
-            :showLink="true"
+            showLink
             src="/members/woojin.png"
             name="woojin"
           ></ImgMember>
@@ -94,9 +90,6 @@
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import { useDisplay } from "vuetify";
-
 const { t } = useI18n();
 const { mobile } = useDisplay();
 

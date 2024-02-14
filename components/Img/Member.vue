@@ -24,7 +24,7 @@
 const props = defineProps({
   src: String,
   width: {
-    type: Number,
+    type: Number || String,
     default: 150,
   },
   elevation: {

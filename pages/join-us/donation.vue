@@ -50,26 +50,6 @@
         <p v-else-if="locale === 'ko'" class="text-center">국내</p>
       </v-card>
 
-      <!--
-      <v-card
-        @click="openDialog2"
-        color="transparent"
-        :elevation="0"
-        class="ma-2 pa-2"
-      >
-        <DivCenter>
-          <img
-            class="rounded-pill ma-auto donation-image"
-            style="border-style: solid"
-            src="/used-images/paypal.png"
-          />
-        </DivCenter>
-        <h2 class="text-center">{{ t("paypal") }}</h2>
-        <p v-if="locale === 'en'" class="text-center">Foreign</p>
-        <p v-else-if="locale === 'ko'" class="text-center">해외</p>
-      </v-card>
-      -->
-
       <v-dialog v-model="dialog1" width="500">
         <v-card :title="t('transfer')">
           <v-card-text class="my-3">
@@ -94,26 +74,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <!--<v-dialog v-model="dialog2" width="500">
-        <v-card :title="t('paypal')">
-          <v-card-text class="my-3">
-            <v-select
-              v-model="donateAmount"
-              :items="[0.5, 1, 3, 5, 10, 15, 25, 50]"
-              label="Donate Amount (USD)"
-              variant="outlined"
-            ></v-select>
-
-            <div id="paypal-button-container"></div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn text="Close" color="red" @click="dialog2 = false"></v-btn>
-            <v-spacer></v-spacer>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>-->
     </div>
 
     <v-snackbar v-model="snackbar">
@@ -129,18 +89,12 @@
 </template>
 
 <script setup>
-import { loadScript } from "@paypal/paypal-js";
-import { ref as dbRef, set, onValue } from "firebase/database";
-import { useI18n } from "vue-i18n";
-
 const { t, locale } = useI18n();
-const { $db, $auth } = useNuxtApp();
+const { $auth } = useNuxtApp();
 const userInfo = ref(null);
 
 const snackbar = ref(false);
 const dialog1 = ref(false);
-const dialog2 = ref(false);
-const donateAmount = ref("0.5");
 
 onMounted(() => {
   $auth.onAuthStateChanged(() => {
@@ -150,69 +104,6 @@ onMounted(() => {
 
 const openDialog1 = () => {
   dialog1.value = true;
-};
-const openDialog2 = () => {
-  dialog2.value = true;
-
-  loadScript({
-    "client-id":
-      "AfS9jbsEq7ax6TRoH58Q9DZ77vPw7KHbKCaYZq6mKxXr_pWmP11fVPH7FJSdEi2trD9rJtUGgWJC__FY",
-  }).then((paypal) => {
-    paypal
-      .Buttons({
-        createOrder: function (data, actions) {
-          return actions.order.create({
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: "USD",
-                  value: donateAmount.value,
-                },
-              },
-            ],
-          });
-        },
-        onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-            alert(
-              "Transaction completed by " + details.payer.name.given_name + "!"
-            );
-
-            set(dbRef($db, `users/${userInfo.value.uid}/donation`), {
-              amount: donateAmount.value,
-              date: new Date().toISOString(),
-            });
-
-            onValue(
-              dbRef($db, `users/${userInfo.value.uid}/total-donation`),
-              (snapshot) => {
-                if (snapshot.exists()) {
-                  let total;
-
-                  if (parseInt(snapshot.val().amount) === "NaN") {
-                    total = donateAmount.value;
-                  } else {
-                    total =
-                      parseInt(snapshot.val().amount) + donateAmount.value;
-                  }
-
-                  set(
-                    dbRef($db, `users/${userInfo.value.uid}/total-donation`),
-                    total
-                  );
-                } else {
-                  set(
-                    dbRef($db, `users/${userInfo.value.uid}/total-donation`),
-                    donateAmount.value
-                  );
-                }
-              }
-            );
-          });
-        },
-      })
-      .render("#paypal-button-container");
-  });
 };
 
 function copy() {

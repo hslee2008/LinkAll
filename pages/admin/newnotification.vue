@@ -22,8 +22,6 @@
 </template>
 
 <script setup>
-import { set, ref as dbRef } from "firebase/database";
-
 const router = useRouter();
 const { $db } = useNuxtApp();
 

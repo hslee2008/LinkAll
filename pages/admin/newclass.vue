@@ -130,18 +130,16 @@
         <v-label>Class Dates</v-label>
         <v-list>
           <v-list-item v-for="(item, index) in classDates" :key="item">
-            <v-list-itme-title>
-              Class {{ index + 1 }}. {{ item }}
-            </v-list-itme-title>
+            <span> Class {{ index + 1 }}. {{ item }} </span>
 
-            <v-list-item-actions>
+            <v-list-item-action>
               <v-btn
                 icon="mdi-delete"
                 variant="plain"
                 size="small"
                 @click="deleteClassDate(index)"
               ></v-btn>
-            </v-list-item-actions>
+            </v-list-item-action>
           </v-list-item>
         </v-list>
         <v-text-field
@@ -165,8 +163,6 @@
 </template>
 
 <script setup>
-import { ref as dbRef, set } from "firebase/database";
-
 const router = useRouter();
 const { $db } = useNuxtApp();
 

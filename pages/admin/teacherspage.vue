@@ -93,8 +93,6 @@
 </template>
 
 <script setup>
-import { onValue, ref as dbRef } from "firebase/database";
-
 const { $db, $auth } = useNuxtApp();
 
 const parsedEmail = ref("");

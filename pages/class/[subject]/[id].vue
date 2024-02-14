@@ -86,12 +86,12 @@
         <div>
           <ImgMember
             :src="`/members/${classInfo.teacherID}.png`"
-            elevation="0"
-            width="250"
-            :showLink="true"
+            :elevation="0"
+            :width="250"
             :name="classInfo.teacherID"
             class="mt-5"
             bordered
+            showLink
           />
         </div>
 
@@ -236,10 +236,7 @@
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import { push, ref as dbRef, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
-import { useDisplay } from "vuetify";
 
 const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();

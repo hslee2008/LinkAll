@@ -217,9 +217,6 @@
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import { ref as dbRef, push, set, onValue } from "firebase/database";
-
 const { t } = useI18n();
 const { $db, $auth } = useNuxtApp();
 
