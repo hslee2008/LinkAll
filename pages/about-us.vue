@@ -97,7 +97,7 @@
                     target="_blank"
                     href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
                   >
-                    <v-img src="/school/pangyo.png" height="55px"></v-img>
+                    <v-img src="/school/pangyo.png" height="100px"></v-img>
                   </v-card>
                 </v-col>
               </v-row>

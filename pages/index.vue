@@ -95,7 +95,7 @@
   <hr />
   <br />
 
-  <v-container fluid style="width: 90%">
+  <v-container fluid>
     <v-row justify="center">
       <template v-for="(i, index) in classList" :key="index">
         <v-col
@@ -116,8 +116,9 @@
 
   <v-carousel
     delimiter-icon="mdi-square"
+    hide-delimiter-background
     color="#5C6BC0"
-    height="calc(100vw * 2731/3723 *2/3)"
+    height="calc(100vw * 2731/3723 * 2/3)"
     width="100vw"
     continuous
   >
@@ -224,7 +225,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.10</div>
+    <div class="version">v0.0.11</div>
   </v-footer>
 </template>
 

@@ -150,53 +150,171 @@
         <v-label>Korean about me</v-label>
         <v-textarea v-model="koreanAboutMe" variant="outlined"></v-textarea>
 
-        <v-label>Grade</v-label>
-        <v-text-field
-          v-model="grade"
-          placeholder="ex) 7 ~ 9"
-          variant="outlined"
-        ></v-text-field>
+        <div style="border: 1px solid blue" class="rounded-lg pa-3 mb-10">
+          <v-label>Language</v-label>
+          <v-text-field
+            v-model="lang"
+            placeholder="ex) English, Korean (with comma or only one)"
+            variant="outlined"
+          ></v-text-field>
 
-        <v-label>Estimated Student per class</v-label>
-        <v-text-field
-          v-model="estStudent"
-          placeholder="ex) 6 ~ 8 / class"
-          variant="outlined"
-        ></v-text-field>
+          <v-label>Grade</v-label>
+          <v-text-field
+            v-model="grade"
+            placeholder="ex) 7 ~ 9"
+            variant="outlined"
+          ></v-text-field>
 
-        <v-label>Estimated Time per class</v-label>
-        <v-text-field
-          v-model="estTime"
-          placeholder="ex) 1h / class"
-          variant="outlined"
-        ></v-text-field>
+          <v-label>Estimated Student per class</v-label>
+          <v-text-field
+            v-model="estStudent"
+            placeholder="ex) 6 ~ 8 / class"
+            variant="outlined"
+          ></v-text-field>
 
-        <v-label>Class Dates</v-label>
-        <v-list>
-          <v-list-item v-for="(item, index) in classDates" :key="item">
-            <span> Class {{ index + 1 }}. {{ item }} </span>
+          <v-label>Estimated Time per class</v-label>
+          <v-text-field
+            v-model="estTime"
+            placeholder="ex) 1h / class"
+            variant="outlined"
+          ></v-text-field>
+        </div>
 
-            <v-list-item-action>
-              <v-btn
-                icon="mdi-delete"
-                variant="plain"
-                size="small"
-                @click="deleteClassDate(index)"
-              ></v-btn>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
-        <v-text-field
-          v-model="toAdd"
-          placeholder="2024/3/3"
-          variant="outlined"
-        ></v-text-field>
-        <v-btn elevation="0" @click="add">
-          <v-icon start>mdi-plus</v-icon>
-          add
-        </v-btn>
+        <v-dialog width="500">
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" variant="tonal" class="rounded-pill">
+              Class Dates
+            </v-btn>
+          </template>
 
-        <DivCenter>
+          <template v-slot:default="{ isActive }">
+            <v-card>
+              <v-card-title>Add/Edit Dates</v-card-title>
+
+              <v-card-text>
+                <v-text-field
+                  v-model="toAdd"
+                  placeholder="2024/3/3"
+                  variant="solo-filled"
+                  class="rounded-lg"
+                ></v-text-field>
+                <DivCenter class="mb-6">
+                  <v-btn variant="tonal" @click="add">
+                    <v-icon start>mdi-plus</v-icon>
+                    add
+                  </v-btn>
+                </DivCenter>
+
+                <v-list>
+                  <v-list-item
+                    v-for="(item, index) in classDates"
+                    :key="item"
+                    class="rounded-lg mb-3 pa-2"
+                    style="border: 1px solid blue"
+                  >
+                    <v-list-item-title>
+                      Class {{ index + 1 }}. {{ item }}
+                    </v-list-item-title>
+
+                    <v-list-item-action class="mt-2">
+                      <v-btn variant="tonal" @click="deleteClassDate(index)">
+                        <v-icon start>mdi-delete</v-icon> Delete
+                      </v-btn>
+
+                      <v-dialog width="500">
+                        <template v-slot:activator="{ props }">
+                          <v-btn
+                            v-bind="props"
+                            variant="tonal"
+                            class="ml-3"
+                            @click="temp = item"
+                          >
+                            <v-icon start>mdi-pencil</v-icon> Edit
+                          </v-btn>
+                        </template>
+
+                        <template v-slot:default="{ isActive }">
+                          <v-card title="Edit Class Date">
+                            <v-card-text>
+                              <v-text-field v-model="temp"></v-text-field>
+                            </v-card-text>
+
+                            <v-card-actions>
+                              <v-spacer></v-spacer>
+
+                              <v-btn
+                                text="Save"
+                                @click="
+                                  () => {
+                                    classDates[index] = temp;
+                                    isActive.value = false;
+                                  }
+                                "
+                              ></v-btn>
+
+                              <v-spacer></v-spacer>
+                            </v-card-actions>
+                          </v-card>
+                        </template>
+                      </v-dialog>
+                    </v-list-item-action>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+
+              <v-card-actions class="d-flex justify-center my-3">
+                <v-btn @click="isActive.value = false" color="red">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+
+        <v-dialog width="500">
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" variant="tonal" class="rounded-pill ml-2">
+              Class Schedule (optional)
+            </v-btn>
+          </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card>
+              <v-card-title>Add/Edit Schedule</v-card-title>
+
+              <v-card-text>
+                <v-list>
+                  <v-list-item
+                    v-for="(item, index) in classDates"
+                    :key="item"
+                    class="rounded-lg mb-3 pa-4"
+                    style="border: 1px solid blue"
+                  >
+                    <v-list-item-title>
+                      Class {{ index + 1 }}. {{ item }}
+                    </v-list-item-title>
+
+                    <v-text-field
+                      variant="underlined"
+                      placeholder="should put english class schedule explanation here"
+                      v-model="englishClassSchedule[index]"
+                    ></v-text-field>
+
+                    <v-text-field
+                      variant="underlined"
+                      placeholder="한국어 수업 설명"
+                      v-model="koreanClassSchedule[index]"
+                    ></v-text-field>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+
+              <v-card-actions class="d-flex justify-center my-3">
+                <v-btn @click="isActive.value = false" color="red">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+
+        <DivCenter class="mt-10">
           <v-btn @click="updateClass" elevation="0">Update Class</v-btn>
         </DivCenter>
       </div>
@@ -213,6 +331,8 @@ const { $db } = useNuxtApp();
 
 const subjectID = route.params.subject;
 const idID = route.params.id;
+
+const temp = ref("");
 
 const icon = ref("mdi-math-compass");
 const englishDisplayName = ref("");
@@ -234,6 +354,9 @@ const grade = ref("");
 const estStudent = ref("");
 const estTime = ref("");
 const classDates = ref([]);
+const englishClassSchedule = ref([]);
+const koreanClassSchedule = ref([]);
+const lang = ref("");
 
 const toAdd = ref("");
 function add() {
@@ -264,12 +387,11 @@ onMounted(() => {
     grade.value = data.grade;
     estStudent.value = data.estStudent;
     estTime.value = data.estTime;
-    classDates.value = data.classDates;
+    classDates.value = data.classDates ?? [];
+    englishClassSchedule.value = data.englishClassSchedule ?? [];
+    koreanClassSchedule.value = data.koreanClassSchedule ?? [];
+    lang.value = data.lang ?? "Not Specified";
   });
-
-  if (classDates.value === undefined) {
-    classDates.value = [];
-  }
 });
 
 function deleteClassDate(index) {
@@ -308,6 +430,9 @@ function updateClass() {
     estStudent: estStudent.value,
     estTime: estTime.value,
     classDates: classDates.value,
+    englishClassSchedule: englishClassSchedule.value,
+    koreanClassSchedule: koreanClassSchedule.value,
+    lang: lang.value,
   });
 
   router.push("/actions/education");

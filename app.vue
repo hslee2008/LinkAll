@@ -2,7 +2,12 @@
   <v-app>
     <NuxtLoadingIndicator />
 
-    <v-navigation-drawer v-model="drawer" location="right" class="pa-3">
+    <v-navigation-drawer
+      v-if="mobile"
+      v-model="drawer"
+      location="right"
+      class="pa-3"
+    >
       <div v-if="userInfo && !userInfo.emailVerified">
         <v-alert type="warning" text="Email is not verified">
           <v-btn @click="verifyEmail" variant="outlined" block class="mt-3">
@@ -408,18 +413,12 @@ const tempLocaleObject = ref(locale === "ko" ? "한국어" : "English");
 const isAdmin = ref(false);
 const userInfo = ref(null);
 
-const drawer = ref(mobile);
+const drawer = ref(false);
 
 $auth.onAuthStateChanged((user) => {
   if (user) {
     userInfo.value = user;
-
-    if (
-      user.email === "h.junho420@gmail.com" ||
-      user.email === "hyunseunglee2008@gmail.com"
-    ) {
-      isAdmin.value = true;
-    }
+    isAdmin.value = checkAdmin(user.email);
   }
 });
 
@@ -447,8 +446,6 @@ onMounted(() => {
       "https://instagram.com/ihxnsxng\nhttps://github.com/hslee2008\nhttps://play.google.com/store/apps/dev?id=7815903651523223132"
     );
   }
-
-  drawer.value = mobile;
 });
 
 const search = ref("");

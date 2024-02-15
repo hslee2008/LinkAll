@@ -399,8 +399,14 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'"></ul>
-              <ul v-else-if="locale === 'ko'"></ul>
+              <ul v-if="locale === 'en'">
+                <li>HAFS Mathematical Writing Contest Silver Prize</li>
+                <li>HAFS Mathematical Writing Contest Bronze Prize</li>
+              </ul>
+              <ul v-else-if="locale === 'ko'">
+                <li>외대부고 수학 경시대회 은상</li>
+                <li>외대부고 수학 경시대회 동상</li>
+              </ul>
             </v-col>
           </div>
         </v-col>

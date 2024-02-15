@@ -99,29 +99,31 @@ const parsedEmail = ref("");
 const classes = ref({});
 const collectedDates = ref({});
 
-$auth.onAuthStateChanged((user) => {
-  if (user) {
-    parsedEmail.value = user.email?.split("@")[0].replaceAll(".", "_");
-  }
-
-  if (process.env.NODE_ENV === "development") {
-    parsedEmail.value = "h_junho420";
-  }
-});
-
-onValue(dbRef($db, "classes"), (snapshot) => {
-  const data = snapshot.val();
-  classes.value = data;
-
-  for (const item in data[parsedEmail.value]["to-join"]) {
-    collectedDates.value[item] = [];
-
-    for (const innerItem in data[parsedEmail.value]["to-join"][item]) {
-      collectedDates.value[item].push(
-        Object.values(data[parsedEmail.value]["to-join"][item][innerItem])[0]
-          .date
-      );
+onMounted(() => {
+  $auth.onAuthStateChanged((user) => {
+    if (user) {
+      parsedEmail.value = user.email?.split("@")[0].replaceAll(".", "_");
     }
-  }
+
+    if (process.env.NODE_ENV === "development") {
+      parsedEmail.value = "h_junho420";
+    }
+  });
+
+  onValue(dbRef($db, "classes"), (snapshot) => {
+    const data = snapshot.val();
+    classes.value = data;
+
+    for (const item in data[parsedEmail.value]["to-join"]) {
+      collectedDates.value[item] = [];
+
+      for (const innerItem in data[parsedEmail.value]["to-join"][item]) {
+        collectedDates.value[item].push(
+          Object.values(data[parsedEmail.value]["to-join"][item][innerItem])[0]
+            .date
+        );
+      }
+    }
+  });
 });
 </script>

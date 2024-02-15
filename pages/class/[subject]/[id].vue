@@ -51,11 +51,15 @@
           <v-table style="border: 1px solid black; border-radius: 10px">
             <thead style="background-color: #b0d6b2">
               <tr>
-                <th class="text-left">Category</th>
-                <th class="text-left">Information</th>
+                <th class="text-left font-weight-bold">Category</th>
+                <th class="text-left font-weight-bold">Information</th>
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <th>Language</th>
+                <td>{{ classInfo.lang ?? "Not Specified" }}</td>
+              </tr>
               <tr>
                 <th>Grade</th>
                 <td>{{ classInfo.grade }}</td>
@@ -67,6 +71,32 @@
               <tr>
                 <th>Class Time</th>
                 <td>{{ classInfo.estTime }}</td>
+              </tr>
+            </tbody>
+          </v-table>
+        </div>
+
+        <div
+          v-if="classInfo.englishClassSchedule || classInfo.koreanClassSchedule"
+          class="my-10"
+        >
+          <v-table style="border: 1px solid black; border-radius: 10px">
+            <thead style="background-color: #b0d6b2">
+              <tr>
+                <th class="text-left font-weight-bold">Class Date</th>
+                <th class="text-left font-weight-bold">Class Theme</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(schedule, index) in classInfo[
+                  locale === 'en'
+                    ? 'englishClassSchedule'
+                    : 'koreanClassSchedule'
+                ]"
+              >
+                <th>{{ classInfo.classDates[index] }}</th>
+                <td>{{ schedule }}</td>
               </tr>
             </tbody>
           </v-table>
@@ -104,7 +134,7 @@
           </span>
         </p>
 
-        <v-dialog width="500" transition="dialog-bottom-transition">
+        <v-dialog width="700" transition="dialog-bottom-transition">
           <template v-slot:activator="{ props }">
             <v-btn
               v-bind="props"
@@ -129,11 +159,16 @@
           </template>
 
           <template v-slot:default="{ isActive }">
-            <v-card title="Apply for a class">
+            <v-card>
               <v-card-text>
                 <v-form>
-                  <p>Select Class Date</p>
-                  <v-radio-group v-model="classNumber">
+                  <h2 class="text-center">Select Class Date</h2>
+
+                  <v-radio-group
+                    v-model="classNumber"
+                    class="my-3 rounded-lg"
+                    style="border: 1px solid black"
+                  >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
                       :label="`(${index + 1}) ${radio}`"
@@ -143,22 +178,97 @@
                     </v-radio>
                   </v-radio-group>
 
-                  <v-text-field
-                    v-model="s_name"
-                    label="Student Name"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="s_email"
-                    label="Student Email"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="g_name"
-                    label="Guardian Name"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="g_email"
-                    label="Guardian Email"
-                  ></v-text-field>
+                  <div class="mt-10">
+                    <v-text-field
+                      v-model="s_name"
+                      label="Student Name"
+                      variant="outlined"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="s_email"
+                      label="Student Email"
+                      variant="outlined"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="g_name"
+                      label="Guardian Name"
+                      variant="outlined"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="g_email"
+                      label="Guardian Email"
+                      variant="outlined"
+                    ></v-text-field>
+                  </div>
+
+                  <div class="mt-3">
+                    <v-expansion-panels elevation="0">
+                      <v-expansion-panel>
+                        <v-expansion-panel-title>
+                          Terms of Agreement
+                          <span class="text-red ml-1">*</span>
+
+                          <template v-slot:actions>
+                            <v-icon :color="toa1 && toa2 ? 'green' : 'red'">
+                              {{ toa1 && toa2 ? "mdi-check" : "mdi-alert" }}
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-title>
+                        <v-expansion-panel-text>
+                          <v-checkbox v-model="toa1">
+                            <template v-slot:label>
+                              Personal Information used for teacher and student
+                              contact
+                              <span class="text-red ml-1">*</span>
+                            </template>
+                          </v-checkbox>
+                          <v-checkbox v-model="toa2">
+                            <template v-slot:label>
+                              Personal Information will be used for class
+                              documents of students
+                              <span class="text-red ml-1">*</span>
+                            </template>
+                          </v-checkbox>
+                          <v-checkbox v-model="toa3">
+                            <template v-slot:label>
+                              Emails Notifications from LinkAll
+                            </template>
+                          </v-checkbox>
+                          <v-checkbox v-model="toa4">
+                            <template v-slot:label>
+                              Usage of Class photos (Website upload, SNS upload,
+                              etc.)
+                            </template>
+                          </v-checkbox>
+
+                          <v-btn
+                            class="mb-10"
+                            variant="tonal"
+                            @click="
+                              () => {
+                                toa1 = true;
+                                toa2 = true;
+                                toa3 = true;
+                                toa4 = true;
+                              }
+                            "
+                          >
+                            Agree All
+                          </v-btn>
+
+                          <v-alert>
+                            If you do not agree to uploading the class photo,
+                            the student's face will be mosaiced for privacy
+                            <span class="text-blue">:)</span>
+                            For any inquiries, please contact
+                            <a href="mailto:linkallcommunity@gmail.com">
+                              linkallcommunity@gmail.com
+                            </a>
+                          </v-alert>
+                        </v-expansion-panel-text>
+                      </v-expansion-panel>
+                    </v-expansion-panels>
+                  </div>
                 </v-form>
               </v-card-text>
 
@@ -181,7 +291,10 @@
                     s_name === '' ||
                     s_email === '' ||
                     g_name === '' ||
-                    g_email === ''
+                    g_email === '' ||
+                    toa1 === false ||
+                    toa2 === false ||
+                    !!!classNumber
                   "
                 ></v-btn>
 
@@ -257,6 +370,11 @@ const g_email = ref("");
 const loggedin = ref(false);
 const thankYou = ref(false);
 
+const toa1 = ref(false);
+const toa2 = ref(false);
+const toa3 = ref(false);
+const toa4 = ref(false);
+
 onMounted(() => {
   const auth = getAuth();
   if (auth.currentUser) {
@@ -271,12 +389,7 @@ onMounted(() => {
 
   $auth.onAuthStateChanged((user) => {
     if (user) {
-      if (
-        user.email === "h.junho420@gmail.com" ||
-        user.email === "hyunseunglee2008@gmail.com"
-      ) {
-        isAdmin.value = true;
-      }
+      isAdmin.value = checkAdmin(user.email);
     }
   });
 });
