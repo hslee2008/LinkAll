@@ -31,6 +31,11 @@
       </v-btn>
       <br />
       <br />
+      <v-btn width="300" height="60" to="/admin/notificationallowedemails">
+        Emails for notification <v-icon end>mdi-email</v-icon>
+      </v-btn>
+      <br />
+      <br />
     </div>
   </div>
 </template>

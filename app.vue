@@ -110,15 +110,11 @@
         </v-menu>
       </div>
     </v-navigation-drawer>
-
     <v-app-bar
       v-if="mobile"
-      absolute
-      :elevation="0"
+      :elevation="scrollY"
       class="pl-5"
-      :style="`background-color: transparent;${
-        url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
-      }`"
+      :style="`${scrollY === 0 ? 'background-color: transparent' : ''} ${url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'}`"
     >
       <h2>
         <NuxtLink href="/">
@@ -413,6 +409,7 @@ const tempLocaleObject = ref(locale === "ko" ? "한국어" : "English");
 const isAdmin = ref(false);
 const userInfo = ref(null);
 
+const scrollY = ref(0);
 const drawer = ref(false);
 
 $auth.onAuthStateChanged((user) => {
@@ -434,7 +431,13 @@ watch(tempLocaleObject, (newLocale) => {
   }
 });
 
+function onScroll() {
+  scrollY.value = window.top.scrollY;
+}
+
 onMounted(() => {
+  window.addEventListener("scroll", onScroll, true);
+
   locale.value = localStorage.getItem("locale") ?? "en";
   tempLocaleObject.value = locale.value === "ko" ? "한국어" : "English";
 
@@ -446,6 +449,10 @@ onMounted(() => {
       "https://instagram.com/ihxnsxng\nhttps://github.com/hslee2008\nhttps://play.google.com/store/apps/dev?id=7815903651523223132"
     );
   }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", onScroll, true);
 });
 
 const search = ref("");

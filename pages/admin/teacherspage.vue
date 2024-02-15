@@ -1,10 +1,13 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
-    <h1 class="text-center">
-      Teacher's Page [<span class="text-decoration-underline">
-        {{ parsedEmail }} </span
-      >]
-    </h1>
+    <h1 class="text-center text-decoration-underline">Teacher's Page</h1>
+
+    <v-select
+      v-model="parsedEmail"
+      :items="keys"
+      class="my-3"
+      variant="outlined"
+    ></v-select>
 
     <div v-if="classes[parsedEmail]">
       <div v-for="item in Object.keys(classes[parsedEmail]['to-join'])">
@@ -20,7 +23,7 @@
           elevation="0"
         >
           <v-expansion-panels>
-            <v-expansion-panel>
+            <v-expansion-panel style="border: 3px solid red" class="my-3">
               <v-expansion-panel-title>
                 Class
                 {{
@@ -29,57 +32,142 @@
                   ]
                 }}
               </v-expansion-panel-title>
-              <v-expansion-panel-text>
-                <v-card-subtitle
-                  v-if="collectedDates[item][index]"
-                  class="my-4"
-                >
-                  date: {{ collectedDates[item][index] }}
-                </v-card-subtitle>
-                <v-card-subtitle v-else>
-                  date is not specified
-                </v-card-subtitle>
 
+              <v-table>
+                <thead>
+                  <tr>
+                    <th class="font-weight-bold">Students' Email</th>
+                    <th class="font-weight-bold">Guardians' Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>
+                      {{
+                        Object.values(classObj ?? {})
+                          .map((stu) => stu.s_email)
+                          .join(", ")
+                      }}
+                    </th>
+                    <th>
+                      {{
+                        Object.values(classObj ?? {})
+                          .map((stu) => stu.g_email)
+                          .join(", ")
+                      }}
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>
+                      <v-btn
+                        variant="tonal"
+                        @click="
+                          copy(
+                            Object.values(classObj ?? {})
+                              .map((stu) => stu.s_email)
+                              .join(', ')
+                          )
+                        "
+                      >
+                        <v-icon start>mdi-content-copy</v-icon> copy
+                      </v-btn>
+                    </th>
+                    <th>
+                      <v-btn
+                        variant="tonal"
+                        @click="
+                          copy(
+                            Object.values(classObj ?? {})
+                              .map((stu) => stu.g_email)
+                              .join(', ')
+                          )
+                        "
+                      >
+                        <v-icon start>mdi-content-copy</v-icon> copy
+                      </v-btn>
+                    </th>
+                  </tr>
+                </tbody>
+              </v-table>
+
+              <v-expansion-panel-text>
                 <v-list>
                   <div
-                    v-for="student in Object.values(classObj ?? {})"
-                    :key="student"
-                    class="d-flex"
+                    v-for="(student, i) in Object.values(classObj ?? {})"
+                    :key="i"
+                    style="
+                      border: 1px solid black;
+                      border-radius: 15px;
+                      padding: 5px;
+                      margin-bottom: 50px;
+                    "
                   >
+                    <div
+                      :class="`d-flex justify-center my-3 ${xs ? 'flex-column' : ''}`"
+                    >
+                      <v-list-item lines="two">
+                        <v-list-item-title class="font-weight-bold">{{
+                          student.s_name
+                        }}</v-list-item-title>
+                        <v-list-item-title>{{
+                          student.s_email
+                        }}</v-list-item-title>
+
+                        <v-list-item-action class="mt-1">
+                          <v-btn
+                            color="primary"
+                            :href="`mailto:${student.s_email}`"
+                          >
+                            <v-icon start>mdi-gmail</v-icon> Student
+                          </v-btn>
+                        </v-list-item-action>
+                      </v-list-item>
+
+                      <v-list-item lines="two">
+                        <v-list-item-title class="font-weight-bold">{{
+                          student.g_name
+                        }}</v-list-item-title>
+                        <v-list-item-title>{{
+                          student.g_email
+                        }}</v-list-item-title>
+
+                        <v-list-item-action class="mt-1">
+                          <v-btn
+                            color="primary"
+                            :href="`mailto:${student.g_email}`"
+                          >
+                            <v-icon start>mdi-gmail</v-icon> Guardian
+                          </v-btn>
+                        </v-list-item-action>
+                      </v-list-item>
+                    </div>
+
+                    <hr />
+
                     <v-list-item lines="two">
-                      <v-list-item-title class="font-weight-bold">{{
-                        student.s_name
-                      }}</v-list-item-title>
-                      <v-list-item-title>{{
-                        student.s_email
-                      }}</v-list-item-title>
-
-                      <v-list-item-action class="mt-1">
-                        <v-btn
-                          color="primary"
-                          :href="`mailto:${student.s_email}`"
-                        >
-                          <v-icon start>mdi-gmail</v-icon> Student
-                        </v-btn>
-                      </v-list-item-action>
-                    </v-list-item>
-
-                    <v-list-item lines="two">
-                      <v-list-item-title class="font-weight-bold">{{
-                        student.g_name
-                      }}</v-list-item-title>
-                      <v-list-item-title>{{
-                        student.g_email
-                      }}</v-list-item-title>
-
-                      <v-list-item-action class="mt-1">
-                        <v-btn
-                          color="primary"
-                          :href="`mailto:${student.g_email}`"
-                        >
-                          <v-icon start>mdi-gmail</v-icon> Guardian
-                        </v-btn>
-                      </v-list-item-action>
+                      <v-list-item-title
+                        class="text-decoration-underline text-center mb-3"
+                      >
+                        Terms of Agreement
+                      </v-list-item-title>
+                      <v-table>
+                        <thead>
+                          <tr>
+                            <th>Personal Info (contact)</th>
+                            <th>Personal Info (class documents)</th>
+                            <th>email notification</th>
+                            <th>photos</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>{{ student?.toa?.toa1 ?? "false" }}</th>
+                            <th>{{ student?.toa?.toa2 ?? "false" }}</th>
+                            <th>{{ student?.toa?.toa3 ?? "false" }}</th>
+                            <th>{{ student?.toa?.toa4 ?? "false" }}</th>
+                          </tr>
+                        </tbody>
+                      </v-table>
                     </v-list-item>
                   </div>
                 </v-list>
@@ -94,10 +182,11 @@
 
 <script setup>
 const { $db, $auth } = useNuxtApp();
+const { xs } = useDisplay();
 
 const parsedEmail = ref("");
+const keys = ref([]);
 const classes = ref({});
-const collectedDates = ref({});
 
 onMounted(() => {
   $auth.onAuthStateChanged((user) => {
@@ -113,17 +202,11 @@ onMounted(() => {
   onValue(dbRef($db, "classes"), (snapshot) => {
     const data = snapshot.val();
     classes.value = data;
-
-    for (const item in data[parsedEmail.value]["to-join"]) {
-      collectedDates.value[item] = [];
-
-      for (const innerItem in data[parsedEmail.value]["to-join"][item]) {
-        collectedDates.value[item].push(
-          Object.values(data[parsedEmail.value]["to-join"][item][innerItem])[0]
-            .date
-        );
-      }
-    }
+    keys.value = Object.keys(data ?? {});
   });
 });
+
+function copy(string) {
+  navigator.clipboard.writeText(string);
+}
 </script>

@@ -287,7 +287,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.12</div>
+    <div class="version">v0.0.13</div>
   </v-footer>
 </template>
 

@@ -174,10 +174,12 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
-              <v-card-title class="text-center">Select Class Date</v-card-title>
+              <v-card-title class="text-center text-decoration-underline">
+                Select Class Date
+              </v-card-title>
 
               <v-card-text>
-                <div class="mb-10">
+                <div class="mb-2">
                   <v-radio-group
                     v-model="classNumber"
                     hide-details
@@ -189,7 +191,10 @@
                       :label="`(${index + 1}) ${radio.replace('(done)', '')}`"
                       :key="index + 1"
                       :value="index + 1"
-                      :disabled="radio.includes('(done)')"
+                      :disabled="
+                        radio.includes('(done)') ||
+                        radio.includes('Not Decided')
+                      "
                       :style="
                         classInfo.classDates[index].includes('(done)')
                           ? 'text-decoration: line-through; color: grey'
@@ -200,36 +205,12 @@
                   </v-radio-group>
                 </div>
 
-                <div class="d-flex flex-column ga-1">
-                  <v-text-field
-                    v-model="s_name"
-                    label="Student Name"
-                    variant="outlined"
-                    :rules="nameRules"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="s_email"
-                    label="Student Email"
-                    variant="outlined"
-                    :rules="emailRules"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="g_name"
-                    label="Guardian Name"
-                    variant="outlined"
-                    :rules="nameRules"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="g_email"
-                    label="Guardian Email"
-                    variant="outlined"
-                    :rules="emailRules"
-                  ></v-text-field>
-                </div>
-
-                <div class="mt-3">
-                  <v-expansion-panels elevation="0">
-                    <v-expansion-panel>
+                <div class="mb-13">
+                  <v-expansion-panels>
+                    <v-expansion-panel
+                      elevation="0"
+                      style="border: 1px solid black"
+                    >
                       <v-expansion-panel-title>
                         Terms of Agreement
                         <span class="text-red ml-1">*</span>
@@ -279,7 +260,7 @@
                             }
                           "
                         >
-                          Agree All
+                          Agree to All
                         </v-btn>
 
                         <v-alert>
@@ -295,6 +276,35 @@
                     </v-expansion-panel>
                   </v-expansion-panels>
                 </div>
+
+                <div class="d-flex flex-column ga-1">
+                  <v-text-field
+                    v-model="s_name"
+                    label="Student Name"
+                    variant="outlined"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="s_email"
+                    label="Student Email"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-email"
+                    :rules="emailRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="g_name"
+                    label="Guardian Name"
+                    variant="outlined"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="g_email"
+                    label="Guardian Email"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-email"
+                    :rules="emailRules"
+                  ></v-text-field>
+                </div>
               </v-card-text>
 
               <v-card-actions>
@@ -304,7 +314,6 @@
                   text="Submit"
                   color="red"
                   block
-                  class="mb-3"
                   @click="
                     () => {
                       saveToDatabase();
@@ -441,7 +450,18 @@ const saveToDatabase = () => {
     g_name: g_name.value,
     g_email: g_email.value,
     date,
+    toa: {
+      toa1: toa1.value,
+      toa2: toa2.value,
+      toa3: toa3.value,
+      toa4: toa4.value,
+    },
   });
+
+  if (toa3) {
+    const notifRef = dbRef($db, "emails/notificationallowed");
+    push(notifRef, s_email.value)
+  }
 };
 
 useHead({
