@@ -84,3 +84,8 @@ add search feature
 v0.0.11
 add features in class
 fix small bugs
+
+v0.0.12
+add disabled feature in class database
+update packages & cli
+tweak minor styles

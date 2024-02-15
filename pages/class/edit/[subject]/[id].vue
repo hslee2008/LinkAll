@@ -154,7 +154,7 @@
           <v-label>Language</v-label>
           <v-text-field
             v-model="lang"
-            placeholder="ex) English, Korean (with comma or only one)"
+            placeholder="ex) English, 한국어 (with comma or only one)"
             variant="outlined"
           ></v-text-field>
 
@@ -180,142 +180,148 @@
           ></v-text-field>
         </div>
 
-        <v-dialog width="500">
-          <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" variant="tonal" class="rounded-pill">
-              Class Dates
-            </v-btn>
-          </template>
+        <DivCenter>
+          <v-dialog width="500">
+            <template v-slot:activator="{ props }">
+              <v-btn v-bind="props" variant="tonal" class="rounded-pill">
+                <v-icon start>mdi-calendar</v-icon> Dates
+              </v-btn>
+            </template>
 
-          <template v-slot:default="{ isActive }">
-            <v-card>
-              <v-card-title>Add/Edit Dates</v-card-title>
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-card-title>Add/Edit Dates</v-card-title>
 
-              <v-card-text>
-                <v-text-field
-                  v-model="toAdd"
-                  placeholder="2024/3/3"
-                  variant="solo-filled"
-                  class="rounded-lg"
-                ></v-text-field>
-                <DivCenter class="mb-6">
-                  <v-btn variant="tonal" @click="add">
-                    <v-icon start>mdi-plus</v-icon>
-                    add
-                  </v-btn>
-                </DivCenter>
+                <v-card-text>
+                  <v-text-field
+                    v-model="toAdd"
+                    placeholder="2024/3/3"
+                    variant="solo-filled"
+                    class="rounded-lg"
+                  ></v-text-field>
+                  <DivCenter class="mb-6">
+                    <v-btn variant="tonal" @click="add">
+                      <v-icon start>mdi-plus</v-icon>
+                      add
+                    </v-btn>
+                  </DivCenter>
 
-                <v-list>
-                  <v-list-item
-                    v-for="(item, index) in classDates"
-                    :key="item"
-                    class="rounded-lg mb-3 pa-2"
-                    style="border: 1px solid blue"
+                  <div>* add (done) when class is closed</div>
+
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in classDates"
+                      :key="item"
+                      class="rounded-lg mb-3 pa-2"
+                      style="border: 1px solid blue"
+                    >
+                      <v-label> Class {{ index + 1 }}: {{ item }} </v-label>
+
+                      <v-list-item-action class="mt-2">
+                        <v-btn variant="tonal" @click="deleteClassDate(index)">
+                          <v-icon start>mdi-delete</v-icon> Delete
+                        </v-btn>
+
+                        <v-dialog width="500">
+                          <template v-slot:activator="{ props }">
+                            <v-btn
+                              v-bind="props"
+                              variant="tonal"
+                              class="ml-3"
+                              @click="temp = item"
+                            >
+                              <v-icon start>mdi-pencil</v-icon> Edit
+                            </v-btn>
+                          </template>
+
+                          <template v-slot:default="{ isActive }">
+                            <v-card title="Edit Class Date">
+                              <v-card-text>
+                                <v-text-field v-model="temp"></v-text-field>
+                              </v-card-text>
+
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn
+                                  text="Save"
+                                  @click="
+                                    () => {
+                                      classDates[index] = temp;
+                                      isActive.value = false;
+                                    }
+                                  "
+                                ></v-btn>
+
+                                <v-spacer></v-spacer>
+                              </v-card-actions>
+                            </v-card>
+                          </template>
+                        </v-dialog>
+                      </v-list-item-action>
+                    </v-list-item>
+                  </v-list>
+                </v-card-text>
+
+                <v-card-actions class="d-flex justify-center my-3">
+                  <v-btn @click="isActive.value = false" color="red"
+                    >Save</v-btn
                   >
-                    <v-list-item-title>
-                      Class {{ index + 1 }}. {{ item }}
-                    </v-list-item-title>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
 
-                    <v-list-item-action class="mt-2">
-                      <v-btn variant="tonal" @click="deleteClassDate(index)">
-                        <v-icon start>mdi-delete</v-icon> Delete
-                      </v-btn>
+          <v-dialog width="500">
+            <template v-slot:activator="{ props }">
+              <v-btn v-bind="props" variant="tonal" class="rounded-pill ml-2">
+                Class Schedule
+              </v-btn>
+            </template>
 
-                      <v-dialog width="500">
-                        <template v-slot:activator="{ props }">
-                          <v-btn
-                            v-bind="props"
-                            variant="tonal"
-                            class="ml-3"
-                            @click="temp = item"
-                          >
-                            <v-icon start>mdi-pencil</v-icon> Edit
-                          </v-btn>
-                        </template>
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-card-title>Add/Edit Schedule</v-card-title>
 
-                        <template v-slot:default="{ isActive }">
-                          <v-card title="Edit Class Date">
-                            <v-card-text>
-                              <v-text-field v-model="temp"></v-text-field>
-                            </v-card-text>
+                <v-card-text>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in classDates"
+                      :key="item"
+                      class="rounded-lg mb-3 pa-4"
+                      style="border: 1px solid blue"
+                    >
+                      <v-list-item-title>
+                        Class {{ index + 1 }}. {{ item }}
+                      </v-list-item-title>
 
-                            <v-card-actions>
-                              <v-spacer></v-spacer>
+                      <v-text-field
+                        variant="underlined"
+                        placeholder="should put english class schedule explanation here"
+                        v-model="englishClassSchedule[index]"
+                      ></v-text-field>
 
-                              <v-btn
-                                text="Save"
-                                @click="
-                                  () => {
-                                    classDates[index] = temp;
-                                    isActive.value = false;
-                                  }
-                                "
-                              ></v-btn>
+                      <v-text-field
+                        variant="underlined"
+                        placeholder="한국어 수업 설명"
+                        v-model="koreanClassSchedule[index]"
+                      ></v-text-field>
+                    </v-list-item>
+                  </v-list>
+                </v-card-text>
 
-                              <v-spacer></v-spacer>
-                            </v-card-actions>
-                          </v-card>
-                        </template>
-                      </v-dialog>
-                    </v-list-item-action>
-                  </v-list-item>
-                </v-list>
-              </v-card-text>
-
-              <v-card-actions class="d-flex justify-center my-3">
-                <v-btn @click="isActive.value = false" color="red">Save</v-btn>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
-
-        <v-dialog width="500">
-          <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" variant="tonal" class="rounded-pill ml-2">
-              Class Schedule (optional)
-            </v-btn>
-          </template>
-
-          <template v-slot:default="{ isActive }">
-            <v-card>
-              <v-card-title>Add/Edit Schedule</v-card-title>
-
-              <v-card-text>
-                <v-list>
-                  <v-list-item
-                    v-for="(item, index) in classDates"
-                    :key="item"
-                    class="rounded-lg mb-3 pa-4"
-                    style="border: 1px solid blue"
+                <v-card-actions class="d-flex justify-center my-3">
+                  <v-btn @click="isActive.value = false" color="red"
+                    >Save</v-btn
                   >
-                    <v-list-item-title>
-                      Class {{ index + 1 }}. {{ item }}
-                    </v-list-item-title>
-
-                    <v-text-field
-                      variant="underlined"
-                      placeholder="should put english class schedule explanation here"
-                      v-model="englishClassSchedule[index]"
-                    ></v-text-field>
-
-                    <v-text-field
-                      variant="underlined"
-                      placeholder="한국어 수업 설명"
-                      v-model="koreanClassSchedule[index]"
-                    ></v-text-field>
-                  </v-list-item>
-                </v-list>
-              </v-card-text>
-
-              <v-card-actions class="d-flex justify-center my-3">
-                <v-btn @click="isActive.value = false" color="red">Save</v-btn>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </DivCenter>
 
         <DivCenter class="mt-10">
-          <v-btn @click="updateClass" elevation="0">Update Class</v-btn>
+          <v-btn @click="updateClass" variant="outlined">Update Class</v-btn>
         </DivCenter>
       </div>
     </DivCenter>

@@ -47,59 +47,73 @@
           - Think for All, Link All.
         </h2>
 
-        <div class="my-10">
-          <v-table style="border: 1px solid black; border-radius: 10px">
-            <thead style="background-color: #b0d6b2">
-              <tr>
-                <th class="text-left font-weight-bold">Category</th>
-                <th class="text-left font-weight-bold">Information</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Language</th>
-                <td>{{ classInfo.lang ?? "Not Specified" }}</td>
-              </tr>
-              <tr>
-                <th>Grade</th>
-                <td>{{ classInfo.grade }}</td>
-              </tr>
-              <tr>
-                <th>Est. Student</th>
-                <td>{{ classInfo.estStudent }}</td>
-              </tr>
-              <tr>
-                <th>Class Time</th>
-                <td>{{ classInfo.estTime }}</td>
-              </tr>
-            </tbody>
-          </v-table>
-        </div>
+        <div :class="`my-13 d-flex ga-6 ${mobile ? 'flex-column' : ''}`">
+          <div :style="!mobile ? 'width: 50%' : ''">
+            <v-table style="border: 1px solid black; border-radius: 10px">
+              <thead style="background-color: #b0d6b2">
+                <tr>
+                  <th class="text-center font-weight-bold">Category</th>
+                  <th class="text-center font-weight-bold">Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="text-center">Language</th>
+                  <td class="text-center">
+                    {{ classInfo.lang ?? "Not Specified" }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="text-center">Grade</th>
+                  <td class="text-center">{{ classInfo.grade }}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Est. Student</th>
+                  <td class="text-center">{{ classInfo.estStudent }}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Class Time</th>
+                  <td class="text-center">{{ classInfo.estTime }}</td>
+                </tr>
+              </tbody>
+            </v-table>
+          </div>
 
-        <div
-          v-if="classInfo.englishClassSchedule || classInfo.koreanClassSchedule"
-          class="my-10"
-        >
-          <v-table style="border: 1px solid black; border-radius: 10px">
-            <thead style="background-color: #b0d6b2">
-              <tr>
-                <th class="text-left font-weight-bold">Class Date</th>
-                <th class="text-left font-weight-bold">Class Theme</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(schedule, index) in classInfo[
-                  locale === 'en'
-                    ? 'englishClassSchedule'
-                    : 'koreanClassSchedule'
-                ]"
-              >
-                <th>{{ classInfo.classDates[index] }}</th>
-                <td>{{ schedule }}</td>
-              </tr>
-            </tbody>
-          </v-table>
+          <div
+            v-if="
+              classInfo.englishClassSchedule || classInfo.koreanClassSchedule
+            "
+            :style="!mobile ? 'width: 50%' : ''"
+          >
+            <v-table style="border: 1px solid black; border-radius: 10px">
+              <thead style="background-color: #b0d6b2">
+                <tr>
+                  <th class="text-center font-weight-bold">Class Date</th>
+                  <th class="text-center font-weight-bold">Class Theme</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(schedule, index) in classInfo[
+                    locale === 'en'
+                      ? 'englishClassSchedule'
+                      : 'koreanClassSchedule'
+                  ]"
+                  :key="schedule"
+                  :style="
+                    classInfo.classDates[index].includes('(done)')
+                      ? 'text-decoration: line-through; color: grey'
+                      : ''
+                  "
+                >
+                  <th class="text-center">
+                    {{ classInfo.classDates[index].replace(" (done)", "") }}
+                  </th>
+                  <td class="text-center">{{ schedule }}</td>
+                </tr>
+              </tbody>
+            </v-table>
+          </div>
         </div>
       </div>
 
@@ -134,7 +148,7 @@
           </span>
         </p>
 
-        <v-dialog width="700" transition="dialog-bottom-transition">
+        <v-dialog scrollable width="700" transition="dialog-bottom-transition">
           <template v-slot:activator="{ props }">
             <v-btn
               v-bind="props"
@@ -160,116 +174,127 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
-              <v-card-text>
-                <v-form>
-                  <h2 class="text-center">Select Class Date</h2>
+              <v-card-title class="text-center">Select Class Date</v-card-title>
 
+              <v-card-text>
+                <div class="mb-10">
                   <v-radio-group
                     v-model="classNumber"
-                    class="my-3 rounded-lg"
+                    hide-details
+                    class="py-3 rounded-lg"
                     style="border: 1px solid black"
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
-                      :label="`(${index + 1}) ${radio}`"
+                      :label="`(${index + 1}) ${radio.replace('(done)', '')}`"
                       :key="index + 1"
                       :value="index + 1"
+                      :disabled="radio.includes('(done)')"
+                      :style="
+                        classInfo.classDates[index].includes('(done)')
+                          ? 'text-decoration: line-through; color: grey'
+                          : ''
+                      "
                     >
                     </v-radio>
                   </v-radio-group>
+                </div>
 
-                  <div class="mt-10">
-                    <v-text-field
-                      v-model="s_name"
-                      label="Student Name"
-                      variant="outlined"
-                    ></v-text-field>
-                    <v-text-field
-                      v-model="s_email"
-                      label="Student Email"
-                      variant="outlined"
-                    ></v-text-field>
-                    <v-text-field
-                      v-model="g_name"
-                      label="Guardian Name"
-                      variant="outlined"
-                    ></v-text-field>
-                    <v-text-field
-                      v-model="g_email"
-                      label="Guardian Email"
-                      variant="outlined"
-                    ></v-text-field>
-                  </div>
+                <div class="d-flex flex-column ga-1">
+                  <v-text-field
+                    v-model="s_name"
+                    label="Student Name"
+                    variant="outlined"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="s_email"
+                    label="Student Email"
+                    variant="outlined"
+                    :rules="emailRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="g_name"
+                    label="Guardian Name"
+                    variant="outlined"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="g_email"
+                    label="Guardian Email"
+                    variant="outlined"
+                    :rules="emailRules"
+                  ></v-text-field>
+                </div>
 
-                  <div class="mt-3">
-                    <v-expansion-panels elevation="0">
-                      <v-expansion-panel>
-                        <v-expansion-panel-title>
-                          Terms of Agreement
-                          <span class="text-red ml-1">*</span>
+                <div class="mt-3">
+                  <v-expansion-panels elevation="0">
+                    <v-expansion-panel>
+                      <v-expansion-panel-title>
+                        Terms of Agreement
+                        <span class="text-red ml-1">*</span>
 
-                          <template v-slot:actions>
-                            <v-icon :color="toa1 && toa2 ? 'green' : 'red'">
-                              {{ toa1 && toa2 ? "mdi-check" : "mdi-alert" }}
-                            </v-icon>
+                        <template v-slot:actions>
+                          <v-icon :color="toa1 && toa2 ? 'green' : 'red'">
+                            {{ toa1 && toa2 ? "mdi-check" : "mdi-alert" }}
+                          </v-icon>
+                        </template>
+                      </v-expansion-panel-title>
+                      <v-expansion-panel-text>
+                        <v-checkbox v-model="toa1">
+                          <template v-slot:label>
+                            Personal Information used for teacher and student
+                            contact
+                            <span class="text-red ml-1">*</span>
                           </template>
-                        </v-expansion-panel-title>
-                        <v-expansion-panel-text>
-                          <v-checkbox v-model="toa1">
-                            <template v-slot:label>
-                              Personal Information used for teacher and student
-                              contact
-                              <span class="text-red ml-1">*</span>
-                            </template>
-                          </v-checkbox>
-                          <v-checkbox v-model="toa2">
-                            <template v-slot:label>
-                              Personal Information will be used for class
-                              documents of students
-                              <span class="text-red ml-1">*</span>
-                            </template>
-                          </v-checkbox>
-                          <v-checkbox v-model="toa3">
-                            <template v-slot:label>
-                              Emails Notifications from LinkAll
-                            </template>
-                          </v-checkbox>
-                          <v-checkbox v-model="toa4">
-                            <template v-slot:label>
-                              Usage of Class photos (Website upload, SNS upload,
-                              etc.)
-                            </template>
-                          </v-checkbox>
+                        </v-checkbox>
+                        <v-checkbox v-model="toa2">
+                          <template v-slot:label>
+                            Personal Information will be used for class
+                            documents of students
+                            <span class="text-red ml-1">*</span>
+                          </template>
+                        </v-checkbox>
+                        <v-checkbox v-model="toa3">
+                          <template v-slot:label>
+                            Emails Notifications from LinkAll
+                          </template>
+                        </v-checkbox>
+                        <v-checkbox v-model="toa4">
+                          <template v-slot:label>
+                            Usage of Class photos (Website upload, SNS upload,
+                            etc.)
+                          </template>
+                        </v-checkbox>
 
-                          <v-btn
-                            class="mb-10"
-                            variant="tonal"
-                            @click="
-                              () => {
-                                toa1 = true;
-                                toa2 = true;
-                                toa3 = true;
-                                toa4 = true;
-                              }
-                            "
-                          >
-                            Agree All
-                          </v-btn>
+                        <v-btn
+                          class="mb-10"
+                          variant="tonal"
+                          @click="
+                            () => {
+                              toa1 = true;
+                              toa2 = true;
+                              toa3 = true;
+                              toa4 = true;
+                            }
+                          "
+                        >
+                          Agree All
+                        </v-btn>
 
-                          <v-alert>
-                            If you do not agree to uploading the class photo,
-                            the student's face will be mosaiced for privacy
-                            <span class="text-blue">:)</span>
-                            For any inquiries, please contact
-                            <a href="mailto:linkallcommunity@gmail.com">
-                              linkallcommunity@gmail.com
-                            </a>
-                          </v-alert>
-                        </v-expansion-panel-text>
-                      </v-expansion-panel>
-                    </v-expansion-panels>
-                  </div>
-                </v-form>
+                        <v-alert>
+                          If you do not agree to uploading the class photo, the
+                          student's face will be mosaiced for privacy
+                          <span class="text-blue">:)</span>
+                          For any inquiries, please contact
+                          <a href="mailto:linkallcommunity@gmail.com">
+                            linkallcommunity@gmail.com
+                          </a>
+                        </v-alert>
+                      </v-expansion-panel-text>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </div>
               </v-card-text>
 
               <v-card-actions>
@@ -375,6 +400,12 @@ const toa2 = ref(false);
 const toa3 = ref(false);
 const toa4 = ref(false);
 
+const nameRules = [(v) => !!v || t("display name is required")];
+const emailRules = [
+  (v) => !!v || t("email is required"),
+  (v) => /.+@.+\..+/.test(v) || t("email must be valid"),
+];
+
 onMounted(() => {
   const auth = getAuth();
   if (auth.currentUser) {
@@ -441,6 +472,12 @@ useHead({
   display: flex;
 }
 
+@media (max-width: 1000px) {
+  .title-container {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 650px) {
   .top-div {
     flex-direction: column;
@@ -468,7 +505,7 @@ useHead({
   }
 
   .linkall-sign {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .about-me {

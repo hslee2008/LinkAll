@@ -35,13 +35,25 @@
         </div>
 
         <div v-if="mobile" class="d-flex justify-center ga-5 mt-14 mx-3">
-          <v-card elevation="0" class="text-center pa-2" variant="tonal">
+          <v-card
+            v-if="taughtStudents !== 0"
+            elevation="0"
+            class="text-center pa-2"
+            variant="tonal"
+          >
             <p class="headline">{{ taughtStudents }}</p>
             <br />
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
+          <v-skeleton-loader
+            v-else
+            class="mx-auto border"
+            min-width="100"
+            type="image"
+          ></v-skeleton-loader>
 
           <v-card
+            v-if="wonDonated !== 0"
             elevation="0"
             class="text-center pa-2"
             variant="tonal"
@@ -51,12 +63,29 @@
             <br />
             <p class="text">{{ $t("won_donated") }}</p>
           </v-card>
+          <v-skeleton-loader
+            v-else
+            class="mx-auto border"
+            width="130"
+            type="image"
+          ></v-skeleton-loader>
 
-          <v-card elevation="0" class="text-center pa-2" variant="tonal">
+          <v-card
+            v-if="hoursOf !== 0"
+            elevation="0"
+            class="text-center pa-2"
+            variant="tonal"
+          >
             <p class="headline">{{ hoursOf }}</p>
             <br />
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </v-card>
+          <v-skeleton-loader
+            v-else
+            class="mx-auto border"
+            min-width="100"
+            type="image"
+          ></v-skeleton-loader>
         </div>
         <div
           v-else
@@ -65,20 +94,40 @@
         >
           <div class="text-center">
             <p class="headline">
-              {{ taughtStudents }}
+              <v-progress-circular
+                v-if="taughtStudents === 0"
+                indeterminate
+              ></v-progress-circular>
+              <span v-else>
+                {{ taughtStudents }}
+              </span>
             </p>
             <p class="text">{{ $t("taught_students") }}</p>
           </div>
 
           <div class="text-center">
             <p class="headline">
-              {{ wonDonated }}
+              <v-progress-circular
+                v-if="wonDonated === 0"
+                indeterminate
+              ></v-progress-circular>
+              <span v-else>
+                {{ wonDonated }}
+              </span>
             </p>
             <p class="text">{{ $t("won_donated") }}</p>
           </div>
 
           <div class="text-center">
-            <p class="headline">{{ hoursOf }}</p>
+            <p class="headline">
+              <v-progress-circular
+                v-if="hoursOf === 0"
+                indeterminate
+              ></v-progress-circular>
+              <span v-else>
+                {{ hoursOf }}
+              </span>
+            </p>
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </div>
         </div>
@@ -97,7 +146,11 @@
 
   <v-container fluid>
     <v-row justify="center">
-      <template v-for="(i, index) in classList" :key="index">
+      <template
+        v-if="classList.length > 1"
+        v-for="(i, index) in classList"
+        :key="index"
+      >
         <v-col
           v-for="item in Object.values(classList[index] ?? {})"
           :key="item.classID"
@@ -107,6 +160,15 @@
           </DivCenter>
         </v-col>
       </template>
+      <div v-else v-for="(_, __) in [0, 1, 2, 3]" :key="`skeleton-${__}`">
+        <v-col>
+          <v-skeleton-loader
+            class="mx-auto border"
+            width="350"
+            type="image, article"
+          ></v-skeleton-loader>
+        </v-col>
+      </div>
     </v-row>
   </v-container>
 
@@ -225,7 +287,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.11</div>
+    <div class="version">v0.0.12</div>
   </v-footer>
 </template>
 
@@ -236,9 +298,9 @@ const { mobile } = useDisplay();
 
 const windowHeight = ref(0);
 
-const taughtStudents = ref("0");
-const wonDonated = ref("0");
-const hoursOf = ref("0");
+const taughtStudents = ref(0);
+const wonDonated = ref(0);
+const hoursOf = ref(0);
 const classList = ref([]);
 const notificationList = ref([]);
 

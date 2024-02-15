@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "deploy": "yarn generate && firebase deploy --only hosting",
-    "update": "yarn upgrade && ncu -u && yarn install"
+    "update": "npx nuxi upgrade --force && yarn upgrade && ncu -u && yarn install"
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^2.0.0",
