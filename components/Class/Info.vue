@@ -12,7 +12,7 @@
         <div class="ml-2">
           <v-card-title class="headline">
             <v-icon start size="x-small">{{ item.icon }}</v-icon>
-            {{ item.subject.toUpperCase() }}
+            {{ item.subject?.toUpperCase() }}
           </v-card-title>
           <v-card-text class="text-h6 mt-2">
             {{ item.englishDisplayName }}

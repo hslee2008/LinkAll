@@ -2,7 +2,7 @@
   <div class="mt-180 mx-5 mb-10">
     <div class="top-div">
       <div class="bottom-div">
-        <div>
+        <div v-if="classInfo.englishOfficialName">
           <div v-if="locale === 'en'" class="title-container">
             <h1 class="mr-3">{{ classInfo.englishOfficialName }}</h1>
             <h2 class="my-auto">| {{ classInfo.englishTeacherName }}</h2>
@@ -12,8 +12,9 @@
             <h2 class="my-auto">| {{ classInfo.koreanTeacherName }}</h2>
           </div>
         </div>
+        <v-skeleton-loader v-else type="heading"></v-skeleton-loader>
 
-        <p class="text-justify mt-3">
+        <p v-if="classInfo.englishClassDescription" class="text-justify mt-3">
           <span v-if="locale === 'en'">
             {{ classInfo.englishClassDescription }}
           </span>
@@ -21,6 +22,10 @@
             {{ classInfo.koreanClassDescription }}
           </span>
         </p>
+        <div v-else>
+          <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+          <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+        </div>
 
         <br />
 
@@ -49,7 +54,10 @@
 
         <div :class="`my-13 d-flex ga-6 ${mobile ? 'flex-column' : ''}`">
           <div :style="!mobile ? 'width: 50%' : ''">
-            <v-table style="border: 1px solid black; border-radius: 10px">
+            <v-table
+              v-if="classInfo.lang"
+              style="border: 1px solid black; border-radius: 10px"
+            >
               <thead style="background-color: #b0d6b2">
                 <tr>
                   <th class="text-center font-weight-bold">Category</th>
@@ -77,6 +85,7 @@
                 </tr>
               </tbody>
             </v-table>
+            <v-skeleton-loader v-else type="table-tbody"></v-skeleton-loader>
           </div>
 
           <div
@@ -101,34 +110,43 @@
                   ]"
                   :key="schedule"
                   :style="
-                    classInfo.classDates[index].includes('(done)')
+                    classInfo.classDates[index]?.includes('(done)')
                       ? 'text-decoration: line-through; color: grey'
-                      : ''
+                      : appliedInfo[id]?.date ===
+                          classInfo.classDates[index]?.replace(' (done)', '')
+                        ? 'text-decoration: underline; color: red'
+                        : ''
                   "
                 >
                   <th class="text-center">
-                    {{ classInfo.classDates[index].replace(" (done)", "") }}
+                    {{ classInfo.classDates[index]?.replace(" (done)", "") }}
                   </th>
                   <td class="text-center">{{ schedule }}</td>
                 </tr>
               </tbody>
             </v-table>
           </div>
+          <v-skeleton-loader v-else type="table-tbody"></v-skeleton-loader>
         </div>
       </div>
 
       <div class="side-div">
         <p class="text-center">Teacher</p>
-        <h2 class="text-center text-decoration-underline">
+        <h2
+          v-if="classInfo.englishTeacherName || classInfo.koreanTeacherName"
+          class="text-center text-decoration-underline"
+        >
           {{
             locale === "en"
               ? classInfo.englishTeacherName
               : classInfo.koreanTeacherName
           }}
         </h2>
+        <v-skeleton-loader v-else type="heading"></v-skeleton-loader>
 
         <div>
           <ImgMember
+            v-if="classInfo.teacherID"
             :src="`/members/${classInfo.teacherID}.png`"
             :elevation="0"
             :width="250"
@@ -137,6 +155,11 @@
             bordered
             showLink
           />
+          <v-skeleton-loader
+            v-else
+            type="image"
+            width="250"
+          ></v-skeleton-loader>
         </div>
 
         <p class="text-justify my-4 ma-auto about-me">
@@ -158,18 +181,25 @@
               :elevation="0"
               :disabled="
                 !loggedin ||
-                !Object.keys(classInfo ?? {}).includes('classDates')
+                !Object.keys(classInfo ?? {})?.includes('classDates') ||
+                alreadyApplied
               "
             >
               {{ $t("Apply Now") }}
             </v-btn>
 
             <p
-              v-if="!Object.keys(classInfo ?? {}).includes('classDates')"
+              v-if="!Object.keys(classInfo ?? {})?.includes('classDates')"
               class="text-red"
             >
               {{ $t("no class") }}
             </p>
+            <div v-if="alreadyApplied">
+              <p>
+                {{ $t("already applied") }}
+              </p>
+              <p>- {{ appliedInfo[id]?.date }}</p>
+            </div>
           </template>
 
           <template v-slot:default="{ isActive }">
@@ -188,15 +218,15 @@
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
-                      :label="`(${index + 1}) ${radio.replace('(done)', '')}`"
+                      :label="`(${index + 1}) ${radio?.replace('(done)', '')}`"
                       :key="index + 1"
                       :value="index + 1"
                       :disabled="
-                        radio.includes('(done)') ||
-                        radio.includes('Not Decided')
+                        radio?.includes('(done)') ||
+                        radio?.includes('Not Decided')
                       "
                       :style="
-                        classInfo.classDates[index].includes('(done)')
+                        classInfo.classDates[index]?.includes('(done)')
                           ? 'text-decoration: line-through; color: grey'
                           : ''
                       "
@@ -383,8 +413,6 @@
 </template>
 
 <script setup>
-import { getAuth } from "firebase/auth";
-
 const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();
 const { mobile } = useDisplay();
@@ -392,6 +420,9 @@ const route = useRoute();
 
 const classInfo = ref({});
 const isAdmin = ref(false);
+const userInfo = ref({});
+const alreadyApplied = ref(false);
+const appliedInfo = ref({});
 
 const subject = route.params.subject;
 const id = route.params.id;
@@ -419,6 +450,7 @@ onMounted(() => {
   const auth = getAuth();
   if (auth.currentUser) {
     loggedin.value = true;
+    userInfo.value = auth.currentUser;
   }
 
   const classRef = dbRef($db, `/class/${subject}/${id}`);
@@ -431,6 +463,14 @@ onMounted(() => {
     if (user) {
       isAdmin.value = checkAdmin(user.email);
     }
+  });
+
+  const myAccount = dbRef($db, `account/${userInfo.value.uid}`);
+  onValue(myAccount, (snapshot) => {
+    alreadyApplied.value = Object.keys(snapshot.val() ?? {}).includes(
+      classInfo.value.classID
+    );
+    appliedInfo.value = snapshot.val();
   });
 });
 
@@ -460,8 +500,18 @@ const saveToDatabase = () => {
 
   if (toa3) {
     const notifRef = dbRef($db, "emails/notificationallowed");
-    push(notifRef, s_email.value)
+    push(notifRef, s_email.value);
   }
+
+  const myAccount = dbRef(
+    $db,
+    `account/${userInfo.value.uid}/${classInfo.value.classID}`
+  );
+  set(myAccount, {
+    date,
+    subject,
+    classNumber: classNumber.value,
+  });
 };
 
 useHead({

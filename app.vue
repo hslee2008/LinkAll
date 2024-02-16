@@ -160,6 +160,12 @@
                   {{ t("my account") }}
                 </v-list-item-title>
               </v-list-item>
+              <v-list-item to="/account/registeredClass">
+                <v-list-item-title>
+                  <v-icon start>mdi-google-classroom</v-icon>
+                  {{ t("registered class") }}
+                </v-list-item-title>
+              </v-list-item>
               <v-list-item @click="logout">
                 <v-list-item-title>
                   <v-icon start>mdi-logout-variant</v-icon>
@@ -303,6 +309,12 @@
                     <v-list-item-title>
                       <v-icon start>mdi-account-box</v-icon>
                       {{ t("my account") }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item to="/account/registeredClass">
+                    <v-list-item-title>
+                      <v-icon start>mdi-google-classroom</v-icon>
+                      {{ t("registered class") }}
                     </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="logout">

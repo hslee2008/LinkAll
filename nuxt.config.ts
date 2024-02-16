@@ -93,6 +93,22 @@ export default defineNuxtConfig({
           "DataSnapshot",
         ],
       },
+      {
+        from: "firebase/auth",
+        imports: ["getAuth"],
+      },
     ],
+  },
+  hooks: {
+    async "nitro:config"(nitroConfig) {
+      if (nitroConfig.dev) {
+        return;
+      }
+
+      nitroConfig.prerender?.routes?.push("/class/english/book-club");
+      nitroConfig.prerender?.routes?.push("/class/english/debate");
+      nitroConfig.prerender?.routes?.push("/class/math/geometry");
+      nitroConfig.prerender?.routes?.push("/class/math/logical-math");
+    },
   },
 });

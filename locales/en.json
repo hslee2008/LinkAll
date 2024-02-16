@@ -22,6 +22,8 @@
   "login with google": "Login with Google",
   "login with facebook": "Login with Facebook",
   "Apply Now": "Apply Now",
+  "already applied": "You have already applied to this class",
+  "registered class": "Registered Class",
   "no class": "Currently, no class is open",
   "please try again": "Please try again",
   "display name": "Display Name",

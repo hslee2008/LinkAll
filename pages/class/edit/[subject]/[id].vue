@@ -402,6 +402,8 @@ onMounted(() => {
 
 function deleteClassDate(index) {
   classDates.value.splice(index, 1);
+  englishClassSchedule.value.splice(index, 1)
+  koreanClassSchedule.value.splice(index, 1)
 }
 
 function deleteClass() {
