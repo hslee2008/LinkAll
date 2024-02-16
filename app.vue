@@ -166,6 +166,7 @@
                   {{ t("registered class") }}
                 </v-list-item-title>
               </v-list-item>
+              <v-divider />
               <v-list-item @click="logout">
                 <v-list-item-title>
                   <v-icon start>mdi-logout-variant</v-icon>
@@ -317,6 +318,7 @@
                       {{ t("registered class") }}
                     </v-list-item-title>
                   </v-list-item>
+                  <v-divider />
                   <v-list-item @click="logout">
                     <v-list-item-title>
                       <v-icon start>mdi-logout-variant</v-icon>

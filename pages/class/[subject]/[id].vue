@@ -32,7 +32,7 @@
         <v-alert
           :border="!mobile ? 'start' : 'top'"
           border-color="success"
-          icon="mdi-firework"
+          icon="mdi-heart-box-outline"
           class="text-justify"
         >
           <span v-if="locale === 'en'">
@@ -99,6 +99,8 @@
                 <tr>
                   <th class="text-center font-weight-bold">Class Date</th>
                   <th class="text-center font-weight-bold">Class Theme</th>
+                  <th class="text-center font-weight-bold">Students</th>
+                  <th class="text-center font-weight-bold">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,6 +124,32 @@
                     {{ classInfo.classDates[index]?.replace(" (done)", "") }}
                   </th>
                   <td class="text-center">{{ schedule }}</td>
+                  <td class="text-center">
+                    {{
+                      Object.keys(numbersForEachClass[index + 1] ?? {}).length
+                    }}
+                  </td>
+                  <td class="text-center">
+                    <span v-if="locale === 'en'"> </span>
+                    <span v-else-if="locale === 'ko'">
+                      <span
+                        v-if="
+                          Object.keys(numbersForEachClass[index + 1] ?? {})
+                            .length < min
+                        "
+                      >
+                        모집 중
+                      </span>
+                      <span
+                        v-else-if="
+                          Object.keys(numbersForEachClass[index + 1] ?? {})
+                            .length >= max
+                        "
+                      >
+                        마감
+                      </span>
+                    </span>
+                  </td>
                 </tr>
               </tbody>
             </v-table>
@@ -194,12 +222,27 @@
             >
               {{ $t("no class") }}
             </p>
-            <div v-if="alreadyApplied">
-              <p>
+            <div
+              v-if="alreadyApplied"
+              style="border: 1px solid black"
+              class="pa-3 rounded-lg"
+            >
+              <p class="text-justify">
                 {{ $t("already applied") }}
               </p>
-              <p>- {{ appliedInfo[id]?.date }}</p>
+              <v-alert class="mt-2"> {{ appliedInfo[id]?.date }}</v-alert>
+              <DivCenter class="mt-3">
+                <v-btn variant="tonal" to="/account/registeredClass">
+                  <v-icon start>mdi-open-in-new</v-icon>
+                  {{ $t("registered class") }}
+                </v-btn>
+              </DivCenter>
             </div>
+
+            <v-alert>
+              마감된 수업은 대기자로 등록받습니다. 결원 발생시 별도로
+              연락드리겠습니다.
+            </v-alert>
           </template>
 
           <template v-slot:default="{ isActive }">
@@ -218,7 +261,7 @@
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
-                      :label="`(${index + 1}) ${radio?.replace('(done)', '')}`"
+                      :label="radio?.replace('(done)', '')"
                       :key="index + 1"
                       :value="index + 1"
                       :disabled="
@@ -243,7 +286,7 @@
                     >
                       <v-expansion-panel-title>
                         Terms of Agreement
-                        <span class="text-red ml-1">*</span>
+                        <InputStar></InputStar>
 
                         <template v-slot:actions>
                           <v-icon :color="toa1 && toa2 ? 'green' : 'red'">
@@ -254,27 +297,47 @@
                       <v-expansion-panel-text>
                         <v-checkbox v-model="toa1">
                           <template v-slot:label>
-                            Personal Information used for teacher and student
-                            contact
-                            <span class="text-red ml-1">*</span>
+                            <span v-if="locale === 'en'">
+                              Personal Information used for teacher and student
+                              contact
+                            </span>
+                            <span v-else-if="locale === 'ko'">
+                              선생님과 학생의 연락을 위한 개인정보 활용 동의
+                            </span>
+                            <InputStar></InputStar>
                           </template>
                         </v-checkbox>
                         <v-checkbox v-model="toa2">
                           <template v-slot:label>
-                            Personal Information will be used for class
-                            documents of students
-                            <span class="text-red ml-1">*</span>
+                            <span v-if="locale === 'en'">
+                              Personal Information used for class documents of
+                              students
+                            </span>
+                            <span v-else-if="locale === 'ko'">
+                              기록을 위한 개인정보 활용 동의
+                            </span>
+                            <InputStar></InputStar>
                           </template>
                         </v-checkbox>
                         <v-checkbox v-model="toa3">
                           <template v-slot:label>
-                            Emails Notifications from LinkAll
+                            <span v-if="locale === 'en'">
+                              Emails Notifications from LinkAll
+                            </span>
+                            <span v-else-if="locale === 'ko'">
+                              이메일을 통한 LinkAll 뉴스
+                            </span>
                           </template>
                         </v-checkbox>
                         <v-checkbox v-model="toa4">
                           <template v-slot:label>
-                            Usage of Class photos (Website upload, SNS upload,
-                            etc.)
+                            <span v-if="locale === 'en'">
+                              Usage of Class photos (Website upload, SNS upload,
+                              etc.)
+                            </span>
+                            <span v-else-if="locale === 'ko'">
+                              웹사이트, SNS 등에 업로드할 수업 사진 들
+                            </span>
                           </template>
                         </v-checkbox>
 
@@ -290,17 +353,29 @@
                             }
                           "
                         >
-                          Agree to All
+                          <span v-if="locale === 'en'"> Agree to All </span>
+                          <span v-else-if="locale === 'ko'">
+                            모두 동의하기
+                          </span>
                         </v-btn>
 
-                        <v-alert>
+                        <v-alert v-if="locale === 'en'">
                           If you do not agree to uploading the class photo, the
                           student's face will be mosaiced for privacy
                           <span class="text-blue">:)</span>
                           For any inquiries, please contact
                           <a href="mailto:linkallcommunity@gmail.com">
-                            linkallcommunity@gmail.com
-                          </a>
+                            linkallcommunity@gmail.com </a
+                          >.
+                        </v-alert>
+                        <v-alert v-else-if="locale === 'ko'">
+                          만일 학생의 수업 사진 활용에 동의하지 않는다면, 학생의
+                          얼굴은 모자이크되서 업로드할 것입니다
+                          <span class="text-blue">:)</span>
+                          추가 질문이 있다면
+                          <a href="mailto:linkallcommunity@gmail.com">
+                            linkallcommunity@gmail.com </a
+                          >를 통해 연락해 주세요.
                         </v-alert>
                       </v-expansion-panel-text>
                     </v-expansion-panel>
@@ -312,6 +387,7 @@
                     v-model="s_name"
                     label="Student Name"
                     variant="outlined"
+                    prepend-inner-icon="mdi-account"
                     :rules="nameRules"
                   ></v-text-field>
                   <v-text-field
@@ -325,6 +401,7 @@
                     v-model="g_name"
                     label="Guardian Name"
                     variant="outlined"
+                    prepend-inner-icon="mdi-account"
                     :rules="nameRules"
                   ></v-text-field>
                   <v-text-field
@@ -337,13 +414,17 @@
                 </div>
               </v-card-text>
 
-              <v-card-actions>
+              <v-card-actions style="border-top: 1.5px solid black">
                 <v-spacer></v-spacer>
 
                 <v-btn
-                  text="Submit"
+                  text="Close"
                   color="red"
-                  block
+                  @click="isActive.value = false"
+                ></v-btn>
+                <v-btn
+                  text="Submit"
+                  color="blue"
                   @click="
                     () => {
                       saveToDatabase();
@@ -418,11 +499,15 @@ const { $db, $auth } = useNuxtApp();
 const { mobile } = useDisplay();
 const route = useRoute();
 
+const max = ref(0);
+const min = ref(0);
 const classInfo = ref({});
+
 const isAdmin = ref(false);
 const userInfo = ref({});
 const alreadyApplied = ref(false);
 const appliedInfo = ref({});
+const numbersForEachClass = ref([]);
 
 const subject = route.params.subject;
 const id = route.params.id;
@@ -446,7 +531,7 @@ const emailRules = [
   (v) => /.+@.+\..+/.test(v) || t("email must be valid"),
 ];
 
-onMounted(() => {
+onMounted(async () => {
   const auth = getAuth();
   if (auth.currentUser) {
     loggedin.value = true;
@@ -454,9 +539,14 @@ onMounted(() => {
   }
 
   const classRef = dbRef($db, `/class/${subject}/${id}`);
+  await onValue(classRef, async (snapshot) => {
+    classInfo.value = await snapshot.val();
 
-  onValue(classRef, (snapshot) => {
-    classInfo.value = snapshot.val();
+    const estStudent = classInfo.value.estStudent;
+    min.value = parseInt(estStudent.split("~")[0].trim());
+    max.value = parseInt(
+      estStudent.split("~")[1].replaceAll("/ class", "").trim()
+    );
   });
 
   $auth.onAuthStateChanged((user) => {
@@ -466,24 +556,31 @@ onMounted(() => {
   });
 
   const myAccount = dbRef($db, `account/${userInfo.value.uid}`);
-  onValue(myAccount, (snapshot) => {
-    alreadyApplied.value = Object.keys(snapshot.val() ?? {}).includes(
-      classInfo.value.classID
-    );
-    appliedInfo.value = snapshot.val();
+  await onValue(myAccount, async (snapshot) => {
+    const data = (await snapshot.val()) ?? {};
+    alreadyApplied.value = Object.keys(data ?? {}).includes(classInfo.value.classID);
+    appliedInfo.value = data;
+  });
+
+  const studentsNumber = dbRef(
+    $db,
+    `classes/${classInfo.value.teacherEmailID}/to-join/${id}`
+  );
+  await onValue(studentsNumber, async (snapshot) => {
+    numbersForEachClass.value = await snapshot.val();
   });
 });
 
 const saveToDatabase = () => {
   const classRef = dbRef(
     $db,
-    `classes/${classInfo.value.teacherEmailID}/to-join/${classInfo.value.classID}/${classNumber.value}`
+    `classes/${classInfo.value.teacherEmailID}/to-join/${classInfo.value.classID}/${classNumber.value}/${userInfo.value.uid}`
   );
 
   let date = "";
   date = classInfo.value.classDates[parseInt(classNumber.value) - 1];
 
-  push(classRef, {
+  set(classRef, {
     classNumber: classNumber.value,
     s_name: s_name.value,
     s_email: s_email.value,

@@ -1,17 +1,16 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
-    <h1 class="text-center text-decoration-underline">Teacher's Page</h1>
-
     <v-select
       v-model="parsedEmail"
       :items="keys"
       class="my-3"
       variant="outlined"
+      label="Select teacher ID"
     ></v-select>
 
     <div v-if="classes[parsedEmail]">
       <div v-for="item in Object.keys(classes[parsedEmail]['to-join'])">
-        <br /><br /><br />
+        <br /><br />
 
         <h2 class="text-center">{{ item }}</h2>
 
@@ -22,7 +21,7 @@
           :key="Object.keys(classes[parsedEmail]['to-join'][item] ?? {})[index]"
           elevation="0"
         >
-          <v-expansion-panels>
+          <v-expansion-panels variant="inset">
             <v-expansion-panel style="border: 3px solid red" class="my-3">
               <v-expansion-panel-title>
                 Class
@@ -36,8 +35,12 @@
               <v-table>
                 <thead>
                   <tr>
-                    <th class="font-weight-bold">Students' Email</th>
-                    <th class="font-weight-bold">Guardians' Email</th>
+                    <th class="font-weight-bold" style="width: 50%">
+                      Students' Email
+                    </th>
+                    <th class="font-weight-bold" style="width: 50%">
+                      Guardians' Email
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,15 +99,13 @@
                     v-for="(student, i) in Object.values(classObj ?? {})"
                     :key="i"
                     style="
-                      border: 1px solid black;
+                      border: 3px solid black;
                       border-radius: 15px;
                       padding: 5px;
                       margin-bottom: 50px;
                     "
                   >
-                    <div
-                      :class="`d-flex justify-center my-3 ${xs ? 'flex-column' : ''}`"
-                    >
+                    <div :class="`d-flex my-3 ${xs ? 'flex-column' : ''}`">
                       <v-list-item lines="two">
                         <v-list-item-title class="font-weight-bold">{{
                           student.s_name
@@ -112,15 +113,6 @@
                         <v-list-item-title>{{
                           student.s_email
                         }}</v-list-item-title>
-
-                        <v-list-item-action class="mt-1">
-                          <v-btn
-                            color="primary"
-                            :href="`mailto:${student.s_email}`"
-                          >
-                            <v-icon start>mdi-gmail</v-icon> Student
-                          </v-btn>
-                        </v-list-item-action>
                       </v-list-item>
 
                       <v-list-item lines="two">
@@ -130,6 +122,17 @@
                         <v-list-item-title>{{
                           student.g_email
                         }}</v-list-item-title>
+                      </v-list-item>
+
+                      <v-list-item lines="two">
+                        <v-list-item-action class="mt-1">
+                          <v-btn
+                            color="primary"
+                            :href="`mailto:${student.s_email}`"
+                          >
+                            <v-icon start>mdi-gmail</v-icon> Student
+                          </v-btn>
+                        </v-list-item-action>
 
                         <v-list-item-action class="mt-1">
                           <v-btn
@@ -141,8 +144,6 @@
                         </v-list-item-action>
                       </v-list-item>
                     </div>
-
-                    <hr />
 
                     <v-list-item lines="two">
                       <v-list-item-title
@@ -177,6 +178,16 @@
         </v-card>
       </div>
     </div>
+
+    <v-snackbar v-model="snackbar">
+      {{ $t("copied") }}
+
+      <template v-slot:actions>
+        <v-btn color="pink" variant="text" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -187,6 +198,8 @@ const { xs } = useDisplay();
 const parsedEmail = ref("");
 const keys = ref([]);
 const classes = ref({});
+
+const snackbar = ref(false);
 
 onMounted(() => {
   $auth.onAuthStateChanged((user) => {
@@ -208,5 +221,6 @@ onMounted(() => {
 
 function copy(string) {
   navigator.clipboard.writeText(string);
+  snackbar.value = true;
 }
 </script>

@@ -10,8 +10,8 @@
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
               src="/members/junho.png"
-              class="ma-auto"
-              :elevation="10"
+              class="ma-auto box"
+              :elevation="0"
             ></ImgMember>
 
             <p class="mt-3">{{ t("founder") }}</p>
@@ -61,7 +61,7 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'">
+              <ul v-if="locale === 'en'" class="text-justify">
                 <li>YTN DC Champion (2020)</li>
                 <li>KSDO Champion, Individual 1st Place (2021)</li>
                 <li>Korea WSDC Top 24 (2023)</li>
@@ -93,8 +93,8 @@
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
               src="/members/hyunseung.png"
-              class="ma-auto"
-              :elevation="10"
+              class="ma-auto box"
+              :elevation="0"
             ></ImgMember>
 
             <p class="mt-3">{{ t("co-founder") }}</p>
@@ -148,7 +148,7 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'">
+              <ul v-if="locale === 'en'" class="text-justify">
                 <li>
                   <abbr
                     title="Korea Foundation for the Advancement of Science & Creativity"
@@ -205,7 +205,7 @@
                   Chairman's Award)
                 </li>
               </ul>
-              <ul v-else-if="locale === 'ko'">
+              <ul v-else-if="locale === 'ko'" class="text-justify">
                 <li>
                   한국과학창의재단 2022 청소년과학탐구반 융합탐구과제 최우수상
                   (과학기술정보통신부 장관상)
@@ -237,8 +237,8 @@
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
               src="/members/woojin.png"
-              class="ma-auto"
-              :elevation="10"
+              class="ma-auto box"
+              :elevation="0"
             ></ImgMember>
 
             <b>{{ t("Woojin Cho") }}</b>
@@ -275,14 +275,14 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'">
+              <ul v-if="locale === 'en'" class="text-justify">
                 <li>Business Black Box 2023 2nd Place</li>
                 <li>GS Retail Eco Creator 2023 Grand Prize</li>
                 <li>Outburst 19th Designer</li>
                 <li>Lux et Nox 19th Vice-Captain, Designer</li>
                 <li>Token Students Designer</li>
               </ul>
-              <ul v-else-if="locale === 'ko'">
+              <ul v-else-if="locale === 'ko'" class="text-justify">
                 <li>비스니스 블랙 박스 2023 2등</li>
                 <li>GS 에코크리에이터 2023 대상</li>
                 <li>외대부고 아웃버스트 19대 디자이너</li>
@@ -299,8 +299,8 @@
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
               src="/members/doyung.png"
-              class="ma-auto"
-              :elevation="10"
+              class="ma-auto box"
+              :elevation="0"
             ></ImgMember>
 
             <b>{{ t("Doyung Yun") }}</b>
@@ -347,10 +347,10 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'">
+              <ul v-if="locale === 'en'" class="text-justify">
                 <li>HAFS Medical Biology Organization 19th Captain</li>
               </ul>
-              <ul v-else-if="locale === 'ko'">
+              <ul v-else-if="locale === 'ko'" class="text-justify">
                 <li>외대부고 의생명동아리 19기 부장</li>
               </ul>
             </v-col>
@@ -363,8 +363,8 @@
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
               src="/members/yoojong.png"
-              class="ma-auto"
-              :elevation="10"
+              class="ma-auto box"
+              :elevation="0"
             ></ImgMember>
 
             <b>{{ t("Yoojong Seo") }}</b>
@@ -399,11 +399,11 @@
             </v-col>
 
             <v-col class="ml-5">
-              <ul v-if="locale === 'en'">
+              <ul v-if="locale === 'en'" class="text-justify">
                 <li>HAFS Mathematical Writing Contest Silver Prize</li>
                 <li>HAFS Mathematical Writing Contest Bronze Prize</li>
               </ul>
-              <ul v-else-if="locale === 'ko'">
+              <ul v-else-if="locale === 'ko'" class="text-justify">
                 <li>외대부고 수학 경시대회 은상</li>
                 <li>외대부고 수학 경시대회 동상</li>
               </ul>
@@ -416,6 +416,7 @@
     <br />
     <br />
     <br />
+    <div class="box"></div>
   </div>
 </template>
 
@@ -450,5 +451,57 @@ useHead({
   .container {
     flex-direction: column;
   }
+}
+
+.box {
+  border: solid 5px transparent;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+.box:hover {
+  display: grid;
+  place-content: center;
+  color: red;
+  text-shadow: 0 1px 0 #000;
+
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    white,
+    white 5%,
+    white 60%,
+    white 95%
+  );
+
+  border: solid 5px transparent;
+  border-radius: 12px !important;
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  background:
+    var(--main-bg) padding-box,
+    var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+
+  animation: bg-spin 3s linear infinite;
+  animation-play-state: running;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }
 </style>
