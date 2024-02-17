@@ -130,7 +130,24 @@
                     }}
                   </td>
                   <td class="text-center">
-                    <span v-if="locale === 'en'"> </span>
+                    <span v-if="locale === 'en'">
+                      <span
+                        v-if="
+                          Object.keys(numbersForEachClass[index + 1] ?? {})
+                            .length < min
+                        "
+                      >
+                        Recruiting
+                      </span>
+                      <span
+                        v-else-if="
+                          Object.keys(numbersForEachClass[index + 1] ?? {})
+                            .length >= max
+                        "
+                      >
+                        Full
+                      </span>
+                    </span>
                     <span v-else-if="locale === 'ko'">
                       <span
                         v-if="
@@ -239,7 +256,7 @@
               </DivCenter>
             </div>
 
-            <v-alert>
+            <v-alert class="mt-3">
               마감된 수업은 대기자로 등록받습니다. 결원 발생시 별도로
               연락드리겠습니다.
             </v-alert>
@@ -531,22 +548,32 @@ const emailRules = [
   (v) => /.+@.+\..+/.test(v) || t("email must be valid"),
 ];
 
-onMounted(async () => {
-  const auth = getAuth();
-  if (auth.currentUser) {
-    loggedin.value = true;
-    userInfo.value = auth.currentUser;
+$auth.onAuthStateChanged((user) => {
+  if (user) {
+    loggedin.value = true
+    userInfo.value = user;
   }
+});
 
+onMounted(async () => {
   const classRef = dbRef($db, `/class/${subject}/${id}`);
   await onValue(classRef, async (snapshot) => {
-    classInfo.value = await snapshot.val();
+    const data = await snapshot.val();
+    classInfo.value = data;
 
-    const estStudent = classInfo.value.estStudent;
+    const estStudent = data.estStudent;
     min.value = parseInt(estStudent.split("~")[0].trim());
     max.value = parseInt(
       estStudent.split("~")[1].replaceAll("/ class", "").trim()
     );
+
+    const studentsNumber = dbRef(
+      $db,
+      `classes/${data.teacherEmailID}/to-join/${id}`
+    );
+    await onValue(studentsNumber, async (snapshot) => {
+      numbersForEachClass.value = await snapshot.val();
+    });
   });
 
   $auth.onAuthStateChanged((user) => {
@@ -558,16 +585,10 @@ onMounted(async () => {
   const myAccount = dbRef($db, `account/${userInfo.value.uid}`);
   await onValue(myAccount, async (snapshot) => {
     const data = (await snapshot.val()) ?? {};
-    alreadyApplied.value = Object.keys(data ?? {}).includes(classInfo.value.classID);
+    alreadyApplied.value = Object.keys(data ?? {}).includes(
+      classInfo.value.classID
+    );
     appliedInfo.value = data;
-  });
-
-  const studentsNumber = dbRef(
-    $db,
-    `classes/${classInfo.value.teacherEmailID}/to-join/${id}`
-  );
-  await onValue(studentsNumber, async (snapshot) => {
-    numbersForEachClass.value = await snapshot.val();
   });
 });
 

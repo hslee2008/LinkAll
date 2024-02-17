@@ -21,7 +21,7 @@
           :key="Object.keys(classes[parsedEmail]['to-join'][item] ?? {})[index]"
           elevation="0"
         >
-          <v-expansion-panels variant="inset">
+          <v-expansion-panels>
             <v-expansion-panel style="border: 3px solid red" class="my-3">
               <v-expansion-panel-title>
                 Class

@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-const { $db } = useNuxtApp();
+const { $db, $auth } = useNuxtApp();
 const { sm } = useDisplay();
 
 const userInfo = ref({});
@@ -45,12 +45,13 @@ const classID = ref([]);
 const subject = ref([]);
 const dates = ref([]);
 
-onMounted(async () => {
-  const auth = getAuth();
-  if (auth.currentUser) {
-    userInfo.value = auth.currentUser;
+$auth.onAuthStateChanged((user) => {
+  if (user) {
+    userInfo.value = user;
   }
+});
 
+onMounted(async () => {
   const myAccount = dbRef($db, `account/${userInfo.value.uid}/`);
   await onValue(myAccount, async (snapshot) => {
     const values = await snapshot.val();
