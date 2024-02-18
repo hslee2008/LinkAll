@@ -16,8 +16,56 @@
         placeholder="Notification Contents"
         variant="outlined"
       ></v-textarea>
-      <v-btn color="primary" @click="Post">Post</v-btn>
+      <v-btn color="primary" elevation="0" @click="Post">Post</v-btn>
     </div>
+
+    <br /><br /><br />
+
+    <v-list class="mx-5">
+      <v-dialog
+        v-for="(item, i) in notificationList"
+        :key="item.title"
+        width="500"
+      >
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            v-bind="props"
+            :title="`${i + 1}. ${item.title}`"
+            :subtitle="new Date(item.time).toDateString()"
+          ></v-list-item>
+        </template>
+
+        <template v-slot:default="{ isActive }">
+          <v-card title="Edit/Delete">
+            <v-card-text>
+              <v-textarea
+                v-model="item.contents"
+                variant="outlined"
+                rows="10"
+              ></v-textarea>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn
+                text="Update"
+                color="primary"
+                @click="UpdateNotification(() => (isActive.value = false))"
+              ></v-btn>
+              <v-btn
+                text="Delete"
+                color="red"
+                @click="DeleteNotification(i, () => (isActive.value = false))"
+              ></v-btn>
+              <v-btn text="Cancel" @click="isActive.value = false"></v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
+    </v-list>
+
+    <br /><br /><br />
   </div>
 </template>
 
@@ -27,6 +75,8 @@ const { $db } = useNuxtApp();
 
 const title = ref("");
 const contents = ref("");
+
+const notificationList = ref([]);
 
 const Post = () => {
   const date = new Date();
@@ -41,4 +91,28 @@ const Post = () => {
 
   router.push("/");
 };
+
+const DeleteNotification = (i, close) => {
+  const notificationRef = dbRef($db, "notification");
+  notificationList.value.splice(i, 1);
+  set(notificationRef, notificationList.value);
+
+  close();
+};
+
+const UpdateNotification = (close) => {
+  const notificationRef = dbRef($db, "notification");
+  set(notificationRef, notificationList.value);
+
+  close();
+};
+
+onMounted(() => {
+  const notificationRef = dbRef($db, "notification");
+  onValue(notificationRef, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data ?? {});
+    notificationList.value = values;
+  });
+});
 </script>

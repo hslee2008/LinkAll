@@ -66,21 +66,21 @@
               </thead>
               <tbody>
                 <tr>
-                  <th class="text-center">Language</th>
+                  <td class="text-center">Language</td>
                   <td class="text-center">
                     {{ classInfo.lang ?? "Not Specified" }}
                   </td>
                 </tr>
                 <tr>
-                  <th class="text-center">Grade</th>
+                  <td class="text-center">Grade</td>
                   <td class="text-center">{{ classInfo.grade }}</td>
                 </tr>
                 <tr>
-                  <th class="text-center">Est. Student</th>
+                  <td class="text-center">Est. Student</td>
                   <td class="text-center">{{ classInfo.estStudent }}</td>
                 </tr>
                 <tr>
-                  <th class="text-center">Class Time</th>
+                  <td class="text-center">Class Time</td>
                   <td class="text-center">{{ classInfo.estTime }}</td>
                 </tr>
               </tbody>
@@ -97,8 +97,8 @@
             <v-table style="border: 1px solid black; border-radius: 10px">
               <thead style="background-color: #b0d6b2">
                 <tr>
-                  <th class="text-center font-weight-bold">Class Date</th>
-                  <th class="text-center font-weight-bold">Class Theme</th>
+                  <th class="text-center font-weight-bold">Date</th>
+                  <th class="text-center font-weight-bold">Theme</th>
                   <th class="text-center font-weight-bold">Students</th>
                   <th class="text-center font-weight-bold">Status</th>
                 </tr>
@@ -120,11 +120,11 @@
                         : ''
                   "
                 >
-                  <th class="text-center">
-                    {{ classInfo.classDates[index]?.replace(" (done)", "") }}
-                  </th>
-                  <td class="text-center">{{ schedule }}</td>
                   <td class="text-center">
+                    {{ classInfo.classDates[index]?.replace(" (done)", "") }}
+                  </td>
+                  <td class="text-center">{{ schedule }}</td>
+                  <td class="text-center" style="">
                     {{
                       Object.keys(numbersForEachClass[index + 1] ?? {}).length
                     }}
@@ -256,9 +256,13 @@
               </DivCenter>
             </div>
 
-            <v-alert class="mt-3">
+            <v-alert v-if="locale === 'ko'" class="mt-3">
               마감된 수업은 대기자로 등록받습니다. 결원 발생시 별도로
               연락드리겠습니다.
+            </v-alert>
+            <v-alert v-else-if="locale === 'en'" class="mt-3">
+              Closed classes will be placed on a waiting list. We will contact
+              you separately if vacancies become available.
             </v-alert>
           </template>
 
@@ -499,7 +503,7 @@
     >
       <div class="ma-4">
         <v-btn
-          icon="$edit"
+          icon="mdi-pencil"
           size="large"
           color="primary"
           elevation="8"
@@ -550,7 +554,7 @@ const emailRules = [
 
 $auth.onAuthStateChanged((user) => {
   if (user) {
-    loggedin.value = true
+    loggedin.value = true;
     userInfo.value = user;
   }
 });
@@ -601,7 +605,7 @@ const saveToDatabase = () => {
   let date = "";
   date = classInfo.value.classDates[parseInt(classNumber.value) - 1];
 
-  set(classRef, {
+  update(classRef, {
     classNumber: classNumber.value,
     s_name: s_name.value,
     s_email: s_email.value,
@@ -614,6 +618,10 @@ const saveToDatabase = () => {
       toa3: toa3.value,
       toa4: toa4.value,
     },
+  });
+
+  onValue(classRef, (snapshot) => {
+    console.log(snapshot.val());
   });
 
   if (toa3) {

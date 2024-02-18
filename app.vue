@@ -51,8 +51,6 @@
         auto-select-first
       ></v-autocomplete>
 
-      <v-divider class="mt-4 mb-7"></v-divider>
-
       <div class="d-flex flex-column">
         <v-btn to="/" :elevation="0">
           {{ t("home") }}
@@ -112,7 +110,7 @@
     </v-navigation-drawer>
     <v-app-bar
       v-if="mobile"
-      :elevation="scrollY"
+      :elevation="scrollY === 0 ? 0 : 5"
       class="pl-5"
       :style="`${scrollY === 0 ? 'background-color: transparent' : ''} ${url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'}`"
     >
@@ -123,6 +121,62 @@
       </h2>
 
       <v-spacer />
+
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-badge
+            v-bind="props"
+            color="error"
+            :content="notificationList.length - readnotification"
+            offset-x="15"
+            offset-y="10"
+          >
+            <v-btn icon="mdi-bell" variant="text" color="yellow-darken-2">
+            </v-btn
+          ></v-badge>
+        </template>
+
+        <v-card>
+          <v-list>
+            <v-dialog
+              v-for="(item, i) in notificationList"
+              :key="item.title"
+              width="500"
+            >
+              <template v-slot:activator="{ props }">
+                <v-list-item
+                  v-bind="props"
+                  :title="`${i + 1}. ${item.title}`"
+                  :subtitle="new Date(item.time).toDateString()"
+                ></v-list-item>
+              </template>
+
+              <template v-slot:default="{ isActive }">
+                <v-card title="Notification">
+                  <v-card-text>
+                    {{ item.contents }}
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      text="Close Dialog"
+                      @click="isActive.value = false"
+                    ></v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+          </v-list>
+
+          <v-card-actions>
+            <V-spacer />
+            <v-btn @click="readall">read all</v-btn>
+            <V-spacer />
+          </v-card-actions>
+        </v-card>
+      </v-menu>
 
       <div v-if="userInfo">
         <v-menu>
@@ -251,7 +305,7 @@
             item-title="name"
             variant="outlined"
             density="compact"
-            class="w-0"
+            class="w-0 mt-1"
             prepend-inner-icon="mdi-translate"
           >
             <template v-slot:item="{ props, item }">
@@ -273,8 +327,65 @@
             :filter-keys="['raw.name', 'raw.text']"
             variant="outlined"
             density="compact"
+            class="mt-1"
             auto-select-first
           ></v-autocomplete>
+
+          <v-menu>
+            <template v-slot:activator="{ props }">
+              <v-badge
+                v-bind="props"
+                color="error"
+                :content="notificationList.length - readnotification"
+                offset-x="15"
+                offset-y="10"
+              >
+                <v-btn icon="mdi-bell" variant="text" color="yellow-darken-2">
+                </v-btn
+              ></v-badge>
+            </template>
+
+            <v-card>
+              <v-list>
+                <v-dialog
+                  v-for="(item, i) in notificationList"
+                  :key="item.title"
+                  width="500"
+                >
+                  <template v-slot:activator="{ props }">
+                    <v-list-item
+                      v-bind="props"
+                      :title="`${i + 1}. ${item.title}`"
+                      :subtitle="new Date(item.time).toDateString()"
+                    ></v-list-item>
+                  </template>
+
+                  <template v-slot:default="{ isActive }">
+                    <v-card title="Notification">
+                      <v-card-text>
+                        {{ item.contents }}
+                      </v-card-text>
+
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                          text="Close Dialog"
+                          @click="isActive.value = false"
+                        ></v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
+              </v-list>
+
+              <v-card-actions>
+                <V-spacer />
+                <v-btn @click="readall">read all</v-btn>
+                <V-spacer />
+              </v-card-actions>
+            </v-card>
+          </v-menu>
 
           <div v-if="userInfo" class="mr-5">
             <v-menu>
@@ -416,22 +527,18 @@ const router = useRouter();
 const auth = getAuth();
 const { t, locale } = useI18n();
 const { mobile } = useDisplay();
-const { $auth } = useNuxtApp();
+const { $auth, $db } = useNuxtApp();
 
 const url = computed(() => route.path);
 const tempLocaleObject = ref(locale === "ko" ? "한국어" : "English");
 const isAdmin = ref(false);
 const userInfo = ref(null);
 
+const notificationList = ref([]);
+const readnotification = ref(0);
+
 const scrollY = ref(0);
 const drawer = ref(false);
-
-$auth.onAuthStateChanged((user) => {
-  if (user) {
-    userInfo.value = user;
-    isAdmin.value = checkAdmin(user.email);
-  }
-});
 
 watch(locale, (newLocale) => {
   localStorage.setItem("locale", newLocale);
@@ -450,6 +557,22 @@ function onScroll() {
 }
 
 onMounted(() => {
+  $auth.onAuthStateChanged((user) => {
+    if (user) {
+      userInfo.value = user;
+      isAdmin.value = checkAdmin(user.email);
+
+      const accountRef = dbRef(
+        $db,
+        `account/${userInfo.value.uid}/readnotification`
+      );
+      onValue(accountRef, (snapshot) => {
+        const data = snapshot.val();
+        readnotification.value = data ?? 0;
+      });
+    }
+  });
+
   window.addEventListener("scroll", onScroll, true);
 
   locale.value = localStorage.getItem("locale") ?? "en";
@@ -463,7 +586,24 @@ onMounted(() => {
       "https://instagram.com/ihxnsxng\nhttps://github.com/hslee2008\nhttps://play.google.com/store/apps/dev?id=7815903651523223132"
     );
   }
+
+  const notificationRef = dbRef($db, "notification");
+  onValue(notificationRef, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data ?? {});
+    notificationList.value = values;
+  });
 });
+
+const readall = () => {
+  readnotification.value = notificationList.value.length;
+
+  const accountRef = dbRef(
+    $db,
+    `account/${userInfo.value.uid}/readnotification`
+  );
+  set(accountRef, readnotification.value);
+};
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll, true);

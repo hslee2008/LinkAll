@@ -45,13 +45,13 @@ const classID = ref([]);
 const subject = ref([]);
 const dates = ref([]);
 
-$auth.onAuthStateChanged((user) => {
-  if (user) {
-    userInfo.value = user;
-  }
-});
-
 onMounted(async () => {
+  await $auth.onAuthStateChanged((user) => {
+    if (user) {
+      userInfo.value = user;
+    }
+  });
+
   const myAccount = dbRef($db, `account/${userInfo.value.uid}/`);
   await onValue(myAccount, async (snapshot) => {
     const values = await snapshot.val();

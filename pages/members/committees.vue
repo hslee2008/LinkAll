@@ -11,13 +11,19 @@
 
       <div class="d-flex my-3">
         <div class="mx-7">
-          <ImgMember showLink src="/members/junho.png" name="junho"></ImgMember>
+          <ImgMember
+            :elevation="0"
+            showLink
+            src="/members/junho.png"
+            name="junho"
+          ></ImgMember>
           <p class="text-center">{{ t("founder") }}</p>
           <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
         </div>
 
         <div class="mx-7">
           <ImgMember
+            :elevation="0"
             showLink
             src="/members/hyunseung.png"
             name="hyunseung"
@@ -30,6 +36,7 @@
       <div class="d-flex justify-center my-3">
         <div class="mx-7">
           <ImgMember
+            :elevation="0"
             showLink
             src="/members/woojin.png"
             name="woojin"
@@ -51,6 +58,7 @@
         <div class="d-flex-break">
           <div class="flex-item">
             <ImgMember
+              :elevation="0"
               :showLink="true"
               src="/members/junho.png"
               name="junho"
@@ -61,6 +69,7 @@
 
           <div :class="`flex-item ${mobile ? 'mt-5' : ''}`">
             <ImgMember
+              :elevation="0"
               :showLink="true"
               src="/members/doyung.png"
               name="doyung"
@@ -73,6 +82,7 @@
         <div class="d-flex-break">
           <div class="flex-item">
             <ImgMember
+              :elevation="0"
               :showLink="true"
               src="/members/yoojong.png"
               name="joojong"

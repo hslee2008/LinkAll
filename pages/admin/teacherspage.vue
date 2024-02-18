@@ -93,6 +93,48 @@
                 </tbody>
               </v-table>
 
+              <DivCenter>
+                <v-dialog width="500">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      color="red"
+                      variant="tonal"
+                      class="mb-3 mt-7"
+                    >
+                      Delete Class
+                    </v-btn>
+                  </template>
+
+                  <template v-slot:default="{ isActive }">
+                    <v-card title="Delete?">
+                      <v-card-text> Really delete this class? </v-card-text>
+
+                      <v-card-actions>
+                        <v-btn
+                          text="Delete"
+                          color="red"
+                          @click="
+                            deleteClass(
+                               item,
+                              index,
+                              () => (isActive.value = false)
+                            )
+                          "
+                        ></v-btn>
+
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                          text="Cancel"
+                          @click="isActive.value = false"
+                        ></v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
+              </DivCenter>
+
               <v-expansion-panel-text>
                 <v-list>
                   <div
@@ -222,5 +264,14 @@ onMounted(() => {
 function copy(string) {
   navigator.clipboard.writeText(string);
   snackbar.value = true;
+}
+
+function deleteClass(item, index, close) {
+  const toDelete = dbRef(
+    $db,
+    `classes/${parsedEmail.value}/to-join/${item}/${index + 1}`
+  );
+  set(toDelete, null);
+  close();
 }
 </script>

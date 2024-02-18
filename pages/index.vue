@@ -205,48 +205,48 @@
       </v-sheet>
     </v-carousel-item>
 
-    <v-carousel-item rounded>
+    <v-carousel-item v-if="notificationList.length > 0" rounded>
       <v-sheet height="100%" tile>
-        <div class="d-flex fill-height justify-center align-center">
-          <div>
-            <div class="text-h3">Notification</div>
+        <div class="text-h3 text-center">Notification</div>
 
-            <v-list v-if="notificationList.length > 0">
-              <v-dialog
-                v-for="(item, i) in notificationList"
-                :key="item.title"
-                width="500"
+        <v-list class="text-center">
+          <v-dialog
+            v-for="(item, i) in notificationList"
+            :key="item.title"
+            width="500"
+          >
+            <template v-slot:activator="{ props }">
+              <v-list-item
+                v-bind="props"
+                :style="i !== 0 ? 'border-top: 1px black solid' : ''"
               >
-                <template v-slot:activator="{ props }">
-                  <v-list-item
-                    v-bind="props"
-                    :title="`(${i + 1}) ${item.title}`"
-                    :subtitle="new Date(item.time).toDateString()"
-                  >
-                  </v-list-item>
-                </template>
+                <v-list-item-title>
+                  {{ item.title }}
+                </v-list-item-title>
+                <v-list-item-subtitle>{{
+                  new Date(item.time).toDateString()
+                }}</v-list-item-subtitle>
+              </v-list-item>
+            </template>
 
-                <template v-slot:default="{ isActive }">
-                  <v-card title="Notification">
-                    <v-card-text>
-                      {{ item.contents }}
-                    </v-card-text>
+            <template v-slot:default="{ isActive }">
+              <v-card title="Notification">
+                <v-card-text>
+                  {{ item.contents }}
+                </v-card-text>
 
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
 
-                      <v-btn
-                        text="Close Dialog"
-                        @click="isActive.value = false"
-                      ></v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </template>
-              </v-dialog>
-            </v-list>
-            <p v-else>No notification yet</p>
-          </div>
-        </div>
+                  <v-btn
+                    text="Close Dialog"
+                    @click="isActive.value = false"
+                  ></v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-list>
       </v-sheet>
     </v-carousel-item>
   </v-carousel>
@@ -287,7 +287,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.16</div>
+    <div class="version">v0.0.17</div>
   </v-footer>
 </template>
 

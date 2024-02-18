@@ -70,6 +70,7 @@
                 <li>Hankyung Economy Competition 1st Place (2023)</li>
                 <li>Ministry of Education Minister's Award x 2 (2023)</li>
                 <li>Cogito Debate Society 19th Captain</li>
+                <li>HAFS Mathematical Contest Bronze Prize</li>
               </ul>
               <ul v-if="locale === 'ko'">
                 <li>YTN/HUFS 전국영어토론대회 우승 (2020)</li>
@@ -82,6 +83,7 @@
                 <li>한경경제체험대회 대상 (2023)</li>
                 <li>교육부 장관상 x 2 (2023)</li>
                 <li>외대부고 코기토 영어토론 동아리 19대 부장</li>
+                <li>외대부고 수학 경시대회 동상</li>
               </ul>
             </v-col>
           </div>
@@ -205,7 +207,10 @@
                   Chairman's Award)
                 </li>
               </ul>
-              <ul v-else-if="locale === 'ko'" class="text-justify">
+              <ul
+                v-else-if="locale === 'ko'"
+                :class="`text-justify ${mobile ? 'mr-3 ml-1' : ''}`"
+              >
                 <li>
                   한국과학창의재단 2022 청소년과학탐구반 융합탐구과제 최우수상
                   (과학기술정보통신부 장관상)
@@ -400,8 +405,8 @@
 
             <v-col class="ml-5">
               <ul v-if="locale === 'en'" class="text-justify">
-                <li>HAFS Mathematical Writing Contest Silver Prize</li>
-                <li>HAFS Mathematical Writing Contest Bronze Prize</li>
+                <li>HAFS Mathematical Contest Silver Prize</li>
+                <li>HAFS Mathematical Contest Bronze Prize</li>
               </ul>
               <ul v-else-if="locale === 'ko'" class="text-justify">
                 <li>외대부고 수학 경시대회 은상</li>
@@ -416,11 +421,11 @@
     <br />
     <br />
     <br />
-    <div class="box"></div>
   </div>
 </template>
 
 <script setup>
+const { mobile } = useDisplay();
 const { t, locale } = useI18n();
 
 useHead({

@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "vuetify-nuxt-module",
     "nuxt-marquee",
+    "@vite-pwa/nuxt",
   ],
   vite: {
     resolve: {
@@ -109,6 +110,55 @@ export default defineNuxtConfig({
       nitroConfig.prerender?.routes?.push("/class/english/debate");
       nitroConfig.prerender?.routes?.push("/class/math/geometry");
       nitroConfig.prerender?.routes?.push("/class/math/logical-math");
+    },
+  },
+  pwa: {
+    manifest: {
+      name: "Think for All - LinkAll",
+      short_name: "LinkAll",
+      description:
+        "LinkAll is a nongovernmental, nonprofit organization established in January 2024, under the fundamental purpose of giving primary education for all students around the world, starting from South Korea. We wish to minimize the educational gap, and provide elemental happiness towards all children.",
+      lang: "ko",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+      orientation: "portrait",
+      scope: "/",
+      start_url: "/",
+      dir: "ltr",
+      icons: [
+        {
+          src: "/icon/icon.png",
+          sizes: "32x32",
+          type: "image/png",
+        },
+        {
+          src: "/icon/144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+      ],
+      screenshots: [
+        {
+          src: "/screenshot/desktop.png",
+          sizes: "2554x1314",
+          type: "image/png",
+          form_factor: "wide",
+        },
+        {
+          src: "/screenshot/mobile.png",
+          sizes: "1074x1216",
+          type: "image/png",
+          form_factor: "narrow",
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: "/",
+    },
+    devOptions: {
+      enabled: true,
+      type: "module",
     },
   },
 });
