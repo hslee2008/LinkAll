@@ -116,7 +116,7 @@
                           color="red"
                           @click="
                             deleteClass(
-                               item,
+                              item,
                               index,
                               () => (isActive.value = false)
                             )
@@ -147,67 +147,93 @@
                       margin-bottom: 50px;
                     "
                   >
-                    <div :class="`d-flex my-3 ${xs ? 'flex-column' : ''}`">
-                      <v-list-item lines="two">
-                        <v-list-item-title class="font-weight-bold">{{
-                          student.s_name
-                        }}</v-list-item-title>
-                        <v-list-item-title>{{
-                          student.s_email
-                        }}</v-list-item-title>
-                      </v-list-item>
+                    <div :class="`my-3 ${xs ? 'flex-column' : ''}`">
+                      <div class="d-flex">
+                        <v-list-item lines="two">
+                          <v-list-item-title class="font-weight-bold">{{
+                            student.s_name
+                          }}</v-list-item-title>
+                          <v-list-item-title>{{
+                            student.s_email
+                          }}</v-list-item-title>
+                        </v-list-item>
 
-                      <v-list-item lines="two">
-                        <v-list-item-title class="font-weight-bold">{{
-                          student.g_name
-                        }}</v-list-item-title>
-                        <v-list-item-title>{{
-                          student.g_email
-                        }}</v-list-item-title>
-                      </v-list-item>
+                        <v-list-item lines="two">
+                          <v-list-item-title class="font-weight-bold">{{
+                            student.g_name
+                          }}</v-list-item-title>
+                          <v-list-item-title>{{
+                            student.g_email
+                          }}</v-list-item-title>
+                        </v-list-item>
+                      </div>
 
-                      <v-list-item lines="two">
-                        <v-list-item-action class="mt-1">
-                          <v-btn
-                            color="primary"
-                            :href="`mailto:${student.s_email}`"
-                          >
-                            <v-icon start>mdi-gmail</v-icon> Student
-                          </v-btn>
-                        </v-list-item-action>
+                      <v-list-item-action class="mt-2">
+                        <v-btn
+                          class="ml-4"
+                          color="primary"
+                          :href="`mailto:${student.s_email}`"
+                        >
+                          <v-icon start>mdi-gmail</v-icon> Student
+                        </v-btn>
 
-                        <v-list-item-action class="mt-1">
-                          <v-btn
-                            color="primary"
-                            :href="`mailto:${student.g_email}`"
-                          >
-                            <v-icon start>mdi-gmail</v-icon> Guardian
-                          </v-btn>
-                        </v-list-item-action>
-                      </v-list-item>
+                        <v-btn
+                          class="ml-4"
+                          color="primary"
+                          :href="`mailto:${student.g_email}`"
+                        >
+                          <v-icon start>mdi-gmail</v-icon> Guardian
+                        </v-btn>
+
+                        <v-btn
+                          class="ml-4"
+                          color="red"
+                          @click="
+                            DeleteStudent(
+                              item,
+                              Object.keys(
+                                classes[parsedEmail]['to-join'][item] ?? {}
+                              )[index],
+                              i,
+                              student.uid,
+                              item
+                            )
+                          "
+                        >
+                          <v-icon start>mdi-delete</v-icon> DELETE
+                        </v-btn>
+                      </v-list-item-action>
                     </div>
 
                     <v-list-item lines="two">
                       <v-list-item-title
-                        class="text-decoration-underline text-center mb-3"
+                        class="text-decoration-underline text-center mb-2"
                       >
                         Terms of Agreement
                       </v-list-item-title>
                       <v-table>
                         <thead>
                           <tr>
-                            <th>Personal Info (contact)</th>
-                            <th>Personal Info (class documents)</th>
-                            <th>email notification</th>
-                            <th>photos</th>
+                            <th class="font-weight-bold">Contact</th>
+                            <th class="font-weight-bold">Documents</th>
+                            <th class="font-weight-bold">Email</th>
+                            <th class="font-weight-bold">Photo</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <th>{{ student?.toa?.toa1 ?? "false" }}</th>
-                            <th>{{ student?.toa?.toa2 ?? "false" }}</th>
-                            <th>{{ student?.toa?.toa3 ?? "false" }}</th>
-                            <th>{{ student?.toa?.toa4 ?? "false" }}</th>
+                            <th>
+                              {{ student?.toa?.toa1 ? "agreed" : "not agreed" }}
+                            </th>
+                            <th>
+                              {{ student?.toa?.toa2 ? "agreed" : "not agreed" }}
+                            </th>
+                            <th>
+                              {{ student?.toa?.toa3 ? "agreed" : "not agreed" }}
+                            </th>
+                            <th>
+                              {{ student?.toa?.toa4 ? "agreed" : "not agreed" }}
+                            </th>
                           </tr>
                         </tbody>
                       </v-table>
@@ -248,10 +274,6 @@ onMounted(() => {
     if (user) {
       parsedEmail.value = user.email?.split("@")[0].replaceAll(".", "_");
     }
-
-    if (process.env.NODE_ENV === "development") {
-      parsedEmail.value = "h_junho420";
-    }
   });
 
   onValue(dbRef($db, "classes"), (snapshot) => {
@@ -273,5 +295,15 @@ function deleteClass(item, index, close) {
   );
   set(toDelete, null);
   close();
+}
+
+function DeleteStudent(index, class_i, i, uid, class_id) {
+  const fromTeacher = classes.value[parsedEmail.value]["to-join"];
+  const fromClass = fromTeacher[index][class_i];
+  delete fromClass[Object.keys(fromClass ?? {})[i]];
+  set(dbRef($db, "classes"), classes.value);
+
+  const account = dbRef($db, `account/${uid}/${class_id}`);
+  set(account, null);
 }
 </script>

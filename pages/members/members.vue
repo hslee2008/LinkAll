@@ -5,7 +5,7 @@
     </h1>
 
     <DivCenter>
-      <div id="junho" class="container mt-10">
+      <div id="junho" class="container mb-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
@@ -90,7 +90,7 @@
         </v-col>
       </div>
 
-      <div id="hyunseung" class="container mt-10">
+      <div id="hyunseung" class="container mb-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
@@ -237,7 +237,7 @@
         </v-col>
       </div>
 
-      <div id="woojin" class="container mt-10">
+      <div id="woojin" class="container mb-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
@@ -299,7 +299,7 @@
         </v-col>
       </div>
 
-      <div id="doyung" class="container mt-10">
+      <div id="doyung" class="container mb-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember
@@ -363,7 +363,7 @@
         </v-col>
       </div>
 
-      <div id="yoojong" class="container mt-10">
+      <div id="yoojong" class="container mb-10">
         <div>
           <v-col class="text-center ma-auto" style="flex: 0.2">
             <ImgMember

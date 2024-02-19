@@ -4,7 +4,27 @@
 
     <br />
 
-    <p class="ml-10">{{ Object.values(emails ?? {}).join(", ") }}</p>
+    <p v-for="(item, i) in Object.values(emails ?? {})" class="ml-10 mr-10">
+      {{ item }}
+    </p>
+
+    <v-btn
+      class="ml-10 mt-5"
+      variant="outlined"
+      @click="copy(Object.values(emails ?? {}).join(','))"
+    >
+      <v-icon start>mdi-content-copy</v-icon> Copy
+    </v-btn>
+
+    <v-snackbar v-model="snackbar">
+      {{ $t("copied") }}
+
+      <template v-slot:actions>
+        <v-btn color="pink" variant="text" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -13,6 +33,8 @@ const emails = ref("");
 
 const { $db } = useNuxtApp();
 
+const snackbar = ref(false);
+
 onMounted(() => {
   const notifRef = dbRef($db, "emails/notificationallowed");
   onValue(notifRef, (snapshot) => {
@@ -20,4 +42,9 @@ onMounted(() => {
     emails.value = data;
   });
 });
+
+function copy(string) {
+  navigator.clipboard.writeText(string);
+  snackbar.value = true;
+}
 </script>

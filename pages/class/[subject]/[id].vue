@@ -30,7 +30,7 @@
         <br />
 
         <v-alert
-          :border="!mobile ? 'start' : 'top'"
+          :border="width >= 930 ? 'start' : 'top'"
           border-color="success"
           icon="mdi-heart-box-outline"
           class="text-justify"
@@ -52,8 +52,8 @@
           - Think for All, Link All.
         </h2>
 
-        <div :class="`my-13 d-flex ga-6 ${mobile ? 'flex-column' : ''}`">
-          <div :style="!mobile ? 'width: 50%' : ''">
+        <div :class="`my-13 d-flex ga-6 ${width >= 930 ? '' : 'flex-column'}`">
+          <div :style="width >= 930 ? 'width: 50%' : ''">
             <v-table
               v-if="classInfo.lang"
               style="border: 1px solid black; border-radius: 10px"
@@ -92,14 +92,16 @@
             v-if="
               classInfo.englishClassSchedule || classInfo.koreanClassSchedule
             "
-            :style="!mobile ? 'width: 50%' : ''"
+            :style="width >= 1020 ? 'width: 50%' : ''"
           >
             <v-table style="border: 1px solid black; border-radius: 10px">
               <thead style="background-color: #b0d6b2">
                 <tr>
                   <th class="text-center font-weight-bold">Date</th>
                   <th class="text-center font-weight-bold">Theme</th>
-                  <th class="text-center font-weight-bold">Students</th>
+                  <th class="text-center font-weight-bold" style="padding: 0px">
+                    Students
+                  </th>
                   <th class="text-center font-weight-bold">Status</th>
                 </tr>
               </thead>
@@ -517,7 +519,7 @@
 <script setup>
 const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();
-const { mobile } = useDisplay();
+const { width } = useDisplay();
 const route = useRoute();
 
 const max = ref(0);
@@ -612,6 +614,7 @@ const saveToDatabase = () => {
     g_name: g_name.value,
     g_email: g_email.value,
     date,
+    uid: userInfo.value.uid,
     toa: {
       toa1: toa1.value,
       toa2: toa2.value,
@@ -625,8 +628,11 @@ const saveToDatabase = () => {
   });
 
   if (toa3) {
-    const notifRef = dbRef($db, "emails/notificationallowed");
-    push(notifRef, s_email.value);
+    const notifRef = dbRef(
+      $db,
+      `emails/notificationallowed/${userInfo.value.uid}`
+    );
+    set(notifRef, s_email.value);
   }
 
   const myAccount = dbRef(

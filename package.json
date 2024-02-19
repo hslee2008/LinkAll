@@ -20,7 +20,7 @@
     "npm-check-updates": "^16.14.15",
     "nuxt": "^3.10.2",
     "nuxt-gtag": "^1.2.0",
-    "nuxt-marquee": "^1.0.2",
+    "nuxt-marquee": "^1.0.3",
     "prettier": "^3.2.5",
     "sass": "^1.71.0",
     "vue": "3.4.19",

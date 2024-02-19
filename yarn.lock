@@ -6995,13 +6995,13 @@ nuxt-gtag@^1.2.0:
     pathe "^1.1.2"
     ufo "^1.4.0"
 
-nuxt-marquee@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nuxt-marquee/-/nuxt-marquee-1.0.2.tgz#30ca72410545c45517ad88b83920ec3bb851959a"
-  integrity sha512-q+hoFzlWTQ1UDOSMzJExryrMMg6e7K6ywginF75YBp6CXPxADsL2t1pkaqv4+JHe1Ar5kEwEM6Lj3K+rii1rKA==
+nuxt-marquee@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/nuxt-marquee/-/nuxt-marquee-1.0.3.tgz#f7e7135fe4fd210114d6ad5e1573d9c5f2c88ec4"
+  integrity sha512-psKuuwgftPI9NXHgmRua00dJr+XdHojxGge9vOGEXfSpRGzerJUywd4AJF5Bxmjy46xIeWh88/TzJsxqFa+rTA==
   dependencies:
     "@nuxt/kit" "^3.10.0"
-    vue-fast-marquee "^1.0.5"
+    vue-fast-marquee "^1.0.6"
 
 nuxt-site-config-kit@2.2.9, nuxt-site-config-kit@^2.2.8:
   version "2.2.9"
@@ -9366,10 +9366,10 @@ vue-devtools-stub@^0.1.0:
   resolved "https://registry.yarnpkg.com/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz#a65b9485edecd4273cedcb8102c739b83add2c81"
   integrity sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==
 
-vue-fast-marquee@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-fast-marquee/-/vue-fast-marquee-1.0.5.tgz#7e87ab00f1ec758814984953a53bad65f50c562c"
-  integrity sha512-BhzKM/8b5vXnyXyVBDMUofqV9a3akDhs62s3e4hz+qsjfI+7zStqVBFH3eM2xMiNCWXAiwB267QhPWyZd2vP8Q==
+vue-fast-marquee@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vue-fast-marquee/-/vue-fast-marquee-1.0.6.tgz#ad445a07447aee855fdb9e8fe3807867e0ae326a"
+  integrity sha512-VMqaeuBSS3L55Q84EuLJPHZ4Zv4UVBDXmh+2hb1IBTLKt/FmurJnWVXv8BNnbQSupA4kHbPlWDLwp+kvEMOF7A==
 
 vue-i18n@^9.9.1:
   version "9.9.1"

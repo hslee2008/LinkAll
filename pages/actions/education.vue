@@ -20,12 +20,32 @@
 
             <div class="d-flex">
               <v-card
+                v-if="classes.english"
                 v-for="(item, index) in classes.english"
                 :key="index"
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
                 <ClassInfo :item="item"></ClassInfo>
+              </v-card>
+              <v-card
+                v-else
+                elevation="0"
+                height="300px"
+                width="350px"
+                min-width="150"
+                varaint="tonal"
+                class="cardy rounded-lg mx-3"
+              >
+                <div class="ml-2">
+                  <v-card-title class="headline text-center">
+                    <v-icon start size="x-small">mdi-translate</v-icon>
+                    ENGLISH
+                  </v-card-title>
+                  <v-card-text class="text-h6 mt-2 text-center">
+                    Coming Soon!
+                  </v-card-text>
+                </div>
               </v-card>
             </div>
           </v-card>
@@ -44,12 +64,32 @@
             </v-card>
 
             <v-card
+              v-if="classes.math"
               v-for="(item, index) in classes.math"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
             >
               <ClassInfo :item="item"></ClassInfo>
+            </v-card>
+            <v-card
+              v-else
+              elevation="0"
+              height="300px"
+              width="350px"
+              min-width="150"
+              varaint="tonal"
+              class="cardy rounded-lg mx-3"
+            >
+              <div class="ml-2">
+                <v-card-title class="headline text-center">
+                  <v-icon start size="x-small">mdi-math-compass</v-icon>
+                  MATH
+                </v-card-title>
+                <v-card-text class="text-h6 mt-2 text-center">
+                  Coming Soon!
+                </v-card-text>
+              </div>
             </v-card>
           </v-card>
         </v-row>
@@ -67,6 +107,16 @@
             </v-card>
 
             <v-card
+              v-if="classes.arts"
+              v-for="(item, index) in classes.arts"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item"></ClassInfo>
+            </v-card>
+            <v-card
+              v-else
               elevation="0"
               height="300px"
               width="350px"
@@ -100,6 +150,16 @@
             </v-card>
 
             <v-card
+              v-if="classes.tech"
+              v-for="(item, index) in classes.tech"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item"></ClassInfo>
+            </v-card>
+            <v-card
+              v-else
               elevation="0"
               height="300px"
               width="350px"

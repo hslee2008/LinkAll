@@ -4,64 +4,78 @@
       <v-card
         v-bind="props"
         elevation="0"
-        :width="width"
         varaint="tonal"
-        class="cardy rounded-lg"
-        :to="`/class/${item.subject}/${item.classID}`"
+        class="cardy rounded-xl"
+        :width="width"
+        :to="`/class/${item?.subject}/${item?.classID}`"
       >
         <div class="ml-2">
           <v-card-title class="headline">
-            <v-icon start size="x-small">{{ item.icon }}</v-icon>
-            {{ item.subject?.toUpperCase() }}
+            <v-icon start size="x-small">{{ item?.icon }}</v-icon>
+            {{ item?.subject?.toUpperCase() }}
           </v-card-title>
           <v-card-text class="text-h6 mt-2">
-            {{ item.englishDisplayName }}
+            {{
+              locale === "en"
+                ? item?.englishDisplayName
+                : item?.koreanDisplayName
+            }}
           </v-card-text>
         </div>
 
-        <div>
-          <img
-            :src="`/members/${item.teacherID}.png`"
-            height="200"
-            style="right: 0; bottom: 0; position: absolute"
-          />
-        </div>
-
-        <v-card
-          style="position: absolute; bottom: 0; margin-bottom: 30px"
-          class="d-flex ml-2"
-          elevation="0"
-          color="transparent"
+        <div
+          style="
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            margin-bottom: -10px;
+            width: 100%;
+          "
+          class="d-flex"
         >
-          <div
-            class="my-auto ml-4 mr-6 pb-3 rounded-lg"
-            style="border: solid white"
-          >
-            <v-card-title class="text-left text-white">
-              {{ item.englishTeacherName }}
-            </v-card-title>
-            <v-card-subtitle class="text-left text-white">
-              {{ item.koreanTeacherName }}
-            </v-card-subtitle>
+          <div class="ma-auto mb-8 d-flex">
+            <div class="pb-3 rounded-lg" style="border: solid white">
+              <v-card-title class="text-left text-white">
+                {{
+                  locale === "en"
+                    ? item?.englishTeacherName
+                    : item?.koreanTeacherName
+                }}
+              </v-card-title>
+              <v-card-subtitle class="text-white" style="max-width: 150px">
+                {{ item?.lang }}
+              </v-card-subtitle>
+            </div>
           </div>
 
-          <v-slide-x-transition>
-            <v-btn
-              v-if="isHovering"
-              elevation="0"
-              icon="mdi-arrow-right-circle"
-              size="large"
-              class="mt-3"
-              variant="elevated"
-            ></v-btn>
-          </v-slide-x-transition>
-        </v-card>
+          <div>
+            <img :src="`/members/${item?.teacherID}.png`" height="200" />
+          </div>
+        </div>
+
+        <v-slide-x-transition
+          v-if="!mobile"
+          style="position: absolute; bottom: 0; right: 0"
+          class="mr-12 mb-10"
+        >
+          <v-btn
+            v-if="isHovering"
+            elevation="0"
+            icon="mdi-arrow-right-circle"
+            size="large"
+            variant="elevated"
+            style="border: 1px solid black"
+          ></v-btn>
+        </v-slide-x-transition>
       </v-card>
     </template>
   </v-hover>
 </template>
 
 <script setup>
+const { mobile } = useDisplay();
+const { locale } = useI18n();
+
 const props = defineProps({
   item: {
     type: Object,
@@ -83,6 +97,7 @@ const props = defineProps({
 
 .cardy {
   height: 300px;
+  border: 0.4px solid grey;
 }
 
 @media (max-width: 600px) {

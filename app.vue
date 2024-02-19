@@ -110,9 +110,9 @@
     </v-navigation-drawer>
     <v-app-bar
       v-if="mobile"
-      :elevation="scrollY === 0 ? 0 : 5"
+      :elevation="scrollY === 0 ? 0 : 4"
       class="pl-5"
-      :style="`${scrollY === 0 ? 'background-color: transparent' : ''} ${url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'}`"
+      :style="`${scrollY === 0 ? 'background-color: transparent;' : 'border-bottom: 1px solid black'}`"
     >
       <h2>
         <NuxtLink href="/">
@@ -129,11 +129,14 @@
             color="error"
             :content="notificationList.length - readnotification"
             offset-x="15"
-            offset-y="10"
+            offset-y="15"
           >
-            <v-btn icon="mdi-bell" variant="text" color="yellow-darken-2">
-            </v-btn
-          ></v-badge>
+            <v-btn
+              icon="mdi-bell"
+              variant="text"
+              color="yellow-darken-2"
+            ></v-btn>
+          </v-badge>
         </template>
 
         <v-card>
@@ -170,7 +173,7 @@
             </v-dialog>
           </v-list>
 
-          <v-card-actions>
+          <v-card-actions v-if="notificationList.length - readnotification">
             <V-spacer />
             <v-btn @click="readall">read all</v-btn>
             <V-spacer />
@@ -340,9 +343,12 @@
                 offset-x="15"
                 offset-y="10"
               >
-                <v-btn icon="mdi-bell" variant="text" color="yellow-darken-2">
-                </v-btn
-              ></v-badge>
+                <v-btn
+                  icon="mdi-bell"
+                  variant="text"
+                  color="yellow-darken-2"
+                ></v-btn>
+              </v-badge>
             </template>
 
             <v-card>
@@ -379,7 +385,7 @@
                 </v-dialog>
               </v-list>
 
-              <v-card-actions>
+              <v-card-actions v-if="notificationList.length - readnotification">
                 <V-spacer />
                 <v-btn @click="readall">read all</v-btn>
                 <V-spacer />
