@@ -12,14 +12,6 @@
       <br />
       <br />
 
-      <v-btn width="300" height="65" to="/admin/teacherspage">
-        See Class
-        <v-icon end>mdi-human-male-board</v-icon>
-      </v-btn>
-
-      <br />
-      <br />
-
       <v-btn width="300" height="65" to="/admin/newclass">
         New Class <v-icon end>mdi-plus</v-icon>
       </v-btn>

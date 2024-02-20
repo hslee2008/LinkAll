@@ -137,12 +137,8 @@
 
   <br /><br />
   <br /><br />
-  <br /><br />
 
-  <h2 class="text-center text-h2">LinkAll Programs</h2>
-
-  <hr />
-  <br />
+  <h2 class="text-center mb-3 text-h2">LinkAll Programs</h2>
 
   <v-container fluid>
     <v-row justify="center">
@@ -160,7 +156,11 @@
           </DivCenter>
         </v-col>
       </template>
-      <div v-else v-for="(_, __) in [0, 1, 2, 3]" :key="`skeleton-${__}`">
+      <template
+        v-else
+        v-for="(_, __) in classList.length"
+        :key="`skeleton-${__}`"
+      >
         <v-col>
           <v-skeleton-loader
             class="mx-auto border"
@@ -168,7 +168,7 @@
             type="image, article"
           ></v-skeleton-loader>
         </v-col>
-      </div>
+      </template>
     </v-row>
   </v-container>
 
@@ -251,9 +251,9 @@
     </v-carousel-item>
   </v-carousel>
 
-  <br />
-  <br />
-  <br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
     <div>
@@ -287,7 +287,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.18</div>
+    <div class="version">v0.0.19</div>
   </v-footer>
 </template>
 

@@ -33,19 +33,19 @@
           "
           class="d-flex"
         >
-          <div class="ma-auto mb-8 d-flex">
-            <div class="pb-3 rounded-lg" style="border: solid white">
-              <v-card-title class="text-left text-white">
-                {{
-                  locale === "en"
-                    ? item?.englishTeacherName
-                    : item?.koreanTeacherName
-                }}
-              </v-card-title>
-              <v-card-subtitle class="text-white" style="max-width: 150px">
-                {{ item?.lang }}
-              </v-card-subtitle>
-            </div>
+          <div class="ma-auto mb-9">
+            <p v-if="locale === 'en'" class="text-h5 text-center text-white">
+              {{ item?.englishTeacherName }}
+            </p>
+            <p
+              v-else-if="locale === 'ko'"
+              class="text-h4 text-center text-white"
+            >
+              {{ item?.koreanTeacherName }}
+            </p>
+            <p class="text-center text-white">
+              {{ item?.lang }}
+            </p>
           </div>
 
           <div>

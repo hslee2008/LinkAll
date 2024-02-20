@@ -173,7 +173,9 @@
             </v-dialog>
           </v-list>
 
-          <v-card-actions v-if="notificationList.length - readnotification">
+          <v-card-actions
+            v-if="notificationList.length - readnotification && userInfo"
+          >
             <V-spacer />
             <v-btn @click="readall">read all</v-btn>
             <V-spacer />
@@ -208,9 +210,22 @@
                 base-color="purple"
               >
                 <v-list-item-title>
-                  <v-icon start>mdi-incognito</v-icon> Admin Page
+                  <v-icon start>mdi-incognito</v-icon> Admin
                 </v-list-item-title>
               </v-list-item>
+              <v-list-item
+                v-if="isTeacher"
+                to="/teacher/teacherspage"
+                bg-color="purple"
+                base-color="purple"
+              >
+                <v-list-item-title>
+                  <v-icon start>mdi-human-male-board</v-icon> Teacher
+                </v-list-item-title>
+              </v-list-item>
+
+              <v-divider />
+
               <v-list-item to="/account/account">
                 <v-list-item-title>
                   <v-icon start>mdi-account-box</v-icon>
@@ -385,7 +400,9 @@
                 </v-dialog>
               </v-list>
 
-              <v-card-actions v-if="notificationList.length - readnotification">
+              <v-card-actions
+                v-if="notificationList.length - readnotification && userInfo"
+              >
                 <V-spacer />
                 <v-btn @click="readall">read all</v-btn>
                 <V-spacer />
@@ -420,9 +437,22 @@
                     base-color="purple"
                   >
                     <v-list-item-title>
-                      <v-icon start>mdi-incognito</v-icon> Admin Page
+                      <v-icon start>mdi-incognito</v-icon> Admin
                     </v-list-item-title>
                   </v-list-item>
+                  <v-list-item
+                    v-if="isTeacher"
+                    to="/teacher/teacherspage"
+                    bg-color="purple"
+                    base-color="purple"
+                  >
+                    <v-list-item-title>
+                      <v-icon start>mdi-human-male-board</v-icon> Teacher
+                    </v-list-item-title>
+                  </v-list-item>
+
+                  <v-divider />
+
                   <v-list-item to="/account/account">
                     <v-list-item-title>
                       <v-icon start>mdi-account-box</v-icon>
@@ -538,6 +568,7 @@ const { $auth, $db } = useNuxtApp();
 const url = computed(() => route.path);
 const tempLocaleObject = ref(locale === "ko" ? "한국어" : "English");
 const isAdmin = ref(false);
+const isTeacher = ref(false);
 const userInfo = ref(null);
 
 const notificationList = ref([]);
@@ -566,7 +597,9 @@ onMounted(() => {
   $auth.onAuthStateChanged((user) => {
     if (user) {
       userInfo.value = user;
+
       isAdmin.value = checkAdmin(user.email);
+      isTeacher.value = checkTeacher(user.email);
 
       const accountRef = dbRef(
         $db,

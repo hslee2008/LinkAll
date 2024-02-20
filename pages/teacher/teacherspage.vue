@@ -1,6 +1,7 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
     <v-select
+      v-if="isAdmin"
       v-model="parsedEmail"
       :items="keys"
       class="my-3"
@@ -269,10 +270,13 @@ const classes = ref({});
 
 const snackbar = ref(false);
 
+const isAdmin = ref(false);
+
 onMounted(() => {
   $auth.onAuthStateChanged((user) => {
     if (user) {
       parsedEmail.value = user.email?.split("@")[0].replaceAll(".", "_");
+      isAdmin.value = checkAdmin(user.email);
     }
   });
 

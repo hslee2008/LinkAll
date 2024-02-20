@@ -27,6 +27,13 @@
           <v-skeleton-loader type="paragraph"></v-skeleton-loader>
         </div>
 
+        <h2
+          style="font-family: Grape Nuts"
+          class="linkall-sign font-weight-black mb-3"
+        >
+          - Think for All, Link All.
+        </h2>
+
         <br />
 
         <v-alert
@@ -44,13 +51,6 @@
             연결하는 힘을 가지고 있습니다.
           </span>
         </v-alert>
-        <br />
-        <h2
-          style="font-family: Grape Nuts"
-          class="linkall-sign font-weight-black ml-3 mb-3"
-        >
-          - Think for All, Link All.
-        </h2>
 
         <div :class="`my-13 d-flex ga-6 ${width >= 930 ? '' : 'flex-column'}`">
           <div :style="width >= 930 ? 'width: 50%' : ''">
@@ -97,7 +97,7 @@
             <v-table style="border: 1px solid black; border-radius: 10px">
               <thead style="background-color: #b0d6b2">
                 <tr>
-                  <th class="text-center font-weight-bold">Date</th>
+                  <th class="text-center font-weight-bold">{{ $t("Date") }}</th>
                   <th class="text-center font-weight-bold">Theme</th>
                   <th class="text-center font-weight-bold" style="padding: 0px">
                     Students
@@ -715,3 +715,14 @@ useHead({
   }
 }
 </style>
+
+<i18n>
+{
+  "en": {
+    "Date": "Date"
+  },
+  "ko": {
+    "Date": "날짜"
+  }
+}
+</i18n>

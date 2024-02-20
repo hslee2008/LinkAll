@@ -41,8 +41,9 @@
                     target="_blank"
                     href="http://hafs.hs.kr/?main"
                   >
-                    <v-img src="/school/hafs.png" height="100px"></v-img>
+                    <v-img src="/school/hafs-logo.png" height="100px"></v-img>
                   </v-card>
+                  <p class="text-center mt-3">용인외대부고</p>
                 </v-col>
                 <v-col>
                   <v-card
@@ -51,17 +52,18 @@
                     variant="tonal"
                     target="_blank"
                     href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
-                    class="mt-2"
                   >
-                    <v-img src="/school/pangyo.png" height="100px"></v-img>
+                    <v-img src="/school/pangyo-logo.png" height="100px"></v-img>
                   </v-card>
+                  <p class="text-center mt-3">판교고등학교</p>
                 </v-col>
               </v-row>
             </v-container>
           </v-card>
 
           <br />
-          <p style="font-family: Grape Nuts" class="font-weight-black">
+
+          <p style="font-family: Grape Nuts" class="text-h5 font-weight-black">
             우리는 LinkAll입니다. ({{ yearmonth }})
           </p>
         </div>
@@ -86,8 +88,14 @@
                     target="_blank"
                     href="http://hafs.hs.kr/?main"
                   >
-                    <v-img src="/school/hafs.png" height="100px"></v-img>
+                    <v-img src="/school/hafs-logo.png" height="100px"></v-img>
                   </v-card>
+                  <p
+                    class="text-center mt-3"
+                    style="font-size: 13px !important"
+                  >
+                    Hankuk Academy of Foreign Studies
+                  </p>
                 </v-col>
                 <v-col>
                   <v-card
@@ -97,8 +105,9 @@
                     target="_blank"
                     href="https://pangyo-h.goesn.kr/pangyo-h/main.do"
                   >
-                    <v-img src="/school/pangyo.png" height="100px"></v-img>
+                    <v-img src="/school/pangyo-logo.png" height="100px"></v-img>
                   </v-card>
+                  <p class="text-center mt-3">Pangyo High School</p>
                 </v-col>
               </v-row>
             </v-container>
@@ -106,7 +115,7 @@
 
           <br />
 
-          <h2 style="font-family: Grape Nuts" class="font-weight-black">
+          <h2 style="font-family: Grape Nuts" class="text-h5 font-weight-black">
             We are LinkAll. ({{ yearmonth }})
           </h2>
 
