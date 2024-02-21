@@ -230,18 +230,25 @@
             </template>
 
             <template v-slot:default="{ isActive }">
-              <v-card title="Notification">
+              <v-card>
                 <v-card-text>
-                  {{ item.contents }}
+                  <Markdown
+                    :source="item.contents"
+                    :linkify="true"
+                    :breaks="true"
+                  />
                 </v-card-text>
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
 
                   <v-btn
-                    text="Close Dialog"
+                    text="Close "
+                    color="red"
                     @click="isActive.value = false"
                   ></v-btn>
+
+                  <v-spacer></v-spacer>
                 </v-card-actions>
               </v-card>
             </template>
@@ -287,11 +294,13 @@
       reserved
     </div>
 
-    <div class="version">v0.0.19</div>
+    <div class="version">v0.0.20</div>
   </v-footer>
 </template>
 
 <script setup>
+import Markdown from "vue3-markdown-it";
+
 const { t } = useI18n();
 const { $db } = useNuxtApp();
 const { mobile } = useDisplay();

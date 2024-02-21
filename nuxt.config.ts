@@ -44,8 +44,7 @@ export default defineNuxtConfig({
       "Yatara One": true,
       Comfortaa: true,
     },
-    display: "swap",
-    overwriting: true,
+    display: "swap"
   },
   experimental: {
     payloadExtraction: true,
