@@ -294,7 +294,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.20</div>
+    <div class="version">v0.0.21</div>
   </v-footer>
 </template>
 
@@ -409,7 +409,7 @@ p > a:hover {
 
 @media (max-width: 1275px) {
   .index {
-    margin-top: 140px;
+    margin-top: 130px;
   }
 }
 </style>

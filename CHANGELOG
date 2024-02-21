@@ -121,3 +121,7 @@ minor component tweaks
 
 v0.0.20
 add markdown feature
+
+v0.0.21
+fix minor warning issues
+make edit button visible to certain teacher

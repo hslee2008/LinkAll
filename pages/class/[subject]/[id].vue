@@ -2,17 +2,21 @@
   <div class="mt-180 mx-5 mb-10">
     <div class="top-div">
       <div class="bottom-div">
-        <div v-if="classInfo.englishOfficialName">
-          <div v-if="locale === 'en'" class="title-container">
-            <h1 class="mr-3">{{ classInfo.englishOfficialName }}</h1>
-            <h2 class="my-auto">| {{ classInfo.englishTeacherName }}</h2>
+        <div class="d-flex">
+          <v-icon class="my-auto mx-4">{{ classInfo.icon }}</v-icon>
+
+          <div v-if="classInfo.englishOfficialName">
+            <div v-if="locale === 'en'" class="title-container">
+              <h1 class="mr-3">{{ classInfo.englishOfficialName }}</h1>
+              <h2 class="my-auto">| {{ classInfo.englishTeacherName }}</h2>
+            </div>
+            <div v-else-if="locale === 'ko'" class="title-container">
+              <h1 class="mr-3">{{ classInfo.koreanOfficialName }}</h1>
+              <h2 class="my-auto">| {{ classInfo.koreanTeacherName }}</h2>
+            </div>
           </div>
-          <div v-else-if="locale === 'ko'" class="title-container">
-            <h1 class="mr-3">{{ classInfo.koreanOfficialName }}</h1>
-            <h2 class="my-auto">| {{ classInfo.koreanTeacherName }}</h2>
-          </div>
+          <v-skeleton-loader v-else type="heading"></v-skeleton-loader>
         </div>
-        <v-skeleton-loader v-else type="heading"></v-skeleton-loader>
 
         <p v-if="classInfo.englishClassDescription" class="text-justify mt-3">
           <span v-if="locale === 'en'">
@@ -123,10 +127,16 @@
                   "
                 >
                   <td class="text-center">
-                    {{ classInfo.classDates[index]?.replace(" (done)", "") }}
+                    {{
+                      width <= 500
+                        ? classInfo.classDates[index]
+                            ?.replace(" (done)", "")
+                            .replace("2024/", "")
+                        : classInfo.classDates[index]?.replace(" (done)", "")
+                    }}
                   </td>
                   <td class="text-center">{{ schedule }}</td>
-                  <td class="text-center" style="">
+                  <td class="text-center">
                     {{
                       Object.keys(numbersForEachClass[index + 1] ?? {}).length
                     }}
@@ -497,7 +507,11 @@
     </v-dialog>
 
     <v-layout-item
-      v-if="isAdmin"
+      v-if="
+        isAdmin ||
+        classInfo.teacherEmailID ===
+          userInfo.email?.split('@')[0].replaceAll('.', '_')
+      "
       model-value
       position="bottom"
       class="text-end"
@@ -645,10 +659,6 @@ const saveToDatabase = () => {
     classNumber: classNumber.value,
   });
 };
-
-useHead({
-  title: t("class"),
-});
 </script>
 
 <style scoped>

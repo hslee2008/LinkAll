@@ -131,11 +131,7 @@
             offset-x="15"
             offset-y="15"
           >
-            <v-btn
-              icon="mdi-bell"
-              variant="text"
-              color="yellow-darken-2"
-            ></v-btn>
+            <v-btn icon="mdi-bell" color="yellow-darken-2"></v-btn>
           </v-badge>
         </template>
 
