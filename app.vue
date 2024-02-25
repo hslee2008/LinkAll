@@ -115,7 +115,7 @@
       :style="`${scrollY === 0 ? 'background-color: transparent;' : 'border-bottom: 1px solid black'}`"
     >
       <h2>
-        <NuxtLink href="/">
+        <NuxtLink to="/">
           <span style="font-family: Protest Guerrilla">LinkAll</span>
         </NuxtLink>
       </h2>
@@ -164,7 +164,7 @@
                     <v-spacer></v-spacer>
 
                     <v-btn
-                      text="Close"
+                      :text="t('close')"
                       color="red"
                       @click="isActive.value = false"
                     ></v-btn>
@@ -264,295 +264,260 @@
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
     </v-app-bar>
-    <v-app-bar
-      v-else
-      absolute
-      height="140"
-      :elevation="0"
-      :style="`background-color: transparent;${
-        url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
-      }`"
-    >
-      <v-alert
-        v-if="userInfo && !userInfo.emailVerified"
-        type="warning"
-        text="Email is not verified"
+    <template v-else>
+      <v-app-bar
+        v-if="scrollY <= 67.5"
+        height="140"
+        absolute
+        :elevation="0"
+        :style="`background-color: transparent;${
+          url === '/' ? '' : 'border-bottom: 1px solid #e0e0e0'
+        }`"
       >
-        <v-btn @click="verifyEmail" variant="outlined" class="ml-5">
-          verify
-        </v-btn>
-      </v-alert>
-      <h2 v-else class="ml-6">
-        <NuxtLink href="/">
-          <v-hover>
-            <template v-slot:default="{ isHovering, props }">
-              <v-card
-                v-bind="props"
-                color="rgb(0, 0, 0, 0)"
-                elevation="0"
-                class="d-flex"
-              >
-                <v-slide-y-transition>
-                  <span style="font-family: Protest Guerrilla; font-size: 40px">
-                    LinkAll
-                  </span>
-                </v-slide-y-transition>
-                <v-slide-x-transition>
-                  <span
-                    v-if="isHovering"
-                    style="font-family: Grape Nuts"
-                    class="ma-auto ml-3"
-                  >
-                    - think for all
-                  </span>
-                </v-slide-x-transition>
-              </v-card>
-            </template>
-          </v-hover>
-        </NuxtLink>
-      </h2>
-
-      <v-spacer />
-
-      <div>
-        <div style="gap: 10px" class="d-flex justify-right">
-          <v-select
-            v-model="tempLocaleObject"
-            :label="t('language')"
-            :items="[
-              { languageCode: 'ko', name: '한국어' },
-              { languageCode: 'en', name: 'English' },
-            ]"
-            item-title="name"
-            variant="outlined"
-            density="compact"
-            class="w-0 mt-1"
-            prepend-inner-icon="mdi-translate"
-          >
-            <template v-slot:item="{ props, item }">
-              <v-list-item
-                v-bind="props"
-                :subtitle="item.languageCode"
-              ></v-list-item>
-            </template>
-          </v-select>
-
-          <v-autocomplete
-            v-model="search"
-            prepend-inner-icon="mdi-magnify"
-            :label="t('search')"
-            @update:modelValue="routerWithSearch"
-            :items="locale === 'en' ? searchItemsEnglish : searchItemsKorean"
-            item-title="name"
-            item-value="value"
-            :filter-keys="['raw.name', 'raw.text']"
-            variant="outlined"
-            density="compact"
-            class="mt-1"
-            auto-select-first
-          ></v-autocomplete>
-
-          <v-menu>
-            <template v-slot:activator="{ props }">
-              <v-badge
-                v-bind="props"
-                color="error"
-                :content="notificationList.length - readnotification"
-                offset-x="15"
-                offset-y="10"
-              >
-                <v-btn
-                  icon="mdi-bell"
-                  variant="text"
-                  color="yellow-darken-2"
-                ></v-btn>
-              </v-badge>
-            </template>
-
-            <v-card>
-              <v-list>
-                <v-dialog
-                  v-for="(item, i) in notificationList"
-                  :key="item.title"
-                  width="500"
+        <v-alert
+          v-if="userInfo && !userInfo.emailVerified"
+          type="warning"
+          text="Email is not verified"
+        >
+          <v-btn @click="verifyEmail" variant="outlined" class="ml-5">
+            verify
+          </v-btn>
+        </v-alert>
+        <h2 v-else class="ml-6">
+          <NuxtLink to="/">
+            <v-hover>
+              <template v-slot:default="{ isHovering, props }">
+                <v-card
+                  v-bind="props"
+                  color="rgb(0, 0, 0, 0)"
+                  elevation="0"
+                  class="d-flex"
                 >
-                  <template v-slot:activator="{ props }">
-                    <v-list-item
-                      v-bind="props"
-                      :title="`${i + 1}. ${item.title}`"
-                      :subtitle="new Date(item.time).toDateString()"
-                    ></v-list-item>
-                  </template>
+                  <v-slide-y-transition>
+                    <span
+                      style="font-family: Protest Guerrilla; font-size: 40px"
+                    >
+                      LinkAll
+                    </span>
+                  </v-slide-y-transition>
+                  <v-slide-x-transition>
+                    <span
+                      v-if="isHovering"
+                      style="font-family: Grape Nuts"
+                      class="ma-auto ml-3"
+                    >
+                      - think for all
+                    </span>
+                  </v-slide-x-transition>
+                </v-card>
+              </template>
+            </v-hover>
+          </NuxtLink>
+        </h2>
 
-                  <template v-slot:default="{ isActive }">
-                    <v-card>
-                      <v-card-text>
-                        <Markdown
-                          :source="item.contents"
-                          :linkify="true"
-                          :breaks="true"
-                        />
-                      </v-card-text>
+        <v-spacer />
 
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
+        <div>
+          <div style="gap: 10px" class="d-flex justify-right">
+            <v-select
+              v-model="tempLocaleObject"
+              :label="t('language')"
+              :items="[
+                { languageCode: 'ko', name: '한국어' },
+                { languageCode: 'en', name: 'English' },
+              ]"
+              item-title="name"
+              variant="outlined"
+              density="compact"
+              class="w-0 mt-1"
+              prepend-inner-icon="mdi-translate"
+            >
+              <template v-slot:item="{ props, item }">
+                <v-list-item
+                  v-bind="props"
+                  :subtitle="item.languageCode"
+                ></v-list-item>
+              </template>
+            </v-select>
 
-                        <v-btn
-                          text="Close"
-                          color="red"
-                          @click="isActive.value = false"
-                        ></v-btn>
+            <v-autocomplete
+              v-model="search"
+              prepend-inner-icon="mdi-magnify"
+              :label="t('search')"
+              @update:modelValue="routerWithSearch"
+              :items="locale === 'en' ? searchItemsEnglish : searchItemsKorean"
+              item-title="name"
+              item-value="value"
+              :filter-keys="['raw.name', 'raw.text']"
+              variant="outlined"
+              density="compact"
+              class="mt-1"
+              auto-select-first
+            ></v-autocomplete>
 
-                        <v-spacer></v-spacer>
-                      </v-card-actions>
-                    </v-card>
-                  </template>
-                </v-dialog>
-              </v-list>
-
-              <v-card-actions
-                v-if="notificationList.length - readnotification && userInfo"
-              >
-                <V-spacer />
-                <v-btn @click="readall">read all</v-btn>
-                <V-spacer />
-              </v-card-actions>
-            </v-card>
-          </v-menu>
-
-          <div v-if="userInfo" class="mr-5">
             <v-menu>
               <template v-slot:activator="{ props }">
-                <v-avatar>
-                  <v-img
-                    v-bind="props"
-                    :src="
-                      userInfo.photoURL ??
-                      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACUCAMAAAANv/M2AAAAMFBMVEX///+8vLz09PS4uLj5+fnw8PDCwsK1tbX8/Pzd3d3l5eXOzs7Z2dnr6+vh4eHHx8cAY/kEAAAFJklEQVR4nO2c25KjMAxEg6/c+f+/XUySSQIGt0PbpGrdT1M7teGMIsuyJHO7FRUVFRUVFRUVFRX9jGolhB7asZ81toMWStVXMx1KDG3TmcrOkk7uB1tNXdMO4mo2v/TYTdVMWm3k/nEm11cTrqUas4VdyzTqas6XVGusx8Aek1vT/ga3boxFiO+y5gfcRPQGMvKbuU1/7aqse8CVtzL9dVGwHn2xArK2HC/C1l2EL69lu0tcu4l15pWxTZOf+Stn/pTJjNyesvJTss3J3DCQnZp867FjMVeyy8ZM8Y2s1GIiMs/UU4b9kcych5rN7KhTMzP9+Y86rV/XKZgddcrI1yRhnqkTbulDGmSnIRl0Ijs7yVTMhBxpX4myJ1rC4VcSt9ZJDT2bOsGpIFG0eylF3BtPnK0w2ZHNXCe2s5Nkm7qPg5ZLCRKrO73+U89lFhGrUNpqatphVtt0VQy44eZ7fcST+6FWSixSSg0x9RyqqeFwJ6dGP4CfUgIvNlDDHpwo9WvkBVujXxQzcVKoodst8V0t+AGGVwlusRhthMfMTx/B/m7Lq4RgD5z0HrKTnrA/nMWsIEMfM6PUluUf2DIcjpmFgI4QlrUUEe+w7a4///k1tDRI/qERC011iHmmhsoPnFA9ItBB54AdhJPrAeVG2SHMQiBpF6UIIoBVbyBDz3sMsDwoVTLkO50wZqGRIjGjmoAU/ftg6LhLAUkIpT2AROlwvHtAAzkII2lCDrQmsBm++UfYqRkHXIWsQ5RZIHnTdH4nV+GnzI9BmRETVOehBbD3djg0ED7s+Zin80Of38iH/NDnAzWSmkX4NAJ9PlCPQJg21IUoz6dMSI5DjdOMQhNUD2PuiNmgmblHNmgwnRYCyfII0MhCrMxuleZTUM2GsBCh06jsMWjoayOEPGRzQeMHVsckbC7INj6rQ07jWGWesI0jCdNinnAAwb40RsKEpKZOYQeBi9yEfBorHAJhD518IhwC8P7hca6HpEqLKP1EuAsgD5M9eCKH0g3A5wbltFuzGfApIkoJIWLIQ5pG+Xou0PD9nxjFGqQs9pIZ6nV3qx6iPoEzPBY372jN+BH89BgzfV+RCpDRcx6y6vr23rF1LdvYpjqn1AsV1T+xZWWclp9iRep/wu1au8cY0dtntbfASG263VJup0UHNhJZjSKkJfdoiquhnz58YrkB5ZIppRskVtNacmH/mAP0symu9HLp7HHZzHRN+/oN0NnnDY2FTi+yX6V4WrvQMceP9b+HMmpimznQ0De+0QO/VCA/JTb0j5div9/H91CLoyoCdeb0yD4jTnzXQV+SO5u3Zx5ZAcestbH17vfGnbzaaztENC7etftpVGh/oUmGxiX25B+jYI+4eYcJv2Z21L7Po89tbsc2ZfUtstOWmT+26Tng4lVpr63Xfp3kYsDmKWDRcUebUnWKUeTNYaA5xTxr/XkpmD/zJnTC40gfDpfscuL7Q6L3lK3eK27JLjLc3twQnEo5hn5VJ1Jep3wmTmgRPaTnlpXycs5f3DsX7V56RKS016CeF85Ggkc7qfHOnBT5dr/ah44sAZpyXO1zlygtYxU+NNhMVz8N0F9BpUwO5vnEyEN2ynUJm4id8R0lNOqs71UheXXmd8FQqPO/4+O0i1zyyp2Txr7qDTAnjH3lm42+xL74ZUzrXhaEfP0b0mKxfwB5UQT2jxDfBXH/xnvF3lX7OsxvwL/iFmvVtZ9czb+4mi2gemF/6Pdxi4qKioqKioqKiv4z/QNmmUyMydc5WgAAAABJRU5ErkJggg=='
-                    "
-                    alt="profile"
-                    style="width: 40px; height: 40px"
-                    draggable="false"
-                    class="rounded-lg"
-                  />
-                </v-avatar>
+                <v-badge
+                  v-bind="props"
+                  color="error"
+                  :content="notificationList.length - readnotification"
+                  offset-x="15"
+                  offset-y="10"
+                >
+                  <v-btn
+                    icon="mdi-bell"
+                    variant="text"
+                    color="yellow-darken-2"
+                  ></v-btn>
+                </v-badge>
               </template>
 
               <v-card>
                 <v-list>
-                  <v-list-item
-                    v-if="isAdmin"
-                    to="/admin/"
-                    bg-color="purple"
-                    base-color="purple"
+                  <v-dialog
+                    v-for="(item, i) in notificationList"
+                    :key="item.title"
+                    width="500"
                   >
-                    <v-list-item-title>
-                      <v-icon start>mdi-incognito</v-icon> Admin
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item
-                    v-if="isTeacher"
-                    to="/teacher/teacherspage"
-                    bg-color="purple"
-                    base-color="purple"
-                  >
-                    <v-list-item-title>
-                      <v-icon start>mdi-human-male-board</v-icon> Teacher
-                    </v-list-item-title>
-                  </v-list-item>
+                    <template v-slot:activator="{ props }">
+                      <v-list-item
+                        v-bind="props"
+                        :title="`${i + 1}. ${item.title}`"
+                        :subtitle="new Date(item.time).toDateString()"
+                      ></v-list-item>
+                    </template>
 
-                  <v-divider />
+                    <template v-slot:default="{ isActive }">
+                      <v-card>
+                        <v-card-text>
+                          <Markdown
+                            :source="item.contents"
+                            :linkify="true"
+                            :breaks="true"
+                          />
+                        </v-card-text>
 
-                  <v-list-item to="/account/account">
-                    <v-list-item-title>
-                      <v-icon start>mdi-account-box</v-icon>
-                      {{ t("my account") }}
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item to="/account/registeredClass">
-                    <v-list-item-title>
-                      <v-icon start>mdi-google-classroom</v-icon>
-                      {{ t("registered class") }}
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-divider />
-                  <v-list-item @click="logout">
-                    <v-list-item-title>
-                      <v-icon start>mdi-logout-variant</v-icon>
-                      {{ t("logout") }}
-                    </v-list-item-title>
-                  </v-list-item>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+
+                          <v-btn
+                            :text="t('close')"
+                            color="red"
+                            @click="isActive.value = false"
+                          ></v-btn>
+
+                          <v-spacer></v-spacer>
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
                 </v-list>
+
+                <v-card-actions
+                  v-if="notificationList.length - readnotification && userInfo"
+                >
+                  <V-spacer />
+                  <v-btn @click="readall">read all</v-btn>
+                  <V-spacer />
+                </v-card-actions>
               </v-card>
             </v-menu>
+
+            <div v-if="userInfo" class="mr-5">
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <v-avatar>
+                    <v-img
+                      v-bind="props"
+                      :src="
+                        userInfo.photoURL ??
+                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACUCAMAAAANv/M2AAAAMFBMVEX///+8vLz09PS4uLj5+fnw8PDCwsK1tbX8/Pzd3d3l5eXOzs7Z2dnr6+vh4eHHx8cAY/kEAAAFJklEQVR4nO2c25KjMAxEg6/c+f+/XUySSQIGt0PbpGrdT1M7teGMIsuyJHO7FRUVFRUVFRUVFRX9jGolhB7asZ81toMWStVXMx1KDG3TmcrOkk7uB1tNXdMO4mo2v/TYTdVMWm3k/nEm11cTrqUas4VdyzTqas6XVGusx8Aek1vT/ga3boxFiO+y5gfcRPQGMvKbuU1/7aqse8CVtzL9dVGwHn2xArK2HC/C1l2EL69lu0tcu4l15pWxTZOf+Stn/pTJjNyesvJTss3J3DCQnZp867FjMVeyy8ZM8Y2s1GIiMs/UU4b9kcych5rN7KhTMzP9+Y86rV/XKZgddcrI1yRhnqkTbulDGmSnIRl0Ijs7yVTMhBxpX4myJ1rC4VcSt9ZJDT2bOsGpIFG0eylF3BtPnK0w2ZHNXCe2s5Nkm7qPg5ZLCRKrO73+U89lFhGrUNpqatphVtt0VQy44eZ7fcST+6FWSixSSg0x9RyqqeFwJ6dGP4CfUgIvNlDDHpwo9WvkBVujXxQzcVKoodst8V0t+AGGVwlusRhthMfMTx/B/m7Lq4RgD5z0HrKTnrA/nMWsIEMfM6PUluUf2DIcjpmFgI4QlrUUEe+w7a4///k1tDRI/qERC011iHmmhsoPnFA9ItBB54AdhJPrAeVG2SHMQiBpF6UIIoBVbyBDz3sMsDwoVTLkO50wZqGRIjGjmoAU/ftg6LhLAUkIpT2AROlwvHtAAzkII2lCDrQmsBm++UfYqRkHXIWsQ5RZIHnTdH4nV+GnzI9BmRETVOehBbD3djg0ED7s+Zin80Of38iH/NDnAzWSmkX4NAJ9PlCPQJg21IUoz6dMSI5DjdOMQhNUD2PuiNmgmblHNmgwnRYCyfII0MhCrMxuleZTUM2GsBCh06jsMWjoayOEPGRzQeMHVsckbC7INj6rQ07jWGWesI0jCdNinnAAwb40RsKEpKZOYQeBi9yEfBorHAJhD518IhwC8P7hca6HpEqLKP1EuAsgD5M9eCKH0g3A5wbltFuzGfApIkoJIWLIQ5pG+Xou0PD9nxjFGqQs9pIZ6nV3qx6iPoEzPBY372jN+BH89BgzfV+RCpDRcx6y6vr23rF1LdvYpjqn1AsV1T+xZWWclp9iRep/wu1au8cY0dtntbfASG263VJup0UHNhJZjSKkJfdoiquhnz58YrkB5ZIppRskVtNacmH/mAP0symu9HLp7HHZzHRN+/oN0NnnDY2FTi+yX6V4WrvQMceP9b+HMmpimznQ0De+0QO/VCA/JTb0j5div9/H91CLoyoCdeb0yD4jTnzXQV+SO5u3Zx5ZAcestbH17vfGnbzaaztENC7etftpVGh/oUmGxiX25B+jYI+4eYcJv2Z21L7Po89tbsc2ZfUtstOWmT+26Tng4lVpr63Xfp3kYsDmKWDRcUebUnWKUeTNYaA5xTxr/XkpmD/zJnTC40gfDpfscuL7Q6L3lK3eK27JLjLc3twQnEo5hn5VJ1Jep3wmTmgRPaTnlpXycs5f3DsX7V56RKS016CeF85Ggkc7qfHOnBT5dr/ah44sAZpyXO1zlygtYxU+NNhMVz8N0F9BpUwO5vnEyEN2ynUJm4id8R0lNOqs71UheXXmd8FQqPO/4+O0i1zyyp2Txr7qDTAnjH3lm42+xL74ZUzrXhaEfP0b0mKxfwB5UQT2jxDfBXH/xnvF3lX7OsxvwL/iFmvVtZ9czb+4mi2gemF/6Pdxi4qKioqKioqKiv4z/QNmmUyMydc5WgAAAABJRU5ErkJggg=='
+                      "
+                      alt="profile"
+                      style="width: 40px; height: 40px"
+                      draggable="false"
+                      class="rounded-lg"
+                    />
+                  </v-avatar>
+                </template>
+
+                <v-card>
+                  <v-list>
+                    <v-list-item
+                      v-if="isAdmin"
+                      to="/admin/"
+                      bg-color="purple"
+                      base-color="purple"
+                    >
+                      <v-list-item-title>
+                        <v-icon start>mdi-incognito</v-icon> Admin
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item
+                      v-if="isTeacher"
+                      to="/teacher/teacherspage"
+                      bg-color="purple"
+                      base-color="purple"
+                    >
+                      <v-list-item-title>
+                        <v-icon start>mdi-human-male-board</v-icon> Teacher
+                      </v-list-item-title>
+                    </v-list-item>
+
+                    <v-divider />
+
+                    <v-list-item to="/account/account">
+                      <v-list-item-title>
+                        <v-icon start>mdi-account-box</v-icon>
+                        {{ t("my account") }}
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item to="/account/registeredClass">
+                      <v-list-item-title>
+                        <v-icon start>mdi-google-classroom</v-icon>
+                        {{ t("registered class") }}
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-divider />
+                    <v-list-item @click="logout">
+                      <v-list-item-title>
+                        <v-icon start>mdi-logout-variant</v-icon>
+                        {{ t("logout") }}
+                      </v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
+              </v-menu>
+            </div>
+            <v-btn
+              v-else
+              rounded="lg"
+              to="/account/login"
+              icon="mdi-account-circle"
+              class="mr-5"
+            />
           </div>
-          <v-btn
-            v-else
-            rounded="lg"
-            to="/account/login"
-            icon="mdi-account-circle"
-            class="mr-5"
-          />
+
+          <div class="mr-5">
+            <Menu></Menu>
+          </div>
         </div>
+      </v-app-bar>
+      <v-app-bar v-else>
+        <span
+          style="font-family: Protest Guerrilla; font-size: 30px"
+          class="ml-4"
+        >
+          LinkAll
+        </span>
+
+        <v-spacer />
 
         <div class="mr-5">
-          <v-btn to="/"> {{ t("home") }} </v-btn>
-          <v-btn to="/about-us"> {{ t("about us") }} </v-btn>
-
-          <v-menu open-on-hover>
-            <template v-slot:activator="{ props }">
-              <v-btn v-bind="props">
-                {{ t("actions") }} <v-icon end> $dropdown </v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item to="/actions/education">
-                <v-list-item-title>
-                  {{ t("education") }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover>
-            <template v-slot:activator="{ props }">
-              <v-btn to="/members/members" v-bind="props">
-                {{ t("members") }} <v-icon end> $dropdown </v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item to="/members/members">
-                <v-list-item-title> {{ t("members") }} </v-list-item-title>
-              </v-list-item>
-              <v-list-item to="/members/committees">
-                <v-list-item-title>
-                  {{ t("committees") }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover>
-            <template v-slot:activator="{ props }">
-              <v-btn to="/join-us/join-us" v-bind="props">
-                {{ t("join us") }} <v-icon end>$dropdown</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item to="/join-us/join-us">
-                <v-list-item-title> {{ t("join us") }} </v-list-item-title>
-              </v-list-item>
-              <v-list-item to="/join-us/donation">
-                <v-list-item-title> {{ t("donation") }} </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <Menu></Menu>
         </div>
-      </div>
-    </v-app-bar>
+      </v-app-bar>
+    </template>
 
     <NuxtLayout>
       <v-main>

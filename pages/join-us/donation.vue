@@ -34,10 +34,11 @@
 
     <div class="pay-container mt-10 pb-5 ga-15">
       <v-card
-        @click="openDialog1"
         color="transparent"
         :elevation="0"
-        class="ma-2 pa-2"
+        class="ma-2 pa-3 rounded-lg"
+        style="border: 1px solid black"
+        @click="openDialog1"
       >
         <DivCenter>
           <img
@@ -51,16 +52,21 @@
       </v-card>
 
       <v-dialog v-model="dialog1" width="500">
-        <v-card :title="t('transfer')">
+        <v-card>
+          <v-card-title>
+            {{ t("transfer") }}
+          </v-card-title>
+
           <v-card-text class="my-3">
             <div class="transfer">
-              <div class="ma-auto mb-2">
-                <v-btn variant="flat" @click="copy">
-                  <v-icon start>mdi-content-copy</v-icon> copy
-                </v-btn>
-              </div>
+              <v-btn
+                icon="mdi-content-copy"
+                elevation="0"
+                :class="mobile ? 'mx-auto' : ''"
+                @click="copy"
+              ></v-btn>
 
-              <div class="ma-auto">
+              <div class="ml-2">
                 3333294607629 카카오뱅크<br />
                 (예금주: 김현희)
               </div>
@@ -69,7 +75,13 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn text="Close" color="red" @click="dialog1 = false"></v-btn>
+
+            <v-btn
+              :text="t('close')"
+              color="red"
+              @click="dialog1 = false"
+            ></v-btn>
+
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -81,7 +93,7 @@
 
       <template v-slot:actions>
         <v-btn color="pink" variant="text" @click="snackbar = false">
-          Close
+          {{ $t("close") }}
         </v-btn>
       </template>
     </v-snackbar>
@@ -91,6 +103,8 @@
 <script setup>
 const { t, locale } = useI18n();
 const { $auth } = useNuxtApp();
+const { mobile } = useDisplay();
+
 const userInfo = ref(null);
 
 const snackbar = ref(false);

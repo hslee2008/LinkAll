@@ -253,7 +253,7 @@
 
       <template v-slot:actions>
         <v-btn color="pink" variant="text" @click="snackbar = false">
-          Close
+          {{ $t("close") }}
         </v-btn>
       </template>
     </v-snackbar>

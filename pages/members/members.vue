@@ -206,6 +206,9 @@
                   </abbr>
                   Chairman's Award)
                 </li>
+                <li>
+                  Gyeonggi Provincial Teachers' Association President's Award (2024)
+                </li>
               </ul>
               <ul
                 v-else-if="locale === 'ko'"
@@ -231,6 +234,7 @@
                 <li>
                   한국코드페어 해커톤 동상 (2023년 한국정보과학학회 회장상)
                 </li>
+                <li>경기도교원단체총연합회장상 (2024)</li>
               </ul>
             </v-col>
           </div>
@@ -261,10 +265,10 @@
                   charge of design-related works in LinkAll.
                 </span>
                 <span v-else-if="locale === 'ko'">
-                  자기소개 안녕하세요, 저는 용인한국외국어대학교부설고등학교
-                  국제 트랙에 재학 중인 학생입니다. 저는 학생들의 기본 교육을
-                  지원하고자하는 LinkAll의 비전 실현을 돕기 위해 함께하고
-                  있으며, 디자인 관련 업무를 주로 담당하고 있습니다.
+                  안녕하세요, 저는 용인한국외국어대학교부설고등학교 국제 트랙에
+                  재학 중인 학생입니다. 저는 학생들의 기본 교육을 지원하고자하는
+                  LinkAll의 비전 실현을 돕기 위해 함께하고 있으며, 디자인 관련
+                  업무를 주로 담당하고 있습니다.
                 </span>
               </div>
 

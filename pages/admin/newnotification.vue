@@ -49,12 +49,12 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                text="Update"
+                :text="t('update')"
                 color="primary"
                 @click="UpdateNotification(() => (isActive.value = false))"
               ></v-btn>
               <v-btn
-                text="Delete"
+                :text="t('delete')"
                 color="red"
                 @click="DeleteNotification(i, () => (isActive.value = false))"
               ></v-btn>

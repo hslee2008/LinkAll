@@ -44,7 +44,7 @@ export default defineNuxtConfig({
       "Yatara One": true,
       Comfortaa: true,
     },
-    display: "swap"
+    display: "swap",
   },
   experimental: {
     payloadExtraction: true,
@@ -101,9 +101,7 @@ export default defineNuxtConfig({
   },
   hooks: {
     async "nitro:config"(nitroConfig) {
-      if (nitroConfig.dev) {
-        return;
-      }
+      if (nitroConfig.dev) return;
 
       nitroConfig.prerender?.routes?.push("/class/english/book-club");
       nitroConfig.prerender?.routes?.push("/class/english/debate");

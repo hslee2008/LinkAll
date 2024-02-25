@@ -125,3 +125,11 @@ add markdown feature
 v0.0.21
 fix minor warning issues
 make edit button visible to certain teacher
+
+v0.0.22
+fix typo
+add past class feature
+remove (done) feature
+update translation
+add appbar simplified version
+style tweaks

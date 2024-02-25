@@ -45,7 +45,7 @@
   "donate": "DONATE",
   "taught_students": "taught students",
   "won_donated": "won donated",
-  "hours_of_volunteering": "hours of volunteering",
+  "hours_of_volunteering": "hours volunteering",
   "your data is being examined": "Your data is being examined",
   "accepted": "Congrats! You are accepted",
   "first name": "First Name",
@@ -81,5 +81,17 @@
   "arts": "Arts",
   "tech": "Tech",
   "copied": "Copied",
-  "Date": "Date"
+  "Category": "Category",
+  "Information": "Information",
+  "Date": "Date",
+  "Theme": "Theme",
+  "Students": "Students",
+  "Status": "Status",
+  "Language": "Language",
+  "Grade": "Grade",
+  "Est. Student": "Est. Student",
+  "Class Time": "Class Time",
+  "close": "close",
+  "delete": "delete",
+  "update": "update"
 }

@@ -3,7 +3,7 @@
     <div class="top-div">
       <div class="bottom-div">
         <div class="d-flex">
-          <v-icon class="my-auto mx-4">{{ classInfo.icon }}</v-icon>
+          <v-icon class="my-auto mr-3">{{ classInfo.icon }}</v-icon>
 
           <div v-if="classInfo.englishOfficialName">
             <div v-if="locale === 'en'" class="title-container">
@@ -64,27 +64,31 @@
             >
               <thead style="background-color: #b0d6b2">
                 <tr>
-                  <th class="text-center font-weight-bold">Category</th>
-                  <th class="text-center font-weight-bold">Information</th>
+                  <th class="text-center font-weight-bold">
+                    {{ $t("Category") }}
+                  </th>
+                  <th class="text-center font-weight-bold">
+                    {{ $t("Information") }}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="text-center">Language</td>
+                  <td class="text-center">{{ $t("Language") }}</td>
                   <td class="text-center">
                     {{ classInfo.lang ?? "Not Specified" }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="text-center">Grade</td>
+                  <td class="text-center">{{ $t("Grade") }}</td>
                   <td class="text-center">{{ classInfo.grade }}</td>
                 </tr>
                 <tr>
-                  <td class="text-center">Est. Student</td>
+                  <td class="text-center">{{ $t("Est. Student") }}</td>
                   <td class="text-center">{{ classInfo.estStudent }}</td>
                 </tr>
                 <tr>
-                  <td class="text-center">Class Time</td>
+                  <td class="text-center">{{ $t("Class Time") }}</td>
                   <td class="text-center">{{ classInfo.estTime }}</td>
                 </tr>
               </tbody>
@@ -102,11 +106,15 @@
               <thead style="background-color: #b0d6b2">
                 <tr>
                   <th class="text-center font-weight-bold">{{ $t("Date") }}</th>
-                  <th class="text-center font-weight-bold">Theme</th>
-                  <th class="text-center font-weight-bold" style="padding: 0px">
-                    Students
+                  <th class="text-center font-weight-bold">
+                    {{ $t("Theme") }}
                   </th>
-                  <th class="text-center font-weight-bold">Status</th>
+                  <th class="text-center font-weight-bold" style="padding: 0px">
+                    {{ $t("Students") }}
+                  </th>
+                  <th class="text-center font-weight-bold">
+                    {{ $t("Status") }}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -118,10 +126,9 @@
                   ]"
                   :key="schedule"
                   :style="
-                    classInfo.classDates[index]?.includes('(done)')
+                    isPast(classInfo.classDates[index])
                       ? 'text-decoration: line-through; color: grey'
-                      : appliedInfo[id]?.date ===
-                          classInfo.classDates[index]?.replace(' (done)', '')
+                      : appliedInfo[id]?.date
                         ? 'text-decoration: underline; color: red'
                         : ''
                   "
@@ -129,10 +136,8 @@
                   <td class="text-center">
                     {{
                       width <= 500
-                        ? classInfo.classDates[index]
-                            ?.replace(" (done)", "")
-                            .replace("2024/", "")
-                        : classInfo.classDates[index]?.replace(" (done)", "")
+                        ? classInfo.classDates[index].replace("2024/", "")
+                        : classInfo.classDates[index]
                     }}
                   </td>
                   <td class="text-center">{{ schedule }}</td>
@@ -143,8 +148,11 @@
                   </td>
                   <td class="text-center">
                     <span v-if="locale === 'en'">
+                      <span v-if="isPast(classInfo.classDates[index])">
+                        Finished
+                      </span>
                       <span
-                        v-if="
+                        v-else-if="
                           Object.keys(numbersForEachClass[index + 1] ?? {})
                             .length < min
                         "
@@ -161,8 +169,11 @@
                       </span>
                     </span>
                     <span v-else-if="locale === 'ko'">
+                      <span v-if="isPast(classInfo.classDates[index])">
+                        끝
+                      </span>
                       <span
-                        v-if="
+                        v-else-if="
                           Object.keys(numbersForEachClass[index + 1] ?? {})
                             .length < min
                         "
@@ -280,29 +291,24 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
-              <v-card-title class="text-center text-decoration-underline">
-                Select Class Date
-              </v-card-title>
-
               <v-card-text>
                 <div class="mb-2">
                   <v-radio-group
                     v-model="classNumber"
                     hide-details
-                    class="py-3 rounded-lg"
+                    class="py-3 pl-3 rounded-lg"
                     style="border: 1px solid black"
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
-                      :label="radio?.replace('(done)', '')"
+                      :label="radio"
                       :key="index + 1"
                       :value="index + 1"
                       :disabled="
-                        radio?.includes('(done)') ||
-                        radio?.includes('Not Decided')
+                        isPast(radio) || radio?.includes('Not Decided')
                       "
                       :style="
-                        classInfo.classDates[index]?.includes('(done)')
+                        isPast(radio)
                           ? 'text-decoration: line-through; color: grey'
                           : ''
                       "
@@ -451,7 +457,7 @@
                 <v-spacer></v-spacer>
 
                 <v-btn
-                  text="Close"
+                  :text="t('close')"
                   color="red"
                   @click="isActive.value = false"
                 ></v-btn>
@@ -709,7 +715,7 @@ const saveToDatabase = () => {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   h2 {

@@ -73,7 +73,7 @@
           variant="outlined"
           base-color="red"
           bg-color="red"
-          placeholder="ex) hslee.2008@gmail.com -> hslee.2008"
+          placeholder="ex) hslee.2008@gmail.com -> hslee_2008"
         ></v-text-field>
 
         <v-label>English class offical name</v-label>
@@ -183,9 +183,9 @@
                 </v-card-text>
 
                 <v-card-actions class="d-flex justify-center my-3">
-                  <v-btn @click="isActive.value = false" color="red"
-                    >Close</v-btn
-                  >
+                  <v-btn @click="isActive.value = false" color="red">
+                    {{ $t("close") }}
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </template>
@@ -230,9 +230,9 @@
                 </v-card-text>
 
                 <v-card-actions class="d-flex justify-center my-3">
-                  <v-btn @click="isActive.value = false" color="red"
-                    >Close</v-btn
-                  >
+                  <v-btn @click="isActive.value = false" color="red">
+                    {{ $t("close") }}
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </template>

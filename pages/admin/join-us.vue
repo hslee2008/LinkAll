@@ -145,8 +145,8 @@
 
           <v-card-actions>
             <div class="mx-auto">
-              <v-btn @click="deleteAccepted">Delete</v-btn>
-              <v-btn @click="dialogAccepted = false">Close</v-btn>
+              <v-btn @click="deleteAccepted"> {{ $t("delete") }} </v-btn>
+              <v-btn @click="dialogAccepted = false"> {{ $t("close") }} </v-btn>
             </div>
           </v-card-actions>
         </v-card>

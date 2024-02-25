@@ -9,9 +9,9 @@
         <DivCenter>
           <v-dialog width="500">
             <template v-slot:activator="{ props }">
-              <v-btn v-bind="props" elevation="0" color="red"
-                >Delete Class</v-btn
-              >
+              <v-btn v-bind="props" elevation="0" color="red">
+                Delete Class
+              </v-btn>
             </template>
 
             <template v-slot:default="{ isActive }">
@@ -205,8 +205,6 @@
                       add
                     </v-btn>
                   </DivCenter>
-
-                  <div>* add (done) when class is closed</div>
 
                   <v-list>
                     <v-list-item
@@ -402,8 +400,8 @@ onMounted(() => {
 
 function deleteClassDate(index) {
   classDates.value.splice(index, 1);
-  englishClassSchedule.value.splice(index, 1)
-  koreanClassSchedule.value.splice(index, 1)
+  englishClassSchedule.value.splice(index, 1);
+  koreanClassSchedule.value.splice(index, 1);
 }
 
 function deleteClass() {

@@ -35,57 +35,41 @@
         </div>
 
         <div v-if="mobile" class="d-flex justify-center ga-5 mt-14 mx-3">
-          <v-card
-            v-if="taughtStudents !== 0"
-            elevation="0"
-            class="text-center pa-2"
-            variant="tonal"
-          >
-            <p class="headline">{{ taughtStudents }}</p>
+          <v-card class="text-center pa-2" variant="tonal">
+            <v-progress-circular
+              v-if="taughtStudents === 0"
+              indeterminate
+            ></v-progress-circular>
+            <p v-else class="headline">
+              {{ taughtStudents }}
+            </p>
             <br />
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
-          <v-skeleton-loader
-            v-else
-            class="mx-auto border"
-            min-width="100"
-            type="image"
-          ></v-skeleton-loader>
 
-          <v-card
-            v-if="wonDonated !== 0"
-            elevation="0"
-            class="text-center pa-2"
-            variant="tonal"
-            min-width="130px"
-          >
-            <p class="headline">{{ wonDonated }}</p>
+          <v-card class="text-center pa-2" variant="tonal" min-width="130px">
+            <v-progress-circular
+              v-if="wonDonated === 0"
+              indeterminate
+            ></v-progress-circular>
+            <p v-else class="headline">
+              {{ wonDonated }}
+            </p>
             <br />
             <p class="text">{{ $t("won_donated") }}</p>
           </v-card>
-          <v-skeleton-loader
-            v-else
-            class="mx-auto border"
-            width="130"
-            type="image"
-          ></v-skeleton-loader>
 
-          <v-card
-            v-if="hoursOf !== 0"
-            elevation="0"
-            class="text-center pa-2"
-            variant="tonal"
-          >
-            <p class="headline">{{ hoursOf }}</p>
+          <v-card class="text-center pa-2" variant="tonal">
+            <v-progress-circular
+              v-if="hoursOf === 0"
+              indeterminate
+            ></v-progress-circular>
+            <p v-else class="headline">
+              {{ hoursOf }}
+            </p>
             <br />
             <p class="text">{{ $t("hours_of_volunteering") }}</p>
           </v-card>
-          <v-skeleton-loader
-            v-else
-            class="mx-auto border"
-            min-width="100"
-            type="image"
-          ></v-skeleton-loader>
         </div>
         <div
           v-else
@@ -243,7 +227,7 @@
                   <v-spacer></v-spacer>
 
                   <v-btn
-                    text="Close "
+                    :text="t('close')"
                     color="red"
                     @click="isActive.value = false"
                   ></v-btn>
@@ -294,7 +278,7 @@
       reserved
     </div>
 
-    <div class="version">v0.0.21</div>
+    <div class="version">v0.0.22</div>
   </v-footer>
 </template>
 
@@ -356,6 +340,8 @@ useHead({
   right: 0;
   bottom: 0;
   margin: 10px;
+  color: lightgrey;
+  text-decoration: underline;
 }
 
 .text-h1 {
