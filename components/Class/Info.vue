@@ -5,7 +5,7 @@
         v-bind="props"
         elevation="0"
         varaint="tonal"
-        class="cardy rounded-xl"
+        class="cardy rounded-lg"
         :width="width"
         :to="`/class/${item?.subject}/${item?.classID}`"
       >
@@ -34,16 +34,16 @@
           class="d-flex"
         >
           <div class="ma-auto mb-9">
-            <p v-if="locale === 'en'" class="text-h5 text-center text-white">
+            <p
+              v-if="locale === 'en'"
+              class="text-h6 text-decoration-underline text-center"
+            >
               {{ item?.englishTeacherName }}
             </p>
-            <p
-              v-else-if="locale === 'ko'"
-              class="text-h4 text-center text-white"
-            >
+            <p v-else-if="locale === 'ko'" class="text-h4 text-center">
               {{ item?.koreanTeacherName }}
             </p>
-            <p class="text-center text-white">
+            <p class="text-center">
               {{ item?.lang }}
             </p>
           </div>
@@ -100,12 +100,6 @@ const props = defineProps({
   border: 0.4px solid grey;
 }
 
-@media (max-width: 600px) {
-  .headline {
-    font-size: 25px;
-  }
-}
-
 @media (max-width: 380px) {
   .cardy {
     width: 90vw !important;
@@ -122,8 +116,8 @@ const props = defineProps({
   background: linear-gradient(
     to bottom,
     transparent 30%,
-    black 200%,
-    black 300%
+    #95d6f4 200%,
+    #95d6f4 300%
   );
 }
 </style>

@@ -21,6 +21,10 @@
 
     <br /><br /><br />
 
+    <h1 class="text-center">Edit/Delete Notification</h1>
+
+    <br />
+
     <v-list class="mx-5">
       <v-dialog
         v-for="(item, i) in notificationList"
@@ -72,6 +76,8 @@
 <script setup>
 const router = useRouter();
 const { $db } = useNuxtApp();
+
+const { t } = useI18n();
 
 const title = ref("");
 const contents = ref("");

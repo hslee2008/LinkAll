@@ -207,7 +207,8 @@
                   Chairman's Award)
                 </li>
                 <li>
-                  Gyeonggi Provincial Teachers' Association President's Award (2024)
+                  Gyeonggi Provincial Teachers' Association President's Award
+                  (2024)
                 </li>
               </ul>
               <ul
@@ -492,8 +493,8 @@ useHead({
   --gradient-border: conic-gradient(
     from var(--border-angle),
     transparent 25%,
-    #08f,
-    #f03 99%,
+    #4d00f4,
+    #01a9fd 99%,
     transparent
   );
 

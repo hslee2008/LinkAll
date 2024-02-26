@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <NuxtLoadingIndicator />
+    <VitePwaManifest />
+    <NuxtLoadingIndicator color="linear-gradient(to right, blue , skyblue)" />
 
     <v-navigation-drawer
       v-if="mobile"
@@ -110,15 +111,13 @@
     </v-navigation-drawer>
     <v-app-bar
       v-if="mobile"
-      :elevation="scrollY === 0 ? 0 : 4"
       class="pl-5"
-      :style="`${scrollY === 0 ? 'background-color: transparent;' : 'border-bottom: 1px solid black'}`"
+      :elevation="scrollY === 0 ? 0 : 4"
+      :style="`${scrollY === 0 ? 'background-color: transparent;' : ''}`"
     >
-      <h2>
-        <NuxtLink to="/">
-          <span style="font-family: Protest Guerrilla">LinkAll</span>
-        </NuxtLink>
-      </h2>
+      <NuxtLink to="/">
+        <img src="/logo-text-long.png" width="100" class="mt-1" />
+      </NuxtLink>
 
       <v-spacer />
 
@@ -126,7 +125,7 @@
         <template v-slot:activator="{ props }">
           <v-badge
             v-bind="props"
-            color="error"
+            color="#95D6F4"
             :content="notificationList.length - readnotification"
             offset-x="15"
             offset-y="15"
@@ -136,9 +135,14 @@
         </template>
 
         <v-card>
-          <v-list>
+          <v-list
+            v-if="notificationList.slice(-1 + readnotification, -1).length > 0"
+          >
             <v-dialog
-              v-for="(item, i) in notificationList"
+              v-for="(item, i) in notificationList.slice(
+                -1 + readnotification,
+                -1
+              )"
               :key="item.title"
               width="500"
             >
@@ -166,6 +170,7 @@
                     <v-btn
                       :text="t('close')"
                       color="red"
+                      block
                       @click="isActive.value = false"
                     ></v-btn>
 
@@ -175,13 +180,18 @@
               </template>
             </v-dialog>
           </v-list>
+          <v-card v-else elevation="0">
+            <v-card-title>{{ $t("nothing new") }}</v-card-title>
+          </v-card>
 
           <v-card-actions
             v-if="notificationList.length - readnotification && userInfo"
           >
-            <V-spacer />
-            <v-btn @click="readall">read all</v-btn>
-            <V-spacer />
+            <v-spacer />
+
+            <v-btn @click="readall" color="red" block>read all</v-btn>
+
+            <v-spacer />
           </v-card-actions>
         </v-card>
       </v-menu>
@@ -283,37 +293,9 @@
             verify
           </v-btn>
         </v-alert>
-        <h2 v-else class="ml-6">
-          <NuxtLink to="/">
-            <v-hover>
-              <template v-slot:default="{ isHovering, props }">
-                <v-card
-                  v-bind="props"
-                  color="rgb(0, 0, 0, 0)"
-                  elevation="0"
-                  class="d-flex"
-                >
-                  <v-slide-y-transition>
-                    <span
-                      style="font-family: Protest Guerrilla; font-size: 40px"
-                    >
-                      LinkAll
-                    </span>
-                  </v-slide-y-transition>
-                  <v-slide-x-transition>
-                    <span
-                      v-if="isHovering"
-                      style="font-family: Grape Nuts"
-                      class="ma-auto ml-3"
-                    >
-                      - think for all
-                    </span>
-                  </v-slide-x-transition>
-                </v-card>
-              </template>
-            </v-hover>
-          </NuxtLink>
-        </h2>
+        <NuxtLink v-else to="/" class="ml-6">
+          <img src="/logo-text-long.png" width="150" />
+        </NuxtLink>
 
         <v-spacer />
 
@@ -359,7 +341,7 @@
               <template v-slot:activator="{ props }">
                 <v-badge
                   v-bind="props"
-                  color="error"
+                  color="#95D6F4"
                   :content="notificationList.length - readnotification"
                   offset-x="15"
                   offset-y="10"
@@ -373,9 +355,16 @@
               </template>
 
               <v-card>
-                <v-list>
+                <v-list
+                  v-if="
+                    notificationList.slice(-1 + readnotification, -1).length > 0
+                  "
+                >
                   <v-dialog
-                    v-for="(item, i) in notificationList"
+                    v-for="(item, i) in notificationList.slice(
+                      -1 + readnotification,
+                      -1
+                    )"
                     :key="item.title"
                     width="500"
                   >
@@ -403,6 +392,7 @@
                           <v-btn
                             :text="t('close')"
                             color="red"
+                            block
                             @click="isActive.value = false"
                           ></v-btn>
 
@@ -412,12 +402,17 @@
                     </template>
                   </v-dialog>
                 </v-list>
+                <v-card v-else elevation="0">
+                  <v-card-title>{{ $t("nothing new") }}</v-card-title>
+                </v-card>
 
-                <v-card-actions
-                  v-if="notificationList.length - readnotification && userInfo"
-                >
+                <v-card-actions>
                   <V-spacer />
-                  <v-btn @click="readall">read all</v-btn>
+
+                  <v-btn @click="readall" color="red" block>
+                    {{ $t("clear") }}
+                  </v-btn>
+
                   <V-spacer />
                 </v-card-actions>
               </v-card>
@@ -504,12 +499,9 @@
         </div>
       </v-app-bar>
       <v-app-bar v-else>
-        <span
-          style="font-family: Protest Guerrilla; font-size: 30px"
-          class="ml-4"
-        >
-          LinkAll
-        </span>
+        <NuxtLink to="/">
+          <img src="/logo-text-long.png" width="150" class="ml-4 mt-1" />
+        </NuxtLink>
 
         <v-spacer />
 

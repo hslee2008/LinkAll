@@ -41,8 +41,6 @@ export default defineNuxtConfig({
       "Noto Serif": true,
       "Protest Guerrilla": true,
       Galada: true,
-      "Yatara One": true,
-      Comfortaa: true,
     },
     display: "swap",
   },
@@ -55,7 +53,7 @@ export default defineNuxtConfig({
     server: false,
     client: false,
   },
-  gtag: { id: process.env.NODE_ENV === "production" ? "G-0HQQD54YMS" : "" },
+  gtag: { id: "G-0HQQD54YMS" },
   robots: {
     rules: {
       UserAgent: "*",
@@ -125,8 +123,18 @@ export default defineNuxtConfig({
       dir: "ltr",
       icons: [
         {
-          src: "/icon/icon.png",
-          sizes: "32x32",
+          src: "/icon/logo.png",
+          sizes: "1080x1080",
+          type: "image/png",
+        },
+        {
+          src: "/icon/512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "/icon/192x192.png",
+          sizes: "192x192",
           type: "image/png",
         },
         {

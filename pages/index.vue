@@ -23,12 +23,12 @@
           <v-btn
             rounded="lg"
             to="/join-us/donation"
-            color="#368aea"
+            color="#046FFE"
             height="75"
           >
             <h2>
               <v-icon start>mdi-heart-box</v-icon>
-              <span style="font-family: Yatara One">{{ $t("donate") }}</span>
+              {{ $t("donate") }}
               <v-icon end>mdi-heart-box</v-icon>
             </h2>
           </v-btn>
@@ -38,6 +38,7 @@
           <v-card class="text-center pa-2" variant="tonal">
             <v-progress-circular
               v-if="taughtStudents === 0"
+              class="my-6"
               indeterminate
             ></v-progress-circular>
             <p v-else class="headline">
@@ -50,6 +51,7 @@
           <v-card class="text-center pa-2" variant="tonal" min-width="130px">
             <v-progress-circular
               v-if="wonDonated === 0"
+              class="my-6"
               indeterminate
             ></v-progress-circular>
             <p v-else class="headline">
@@ -62,6 +64,7 @@
           <v-card class="text-center pa-2" variant="tonal">
             <v-progress-circular
               v-if="hoursOf === 0"
+              class="my-6"
               indeterminate
             ></v-progress-circular>
             <p v-else class="headline">
@@ -122,39 +125,96 @@
   <br /><br />
   <br /><br />
 
-  <h2 class="text-center mb-3 text-h2">LinkAll Programs</h2>
+  <div class="index-container">
+    <div style="min-width: 300px" class="mx-3">
+      <v-sheet height="100%" tile>
+        <div class="text-h3 text-center">Notification</div>
 
-  <v-container fluid>
-    <v-row justify="center">
-      <template
-        v-if="classList.length > 1"
-        v-for="(i, index) in classList"
-        :key="index"
-      >
-        <v-col
-          v-for="item in Object.values(classList[index] ?? {})"
-          :key="item.classID"
+        <v-list
+          style="border: 1px solid grey"
+          class="rounded-lg mt-7 ml-2 mr-2"
         >
-          <DivCenter>
-            <ClassInfo :item="item"></ClassInfo>
-          </DivCenter>
-        </v-col>
-      </template>
-      <template
-        v-else
-        v-for="(_, __) in classList.length"
-        :key="`skeleton-${__}`"
-      >
-        <v-col>
-          <v-skeleton-loader
-            class="mx-auto border"
-            width="350"
-            type="image, article"
-          ></v-skeleton-loader>
-        </v-col>
-      </template>
-    </v-row>
-  </v-container>
+          <v-dialog
+            v-for="(item, i) in notificationList"
+            :key="item.title"
+            width="500"
+          >
+            <template v-slot:activator="{ props }">
+              <v-list-item v-bind="props">
+                <v-list-item-title>
+                  {{ item.title }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ new Date(item.time).toLocaleDateString() }}
+                </v-list-item-subtitle>
+              </v-list-item>
+            </template>
+
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-card-title>{{ item.title }}</v-card-title>
+
+                <Markdown
+                  :source="item.contents"
+                  :linkify="true"
+                  :breaks="true"
+                  class="mx-4"
+                />
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    :text="t('close')"
+                    color="red"
+                    block
+                    @click="isActive.value = false"
+                  ></v-btn>
+
+                  <v-spacer></v-spacer>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-list>
+      </v-sheet>
+    </div>
+    <div>
+      <h2 class="text-center mb-3 text-h3">LinkAll Programs</h2>
+
+      <v-container fluid>
+        <v-row justify="center">
+          <template
+            v-if="classList.length > 1"
+            v-for="(i, index) in classList"
+            :key="index"
+          >
+            <v-col
+              v-for="item in Object.values(classList[index] ?? {})"
+              :key="item.classID"
+            >
+              <DivCenter>
+                <ClassInfo :item="item" :width="mobile ? 320 : 350"></ClassInfo>
+              </DivCenter>
+            </v-col>
+          </template>
+          <template
+            v-else
+            v-for="(_, __) in classList.length"
+            :key="`skeleton-${__}`"
+          >
+            <v-col>
+              <v-skeleton-loader
+                class="mx-auto border"
+                type="image, article"
+                :width="mobile ? 320 : 350"
+              ></v-skeleton-loader>
+            </v-col>
+          </template>
+        </v-row>
+      </v-container>
+    </div>
+  </div>
 
   <br /><br />
   <br /><br />
@@ -163,7 +223,7 @@
   <v-carousel
     delimiter-icon="mdi-square"
     hide-delimiter-background
-    color="#5C6BC0"
+    color="#04aefd"
     height="calc(100vw * 2731/3723 * 2/3)"
     width="100vw"
     continuous
@@ -184,60 +244,12 @@
     <v-carousel-item rounded>
       <v-sheet height="100%" tile>
         <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2">GRAND OPEN</div>
+          <div>
+            <v-img src="/logo-text-long.png" />
+            <br />
+            <div class="text-h2 font-weight-bold">GRAND OPEN</div>
+          </div>
         </div>
-      </v-sheet>
-    </v-carousel-item>
-
-    <v-carousel-item v-if="notificationList.length > 0" rounded>
-      <v-sheet height="100%" tile>
-        <div class="text-h3 text-center">Notification</div>
-
-        <v-list class="text-center">
-          <v-dialog
-            v-for="(item, i) in notificationList"
-            :key="item.title"
-            width="500"
-          >
-            <template v-slot:activator="{ props }">
-              <v-list-item
-                v-bind="props"
-                :style="i !== 0 ? 'border-top: 1px black solid' : ''"
-              >
-                <v-list-item-title>
-                  {{ item.title }}
-                </v-list-item-title>
-                <v-list-item-subtitle>{{
-                  new Date(item.time).toDateString()
-                }}</v-list-item-subtitle>
-              </v-list-item>
-            </template>
-
-            <template v-slot:default="{ isActive }">
-              <v-card>
-                <v-card-text>
-                  <Markdown
-                    :source="item.contents"
-                    :linkify="true"
-                    :breaks="true"
-                  />
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn
-                    :text="t('close')"
-                    color="red"
-                    @click="isActive.value = false"
-                  ></v-btn>
-
-                  <v-spacer></v-spacer>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
-        </v-list>
       </v-sheet>
     </v-carousel-item>
   </v-carousel>
@@ -278,7 +290,9 @@
       reserved
     </div>
 
-    <div class="version">v0.0.22</div>
+    <br />
+
+    <div class="version">v1.0.0-next.1</div>
   </v-footer>
 </template>
 
@@ -352,6 +366,17 @@ useHead({
   background-image: url(/background/background.png);
   background-position: center;
   background-size: 100%;
+}
+
+.index-container {
+  display: flex;
+}
+
+@media (max-width: 730px) {
+  .index-container {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
 }
 
 @media (max-width: 600px) {

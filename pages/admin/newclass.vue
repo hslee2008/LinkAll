@@ -131,7 +131,7 @@
           <v-label>Estimated Time per class</v-label>
           <v-text-field
             v-model="estTime"
-            placeholder="ex) 1h / class"
+            placeholder="9PM ~ 10PM (GMT+9)"
             variant="outlined"
           ></v-text-field>
         </div>
@@ -259,7 +259,7 @@ const icon = ref("mdi-math-compass");
 const englishDisplayName = ref("");
 const koreanDisplayName = ref("");
 const subject = ref("");
-const subjectArray = ref(["english", "math", "arts", "tech"]);
+const subjectArray = ref(["english", "math", "korean", "tech"]);
 const classID = ref("");
 const englishTeacherName = ref("");
 const koreanTeacherName = ref("");

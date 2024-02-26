@@ -3,7 +3,7 @@
     <div class="top-div">
       <div class="bottom-div">
         <div class="d-flex">
-          <v-icon class="my-auto mr-3">{{ classInfo.icon }}</v-icon>
+          <v-icon class="my-auto mr-3 ml-1">{{ classInfo.icon }}</v-icon>
 
           <div v-if="classInfo.englishOfficialName">
             <div v-if="locale === 'en'" class="title-container">
@@ -42,7 +42,7 @@
 
         <v-alert
           :border="width >= 930 ? 'start' : 'top'"
-          border-color="success"
+          border-color="#04aefd"
           icon="mdi-heart-box-outline"
           class="text-justify"
         >
@@ -62,7 +62,7 @@
               v-if="classInfo.lang"
               style="border: 1px solid black; border-radius: 10px"
             >
-              <thead style="background-color: #b0d6b2">
+              <thead style="background-color: #95d6f4">
                 <tr>
                   <th class="text-center font-weight-bold">
                     {{ $t("Category") }}
@@ -96,14 +96,9 @@
             <v-skeleton-loader v-else type="table-tbody"></v-skeleton-loader>
           </div>
 
-          <div
-            v-if="
-              classInfo.englishClassSchedule || classInfo.koreanClassSchedule
-            "
-            :style="width >= 1020 ? 'width: 50%' : ''"
-          >
+          <div :style="width >= 1020 ? 'width: 50%' : ''">
             <v-table style="border: 1px solid black; border-radius: 10px">
-              <thead style="background-color: #b0d6b2">
+              <thead style="background-color: #95d6f4">
                 <tr>
                   <th class="text-center font-weight-bold">{{ $t("Date") }}</th>
                   <th class="text-center font-weight-bold">
@@ -194,7 +189,6 @@
               </tbody>
             </v-table>
           </div>
-          <v-skeleton-loader v-else type="table-tbody"></v-skeleton-loader>
         </div>
       </div>
 
@@ -245,7 +239,7 @@
               v-bind="props"
               block
               class="my-4 rounded-lg"
-              color="yellow-darken-1"
+              color="blue-darken-1"
               :elevation="0"
               :disabled="
                 !loggedin ||
@@ -279,11 +273,11 @@
               </DivCenter>
             </div>
 
-            <v-alert v-if="locale === 'ko'" class="mt-3">
+            <v-alert v-if="locale === 'ko'" class="mt-3 text-justify">
               마감된 수업은 대기자로 등록받습니다. 결원 발생시 별도로
               연락드리겠습니다.
             </v-alert>
-            <v-alert v-else-if="locale === 'en'" class="mt-3">
+            <v-alert v-else-if="locale === 'en'" class="mt-3 text-justify">
               Closed classes will be placed on a waiting list. We will contact
               you separately if vacancies become available.
             </v-alert>

@@ -80,6 +80,7 @@
   "math": "Math",
   "arts": "Arts",
   "tech": "Tech",
+  "korean": "Korean",
   "copied": "Copied",
   "Category": "Category",
   "Information": "Information",
@@ -93,5 +94,7 @@
   "Class Time": "Class Time",
   "close": "close",
   "delete": "delete",
-  "update": "update"
+  "update": "update",
+  "clear": "clear",
+  "nothing new": "Nothing New"
 }

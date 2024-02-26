@@ -47,6 +47,7 @@
 @media (max-width: 600px) {
   .top-div-with-bg {
     height: auto;
+    min-height: calc(100vh - 65px);
   }
 }
 </style>

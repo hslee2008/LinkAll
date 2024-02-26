@@ -79,6 +79,7 @@
   "english": "영어",
   "math": "수학",
   "arts": "미술",
+  "korean": "한국어",
   "tech": "기술",
   "copied": "복사되었습니다",
   "Category": "항목",
@@ -93,5 +94,7 @@
   "Class Time": "수업 시간",
   "close": "닫기",
   "delete": "삭제하기",
-  "update": "업데이트하기"
+  "update": "업데이트하기",
+  "clear": "비우기",
+  "nothing new": "새로운 알림이 없습니다."
 }

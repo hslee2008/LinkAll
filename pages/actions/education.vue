@@ -102,13 +102,14 @@
               min-width="150"
             >
               <v-card-title>
-                <v-icon start>mdi-palette</v-icon> {{ $t("arts") }}
+                <v-icon start>mdi-ideogram-cjk</v-icon>
+                {{ $t("korean") }}
               </v-card-title>
             </v-card>
 
             <v-card
-              v-if="classes.arts"
-              v-for="(item, index) in classes.arts"
+              v-if="classes.korean"
+              v-for="(item, index) in classes.korean"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
@@ -126,8 +127,8 @@
             >
               <div class="ml-2">
                 <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-palette</v-icon>
-                  ARTS
+                  <v-icon start size="x-small">mdi-ideogram-cjk</v-icon>
+                  Korean
                 </v-card-title>
                 <v-card-text class="text-h6 mt-2 text-center">
                   Coming Soon!

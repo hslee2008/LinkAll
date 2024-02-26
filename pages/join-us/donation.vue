@@ -79,6 +79,7 @@
             <v-btn
               :text="t('close')"
               color="red"
+              block
               @click="dialog1 = false"
             ></v-btn>
 
