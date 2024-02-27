@@ -58,10 +58,7 @@
 
         <div :class="`my-13 d-flex ga-6 ${width >= 930 ? '' : 'flex-column'}`">
           <div :style="width >= 930 ? 'width: 50%' : ''">
-            <v-table
-              v-if="classInfo.lang"
-              style="border: 1px solid black; border-radius: 10px"
-            >
+            <v-table style="border: 1px solid black; border-radius: 10px">
               <thead style="background-color: #95d6f4">
                 <tr>
                   <th class="text-center font-weight-bold">
@@ -93,101 +90,32 @@
                 </tr>
               </tbody>
             </v-table>
-            <v-skeleton-loader v-else type="table-tbody"></v-skeleton-loader>
           </div>
 
           <div :style="width >= 1020 ? 'width: 50%' : ''">
-            <v-table style="border: 1px solid black; border-radius: 10px">
-              <thead style="background-color: #95d6f4">
-                <tr>
-                  <th class="text-center font-weight-bold">{{ $t("Date") }}</th>
-                  <th class="text-center font-weight-bold">
-                    {{ $t("Theme") }}
-                  </th>
-                  <th class="text-center font-weight-bold" style="padding: 0px">
-                    {{ $t("Students") }}
-                  </th>
-                  <th class="text-center font-weight-bold">
-                    {{ $t("Status") }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(schedule, index) in classInfo[
-                    locale === 'en'
-                      ? 'englishClassSchedule'
-                      : 'koreanClassSchedule'
-                  ]"
-                  :key="schedule"
-                  :style="
-                    isPast(classInfo.classDates[index])
-                      ? 'text-decoration: line-through; color: grey'
-                      : appliedInfo[id]?.date
-                        ? 'text-decoration: underline; color: red'
-                        : ''
-                  "
-                >
-                  <td class="text-center">
-                    {{
-                      width <= 500
-                        ? classInfo.classDates[index].replace("2024/", "")
-                        : classInfo.classDates[index]
-                    }}
-                  </td>
-                  <td class="text-center">{{ schedule }}</td>
-                  <td class="text-center">
-                    {{
-                      Object.keys(numbersForEachClass[index + 1] ?? {}).length
-                    }}
-                  </td>
-                  <td class="text-center">
-                    <span v-if="locale === 'en'">
-                      <span v-if="isPast(classInfo.classDates[index])">
-                        Finished
-                      </span>
-                      <span
-                        v-else-if="
-                          Object.keys(numbersForEachClass[index + 1] ?? {})
-                            .length < min
-                        "
-                      >
-                        Recruiting
-                      </span>
-                      <span
-                        v-else-if="
-                          Object.keys(numbersForEachClass[index + 1] ?? {})
-                            .length >= max
-                        "
-                      >
-                        Full
-                      </span>
-                    </span>
-                    <span v-else-if="locale === 'ko'">
-                      <span v-if="isPast(classInfo.classDates[index])">
-                        끝
-                      </span>
-                      <span
-                        v-else-if="
-                          Object.keys(numbersForEachClass[index + 1] ?? {})
-                            .length < min
-                        "
-                      >
-                        모집 중
-                      </span>
-                      <span
-                        v-else-if="
-                          Object.keys(numbersForEachClass[index + 1] ?? {})
-                            .length >= max
-                        "
-                      >
-                        마감
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </v-table>
+            <v-data-table
+              color="red"
+              style="border: 1px solid black; border-radius: 10px"
+              items-per-page="4"
+              :items="
+                classInfo?.classDates
+                  ?.map((date, i) => {
+                    return {
+                      Date: date,
+                      Theme:
+                        classInfo[
+                          locale === 'en'
+                            ? 'englishClassSchedule'
+                            : 'koreanClassSchedule'
+                        ][i],
+                      Students: Object.keys(numbersForEachClass[i + 1] ?? {})
+                        .length,
+                    };
+                  })
+                  .toReversed()
+              "
+            >
+            </v-data-table>
           </div>
         </div>
       </div>
@@ -211,7 +139,7 @@
             v-if="classInfo.teacherID"
             :src="`/members/${classInfo.teacherID}.png`"
             :elevation="0"
-            :width="250"
+            width="250"
             :name="classInfo.teacherID"
             class="mt-5"
             bordered
@@ -540,6 +468,9 @@ const max = ref(0);
 const min = ref(0);
 const classInfo = ref({});
 
+const past = ref([]);
+const future = ref([]);
+
 const isAdmin = ref(false);
 const userInfo = ref({});
 const alreadyApplied = ref(false);
@@ -610,6 +541,15 @@ onMounted(async () => {
     );
     appliedInfo.value = data;
   });
+
+  for (let i in classInfo.value.classDates) {
+    const classDate = classInfo.value.classDates[i];
+    if (isPast(classDate)) {
+      past.value.push(classDate);
+    } else {
+      future.value.push(classDate);
+    }
+  }
 });
 
 const saveToDatabase = () => {
@@ -660,6 +600,12 @@ const saveToDatabase = () => {
   });
 };
 </script>
+
+<style>
+th {
+  background-color: #95d6f4 !important;
+}
+</style>
 
 <style scoped>
 .top-div {
@@ -725,14 +671,3 @@ const saveToDatabase = () => {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "Date": "Date"
-  },
-  "ko": {
-    "Date": "날짜"
-  }
-}
-</i18n>

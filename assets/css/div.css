@@ -38,3 +38,8 @@
     margin-top: 75px;
   }
 }
+
+@font-face {
+  font-family: "Posterama";
+  src: URL("/font/Posterama-Text-Bold.ttf") format("truetype");
+}

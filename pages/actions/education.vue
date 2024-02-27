@@ -32,7 +32,7 @@
                 v-else
                 elevation="0"
                 height="300px"
-                width="350px"
+                width="350"
                 min-width="150"
                 varaint="tonal"
                 class="cardy rounded-lg mx-3"
@@ -76,7 +76,7 @@
               v-else
               elevation="0"
               height="300px"
-              width="350px"
+              width="350"
               min-width="150"
               varaint="tonal"
               class="cardy rounded-lg mx-3"
@@ -120,7 +120,7 @@
               v-else
               elevation="0"
               height="300px"
-              width="350px"
+              width="350"
               min-width="150"
               varaint="tonal"
               class="cardy rounded-lg mx-3"
@@ -163,7 +163,7 @@
               v-else
               elevation="0"
               height="300px"
-              width="350px"
+              width="350"
               min-width="150"
               varaint="tonal"
               class="cardy rounded-lg mx-3"

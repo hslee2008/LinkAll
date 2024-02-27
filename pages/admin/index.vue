@@ -19,6 +19,13 @@
       <br />
       <br />
 
+      <v-btn width="300" height="65" to="/admin/classorder">
+        Set Class Order <v-icon end>mdi-numeric-1</v-icon>
+      </v-btn>
+
+      <br />
+      <br />
+
       <v-btn width="300" height="65" to="/admin/join-us">
         Joining User <v-icon end>mdi-account</v-icon>
       </v-btn>

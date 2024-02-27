@@ -314,6 +314,7 @@ function makeNewClass() {
     englishClassSchedule: englishClassSchedule.value,
     koreanClassSchedule: koreanClassSchedule.value,
     lang: lang.value,
+    order: -1,
   });
 
   router.push("/actions/education");

@@ -126,7 +126,7 @@
           <v-badge
             v-bind="props"
             color="#95D6F4"
-            :content="notificationList.length - readnotification"
+            :content="notificationList.length"
             offset-x="15"
             offset-y="15"
           >
@@ -135,14 +135,9 @@
         </template>
 
         <v-card>
-          <v-list
-            v-if="notificationList.slice(-1 + readnotification, -1).length > 0"
-          >
+          <v-list v-if="notificationList.length > 0">
             <v-dialog
-              v-for="(item, i) in notificationList.slice(
-                -1 + readnotification,
-                -1
-              )"
+              v-for="(item, i) in notificationList"
               :key="item.title"
               width="500"
             >
@@ -184,9 +179,7 @@
             <v-card-title>{{ $t("nothing new") }}</v-card-title>
           </v-card>
 
-          <v-card-actions
-            v-if="notificationList.length - readnotification && userInfo"
-          >
+          <v-card-actions v-if="notificationList.lengthn && userInfo">
             <v-spacer />
 
             <v-btn @click="readall" color="red" block>read all</v-btn>
@@ -342,7 +335,7 @@
                 <v-badge
                   v-bind="props"
                   color="#95D6F4"
-                  :content="notificationList.length - readnotification"
+                  :content="notificationList.length"
                   offset-x="15"
                   offset-y="10"
                 >
@@ -355,16 +348,9 @@
               </template>
 
               <v-card>
-                <v-list
-                  v-if="
-                    notificationList.slice(-1 + readnotification, -1).length > 0
-                  "
-                >
+                <v-list v-if="notificationList.length > 0">
                   <v-dialog
-                    v-for="(item, i) in notificationList.slice(
-                      -1 + readnotification,
-                      -1
-                    )"
+                    v-for="(item, i) in notificationList"
                     :key="item.title"
                     width="500"
                   >
@@ -406,7 +392,7 @@
                   <v-card-title>{{ $t("nothing new") }}</v-card-title>
                 </v-card>
 
-                <v-card-actions>
+                <v-card-actions v-if="notificationList.length">
                   <V-spacer />
 
                   <v-btn @click="readall" color="red" block>
@@ -500,7 +486,7 @@
       </v-app-bar>
       <v-app-bar v-else>
         <NuxtLink to="/">
-          <img src="/logo-text-long.png" width="150" class="ml-4 mt-1" />
+          <img src="/logo-text-long.png" width="125" class="ml-4 mt-1" />
         </NuxtLink>
 
         <v-spacer />
@@ -574,9 +560,20 @@ onMounted(() => {
         $db,
         `account/${userInfo.value.uid}/readnotification`
       );
-      onValue(accountRef, (snapshot) => {
-        const data = snapshot.val();
+      onValue(accountRef, async (snapshot) => {
+        const data = await snapshot.val();
         readnotification.value = data ?? 0;
+
+        const notificationRef = dbRef($db, "notification");
+        onValue(notificationRef, (snapshot) => {
+          const data = snapshot.val();
+          const values = Object.values(data ?? {});
+          notificationList.value = values;
+        });
+
+        for (let i = 0; i < parseInt(readnotification.value); i++) {
+          notificationList.value.pop();
+        }
       });
     }
   });
@@ -594,13 +591,6 @@ onMounted(() => {
       "https://instagram.com/ihxnsxng\nhttps://github.com/hslee2008\nhttps://play.google.com/store/apps/dev?id=7815903651523223132"
     );
   }
-
-  const notificationRef = dbRef($db, "notification");
-  onValue(notificationRef, (snapshot) => {
-    const data = snapshot.val();
-    const values = Object.values(data ?? {});
-    notificationList.value = values;
-  });
 });
 
 const readall = () => {

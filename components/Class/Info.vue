@@ -10,7 +10,10 @@
         :to="`/class/${item?.subject}/${item?.classID}`"
       >
         <div class="ml-2">
-          <v-card-title class="headline">
+          <v-card-title
+            class="headline"
+            :style="`font-size: ${width <= 300 ? 30 : 40}px`"
+          >
             <v-icon start size="x-small">{{ item?.icon }}</v-icon>
             {{ item?.subject?.toUpperCase() }}
           </v-card-title>
@@ -33,7 +36,7 @@
           "
           class="d-flex"
         >
-          <div class="ma-auto mb-9">
+          <div :class="`ma-auto mb-9 ml-${width <= 250 ? '2' : ' '}`">
             <p
               v-if="locale === 'en'"
               class="text-h6 text-decoration-underline text-center"
@@ -49,7 +52,10 @@
           </div>
 
           <div>
-            <img :src="`/members/${item?.teacherID}.png`" height="200" />
+            <img
+              :src="`/members/${item?.teacherID}.png`"
+              :height="width > 250 ? 200 : 150"
+            />
           </div>
         </div>
 
@@ -91,7 +97,6 @@ const props = defineProps({
 <style scoped>
 .headline {
   font-weight: 900;
-  font-size: 40px;
   padding-top: 30px;
 }
 

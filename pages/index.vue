@@ -8,13 +8,13 @@
       <div style="width: 100%">
         <h2
           class="text-center font-weight-medium text-h3"
-          style="font-family: Galada"
+          style="font-family: Posterama"
         >
           Think for All
         </h2>
         <h1
           class="text-center font-weight-bold text-h1 mt-3 mb-10"
-          style="font-family: Galada"
+          style="Posterama"
         >
           Link All
         </h1>
@@ -186,15 +186,23 @@
         <v-row justify="center">
           <template
             v-if="classList.length > 1"
-            v-for="(i, index) in classList"
+            v-for="(item, index) in classList"
             :key="index"
           >
-            <v-col
-              v-for="item in Object.values(classList[index] ?? {})"
-              :key="item.classID"
-            >
+            <v-col>
               <DivCenter>
-                <ClassInfo :item="item" :width="mobile ? 320 : 350"></ClassInfo>
+                <ClassInfo
+                  :item="item"
+                  :width="
+                    width > 1470
+                      ? '350'
+                      : width > 1374
+                        ? '320'
+                        : width > 1300
+                          ? '300'
+                          : '250'
+                  "
+                ></ClassInfo>
               </DivCenter>
             </v-col>
           </template>
@@ -207,7 +215,7 @@
               <v-skeleton-loader
                 class="mx-auto border"
                 type="image, article"
-                :width="mobile ? 320 : 350"
+                :width="mobile ? '320' : '350'"
               ></v-skeleton-loader>
             </v-col>
           </template>
@@ -292,7 +300,7 @@
 
     <br />
 
-    <div class="version">v1.0.0-next.1</div>
+    <div class="version">v1.0.0-next.2</div>
   </v-footer>
 </template>
 
@@ -301,9 +309,11 @@ import Markdown from "vue3-markdown-it";
 
 const { t } = useI18n();
 const { $db } = useNuxtApp();
-const { mobile } = useDisplay();
+const { mobile, width } = useDisplay();
 
 const windowHeight = ref(0);
+
+const page = ref(1);
 
 const taughtStudents = ref(0);
 const wonDonated = ref(0);
@@ -326,7 +336,14 @@ onMounted(() => {
   onValue(classRef, (snapshot) => {
     const data = snapshot.val();
     const values = Object.values(data ?? {});
-    classList.value = values;
+
+    for (let i = 0; i < values.length; i++) {
+      for (let j in Object.values(values[i] ?? {})) {
+        classList.value.push(Object.values(values[i] ?? {})[j]);
+      }
+    }
+
+    classList.value = classList.value.sort((a, b) => a.order - b.order);
   });
 
   const notificationRef = dbRef($db, "notification");

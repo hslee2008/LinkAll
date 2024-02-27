@@ -1,11 +1,11 @@
 <template>
-  <div style="background-color: #abd3f1" class="top-div-with-bg">
+  <div class="top-div-with-bg">
     <h1 class="text-center header-u">
       {{ t("about us") }}
     </h1>
 
     <div class="d-flex justify-center align-center">
-      <div style="width: 600px" class="pa-9">
+      <div style="width: 600px" class="pl-4 pr-8">
         <h2>{{ t("purpose") }}</h2>
         <p class="text-justify">
           {{ t("purpose_text") }}
