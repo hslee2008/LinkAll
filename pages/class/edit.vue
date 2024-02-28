@@ -333,8 +333,8 @@ const router = useRouter();
 const route = useRoute();
 const { $db } = useNuxtApp();
 
-const subjectID = route.params.subject;
-const idID = route.params.id;
+const subjectID = route.query.subject;
+const idID = route.query.id;
 
 const temp = ref("");
 

@@ -7,26 +7,44 @@
         varaint="tonal"
         class="cardy rounded-lg"
         :width="width"
-        :to="`/class/${item?.subject}/${item?.classID}`"
+        :to="`/class/class/?subject=${item?.subject}&id=${item?.classID}`"
       >
-        <div class="ml-2">
-          <v-card-title
-            class="headline"
+        <div :class="`${width >= 300 ? 'ml-2' : ''}`">
+          <h2
+            :class="`headline ${width >= 300 ? 'ml-3' : 'text-center'}`"
             :style="`font-size: ${width <= 300 ? 30 : 40}px`"
           >
             <v-icon start size="x-small">{{ item?.icon }}</v-icon>
             {{ item?.subject?.toUpperCase() }}
-          </v-card-title>
-          <v-card-text class="text-h6 mt-2">
+          </h2>
+          <p :class="`${width >= 300 ? 'ml-3' : 'text-center'}`">
             {{
               locale === "en"
                 ? item?.englishDisplayName
                 : item?.koreanDisplayName
             }}
-          </v-card-text>
+          </p>
         </div>
 
         <div
+          v-if="width <= 300"
+          style="
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            margin-bottom: -10px;
+            width: 100%;
+            margin-left: 25px;
+          "
+        >
+          <img
+            :src="`/members/${item?.teacherID}.png`"
+            :height="width >= 300 ? 200 : width"
+          />
+        </div>
+
+        <div
+          v-if="width > 300"
           style="
             right: 0;
             bottom: 0;
@@ -36,7 +54,7 @@
           "
           class="d-flex"
         >
-          <div :class="`ma-auto mb-9 ml-${width <= 250 ? '2' : ' '}`">
+          <div :class="`ma-auto mb-9`">
             <p
               v-if="locale === 'en'"
               class="text-h6 text-decoration-underline text-center"
@@ -54,7 +72,7 @@
           <div>
             <img
               :src="`/members/${item?.teacherID}.png`"
-              :height="width > 250 ? 200 : 150"
+              :height="width >= 300 ? 200 : width"
             />
           </div>
         </div>
@@ -80,7 +98,7 @@
 
 <script setup>
 const { mobile } = useDisplay();
-const { locale } = useI18n();
+const { locale, width: mbWidth } = useI18n();
 
 const props = defineProps({
   item: {
@@ -97,7 +115,7 @@ const props = defineProps({
 <style scoped>
 .headline {
   font-weight: 900;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .cardy {

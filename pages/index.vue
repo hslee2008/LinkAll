@@ -181,50 +181,46 @@
     </div>
     <div>
       <h2 class="text-center mb-3 text-h3">LinkAll Programs</h2>
+      <div v-if="width >= 1130">
+        <v-sheet width="100%">
+          <DivCenter class="pa-4">
+            <div class="d-flex">
+              <div
+                v-for="(item, i) in classList.slice(
+                  page * 3 - 3,
+                  page * 3 - 3 + 3
+                )"
+                :key="i"
+              >
+                <v-card class="mx-3" elevation="0">
+                  <ClassInfo :item="item" :width="350"></ClassInfo>
+                </v-card>
+              </div>
+            </div>
 
-      <v-container fluid>
+            <v-pagination
+              class="mt-3"
+              v-model="page"
+              :length="Math.ceil(classList.length / 3)"
+              rounded="circle"
+            ></v-pagination>
+          </DivCenter>
+        </v-sheet>
+      </div>
+      <div v-else>
         <v-row justify="center">
-          <template
-            v-if="classList.length > 1"
-            v-for="(item, index) in classList"
-            :key="index"
-          >
+          <template v-for="(item, index) in classList" :key="index">
             <v-col>
               <DivCenter>
-                <ClassInfo
-                  :item="item"
-                  :width="
-                    width > 1470
-                      ? '350'
-                      : width > 1374
-                        ? '320'
-                        : width > 1300
-                          ? '300'
-                          : '250'
-                  "
-                ></ClassInfo>
+                <ClassInfo :item="item" width="350"></ClassInfo>
               </DivCenter>
             </v-col>
           </template>
-          <template
-            v-else
-            v-for="(_, __) in classList.length"
-            :key="`skeleton-${__}`"
-          >
-            <v-col>
-              <v-skeleton-loader
-                class="mx-auto border"
-                type="image, article"
-                :width="mobile ? '320' : '350'"
-              ></v-skeleton-loader>
-            </v-col>
-          </template>
         </v-row>
-      </v-container>
+      </div>
     </div>
   </div>
 
-  <br /><br />
   <br /><br />
   <br /><br />
 
@@ -264,6 +260,20 @@
 
   <br /><br />
   <br /><br />
+
+  <v-sheet>
+    <v-slide-group class="pa-4" show-arrows>
+      <v-slide-group-item v-for="item in picList" :key="item.title">
+        <v-card width="calc(100vw)" max-width="300" elevation="0" class="mx-3">
+          <v-img :src="item.link" class="rounded-lg"></v-img>
+          <h2 class="text-center">{{ item.title }}</h2>
+          <p width="200">{{ item.contents }}</p>
+        </v-card>
+      </v-slide-group-item>
+    </v-slide-group>
+  </v-sheet>
+
+  <br /><br />
   <br /><br />
 
   <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
@@ -300,7 +310,7 @@
 
     <br />
 
-    <div class="version">v1.0.0-next.2</div>
+    <div class="version">v1.0.0</div>
   </v-footer>
 </template>
 
@@ -312,14 +322,15 @@ const { $db } = useNuxtApp();
 const { mobile, width } = useDisplay();
 
 const windowHeight = ref(0);
-
 const page = ref(1);
 
 const taughtStudents = ref(0);
 const wonDonated = ref(0);
 const hoursOf = ref(0);
+
 const classList = ref([]);
 const notificationList = ref([]);
+const picList = ref([]);
 
 onMounted(() => {
   windowHeight.value = window.innerHeight;
@@ -351,6 +362,13 @@ onMounted(() => {
     const data = snapshot.val();
     const values = Object.values(data ?? {});
     notificationList.value = values;
+  });
+
+  const picRef = dbRef($db, "pic");
+  onValue(picRef, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data ?? {});
+    picList.value = values;
   });
 });
 
@@ -389,7 +407,7 @@ useHead({
   display: flex;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 1470px) {
   .index-container {
     flex-direction: column-reverse;
     gap: 30px;

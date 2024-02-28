@@ -97,18 +97,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  hooks: {
-    async "nitro:config"(nitroConfig) {
-      if (nitroConfig.dev) return;
-
-      nitroConfig.prerender?.routes?.push("/class/english/book-club");
-      nitroConfig.prerender?.routes?.push("/class/english/debate");
-      nitroConfig.prerender?.routes?.push("/class/english/speaking");
-      nitroConfig.prerender?.routes?.push("/class/korean/four-character-idiom");
-      nitroConfig.prerender?.routes?.push("/class/math/geometry");
-      nitroConfig.prerender?.routes?.push("/class/math/logical-math");
-    },
-  },
   pwa: {
     manifest: {
       name: "Think for All - LinkAll",

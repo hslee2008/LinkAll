@@ -94,7 +94,6 @@
 
           <div :style="width >= 1020 ? 'width: 50%' : ''">
             <v-data-table
-              color="red"
               style="border: 1px solid black; border-radius: 10px"
               items-per-page="4"
               :items="
@@ -114,8 +113,7 @@
                   })
                   .toReversed()
               "
-            >
-            </v-data-table>
+            ></v-data-table>
           </div>
         </div>
       </div>
@@ -139,7 +137,7 @@
             v-if="classInfo.teacherID"
             :src="`/members/${classInfo.teacherID}.png`"
             :elevation="0"
-            width="250"
+            :width="250"
             :name="classInfo.teacherID"
             class="mt-5"
             bordered
@@ -223,19 +221,11 @@
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
+                      v-show="!isPast(radio)"
                       :label="radio"
                       :key="index + 1"
                       :value="index + 1"
-                      :disabled="
-                        isPast(radio) || radio?.includes('Not Decided')
-                      "
-                      :style="
-                        isPast(radio)
-                          ? 'text-decoration: line-through; color: grey'
-                          : ''
-                      "
-                    >
-                    </v-radio>
+                    ></v-radio>
                   </v-radio-group>
                 </div>
 
@@ -451,7 +441,7 @@
           size="large"
           color="primary"
           elevation="8"
-          :to="`/class/edit/${subject}/${id}`"
+          :to="`/class/edit/?subject=${subject}&id=${id}`"
         />
       </div>
     </v-layout-item>
@@ -477,8 +467,8 @@ const alreadyApplied = ref(false);
 const appliedInfo = ref({});
 const numbersForEachClass = ref([]);
 
-const subject = route.params.subject;
-const id = route.params.id;
+const subject = route.query.subject;
+const id = route.query.id;
 
 const classNumber = ref("1");
 const s_name = ref("");
@@ -523,7 +513,7 @@ onMounted(async () => {
       `classes/${data.teacherEmailID}/to-join/${id}`
     );
     await onValue(studentsNumber, async (snapshot) => {
-      numbersForEachClass.value = await snapshot.val();
+      numbersForEachClass.value = (await snapshot.val()) || [];
     });
   });
 
