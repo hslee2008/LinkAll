@@ -58,7 +58,7 @@
 
         <div :class="`my-13 d-flex ga-6 ${width >= 930 ? '' : 'flex-column'}`">
           <div :style="width >= 930 ? 'width: 50%' : ''">
-            <v-table style="border: 1px solid black; border-radius: 10px">
+            <v-table style="border: 1px solid grey; border-radius: 10px">
               <thead style="background-color: #95d6f4">
                 <tr>
                   <th class="text-center font-weight-bold">
@@ -94,7 +94,7 @@
 
           <div :style="width >= 1020 ? 'width: 50%' : ''">
             <v-data-table
-              style="border: 1px solid black; border-radius: 10px"
+              style="border: 1px solid grey; border-radius: 10px"
               items-per-page="4"
               :items="
                 classInfo?.classDates
@@ -184,14 +184,14 @@
             </p>
             <div
               v-if="alreadyApplied"
-              style="border: 1px solid black"
+              style="border: 1px solid grey"
               class="pa-3 rounded-lg"
             >
               <p class="text-justify">
                 {{ $t("already applied") }}
               </p>
               <v-alert class="mt-2"> {{ appliedInfo[id]?.date }}</v-alert>
-              <DivCenter class="mt-3">
+              <DivCenter classS="mt-3">
                 <v-btn variant="tonal" to="/account/registeredClass">
                   <v-icon start>mdi-open-in-new</v-icon>
                   {{ $t("registered class") }}
@@ -217,7 +217,7 @@
                     v-model="classNumber"
                     hide-details
                     class="py-3 pl-3 rounded-lg"
-                    style="border: 1px solid black"
+                    style="border: 1px solid grey"
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
@@ -233,7 +233,7 @@
                   <v-expansion-panels>
                     <v-expansion-panel
                       elevation="0"
-                      style="border: 1px solid black"
+                      style="border: 1px solid grey"
                     >
                       <v-expansion-panel-title>
                         Terms of Agreement
@@ -365,7 +365,7 @@
                 </div>
               </v-card-text>
 
-              <v-card-actions style="border-top: 1.5px solid black">
+              <v-card-actions style="border-top: 1.5px solid grey">
                 <v-spacer></v-spacer>
 
                 <v-btn

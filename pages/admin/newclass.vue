@@ -155,7 +155,7 @@
                     variant="solo-filled"
                     class="rounded-lg"
                   ></v-text-field>
-                  <DivCenter class="mb-6">
+                  <DivCenter classS="mb-6">
                     <v-btn variant="tonal" @click="add">
                       <v-icon start>mdi-plus</v-icon>
                       add
@@ -239,7 +239,7 @@
           </v-dialog>
         </DivCenter>
 
-        <DivCenter class="mt-10">
+        <DivCenter classS="mt-10">
           <v-btn @click="makeNewClass" variant="outlined">
             Make New Class
           </v-btn>

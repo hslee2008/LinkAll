@@ -64,7 +64,7 @@
 
           <br />
 
-          <DivCenter class="mb-15">
+          <DivCenter classS="mb-15">
             <v-btn @click="update" variant="outlined">update</v-btn>
           </DivCenter>
         </div>
@@ -192,7 +192,7 @@
         ></v-textarea>
       </v-row>
 
-      <DivCenter class="my-10">
+      <DivCenter classS="my-10">
         <v-btn
           color="primary"
           :disabled="

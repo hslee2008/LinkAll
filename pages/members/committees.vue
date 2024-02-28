@@ -4,7 +4,7 @@
       {{ t("committees") }}
     </h1>
 
-    <DivCenter class="my-3">
+    <DivCenter classS="my-3">
       <div class="text-center my-4">
         <h2>Organizing Team</h2>
       </div>
@@ -49,7 +49,7 @@
 
     <br /><br />
 
-    <DivCenter class="my-3">
+    <DivCenter classS="my-3">
       <div class="text-center my-4">
         <h2>Education Team</h2>
       </div>

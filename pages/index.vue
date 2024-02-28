@@ -76,7 +76,7 @@
         </div>
         <div
           v-else
-          class="d-flex justify-center container mx-3 ml-13"
+          class="d-flex justify-center container mx-3 ml-3"
           style="gap: 150px"
         >
           <div class="text-center">
@@ -180,34 +180,32 @@
       </v-sheet>
     </div>
     <div>
-      <h2 class="text-center mb-3 text-h3">LinkAll Programs</h2>
+      <h2 class="text-center mb-8 text-h3">LinkAll Programs</h2>
       <div v-if="width >= 1130">
-        <v-sheet width="100%">
-          <DivCenter class="pa-4">
-            <div class="d-flex">
-              <div
-                v-for="(item, i) in classList.slice(
-                  page * 3 - 3,
-                  page * 3 - 3 + 3
-                )"
-                :key="i"
-              >
-                <v-card class="mx-3" elevation="0">
-                  <ClassInfo :item="item" :width="350"></ClassInfo>
-                </v-card>
-              </div>
+        <DivCenter classS="pa-4">
+          <div class="d-flex">
+            <div
+              v-for="(item, i) in classList.slice(
+                page * 3 - 3,
+                page * 3 - 3 + 3
+              )"
+              :key="i"
+            >
+              <v-card class="mx-3" elevation="0">
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
             </div>
+          </div>
 
-            <v-pagination
-              class="mt-3"
-              v-model="page"
-              :length="Math.ceil(classList.length / 3)"
-              rounded="circle"
-            ></v-pagination>
-          </DivCenter>
-        </v-sheet>
+          <v-pagination
+            class="mt-3"
+            v-model="page"
+            :length="Math.ceil(classList.length / 3)"
+            rounded="circle"
+          ></v-pagination>
+        </DivCenter>
       </div>
-      <div v-else>
+      <v-container v-else>
         <v-row justify="center">
           <template v-for="(item, index) in classList" :key="index">
             <v-col>
@@ -217,7 +215,7 @@
             </v-col>
           </template>
         </v-row>
-      </div>
+      </v-container>
     </div>
   </div>
 
@@ -262,12 +260,12 @@
   <br /><br />
 
   <v-sheet>
-    <v-slide-group class="pa-4" show-arrows>
+    <v-slide-group show-arrows>
       <v-slide-group-item v-for="item in picList" :key="item.title">
-        <v-card width="calc(100vw)" max-width="300" elevation="0" class="mx-3">
+        <v-card max-width="300" elevation="0" class="mx-3">
           <v-img :src="item.link" class="rounded-lg"></v-img>
-          <h2 class="text-center">{{ item.title }}</h2>
-          <p width="200">{{ item.contents }}</p>
+          <h2 class="text-center my-3">{{ item.title }}</h2>
+          <p width="200" class="text-justify">{{ item.contents }}</p>
         </v-card>
       </v-slide-group-item>
     </v-slide-group>
@@ -310,7 +308,7 @@
 
     <br />
 
-    <div class="version">v1.0.0</div>
+    <div class="version">v1.0.1</div>
   </v-footer>
 </template>
 

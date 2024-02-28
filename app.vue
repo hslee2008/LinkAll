@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <VitePwaManifest />
-    <NuxtLoadingIndicator color="linear-gradient(to right, blue , skyblue)" />
+    <NuxtLoadingIndicator color="linear-gradient(to right, skyblue , blue)" />
 
     <v-navigation-drawer
       v-if="mobile"
@@ -499,7 +499,7 @@
 
     <NuxtLayout>
       <v-main>
-        <NuxtPage />
+        <NuxtPage class="pb-10" />
       </v-main>
     </NuxtLayout>
   </v-app>
