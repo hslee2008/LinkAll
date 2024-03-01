@@ -253,14 +253,14 @@
 
 <script setup>
 const router = useRouter();
-const { $db } = useNuxtApp();
+const { $db, $storage } = useNuxtApp();
 
 const icon = ref("mdi-math-compass");
 const englishDisplayName = ref("");
 const koreanDisplayName = ref("");
-const subject = ref("");
+const subject = ref("english");
 const subjectArray = ref(["english", "math", "korean", "tech"]);
-const classID = ref("");
+const classID = ref("initial");
 const englishTeacherName = ref("");
 const koreanTeacherName = ref("");
 const teacherID = ref("");
@@ -289,9 +289,14 @@ function deleteClassDate(index) {
   classDates.value.splice(index, 1);
 }
 
-function makeNewClass() {
-  const classRef = dbRef($db, `class/${subject.value}/${classID.value}`);
-  set(classRef, {
+async function makeNewClass() {
+  let image = "";
+
+  const storageRef = await sRef($storage, `members/${teacherID.value}.png`);
+  await getDownloadURL(storageRef, (url) => (image = url));
+
+  const classRef = await dbRef($db, `class/${subject.value}/${classID.value}`);
+  await set(classRef, {
     icon: icon.value,
     englishDisplayName: englishDisplayName.value,
     koreanDisplayName: koreanDisplayName.value,
@@ -315,6 +320,7 @@ function makeNewClass() {
     koreanClassSchedule: koreanClassSchedule.value,
     lang: lang.value,
     order: -1,
+    image,
   });
 
   router.push("/actions/education");

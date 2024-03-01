@@ -486,7 +486,7 @@
       </v-app-bar>
       <v-app-bar v-else>
         <NuxtLink to="/">
-          <img src="/logo-text-long.png" width="125" class="ml-4 mt-1" />
+          <img src="/logo-text-long.png" width="120" class="ml-4 mt-1" />
         </NuxtLink>
 
         <v-spacer />

@@ -7,7 +7,7 @@
     <DivCenter>
       <div :class="`d-flex ga-3 ${sm ? 'flex-column' : ''}`">
         <div v-for="(item, index) in classInfo" :key="index">
-          <ClassInfo :item="item"></ClassInfo>
+          <ClassInfo :item="item" width="350"></ClassInfo>
 
           <v-card-title class="my-3 text-center">{{
             dates[index]

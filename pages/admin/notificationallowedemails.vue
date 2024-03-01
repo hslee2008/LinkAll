@@ -4,17 +4,23 @@
 
     <br />
 
-    <p v-for="(item, i) in Object.values(emails ?? {})" class="ml-10 mr-10">
+    <p
+      v-for="(item, i) in [...new Set(Object.values(emails ?? {}))]"
+      class="ml-10 mr-10"
+    >
       {{ item }}
     </p>
 
     <v-btn
       class="ml-10 mt-5"
       variant="outlined"
-      @click="copy(Object.values(emails ?? {}).join(','))"
+      @click="copy([...new Set(Object.values(emails ?? {}))].join(','))"
     >
       <v-icon start>mdi-content-copy</v-icon> Copy
     </v-btn>
+
+    <br /><br />
+    <br /><br />
 
     <v-snackbar v-model="snackbar">
       {{ $t("copied") }}

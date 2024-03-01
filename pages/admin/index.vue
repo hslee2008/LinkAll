@@ -53,6 +53,37 @@
 
       <br />
       <br />
+
+      <v-btn width="300" height="65" to="/admin/addmemberimage">
+        Add Member Image <v-icon end>mdi-image</v-icon>
+      </v-btn>
+
+      <br />
+      <br />
+
+      <v-btn width="300" height="65" to="/admin/addmembers">
+        Add Members <v-icon end>mdi-wallet-membership</v-icon>
+      </v-btn>
+
+      <br />
+      <br />
+
+      <v-btn width="300" height="65" to="/admin/editmembers">
+        Edit Members <v-icon end>mdi-wallet-membership</v-icon>
+      </v-btn>
+
+      <br />
+      <br />
+
+      <v-btn width="300" height="65" to="/admin/editcommittees">
+        Edit Committees <v-icon end>mdi-podium</v-icon>
+      </v-btn>
+
+      <br />
+      <br />
+
+      <br />
+      <br />
     </div>
   </div>
 </template>

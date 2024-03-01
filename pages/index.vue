@@ -262,8 +262,8 @@
   <v-sheet>
     <v-slide-group show-arrows>
       <v-slide-group-item v-for="item in picList" :key="item.title">
-        <v-card max-width="300" elevation="0" class="mx-3">
-          <v-img :src="item.link" class="rounded-lg"></v-img>
+        <v-card width="300" elevation="0" class="mx-3">
+          <img :src="item.link" class="rounded-lg" width="300" />
           <h2 class="text-center my-3">{{ item.title }}</h2>
           <p width="200" class="text-justify">{{ item.contents }}</p>
         </v-card>
@@ -308,7 +308,7 @@
 
     <br />
 
-    <div class="version">v1.0.1</div>
+    <div class="version">v1.0.2</div>
   </v-footer>
 </template>
 

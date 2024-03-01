@@ -25,12 +25,19 @@
           <v-expansion-panels>
             <v-expansion-panel style="border: 3px solid red" class="my-3">
               <v-expansion-panel-title>
-                Class
-                {{
-                  Object.keys(classes[parsedEmail]["to-join"][item] ?? {})[
-                    index
-                  ]
-                }}
+                <mark>
+                  {{
+                    Object.values(classInfo ?? {}).filter((a) =>
+                      Object.keys(a ?? {}).includes(item)
+                    )[0][item].classDates[
+                      parseInt(
+                        Object.keys(
+                          classes[parsedEmail]["to-join"][item] ?? {}
+                        )[index]
+                      ) - 1
+                    ]
+                  }}
+                </mark>
               </v-expansion-panel-title>
 
               <v-table>
@@ -266,7 +273,9 @@ const { xs } = useDisplay();
 
 const parsedEmail = ref("");
 const keys = ref([]);
+
 const classes = ref({});
+const classInfo = ref({});
 
 const snackbar = ref(false);
 
@@ -284,6 +293,10 @@ onMounted(() => {
     const data = snapshot.val();
     classes.value = data;
     keys.value = Object.keys(data ?? {});
+  });
+
+  onValue(dbRef($db, "class"), (snapshot) => {
+    classInfo.value = snapshot.val();
   });
 });
 

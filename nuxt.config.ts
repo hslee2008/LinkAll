@@ -92,6 +92,10 @@ export default defineNuxtConfig({
         ],
       },
       {
+        from: "firebase/storage",
+        imports: ["getDownloadURL", "uploadBytes", ["ref", "sRef"]],
+      },
+      {
         from: "firebase/auth",
         imports: ["getAuth"],
       },

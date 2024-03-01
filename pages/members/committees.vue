@@ -9,42 +9,24 @@
         <h2>Organizing Team</h2>
       </div>
 
-      <div class="d-flex my-3">
-        <div class="mx-7">
+      <v-row align="start" no-gutters class="ga-3">
+        <v-col
+          v-for="orgteam in members.filter((a) => a.role !== 'teacher')"
+          :key="orgteam.id"
+        >
           <ImgMember
+            :src="orgteam.image"
             :elevation="0"
-            showLink
-            src="/members/junho.png"
-            name="junho"
+            :showLink="true"
+            :name="orgteam.id"
           ></ImgMember>
-          <p class="text-center">{{ t("founder") }}</p>
-          <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-        </div>
-
-        <div class="mx-7">
-          <ImgMember
-            :elevation="0"
-            showLink
-            src="/members/hyunseung.png"
-            name="hyunseung"
-          ></ImgMember>
-          <p class="text-center">{{ t("co-founder") }}</p>
-          <p class="text-center text-h6">{{ t("Hyunseung Lee") }}</p>
-        </div>
-      </div>
-
-      <div class="d-flex justify-center my-3">
-        <div class="mx-7">
-          <ImgMember
-            :elevation="0"
-            showLink
-            src="/members/woojin.png"
-            name="woojin"
-          ></ImgMember>
-          <p class="text-center">{{ t("Designer") }}</p>
-          <p class="text-center text-h6">{{ t("Woojin Cho") }}</p>
-        </div>
-      </div>
+          <p class="text-center">{{ t(orgteam.role) }}</p>
+          <p class="text-center text-h6">
+            <span v-if="locale === 'en'">{{ orgteam.englishFullName }}</span>
+            <span v-else>{{ orgteam.koreanFullName }}</span>
+          </p>
+        </v-col>
+      </v-row>
     </DivCenter>
 
     <br /><br />
@@ -54,44 +36,26 @@
         <h2>Education Team</h2>
       </div>
 
-      <div class="d-flex">
-        <div class="d-flex-break">
-          <div class="flex-item">
-            <ImgMember
-              :elevation="0"
-              :showLink="true"
-              src="/members/junho.png"
-              name="junho"
-            ></ImgMember>
-            <p class="text-center">{{ t("teacher") }}</p>
-            <p class="text-center text-h6">{{ t("Junho Hwang") }}</p>
-          </div>
-
-          <div :class="`flex-item ${mobile ? 'mt-5' : ''}`">
-            <ImgMember
-              :elevation="0"
-              :showLink="true"
-              src="/members/doyung.png"
-              name="doyung"
-            ></ImgMember>
-            <p class="text-center">{{ t("teacher") }}</p>
-            <p class="text-center text-h6">{{ t("Doyung Yun") }}</p>
-          </div>
-        </div>
-
-        <div class="d-flex-break">
-          <div class="flex-item">
-            <ImgMember
-              :elevation="0"
-              :showLink="true"
-              src="/members/yoojong.png"
-              name="joojong"
-            ></ImgMember>
-            <p class="text-center">{{ t("teacher") }}</p>
-            <p class="text-center text-h6">{{ t("Yoojong Seo") }}</p>
-          </div>
-        </div>
-      </div>
+      <v-row align="start" no-gutters class="ga-3">
+        <v-col
+          v-for="eduteam in members.filter(
+            (a) => a.role === 'teacher' || a.role === 'founder'
+          )"
+          :key="eduteam.id"
+        >
+          <ImgMember
+            :src="eduteam.image"
+            :elevation="0"
+            :showLink="true"
+            :name="eduteam.id"
+          ></ImgMember>
+          <p class="text-center">{{ t("teacher") }}</p>
+          <p class="text-center text-h6">
+            <span v-if="locale === 'en'">{{ eduteam.englishFullName }}</span>
+            <span v-else>{{ eduteam.koreanFullName }}</span>
+          </p>
+        </v-col>
+      </v-row>
     </DivCenter>
 
     <br />
@@ -100,8 +64,32 @@
 </template>
 
 <script setup>
-const { t } = useI18n();
-const { mobile } = useDisplay();
+const { t, locale } = useI18n();
+const { $db } = useNuxtApp();
+
+const members = ref([]);
+
+onMounted(() => {
+  onValue(
+    dbRef($db, "members"),
+    (snapshot) =>
+      (members.value = Object.values(snapshot.val() ?? {}).sort((a, b) => {
+        const rolesOrder = {
+          founder: 0,
+          "co-founder": 1,
+          designer: 2,
+          teacher: 3,
+        };
+
+        const roleA =
+          rolesOrder[a.role] !== undefined ? rolesOrder[a.role] : Infinity;
+        const roleB =
+          rolesOrder[b.role] !== undefined ? rolesOrder[b.role] : Infinity;
+
+        return roleA - roleB;
+      }))
+  );
+});
 
 useHead({
   title: t("committees"),

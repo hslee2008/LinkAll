@@ -135,7 +135,7 @@
         <div>
           <ImgMember
             v-if="classInfo.teacherID"
-            :src="`/members/${classInfo.teacherID}.png`"
+            :src="classInfo.image"
             :elevation="0"
             :width="250"
             :name="classInfo.teacherID"

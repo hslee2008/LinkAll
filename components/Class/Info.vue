@@ -37,10 +37,7 @@
             margin-left: 25px;
           "
         >
-          <img
-            :src="`/members/${item?.teacherID}.png`"
-            :height="width >= 300 ? 200 : width"
-          />
+          <img :src="item?.image" :height="width >= 300 ? 200 : width" />
         </div>
 
         <div
@@ -70,10 +67,7 @@
           </div>
 
           <div>
-            <img
-              :src="`/members/${item?.teacherID}.png`"
-              :height="width >= 300 ? 200 : width"
-            />
+            <img :src="item?.image" :height="width >= 300 ? 200 : width" />
           </div>
         </div>
 
@@ -98,7 +92,7 @@
 
 <script setup>
 const { mobile } = useDisplay();
-const { locale, width: mbWidth } = useI18n();
+const { locale } = useI18n();
 
 const props = defineProps({
   item: {

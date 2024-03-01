@@ -5,11 +5,11 @@
     </h1>
 
     <div class="top-container">
-      <v-container>
+      <div>
         <v-row class="my-4 ma-auto">
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
+              class="d-flex justify-center align-center mr-3 pr-6 br-dotted"
               min-width="150"
               elevation="0"
             >
@@ -18,17 +18,35 @@
               </v-card-title>
             </v-card>
 
-            <div class="d-flex mt-5">
-              <v-slide-group show-arrows>
-                <v-slide-group-item
-                  v-for="item in classes.english"
-                  :key="item.title"
-                >
-                  <div class="mx-3">
-                    <ClassInfo :item="item" width="350"></ClassInfo>
-                  </div>
-                </v-slide-group-item>
-              </v-slide-group>
+            <div class="d-flex">
+              <v-card
+                v-if="classes.english"
+                v-for="(item, index) in classes.english"
+                :key="index"
+                elevation="0"
+                class="ma-3 rounded-lg"
+              >
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
+              <v-card
+                v-else
+                elevation="0"
+                height="300px"
+                width="350"
+                min-width="150"
+                varaint="tonal"
+                class="cardy rounded-lg mx-3"
+              >
+                <div class="ml-2">
+                  <v-card-title class="headline text-center">
+                    <v-icon start size="x-small">mdi-translate</v-icon>
+                    ENGLISH
+                  </v-card-title>
+                  <v-card-text class="text-h6 mt-2 text-center">
+                    Coming Soon!
+                  </v-card-text>
+                </div>
+              </v-card>
             </div>
           </v-card>
         </v-row>
@@ -36,7 +54,7 @@
         <v-row class="my-4 ma-auto">
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
+              class="d-flex justify-center align-center mr-3 pr-6 br-dotted"
               min-width="150"
               elevation="0"
             >
@@ -45,72 +63,102 @@
               </v-card-title>
             </v-card>
 
-            <div class="d-flex mt-5">
-              <v-slide-group show-arrows>
-                <v-slide-group-item
-                  v-for="item in classes.math"
-                  :key="item.title"
-                >
-                  <div class="mx-3">
-                    <ClassInfo :item="item" width="350"></ClassInfo>
-                  </div>
-                </v-slide-group-item>
-              </v-slide-group>
-            </div>
-          </v-card>
-        </v-row>
-
-        <v-row class="my-4 ma-auto full-width">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
-              min-width="150"
+              v-if="classes.math"
+              v-for="(item, index) in classes.math"
+              :key="index"
               elevation="0"
+              class="ma-3 rounded-lg"
             >
-              <v-card-title>
-                <v-icon start>mdi-ideogram-cjk</v-icon> {{ $t("korean") }}
-              </v-card-title>
+              <ClassInfo :item="item" width="350"></ClassInfo>
             </v-card>
-
-            <div class="d-flex mt-5">
-              <v-slide-group show-arrows class="ml-12">
-                <v-slide-group-item
-                  v-for="item in classes.korean"
-                  :key="item.title"
-                >
-                  <div class="mx-3">
-                    <ClassInfo :item="item" width="350"></ClassInfo>
-                  </div>
-                </v-slide-group-item>
-              </v-slide-group>
-            </div>
+            <v-card
+              v-else
+              elevation="0"
+              height="300px"
+              width="350"
+              min-width="150"
+              varaint="tonal"
+              class="cardy rounded-lg mx-3"
+            >
+              <div class="ml-2">
+                <v-card-title class="headline text-center">
+                  <v-icon start size="x-small">mdi-math-compass</v-icon>
+                  MATH
+                </v-card-title>
+                <v-card-text class="text-h6 mt-2 text-center">
+                  Coming Soon!
+                </v-card-text>
+              </div>
+            </v-card>
           </v-card>
         </v-row>
 
         <v-row class="my-4 ma-auto">
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
-              min-width="150"
               elevation="0"
+              class="d-flex justify-center align-center mr-3 pr-3 br-dotted"
+              min-width="150"
+            >
+              <v-card-title>
+                <v-icon start>mdi-ideogram-cjk</v-icon>
+                {{ $t("korean") }}
+              </v-card-title>
+            </v-card>
+
+            <v-card
+              v-if="classes.korean"
+              v-for="(item, index) in classes.korean"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+            <v-card
+              v-else
+              elevation="0"
+              height="300px"
+              width="350"
+              min-width="150"
+              varaint="tonal"
+              class="cardy rounded-lg mx-3"
+            >
+              <div class="ml-2">
+                <v-card-title class="headline text-center">
+                  <v-icon start size="x-small">mdi-ideogram-cjk</v-icon>
+                  Korean
+                </v-card-title>
+                <v-card-text class="text-h6 mt-2 text-center">
+                  Coming Soon!
+                </v-card-text>
+              </div>
+            </v-card>
+          </v-card>
+        </v-row>
+
+        <v-row class="my-4 ma-auto">
+          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
+            <v-card
+              elevation="0"
+              class="d-flex justify-center align-center mr-3 pr-3 br-dotted"
+              min-width="150"
             >
               <v-card-title>
                 <v-icon start>mdi-laptop</v-icon> {{ $t("tech") }}
               </v-card-title>
             </v-card>
 
-            <div v-if="classes.tech" class="d-flex mt-5">
-              <v-slide-group show-arrows>
-                <v-slide-group-item
-                  v-for="item in classes.tech"
-                  :key="item.title"
-                >
-                  <div class="mx-3">
-                    <ClassInfo :item="item" width="350"></ClassInfo>
-                  </div>
-                </v-slide-group-item>
-              </v-slide-group>
-            </div>
+            <v-card
+              v-if="classes.tech"
+              v-for="(item, index) in classes.tech"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
             <v-card
               v-else
               elevation="0"
@@ -132,7 +180,7 @@
             </v-card>
           </v-card>
         </v-row>
-      </v-container>
+      </div>
     </div>
   </div>
 </template>
