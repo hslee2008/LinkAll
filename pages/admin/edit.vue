@@ -6,19 +6,29 @@
 
     <DivCenter>
       <div class="container">
-        <v-label>taught students</v-label>
         <v-text-field
           v-model="taughtStudents"
           variant="outlined"
+          label="Students Taught"
         ></v-text-field>
-        <v-label>won donated</v-label>
-        <v-text-field v-model="wonDonated" variant="outlined"></v-text-field>
-        <v-label>hours of volunteering</v-label>
-        <v-text-field v-model="hoursOf" variant="outlined"></v-text-field>
+        <v-text-field
+          v-model="wonDonated"
+          variant="outlined"
+          label="Won Donated"
+        ></v-text-field>
+        <v-text-field
+          v-model="hoursOf"
+          variant="outlined"
+          label="Hours of Volunteering"
+        ></v-text-field>
+
+        <br />
 
         <DivCenter>
-          <v-btn @click="updateSiteValue" elevation="0"> Update</v-btn>
+          <v-btn @click="updateSiteValue" variant="tonal">Update</v-btn>
         </DivCenter>
+
+        <br /><br />
       </div>
     </DivCenter>
   </div>
