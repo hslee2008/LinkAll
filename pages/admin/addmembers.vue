@@ -108,17 +108,15 @@ const member = ref({
   koreanAwards: "",
   englishAwards: "",
   image: "",
+  order: -1,
 });
 
 function checkForImage() {
   const storageRef = sRef($storage, `members/${member.value.id}.png`);
 
-  getDownloadURL(storageRef, (url) => console.log(url))
-    .then((url) => {
-      image.value = url;
-      alert("There is a image");
-    })
-    .catch((e) => alert("There is no image"));
+  getDownloadURL(storageRef, (url) => (image.value = url)).catch((e) =>
+    alert("There is no image")
+  );
 }
 
 function Add() {

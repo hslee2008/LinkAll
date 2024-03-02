@@ -11,7 +11,29 @@
 
       <v-row align="start" no-gutters class="ga-3">
         <v-col
-          v-for="orgteam in members.filter((a) => a.role !== 'teacher')"
+          v-for="orgteam in Object.values(members).filter(
+            (a) => a.role === 'founder' || a.role === 'co-founder'
+          )"
+          :key="orgteam.id"
+        >
+          <ImgMember
+            :src="orgteam.image"
+            :elevation="0"
+            :showLink="true"
+            :name="orgteam.id"
+          ></ImgMember>
+          <p class="text-center">{{ t(orgteam.role) }}</p>
+          <p class="text-center text-h6">
+            <span v-if="locale === 'en'">{{ orgteam.englishFullName }}</span>
+            <span v-else>{{ orgteam.koreanFullName }}</span>
+          </p>
+        </v-col>
+      </v-row>
+      <v-row align="start" no-gutters class="ga-3">
+        <v-col
+          v-for="orgteam in Object.values(members).filter(
+            (a) => a.role === 'designer'
+          )"
           :key="orgteam.id"
         >
           <ImgMember
@@ -38,7 +60,7 @@
 
       <v-row align="start" no-gutters class="ga-3">
         <v-col
-          v-for="eduteam in members.filter(
+          v-for="eduteam in Object.values(members).filter(
             (a) => a.role === 'teacher' || a.role === 'founder'
           )"
           :key="eduteam.id"
@@ -73,21 +95,7 @@ onMounted(() => {
   onValue(
     dbRef($db, "members"),
     (snapshot) =>
-      (members.value = Object.values(snapshot.val() ?? {}).sort((a, b) => {
-        const rolesOrder = {
-          founder: 0,
-          "co-founder": 1,
-          designer: 2,
-          teacher: 3,
-        };
-
-        const roleA =
-          rolesOrder[a.role] !== undefined ? rolesOrder[a.role] : Infinity;
-        const roleB =
-          rolesOrder[b.role] !== undefined ? rolesOrder[b.role] : Infinity;
-
-        return roleA - roleB;
-      }))
+      (members.value = sortByOrderAndConvertToObject(snapshot.val()))
   );
 });
 
@@ -107,20 +115,13 @@ a {
   margin-right: 30px;
 }
 
-.d-flex-break {
-  display: flex;
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 @media (max-width: 650px) {
   .flex-item {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-  }
-}
-
-@media (max-width: 550px) {
-  .d-flex-break {
-    display: block;
     margin-left: 10px !important;
     margin-right: 10px !important;
   }

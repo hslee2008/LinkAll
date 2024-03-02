@@ -52,6 +52,12 @@
               prepend-inner-icon="mdi-gmail"
               label="Gmail ID"
             ></v-text-field>
+
+            <v-text-field
+              v-model="member.order"
+              variant="outlined"
+              label="Order"
+            ></v-text-field>
           </div>
 
           <div style="min-width: calc(100vw - 370px)">
@@ -101,28 +107,26 @@ const router = useRouter();
 const { $storage, $db } = useNuxtApp();
 
 const members = ref({});
+const memberList = ref([]);
 const memberImages = ref({});
 
-onMounted(async () => {
-  onValue(
-    dbRef($db, "members"),
-    (snapshot) => (members.value = snapshot.val())
-  );
+onMounted(() => {
+  onValue(dbRef($db, "members"), (snapshot) => {
+    const data = snapshot.val();
+    members.value = sortByOrderAndConvertToObject(data);
+    Object.keys(members.value ?? {}).forEach(async (item) => {
+      let link = "";
 
-  await Object.keys(members.value ?? {}).forEach(async (item) => {
-    let link = "";
+      await getDownloadURL(
+        sRef($storage, `members/${members.value[item].id}.png`)
+      )
+        .then((url) => (link = url))
+        .catch((error) => {
+          alert(error);
+        });
 
-    await getDownloadURL(
-      sRef($storage, `members/${members.value[item].id}.png`)
-    )
-      .then((url) => (link = url))
-      .catch((error) => {
-        alert(error);
-      });
-
-    console.log(link);
-
-    memberImages.value[members.value[item].id] = link;
+      memberImages.value[members.value[item].id] = link;
+    });
   });
 });
 

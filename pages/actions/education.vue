@@ -146,13 +146,13 @@
               min-width="150"
             >
               <v-card-title>
-                <v-icon start>mdi-laptop</v-icon> {{ $t("tech") }}
+                <v-icon start>mdi-history</v-icon> {{ $t("history") }}
               </v-card-title>
             </v-card>
 
             <v-card
-              v-if="classes.tech"
-              v-for="(item, index) in classes.tech"
+              v-if="classes.history"
+              v-for="(item, index) in classes.history"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
@@ -170,8 +170,8 @@
             >
               <div class="ml-2">
                 <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-laptop</v-icon>
-                  TECH
+                  <v-icon start size="x-small">mdi-history</v-icon>
+                  History
                 </v-card-title>
                 <v-card-text class="text-h6 mt-2 text-center">
                   Coming Soon!

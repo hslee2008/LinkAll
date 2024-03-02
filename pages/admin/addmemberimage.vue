@@ -12,7 +12,8 @@
           Using
           <a href="https://imageresizer.com/" target="_blank"
             >Image Resizer Online</a
-          >, please resize the image to exactly 354x471. If possible, use
+          >, please resize the image to exactly 354x471. Also, make it a .png
+          image. Finally, use
           <a href="https://remove.bg" target="_blank">Background Remover</a> to
           make the image transparent.
         </p>
@@ -51,7 +52,7 @@ function previewImage(e) {
 }
 
 function Upload() {
-  const storageRef = sRef($storage, `members/${id.value}`);
+  const storageRef = sRef($storage, `members/${id.value}.png`);
 
   uploadBytes(storageRef, imageData.value).then(() => {
     router.push("/admin");

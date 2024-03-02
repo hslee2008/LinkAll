@@ -308,7 +308,7 @@
 
     <br />
 
-    <div class="version">v1.0.2</div>
+    <div class="version">v1.0.3</div>
   </v-footer>
 </template>
 

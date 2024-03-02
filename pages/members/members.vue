@@ -101,21 +101,7 @@ onMounted(async () => {
   await onValue(
     dbRef($db, "members"),
     (snapshot) =>
-      (members.value = Object.values(snapshot.val() ?? {}).sort((a, b) => {
-        const rolesOrder = {
-          founder: 0,
-          "co-founder": 1,
-          designer: 2,
-          teacher: 3,
-        };
-
-        const roleA =
-          rolesOrder[a.role] !== undefined ? rolesOrder[a.role] : Infinity;
-        const roleB =
-          rolesOrder[b.role] !== undefined ? rolesOrder[b.role] : Infinity;
-
-        return roleA - roleB;
-      }))
+      (members.value = sortByOrderAndConvertToObject(snapshot.val()))
   );
 });
 
