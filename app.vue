@@ -6,7 +6,7 @@
     <v-navigation-drawer
       v-if="mobile"
       v-model="drawer"
-      location="right"
+      location="left"
       class="pa-3"
     >
       <div v-if="userInfo && !userInfo.emailVerified">
@@ -111,10 +111,10 @@
     </v-navigation-drawer>
     <v-app-bar
       v-if="mobile"
-      class="pl-5"
       :elevation="scrollY === 0 ? 0 : 4"
       :style="`${scrollY === 0 ? 'background-color: transparent;' : ''}`"
     >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <NuxtLink to="/">
         <img src="/logo-text-long.png" width="100" class="mt-1" />
       </NuxtLink>
@@ -189,7 +189,7 @@
         </v-card>
       </v-menu>
 
-      <div v-if="userInfo">
+      <div v-if="userInfo" class="mr-3">
         <v-menu>
           <template v-slot:activator="{ props }">
             <v-avatar>
@@ -259,13 +259,9 @@
         v-else
         rounded="lg"
         to="/account/login"
+        class="mr-3"
         icon="mdi-account-circle"
       />
-
-      <v-app-bar-nav-icon
-        variant="text"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
     </v-app-bar>
     <template v-else>
       <v-app-bar

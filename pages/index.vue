@@ -229,6 +229,7 @@
     height="calc(100vw * 2731/3723 * 2/3)"
     width="100vw"
     continuous
+    :show-arrows="!mobile"
   >
     <v-carousel-item rounded>
       <v-sheet height="100%" tile>
@@ -305,10 +306,6 @@
       Copyright &copy; LinkAll {{ new Date().getFullYear() }} &mdash; All rights
       reserved
     </div>
-
-    <br />
-
-    <div class="version">v1.0.5</div>
   </v-footer>
 </template>
 

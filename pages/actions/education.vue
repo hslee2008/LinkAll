@@ -21,7 +21,9 @@
             <div class="d-flex">
               <v-card
                 v-if="classes.english"
-                v-for="(item, index) in classes.english"
+                v-for="(item, index) in Object.values(
+                  classes.english ?? {}
+                ).sort((a, b) => a.order - b.order)"
                 :key="index"
                 elevation="0"
                 class="ma-3 rounded-lg"
@@ -65,7 +67,9 @@
 
             <v-card
               v-if="classes.math"
-              v-for="(item, index) in classes.math"
+              v-for="(item, index) in Object.values(classes.math ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
@@ -109,7 +113,9 @@
 
             <v-card
               v-if="classes.korean"
-              v-for="(item, index) in classes.korean"
+              v-for="(item, index) in Object.values(classes.korean ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
@@ -146,13 +152,15 @@
               min-width="150"
             >
               <v-card-title>
-                <v-icon start>mdi-history</v-icon> {{ $t("history") }}
+                <v-icon start>mdi-pillar</v-icon> {{ $t("history") }}
               </v-card-title>
             </v-card>
 
             <v-card
               v-if="classes.history"
-              v-for="(item, index) in classes.history"
+              v-for="(item, index) in Object.values(classes.history ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"
@@ -170,7 +178,7 @@
             >
               <div class="ml-2">
                 <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-history</v-icon>
+                  <v-icon start size="x-small">mdi-pillar</v-icon>
                   History
                 </v-card-title>
                 <v-card-text class="text-h6 mt-2 text-center">
@@ -195,7 +203,9 @@
 
             <v-card
               v-if="classes.science"
-              v-for="(item, index) in classes.science"
+              v-for="(item, index) in Object.values(classes.science ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
               :key="index"
               elevation="0"
               class="ma-3 rounded-lg"

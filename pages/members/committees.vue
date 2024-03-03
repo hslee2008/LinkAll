@@ -20,6 +20,7 @@
             :src="orgteam.image"
             :elevation="0"
             :showLink="true"
+            :width="width <= 550 ? 150 : 200"
             :name="orgteam.id"
           ></ImgMember>
           <p class="text-center">{{ t(orgteam.role) }}</p>
@@ -40,6 +41,7 @@
             :src="orgteam.image"
             :elevation="0"
             :showLink="true"
+            :width="width <= 550 ? 150 : 200"
             :name="orgteam.id"
           ></ImgMember>
           <p class="text-center">{{ t(orgteam.role) }}</p>
@@ -58,7 +60,11 @@
         <h2>Education Team</h2>
       </div>
 
-      <v-row align="start" no-gutters class="ga-3">
+      <v-row
+        align="start"
+        no-gutters
+        :class="`ga-${width <= 550 ? '3' : '12'}`"
+      >
         <v-col
           v-for="eduteam in Object.values(members).filter(
             (a) => a.role === 'teacher' || a.role === 'founder'
@@ -69,6 +75,7 @@
             :src="eduteam.image"
             :elevation="0"
             :showLink="true"
+            :width="width <= 550 ? 150 : 200"
             :name="eduteam.id"
           ></ImgMember>
           <p class="text-center">{{ t("teacher") }}</p>
@@ -88,6 +95,7 @@
 <script setup>
 const { t, locale } = useI18n();
 const { $db } = useNuxtApp();
+const { width } = useDisplay();
 
 const members = ref([]);
 

@@ -37,7 +37,7 @@
             {{ Object.keys(school ?? {}).length }} different schools, and
             {{ aboutus.countryNumber }} nation. Through our actions of
             education, we were able to teach {{ taughtStudents }} students and
-            donate {{ wonDonated }} won.
+            raised {{ wonDonated }} won.
           </p>
         </div>
 

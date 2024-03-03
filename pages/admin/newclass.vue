@@ -128,7 +128,7 @@
             variant="outlined"
           ></v-text-field>
 
-          <v-label>Estimated Time per class</v-label>
+          <v-label>Class Time</v-label>
           <v-text-field
             v-model="estTime"
             placeholder="9PM ~ 10PM (GMT+9)"

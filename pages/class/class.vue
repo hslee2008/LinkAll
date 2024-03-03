@@ -113,6 +113,7 @@
                   })
                   .toReversed()
               "
+              :no-data-text="$t('no class')"
             ></v-data-table>
           </div>
         </div>

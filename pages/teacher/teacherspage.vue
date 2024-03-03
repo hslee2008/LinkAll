@@ -9,6 +9,8 @@
       label="Select teacher ID"
     ></v-select>
 
+    <v-checkbox v-model="hidePast" label="끝난 수업은 숨기기"></v-checkbox>
+
     <div v-if="classes[parsedEmail]">
       <div v-for="item in Object.keys(classes[parsedEmail]['to-join'])">
         <br /><br />
@@ -16,9 +18,28 @@
         <h2 class="text-center">{{ item }}</h2>
 
         <v-card
+          v-if="
+            Object.values(classes[parsedEmail]['to-join'][item] ?? {}).length >
+            0
+          "
           v-for="(classObj, index) in Object.values(
             classes[parsedEmail]['to-join'][item] ?? {}
           )"
+          v-show="
+            hidePast
+              ? !isAfterOneDay(
+                  Object.values(classInfo ?? {}).filter((a) =>
+                    Object.keys(a ?? {}).includes(item)
+                  )[0][item].classDates[
+                    parseInt(
+                      Object.keys(classes[parsedEmail]['to-join'][item] ?? {})[
+                        index
+                      ]
+                    ) - 1
+                  ]
+                )
+              : true
+          "
           :key="Object.keys(classes[parsedEmail]['to-join'][item] ?? {})[index]"
           elevation="0"
         >
@@ -252,8 +273,10 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-card>
+        <div v-else>adf</div>
       </div>
     </div>
+    <div v-else class="text-center">No Class</div>
 
     <v-snackbar v-model="snackbar">
       {{ $t("copied") }}
@@ -272,6 +295,7 @@ const { $db, $auth } = useNuxtApp();
 const { xs } = useDisplay();
 
 const parsedEmail = ref("");
+const hidePast = ref(true);
 const keys = ref([]);
 
 const classes = ref({});
