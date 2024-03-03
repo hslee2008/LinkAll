@@ -259,7 +259,7 @@ const icon = ref("mdi-math-compass");
 const englishDisplayName = ref("");
 const koreanDisplayName = ref("");
 const subject = ref("english");
-const subjectArray = ref(["english", "math", "korean", "history"]);
+const subjectArray = ref(["english", "math", "korean", "history", "science"]);
 const classID = ref("initial");
 const englishTeacherName = ref("");
 const koreanTeacherName = ref("");
@@ -293,7 +293,9 @@ async function makeNewClass() {
   let image = "";
 
   const storageRef = await sRef($storage, `members/${teacherID.value}.png`);
-  await getDownloadURL(storageRef, (url) => (image = url));
+  await getDownloadURL(storageRef)
+    .then((url) => (image = url))
+    .catch((e) => alert("No Image Found"));
 
   const classRef = await dbRef($db, `class/${subject.value}/${classID.value}`);
   await set(classRef, {

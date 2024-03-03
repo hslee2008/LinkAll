@@ -9,7 +9,7 @@
         <v-row class="my-4 ma-auto">
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted"
+              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
               min-width="150"
               elevation="0"
             >
@@ -54,7 +54,7 @@
         <v-row class="my-4 ma-auto">
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted"
+              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
               min-width="150"
               elevation="0"
             >
@@ -98,7 +98,7 @@
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
               elevation="0"
-              class="d-flex justify-center align-center mr-3 pr-3 br-dotted"
+              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
               min-width="150"
             >
               <v-card-title>
@@ -142,7 +142,7 @@
           <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
             <v-card
               elevation="0"
-              class="d-flex justify-center align-center mr-3 pr-3 br-dotted"
+              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
               min-width="150"
             >
               <v-card-title>
@@ -172,6 +172,49 @@
                 <v-card-title class="headline text-center">
                   <v-icon start size="x-small">mdi-history</v-icon>
                   History
+                </v-card-title>
+                <v-card-text class="text-h6 mt-2 text-center">
+                  Coming Soon!
+                </v-card-text>
+              </div>
+            </v-card>
+          </v-card>
+        </v-row>
+
+        <v-row class="my-4 ma-auto">
+          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
+            <v-card
+              elevation="0"
+              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
+              min-width="150"
+            >
+              <v-card-title>
+                <v-icon start>mdi-flask</v-icon> {{ $t("science") }}
+              </v-card-title>
+            </v-card>
+
+            <v-card
+              v-if="classes.science"
+              v-for="(item, index) in classes.science"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+            <v-card
+              v-else
+              elevation="0"
+              height="300px"
+              width="350"
+              min-width="150"
+              varaint="tonal"
+              class="cardy rounded-lg mx-3"
+            >
+              <div class="ml-2">
+                <v-card-title class="headline text-center">
+                  <v-icon start size="x-small">mdi-flask</v-icon>
+                  Sciecne
                 </v-card-title>
                 <v-card-text class="text-h6 mt-2 text-center">
                   Coming Soon!

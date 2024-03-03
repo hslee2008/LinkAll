@@ -158,3 +158,6 @@ order admin/index
 
 v1.0.4
 add admin feature to edit school & about us
+
+v1.0.5
+fix bugs introduced in v1.0.4

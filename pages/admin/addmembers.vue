@@ -7,7 +7,11 @@
     <div class="ma-3">
       <div class="mr-6 pa-6 ga-5 d-flex">
         <div style="width: 500px">
-          <v-img v-if="image" :src="image" class="rounded-lg"></v-img>
+          <v-img
+            v-if="member.value.image"
+            :src="member.value.image"
+            class="rounded-lg"
+          ></v-img>
           <v-select
             v-model="member.role"
             variant="outlined"
@@ -93,7 +97,6 @@ import { ref as sRef, getDownloadURL } from "firebase/storage";
 const router = useRouter();
 const { $storage, $db } = useNuxtApp();
 
-const image = ref("");
 const member = ref({
   role: "",
   koreanAboutMe: "",
@@ -111,12 +114,12 @@ const member = ref({
   order: -1,
 });
 
-function checkForImage() {
+async function checkForImage() {
   const storageRef = sRef($storage, `members/${member.value.id}.png`);
 
-  getDownloadURL(storageRef, (url) => (image.value = url)).catch((e) =>
-    alert("There is no image")
-  );
+  await getDownloadURL(storageRef)
+    .then((url) => (member.value.image = url))
+    .catch((e) => alert("There is no image"));
 }
 
 function Add() {
