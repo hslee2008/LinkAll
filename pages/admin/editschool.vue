@@ -10,7 +10,7 @@
       <div
         v-for="s in Object.values(school ?? {})"
         :key="s.id"
-        style="width: 500px"
+        class="container"
       >
         <br /><br />
 
@@ -69,3 +69,15 @@ onMounted(() => {
   onValue(schoolRef, (snapshot) => (school.value = snapshot.val()));
 });
 </script>
+
+<style scoped>
+.container {
+  width: 500px;
+}
+
+@media (max-width: 550px) {
+  .container {
+    width: calc(100vw - 30px);
+  }
+}
+</style>

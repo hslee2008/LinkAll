@@ -114,7 +114,29 @@
                   .toReversed()
               "
               :no-data-text="$t('no class')"
-            ></v-data-table>
+            >
+              <template v-slot:item.Date="{ item }">
+                <p
+                  :style="`${isAfterOneDay(item.Date) ? 'text-decoration: line-through' : ''}`"
+                >
+                  {{ item.Date }}
+                </p>
+              </template>
+              <template v-slot:item.Theme="{ item }">
+                <p
+                  :style="`${isAfterOneDay(item.Date) ? 'text-decoration: line-through' : ''}`"
+                >
+                  {{ item.Theme }}
+                </p>
+              </template>
+              <template v-slot:item.Students="{ item }">
+                <p
+                  :style="`${isAfterOneDay(item.Date) ? 'text-decoration: line-through' : ''}`"
+                >
+                  {{ item.Students }}
+                </p>
+              </template>
+            </v-data-table>
           </div>
         </div>
       </div>
