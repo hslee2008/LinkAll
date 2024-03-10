@@ -24,6 +24,10 @@
               <v-icon start> mdi-school </v-icon>
               School
             </v-tab>
+            <v-tab value="option-6">
+              <v-icon start> mdi-incognito </v-icon>
+              Admin
+            </v-tab>
           </v-tabs>
           <v-window v-model="tab">
             <v-window-item value="option-1">
@@ -133,6 +137,19 @@
 
                   <v-btn width="300" height="55" to="/admin/editschool">
                     Edit School <v-icon end> mdi-school </v-icon>
+                  </v-btn>
+
+                  <br />
+                  <br />
+                </v-card-text>
+              </v-card>
+            </v-window-item>
+            <v-window-item value="option-6">
+              <v-card flat>
+                <v-card-text>
+                  <v-btn width="300" height="55" to="/admin/editteacherlist">
+                    Edit Teachers List
+                    <v-icon end> mdi-human-male-board </v-icon>
                   </v-btn>
 
                   <br />
