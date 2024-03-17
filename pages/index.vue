@@ -179,7 +179,7 @@
         </v-list>
       </v-sheet>
     </div>
-    <div>
+    <div style="width: 100%">
       <h2 class="text-center mb-8 text-h3">LinkAll Programs</h2>
       <div v-if="width >= 1130">
         <DivCenter classS="pa-4">

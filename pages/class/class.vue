@@ -244,7 +244,7 @@
                   >
                     <v-radio
                       v-for="(radio, index) in classInfo.classDates"
-                      v-show="!isPast(radio)"
+                      v-show="!isAfterOneDay(radio)"
                       :label="radio"
                       :key="index + 1"
                       :value="index + 1"
@@ -557,7 +557,7 @@ onMounted(async () => {
 
   for (let i in classInfo.value.classDates) {
     const classDate = classInfo.value.classDates[i];
-    if (isPast(classDate)) {
+    if (isAfterOneDay(classDate)) {
       past.value.push(classDate);
     } else {
       future.value.push(classDate);

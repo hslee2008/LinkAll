@@ -1,13 +1,14 @@
 import { ref, onValue } from "firebase/database";
-import { db } from "../plugins/firebase.ts";
+import { db } from "../plugins/firebase";
 
-export default async function checkTeacher(email: string): Boolean {
-  const isTeacher = false;
+export default async function checkTeacher(email: string) {
+  let isTeacher = false;
 
-  const adminRef = await onValue(
+  await onValue(
     ref(db, "teachers"),
-    (snapshot) => (isTeacher = snapshot.split(",").indexOf(email) !== -1)
+    (snapshot) =>
+      (isTeacher = snapshot.toString().split(",").indexOf(email) !== -1)
   );
 
-  return isTeacher
+  return isTeacher;
 }
