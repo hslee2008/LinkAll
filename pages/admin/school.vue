@@ -37,11 +37,6 @@
           label="School English Name (i.e. Pangyo High School)"
         ></v-text-field>
         <v-text-field
-          v-model="schoolMemberNumber"
-          variant="outlined"
-          label="School Member Number (i.e. 5, 1)"
-        ></v-text-field>
-        <v-text-field
           v-model="schoolHomepage"
           variant="outlined"
           label="School Home Page URL"

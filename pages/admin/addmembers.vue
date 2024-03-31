@@ -8,8 +8,8 @@
       <div class="mr-6 pa-6 ga-5 d-flex">
         <div style="width: 500px">
           <v-img
-            v-if="member.value.image"
-            :src="member.value.image"
+            v-if="member.image"
+            :src="member.image"
             class="rounded-lg"
           ></v-img>
           <v-select

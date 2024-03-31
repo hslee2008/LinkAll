@@ -191,7 +191,6 @@
               color="blue-darken-1"
               :elevation="0"
               :disabled="
-                !loggedin ||
                 !Object.keys(classInfo ?? {})?.includes('classDates') ||
                 alreadyApplied
               "

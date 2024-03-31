@@ -71,11 +71,9 @@
                 <p class="text-center mt-3" style="font-size: 13px !important">
                   <span v-if="locale === 'en'">
                     {{ s.schoolEnglishName }}
-                    <b>({{ s.schoolMemberNumber }})</b>
                   </span>
                   <span v-if="locale === 'ko'">
                     {{ s.schoolKoreanName }}
-                    <b>({{ s.schoolMemberNumber }})</b>
                   </span>
                 </p>
               </v-col>
