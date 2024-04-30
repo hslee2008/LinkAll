@@ -128,7 +128,7 @@
   <div class="index-container">
     <div style="min-width: 300px" class="mx-3">
       <v-sheet height="100%" tile>
-        <div class="text-h3 text-center">Notification</div>
+        <div class="mb-12 text-h3 text-center">Notification</div>
 
         <v-list
           style="border: 1px solid grey"
@@ -180,7 +180,11 @@
       </v-sheet>
     </div>
     <div style="width: 100%">
-      <h2 class="text-center mb-8 text-h3">LinkAll Programs</h2>
+      <h2 class="text-center mb-8 text-h3">
+        <NuxtLink to="/actions/education" class="text-black"
+          >LinkAll Programs</NuxtLink
+        >
+      </h2>
       <div v-if="width >= 1130">
         <DivCenter classS="pa-4">
           <div class="d-flex">

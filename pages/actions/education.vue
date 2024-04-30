@@ -4,23 +4,31 @@
       {{ t("education") }}
     </h1>
 
-    <div class="top-container">
+    <div>
       <div>
-        <v-row class="my-4 ma-auto">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
-            <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
-              min-width="150"
-              elevation="0"
-            >
-              <v-card-title>
-                <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
-              </v-card-title>
-            </v-card>
+        <v-tabs v-model="tab" direction="vertical">
+          <v-tab value="English">
+            <v-icon start>mdi-translate</v-icon> {{ $t("English") }}
+          </v-tab>
+          <v-tab value="Math">
+            <v-icon start>mdi-math-compass</v-icon> {{ $t("Math") }}
+          </v-tab>
+          <v-tab value="Korean">
+            <v-icon start>mdi-ideogram-cjk</v-icon> {{ $t("Korean") }}
+          </v-tab>
+          <v-tab value="History">
+            <v-icon start>mdi-pillar</v-icon> {{ $t("History") }}
+          </v-tab>
+          <v-tab value="Science">
+            <v-icon start>mdi-flask</v-icon> {{ $t("Science") }}
+          </v-tab>
+        </v-tabs>
 
-            <div class="d-flex">
+        <v-card-text>
+          <v-window v-model="tab">
+            <v-window-item value="English" class="d-flex justify-center">
               <v-card
-                v-if="classes.english"
+                v-if="classes.english && tab === 'English'"
                 v-for="(item, index) in Object.values(
                   classes.english ?? {}
                 ).sort((a, b) => a.order - b.order)"
@@ -30,209 +38,65 @@
               >
                 <ClassInfo :item="item" width="350"></ClassInfo>
               </v-card>
+            </v-window-item>
+
+            <v-window-item value="Math" class="d-flex justify-center">
               <v-card
-                v-else
+                v-if="classes.math && tab === 'Math'"
+                v-for="(item, index) in Object.values(classes.math ?? {}).sort(
+                  (a, b) => a.order - b.order
+                )"
+                :key="index"
                 elevation="0"
-                height="300px"
-                width="350"
-                min-width="150"
-                varaint="tonal"
-                class="cardy rounded-lg mx-3"
+                class="ma-3 rounded-lg"
               >
-                <div class="ml-2">
-                  <v-card-title class="headline text-center">
-                    <v-icon start size="x-small">mdi-translate</v-icon>
-                    ENGLISH
-                  </v-card-title>
-                  <v-card-text class="text-h6 mt-2 text-center">
-                    Coming Soon!
-                  </v-card-text>
-                </div>
+                <ClassInfo :item="item" width="350"></ClassInfo>
               </v-card>
-            </div>
-          </v-card>
-        </v-row>
+            </v-window-item>
 
-        <v-row class="my-4 ma-auto">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
-            <v-card
-              class="d-flex justify-center align-center mr-3 pr-6 br-dotted rounded-0"
-              min-width="150"
-              elevation="0"
-            >
-              <v-card-title>
-                <v-icon start>mdi-math-compass</v-icon> {{ $t("math") }}
-              </v-card-title>
-            </v-card>
+            <v-window-item value="Korean" class="d-flex justify-center">
+              <v-card
+                v-if="classes.korean && tab === 'Korean'"
+                v-for="(item, index) in Object.values(
+                  classes.korean ?? {}
+                ).sort((a, b) => a.order - b.order)"
+                :key="index"
+                elevation="0"
+                class="ma-3 rounded-lg"
+              >
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
+            </v-window-item>
 
-            <v-card
-              v-if="classes.math"
-              v-for="(item, index) in Object.values(classes.math ?? {}).sort(
-                (a, b) => a.order - b.order
-              )"
-              :key="index"
-              elevation="0"
-              class="ma-3 rounded-lg"
-            >
-              <ClassInfo :item="item" width="350"></ClassInfo>
-            </v-card>
-            <v-card
-              v-else
-              elevation="0"
-              height="300px"
-              width="350"
-              min-width="150"
-              varaint="tonal"
-              class="cardy rounded-lg mx-3"
-            >
-              <div class="ml-2">
-                <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-math-compass</v-icon>
-                  MATH
-                </v-card-title>
-                <v-card-text class="text-h6 mt-2 text-center">
-                  Coming Soon!
-                </v-card-text>
-              </div>
-            </v-card>
-          </v-card>
-        </v-row>
+            <v-window-item value="History" class="d-flex justify-center">
+              <v-card
+                v-if="classes.history && tab === 'History'"
+                v-for="(item, index) in Object.values(
+                  classes.history ?? {}
+                ).sort((a, b) => a.order - b.order)"
+                :key="index"
+                elevation="0"
+                class="ma-3 rounded-lg"
+              >
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
+            </v-window-item>
 
-        <v-row class="my-4 ma-auto">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
-            <v-card
-              elevation="0"
-              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
-              min-width="150"
-            >
-              <v-card-title>
-                <v-icon start>mdi-ideogram-cjk</v-icon>
-                {{ $t("korean") }}
-              </v-card-title>
-            </v-card>
-
-            <v-card
-              v-if="classes.korean"
-              v-for="(item, index) in Object.values(classes.korean ?? {}).sort(
-                (a, b) => a.order - b.order
-              )"
-              :key="index"
-              elevation="0"
-              class="ma-3 rounded-lg"
-            >
-              <ClassInfo :item="item" width="350"></ClassInfo>
-            </v-card>
-            <v-card
-              v-else
-              elevation="0"
-              height="300px"
-              width="350"
-              min-width="150"
-              varaint="tonal"
-              class="cardy rounded-lg mx-3"
-            >
-              <div class="ml-2">
-                <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-ideogram-cjk</v-icon>
-                  Korean
-                </v-card-title>
-                <v-card-text class="text-h6 mt-2 text-center">
-                  Coming Soon!
-                </v-card-text>
-              </div>
-            </v-card>
-          </v-card>
-        </v-row>
-
-        <v-row class="my-4 ma-auto">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
-            <v-card
-              elevation="0"
-              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
-              min-width="150"
-            >
-              <v-card-title>
-                <v-icon start>mdi-pillar</v-icon> {{ $t("history") }}
-              </v-card-title>
-            </v-card>
-
-            <v-card
-              v-if="classes.history"
-              v-for="(item, index) in Object.values(classes.history ?? {}).sort(
-                (a, b) => a.order - b.order
-              )"
-              :key="index"
-              elevation="0"
-              class="ma-3 rounded-lg"
-            >
-              <ClassInfo :item="item" width="350"></ClassInfo>
-            </v-card>
-            <v-card
-              v-else
-              elevation="0"
-              height="300px"
-              width="350"
-              min-width="150"
-              varaint="tonal"
-              class="cardy rounded-lg mx-3"
-            >
-              <div class="ml-2">
-                <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-pillar</v-icon>
-                  History
-                </v-card-title>
-                <v-card-text class="text-h6 mt-2 text-center">
-                  Coming Soon!
-                </v-card-text>
-              </div>
-            </v-card>
-          </v-card>
-        </v-row>
-
-        <v-row class="my-4 ma-auto">
-          <v-card elevation="0" class="rounded-lg d-flex d-flex-break pa-4">
-            <v-card
-              elevation="0"
-              class="d-flex justify-center align-center mr-3 pr-3 br-dotted rounded-0"
-              min-width="150"
-            >
-              <v-card-title>
-                <v-icon start>mdi-flask</v-icon> {{ $t("science") }}
-              </v-card-title>
-            </v-card>
-
-            <v-card
-              v-if="classes.science"
-              v-for="(item, index) in Object.values(classes.science ?? {}).sort(
-                (a, b) => a.order - b.order
-              )"
-              :key="index"
-              elevation="0"
-              class="ma-3 rounded-lg"
-            >
-              <ClassInfo :item="item" width="350"></ClassInfo>
-            </v-card>
-            <v-card
-              v-else
-              elevation="0"
-              height="300px"
-              width="350"
-              min-width="150"
-              varaint="tonal"
-              class="cardy rounded-lg mx-3"
-            >
-              <div class="ml-2">
-                <v-card-title class="headline text-center">
-                  <v-icon start size="x-small">mdi-flask</v-icon>
-                  Sciecne
-                </v-card-title>
-                <v-card-text class="text-h6 mt-2 text-center">
-                  Coming Soon!
-                </v-card-text>
-              </div>
-            </v-card>
-          </v-card>
-        </v-row>
+            <v-window-item value="Science" class="d-flex justify-center">
+              <v-card
+                v-if="classes.science && tab === 'Science'"
+                v-for="(item, index) in Object.values(
+                  classes.science ?? {}
+                ).sort((a, b) => a.order - b.order)"
+                :key="index"
+                elevation="0"
+                class="ma-3 rounded-lg"
+              >
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
+            </v-window-item>
+          </v-window>
+        </v-card-text>
       </div>
     </div>
   </div>
@@ -244,6 +108,7 @@ const { $db } = useNuxtApp();
 
 const classRef = dbRef($db, "class");
 const classes = ref({});
+const tab = ref("English");
 
 onMounted(() => {
   onValue(classRef, (snapshot) => {
