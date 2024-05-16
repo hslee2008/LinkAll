@@ -400,6 +400,7 @@
                   color="blue"
                   @click="
                     () => {
+                      checkUserInfo();
                       saveToDatabase();
                       isActive.value = false;
                       thankYou = true;
@@ -446,6 +447,34 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog width="500px" v-model="anonLogin">
+      <v-card class="d-flex flex-column align-center pa-4">
+        <p class="text-justify">
+          로그인이 되어있지 않습니다. 수업을 신청하기 위해서 익명으로 로그인 후
+          등록하시겠습니까?
+        </p>
+
+        <v-row class="ga-3 my-5">
+          <v-btn
+            @click="anonLogin = false"
+            color="red"
+            class="mt-3"
+            :elevation="0"
+          >
+            취소하기
+          </v-btn>
+          <v-btn
+            @click="tryAnonymousLogin"
+            color="primary"
+            class="mt-3"
+            :elevation="0"
+          >
+            익명으로 로그인하기
+          </v-btn>
+        </v-row>
+      </v-card>
+    </v-dialog>
+
     <v-layout-item
       v-if="
         isAdmin ||
@@ -471,6 +500,8 @@
 </template>
 
 <script setup>
+import { signInAnonymously } from "firebase/auth";
+
 const { t, locale } = useI18n();
 const { $db, $auth } = useNuxtApp();
 const { width } = useDisplay();
@@ -504,6 +535,8 @@ const toa1 = ref(false);
 const toa2 = ref(false);
 const toa3 = ref(false);
 const toa4 = ref(false);
+
+const anonLogin = ref(false);
 
 const nameRules = [(v) => !!v || t("display name is required")];
 const emailRules = [
@@ -563,6 +596,21 @@ onMounted(async () => {
     }
   }
 });
+
+const tryAnonymousLogin = () => {
+  const auth = getAuth();
+  signInAnonymously(auth).then(() => {
+    saveToDatabase();
+    anonLogin.value = false;
+    thankYou.value = true;
+  });
+};
+
+const checkUserInfo = () => {
+  if (!userInfo.value.uid) {
+    anonLogin.value = true;
+  }
+};
 
 const saveToDatabase = () => {
   const classRef = dbRef(

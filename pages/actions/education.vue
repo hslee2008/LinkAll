@@ -8,19 +8,22 @@
       <div>
         <v-tabs v-model="tab" direction="vertical">
           <v-tab value="English">
-            <v-icon start>mdi-translate</v-icon> {{ $t("English") }}
+            <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
           </v-tab>
           <v-tab value="Math">
-            <v-icon start>mdi-math-compass</v-icon> {{ $t("Math") }}
+            <v-icon start>mdi-math-compass</v-icon> {{ $t("math") }}
           </v-tab>
           <v-tab value="Korean">
-            <v-icon start>mdi-ideogram-cjk</v-icon> {{ $t("Korean") }}
+            <v-icon start>mdi-ideogram-cjk</v-icon> {{ $t("korean") }}
           </v-tab>
           <v-tab value="History">
-            <v-icon start>mdi-pillar</v-icon> {{ $t("History") }}
+            <v-icon start>mdi-pillar</v-icon> {{ $t("history") }}
           </v-tab>
           <v-tab value="Science">
-            <v-icon start>mdi-flask</v-icon> {{ $t("Science") }}
+            <v-icon start>mdi-flask</v-icon> {{ $t("science") }}
+          </v-tab>
+          <v-tab value="Economy">
+            <v-icon start>mdi-finance</v-icon> {{ $t("economy") }}
           </v-tab>
         </v-tabs>
 
@@ -87,6 +90,20 @@
                 v-if="classes.science && tab === 'Science'"
                 v-for="(item, index) in Object.values(
                   classes.science ?? {}
+                ).sort((a, b) => a.order - b.order)"
+                :key="index"
+                elevation="0"
+                class="ma-3 rounded-lg"
+              >
+                <ClassInfo :item="item" width="350"></ClassInfo>
+              </v-card>
+            </v-window-item>
+
+            <v-window-item value="Economy" class="d-flex justify-center">
+              <v-card
+                v-if="classes.science && tab === 'Economy'"
+                v-for="(item, index) in Object.values(
+                  classes.economy ?? {}
                 ).sort((a, b) => a.order - b.order)"
                 :key="index"
                 elevation="0"

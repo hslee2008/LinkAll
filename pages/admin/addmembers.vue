@@ -83,7 +83,7 @@
     <br /><br />
 
     <DivCenter>
-      <v-btn color="primary" :disabled="!image" @click="Add">Add</v-btn>
+      <v-btn color="primary" @click="Add">Add</v-btn>
     </DivCenter>
 
     <br /><br />
@@ -111,7 +111,7 @@ const member = ref({
   koreanAwards: "",
   englishAwards: "",
   image: "",
-  order: -1,
+  order: 999,
 });
 
 async function checkForImage() {
@@ -122,7 +122,13 @@ async function checkForImage() {
     .catch((e) => alert("There is no image"));
 }
 
-function Add() {
+async function Add() {
+  const membersTotalRef = dbRef($db, `members/`);
+  onValue(membersTotalRef, (datasnapshot) => {
+    const data = datasnapshot.val();
+    order.value = Object.keys(data).length;
+  });
+
   const membersRef = dbRef($db, `members/${member.value.id}`);
   set(membersRef, member.value);
   router.push("/members/members");
