@@ -17,7 +17,6 @@ export default defineNuxtConfig({
     "@nuxtjs/robots",
     "@nuxtjs/sitemap",
     "vuetify-nuxt-module",
-    "nuxt-marquee",
     "@vite-pwa/nuxt",
   ],
   vite: {
