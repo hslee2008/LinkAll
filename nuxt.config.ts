@@ -8,8 +8,7 @@ export default defineNuxtConfig({
   },
   css: [
     "/assets/css/div.css",
-    "/assets/css/title.css",
-    "/assets/css/utils.css",
+    "/assets/css/title.css"
   ],
   modules: [
     "@nuxtjs/google-fonts",
@@ -64,10 +63,6 @@ export default defineNuxtConfig({
   },
   sitemap: {
     exclude: ["/admin"],
-  },
-  vuetify: {
-    moduleOptions: {},
-    vuetifyOptions: {},
   },
   imports: {
     presets: [
