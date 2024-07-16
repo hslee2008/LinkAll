@@ -5,15 +5,23 @@
     </h1>
 
     <div v-if="userInfo === null">
-      <h2 class="text-center mt-10">
-        {{ t("login is required") }}
-      </h2>
-
-      <DivCenter>
-        <v-btn to="/account/login" class="mt-2" color="primary">
-          {{ t("login") }}
-        </v-btn>
-      </DivCenter>
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="12" md="6">
+            <v-card class="pa-5 text-center" variant="tonal">
+              <v-card-title>
+                <v-icon color="primary" large>mdi-lock</v-icon>
+                <span class="ml-3">{{ t("login is required") }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-btn to="/account/login" class="mt-4" color="primary">
+                  {{ t("login") }}
+                </v-btn>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
 
     <div v-else-if="registering">

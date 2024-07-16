@@ -14,7 +14,7 @@
         </h2>
         <h1
           class="text-center font-weight-bold text-h1 mt-3 mb-10"
-          style="Posterama"
+          style="font-family: Posterama"
         >
           Link All
         </h1>
@@ -26,15 +26,15 @@
             color="#046FFE"
             height="75"
           >
-            <h2>
-              <v-icon start>mdi-heart-box</v-icon>
+            <h2 class="d-flex align-center">
+              <v-icon start class="mdi-heart-box"></v-icon>
               {{ $t("donate") }}
-              <v-icon end>mdi-heart-box</v-icon>
+              <v-icon end class="mdi-heart-box"></v-icon>
             </h2>
           </v-btn>
         </div>
 
-        <div v-if="mobile" class="d-flex justify-center ga-5 mt-14 mx-3">
+        <div v-if="mobile" class="d-flex justify-center gap-5 mt-14 mx-3">
           <v-card class="text-center pa-2" variant="tonal">
             <v-progress-circular
               v-if="taughtStudents === 0"
@@ -128,7 +128,9 @@
   <div class="index-container">
     <div style="min-width: 300px" class="mx-3">
       <v-sheet height="100%" tile>
-        <div class="mb-12 text-h3 text-center">Notification</div>
+        <div class="mb-12 text-h3 text-center">
+          <NuxtLink to="/notification" class="text-black">Notification</NuxtLink>
+        </div>
 
         <v-list
           style="border: 1px solid grey"
@@ -181,12 +183,12 @@
     </div>
     <div style="width: 100%">
       <h2 class="text-center mb-8 text-h3">
-        <NuxtLink to="/actions/education" class="text-black"
-          >LinkAll Programs</NuxtLink
-        >
+        <NuxtLink to="/actions/education" class="text-black">
+          LinkAll Programs
+        </NuxtLink>
       </h2>
       <div v-if="width >= 1130">
-        <DivCenter classS="pa-4">
+        <DivCenter class="pa-4">
           <div class="d-flex">
             <div
               v-for="(item, i) in classList.slice(
@@ -268,7 +270,12 @@
     <v-slide-group show-arrows>
       <v-slide-group-item v-for="item in picList" :key="item.title">
         <v-card width="300" elevation="0" class="mx-3">
-          <img :src="item.link" class="rounded-lg" width="300" />
+          <img
+            :src="item.link"
+            class="rounded-lg"
+            width="300"
+            draggable="false"
+          />
           <h2 class="text-center my-3">{{ item.title }}</h2>
           <p width="200" class="text-justify">{{ item.contents }}</p>
         </v-card>
@@ -399,7 +406,7 @@ useHead({
 .bg-image {
   background-image: url(/background/background.png);
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .index-container {
@@ -434,7 +441,7 @@ useHead({
   .bg-image {
     background-image: url(/background/background.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
   }
 }
 

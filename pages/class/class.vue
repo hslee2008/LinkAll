@@ -233,6 +233,8 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
+              <v-card-title class="text-center">LinkAll 수업 등록하기</v-card-title>
+
               <v-card-text>
                 <div class="mb-2">
                   <v-radio-group
@@ -387,7 +389,7 @@
                 </div>
               </v-card-text>
 
-              <v-card-actions style="border-top: 1.5px solid grey">
+              <v-card-actions>
                 <v-spacer></v-spacer>
 
                 <v-btn
@@ -413,7 +415,7 @@
                     g_email === '' ||
                     toa1 === false ||
                     toa2 === false ||
-                    !!!classNumber
+                    classNumber
                   "
                 ></v-btn>
 
@@ -523,7 +525,7 @@ const numbersForEachClass = ref([]);
 const subject = route.query.subject;
 const id = route.query.id;
 
-const classNumber = ref("1");
+const classNumber = ref(null);
 const s_name = ref("");
 const s_email = ref("");
 const g_name = ref("");

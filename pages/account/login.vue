@@ -1,56 +1,41 @@
 <template>
   <div class="container top-div-without-bg">
-    <div class="sign-up-container">
-      <div
-        class="d-flex justify-center align-center mx-12"
-        style="height: calc(100vh - 160px); width: calc(100vw - 1300px)"
-      >
-        <DivCenter>
-          <h2 class="text-center">"Join our journey"</h2>
-          <h3 class="text-center mb-7" style="font-family: Grape Nuts">
-            - LinkAll -
-          </h3>
+    <div class="login-container">
+      <div class="d-flex justify-center align-center mx-12 login-content">
+        <div class="text-center login-form">
+          <h2 class="text-center slogan">"Join our journey"</h2>
+          <h3 class="text-center mb-7 subtitle">- LinkAll -</h3>
 
-          <div class="text-center">
-            <v-btn to="/account/create" variant="outlined">
-              {{ t("create account") }}
-            </v-btn>
-          </div>
-        </DivCenter>
-      </div>
-    </div>
+          <v-btn
+            prepend-icon="mdi-google"
+            color="red"
+            block
+            class="social-login-btn"
+            @click="loginWithGoogle"
+          >
+            {{ t("login with google") }}
+          </v-btn>
+          <v-btn
+            class="mt-1 social-login-btn"
+            color="primary"
+            block
+            prepend-icon="mdi-facebook"
+            @click="loginWithFacebook"
+          >
+            {{ t("login with facebook") }}
+          </v-btn>
+          <v-btn
+            to="/account/create"
+            variant="outlined"
+            block
+            class="social-login-btn"
+          >
+            {{ t("create account") }}
+          </v-btn>
 
-    <div>
-      <div
-        class="d-flex justify-center align-center mx-12"
-        style="width: calc(100vw - 400px)"
-      >
-        <div class="text-center" style="width: 400px">
-          <h1 class="header-u my-8">
-            {{ t("login") }}
-          </h1>
+          <br />
 
-          <div class="mt-4">
-            <v-btn
-              prepend-icon="mdi-google"
-              color="red"
-              block
-              @click="loginWithGoogle"
-            >
-              {{ t("login with google") }}
-            </v-btn>
-            <v-btn
-              class="mt-1"
-              color="primary"
-              block
-              prepend-icon="mdi-facebook"
-              @click="loginWithFacebook"
-            >
-              {{ t("login with facebook") }}
-            </v-btn>
-          </div>
-
-          <div class="mt-12">
+          <div class="mt-2">
             <v-form ref="form">
               <v-text-field
                 v-model="email"
@@ -144,10 +129,59 @@ useHead({
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .sign-up-container {
-  border-right: 10px solid black;
+  border-right: 2px solid #ddd;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.sign-up-content {
+  height: calc(100vh - 160px);
+  width: calc(100vw - 1300px);
+}
+
+.slogan {
+  font-weight: bold;
+  font-size: 24px;
+  color: #333;
+}
+
+.subtitle {
+  font-family: "Grape Nuts", cursive;
+  font-size: 20px;
+  color: #666;
+}
+
+.sign-up-btn {
+  margin-top: 20px;
+}
+
+.login-container {
+  padding-left: 20px;
+}
+
+.login-content {
+  width: calc(100vw - 400px);
+}
+
+.login-form {
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-u {
+  font-size: 28px;
+  color: #444;
+}
+
+.social-login-btn {
+  margin-top: 10px;
 }
 
 @media (max-width: 1275px) {
@@ -157,6 +191,18 @@ useHead({
 
   .sign-up-container {
     border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .sign-up-content,
+  .login-content {
+    width: 100%;
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 10px;
   }
 }
 </style>

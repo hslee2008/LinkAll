@@ -4,6 +4,8 @@
       {{ t("about us") }}
     </h1>
 
+    <br />
+
     <div class="d-flex justify-center align-center">
       <div style="width: 600px" class="pl-4 pr-8">
         <h2>{{ t("purpose") }}</h2>

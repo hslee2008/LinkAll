@@ -6,7 +6,7 @@
 
     <div>
       <div>
-        <v-tabs v-model="tab" direction="vertical">
+        <v-tabs v-model="tab" grow>
           <v-tab value="English">
             <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
           </v-tab>
@@ -29,7 +29,7 @@
 
         <v-card-text>
           <v-window v-model="tab">
-            <v-window-item value="English" class="d-flex justify-center">
+            <v-window-item value="English" class="d-flex justify-center align-center">
               <v-card
                 v-if="classes.english && tab === 'English'"
                 v-for="(item, index) in Object.values(
@@ -187,7 +187,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.cardy:before {
+.card:before {
   content: "";
   position: absolute;
   top: 0;
