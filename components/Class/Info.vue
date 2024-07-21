@@ -84,6 +84,7 @@ const props = defineProps({
 }
 
 .card {
+  width: 350px; /* Fixed width for large screens */
   height: 300px;
   border: 0.4px solid grey;
   position: relative;
@@ -131,7 +132,7 @@ const props = defineProps({
 
 @media (max-width: 380px) {
   .card {
-    width: 90vw !important;
+    width: 90vw !important; /* Responsive width for smaller screens */
   }
 }
 
@@ -144,8 +145,7 @@ const props = defineProps({
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    transparent 30%,
-    #95d6f4 200%,
+    transparent,
     #95d6f4 300%
   );
 }

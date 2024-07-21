@@ -29,7 +29,7 @@
 
         <v-card-text>
           <v-window v-model="tab">
-            <v-window-item value="English" class="d-flex justify-center align-center">
+            <v-window-item value="English" class="card-container">
               <v-card
                 v-if="classes.english && tab === 'English'"
                 v-for="(item, index) in Object.values(
@@ -43,7 +43,7 @@
               </v-card>
             </v-window-item>
 
-            <v-window-item value="Math" class="d-flex justify-center">
+            <v-window-item value="Math" class="card-container">
               <v-card
                 v-if="classes.math && tab === 'Math'"
                 v-for="(item, index) in Object.values(classes.math ?? {}).sort(
@@ -57,7 +57,7 @@
               </v-card>
             </v-window-item>
 
-            <v-window-item value="Korean" class="d-flex justify-center">
+            <v-window-item value="Korean" class="card-container">
               <v-card
                 v-if="classes.korean && tab === 'Korean'"
                 v-for="(item, index) in Object.values(
@@ -71,7 +71,7 @@
               </v-card>
             </v-window-item>
 
-            <v-window-item value="History" class="d-flex justify-center">
+            <v-window-item value="History" class="card-container">
               <v-card
                 v-if="classes.history && tab === 'History'"
                 v-for="(item, index) in Object.values(
@@ -85,7 +85,7 @@
               </v-card>
             </v-window-item>
 
-            <v-window-item value="Science" class="d-flex justify-center">
+            <v-window-item value="Science" class="card-container">
               <v-card
                 v-if="classes.science && tab === 'Science'"
                 v-for="(item, index) in Object.values(
@@ -99,9 +99,9 @@
               </v-card>
             </v-window-item>
 
-            <v-window-item value="Economy" class="d-flex justify-center">
+            <v-window-item value="Economy" class="card-container">
               <v-card
-                v-if="classes.science && tab === 'Economy'"
+                v-if="classes.economy && tab === 'Economy'"
                 v-for="(item, index) in Object.values(
                   classes.economy ?? {}
                 ).sort((a, b) => a.order - b.order)"
@@ -200,5 +200,11 @@ a:hover {
     black 150%,
     black 300%
   );
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

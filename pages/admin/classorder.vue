@@ -1,6 +1,6 @@
 <template>
   <div class="top-div-without-bg">
-    <h1 class="text-center">Edit Site Values</h1>
+    <h1 class="text-center">Edit Class Order</h1>
 
     <br />
 

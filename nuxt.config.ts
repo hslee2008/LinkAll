@@ -6,10 +6,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vue-i18n"],
   },
+
   css: [
     "/assets/css/div.css",
     "/assets/css/title.css"
   ],
+
   modules: [
     "@nuxtjs/google-fonts",
     "nuxt-gtag",
@@ -18,6 +20,7 @@ export default defineNuxtConfig({
     "vuetify-nuxt-module",
     "@vite-pwa/nuxt",
   ],
+
   vite: {
     resolve: {
       alias: {
@@ -32,6 +35,7 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   googleFonts: {
     families: {
       "Libre Baskerville": true,
@@ -42,28 +46,35 @@ export default defineNuxtConfig({
     },
     display: "swap",
   },
+
   experimental: {
     payloadExtraction: true,
     viewTransition: true,
     typedPages: true,
   },
+
   sourcemap: {
     server: false,
     client: false,
   },
+
   gtag: { id: "G-0HQQD54YMS" },
+
   robots: {
     rules: {
       UserAgent: "*",
       Disallow: "/admin",
     },
   },
+
   site: {
     url: "https://thinkforall-linkall.com",
   },
+
   sitemap: {
     exclude: ["/admin"],
   },
+
   imports: {
     presets: [
       {
@@ -95,6 +106,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   pwa: {
     manifest: {
       name: "Think for All - LinkAll",
@@ -154,4 +166,6 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
+
+  compatibilityDate: "2024-07-21",
 });

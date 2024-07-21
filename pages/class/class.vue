@@ -139,6 +139,47 @@
             </v-data-table>
           </div>
         </div>
+
+        <h2 class="mb-3">학생들의 후기 보기</h2>
+        <v-slide-group
+          v-model="model"
+          selected-class="bg-success"
+          show-arrows
+        >
+          <v-slide-group-item
+            v-for="review in classInfo.reviews"
+            :key="review.displayName"
+          >
+            <v-card width="250" variant="tonal">
+              <v-card-text class="text-justify">
+                <v-list-item>
+                  <template v-slot:prepend>
+                    <v-avatar
+                      color="grey-darken-3"
+                      :image="review.userInfo.photoURL"
+                    ></v-avatar>
+                  </template>
+
+                  <v-list-item-title>
+                    {{ review.userInfo.name }}
+                  </v-list-item-title>
+
+                  <v-list-item-subtitle>LinkAll 학생</v-list-item-subtitle>
+                </v-list-item>
+
+                <DivCenter>
+                  <v-rating
+                    v-model="review.rating"
+                    color="amber"
+                    background-color="grey lighten-2"
+                    readonly
+                  ></v-rating>
+                </DivCenter>
+                {{ review.review }}
+              </v-card-text>
+            </v-card>
+          </v-slide-group-item>
+        </v-slide-group>
       </div>
 
       <div class="side-div">
@@ -220,6 +261,12 @@
                 </v-btn>
               </DivCenter>
             </div>
+            <div v-if="alreadyApplied" class="mt-3">
+              <v-btn variant="tonal" block @click="review = !review">
+                <v-icon start>mdi-star</v-icon>
+                {{ $t("review") }}
+              </v-btn>
+            </div>
 
             <v-alert v-if="locale === 'ko'" class="mt-3 text-justify">
               마감된 수업은 대기자로 등록받습니다. 결원 발생시 별도로
@@ -233,7 +280,9 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
-              <v-card-title class="text-center">LinkAll 수업 등록하기</v-card-title>
+              <v-card-title class="text-center"
+                >LinkAll 수업 등록하기</v-card-title
+              >
 
               <v-card-text>
                 <div class="mb-2">
@@ -477,28 +526,59 @@
       </v-card>
     </v-dialog>
 
-    <v-layout-item
-      v-if="
-        isAdmin ||
-        classInfo.teacherEmailID ===
-          userInfo.email?.split('@')[0].replaceAll('.', '_')
-      "
-      model-value
-      position="bottom"
-      class="text-end"
-      size="88"
-    >
-      <div class="ma-4">
-        <v-btn
-          icon="mdi-pencil"
-          size="large"
-          color="primary"
-          elevation="8"
-          :to="`/class/edit/?subject=${subject}&id=${id}`"
-        />
-      </div>
-    </v-layout-item>
+    <v-dialog width="500px" v-model="review">
+      <v-card class="d-flex flex-column align-center pa-4">
+        <v-card-text>
+          <p class="text-justify">
+            수업을 들은 후 후기를 남겨주세요. 후기를 남겨주시면 다른 학생들에게
+            큰 도움이 됩니다.
+          </p>
+
+          <DivCenter>
+            <v-rating
+              v-model="reviewInfo.rating"
+              color="amber"
+              background-color="grey lighten-2"
+              class="mt-3"
+            ></v-rating>
+          </DivCenter>
+
+          <v-textarea
+            v-model="reviewInfo.review"
+            label="후기"
+            variant="outlined"
+            class="mt-3"
+          ></v-textarea>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn
+            @click="addReview"
+            color="primary"
+            class="mt-3"
+            variant="tonal"
+          >
+            후기 남기기
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
+
+  <v-fab
+    v-if="
+      isAdmin ||
+      classInfo.teacherEmailID ===
+        userInfo.email?.split('@')[0].replaceAll('.', '_')
+    "
+    absolute
+    position="bottom start"
+    size="50"
+    icon="mdi-pencil"
+    color="primary"
+    :to="`/class/edit/?subject=${subject}&id=${id}`"
+    class="ma-3"
+  ></v-fab>
 </template>
 
 <script setup>
@@ -530,8 +610,6 @@ const s_name = ref("");
 const s_email = ref("");
 const g_name = ref("");
 const g_email = ref("");
-const loggedin = ref(false);
-const thankYou = ref(false);
 
 const toa1 = ref(false);
 const toa2 = ref(false);
@@ -539,6 +617,11 @@ const toa3 = ref(false);
 const toa4 = ref(false);
 
 const anonLogin = ref(false);
+const review = ref(false);
+const loggedin = ref(false);
+const thankYou = ref(false);
+
+const reviewInfo = ref({});
 
 const nameRules = [(v) => !!v || t("display name is required")];
 const emailRules = [
@@ -661,6 +744,22 @@ const saveToDatabase = () => {
     classNumber: classNumber.value,
   });
 };
+
+function addReview() {
+  const reviewRef = dbRef(
+    $db,
+    `/class/${subject}/${id}/reviews/${userInfo.value.uid}`
+  );
+  set(reviewRef, {
+    rating: reviewInfo.value.rating,
+    review: reviewInfo.value.review,
+    userInfo: {
+      name: userInfo.value.displayName,
+      photoURL: userInfo.value.photoURL,
+    },
+  });
+  review.value = false;
+}
 </script>
 
 <style>
@@ -686,6 +785,7 @@ th {
 
 .bottom-div {
   margin-right: 28px;
+  overflow: hidden;
 }
 
 .title-container {

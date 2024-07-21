@@ -35,7 +35,7 @@
         </div>
 
         <div v-if="mobile" class="d-flex justify-center gap-5 mt-14 mx-3">
-          <v-card class="text-center pa-2" variant="tonal">
+          <v-card class="text-center pa-2 mx-1" variant="tonal">
             <v-progress-circular
               v-if="taughtStudents === 0"
               class="my-6"
@@ -48,7 +48,7 @@
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
 
-          <v-card class="text-center pa-2" variant="tonal" min-width="130px">
+          <v-card class="text-center pa-2 mx-1" variant="tonal" min-width="130px">
             <v-progress-circular
               v-if="wonDonated === 0"
               class="my-6"
@@ -61,7 +61,7 @@
             <p class="text">{{ $t("won_donated") }}</p>
           </v-card>
 
-          <v-card class="text-center pa-2" variant="tonal">
+          <v-card class="text-center pa-2 mx-1" variant="tonal">
             <v-progress-circular
               v-if="hoursOf === 0"
               class="my-6"
