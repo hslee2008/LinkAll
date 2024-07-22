@@ -7,10 +7,7 @@ export default defineNuxtConfig({
     transpile: ["vue-i18n"],
   },
 
-  css: [
-    "/assets/css/div.css",
-    "/assets/css/title.css"
-  ],
+  css: ["/assets/css/div.css", "/assets/css/title.css"],
 
   modules: [
     "@nuxtjs/google-fonts",

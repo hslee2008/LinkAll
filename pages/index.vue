@@ -27,9 +27,9 @@
             height="75"
           >
             <h2 class="d-flex align-center">
-              <v-icon start class="mdi-heart-box"></v-icon>
+              <v-icon start>mdi-gift-open</v-icon>
               {{ $t("donate") }}
-              <v-icon end class="mdi-heart-box"></v-icon>
+              <v-icon end>mdi-gift-open</v-icon>
             </h2>
           </v-btn>
         </div>

@@ -12,24 +12,44 @@
         class="container mb-10"
       >
         <div>
-          <v-col class="text-center ma-auto" style="flex: 0.2">
+          <v-col class="text-center ma-auto">
             <ImgMember
               :src="member.image"
               class="ma-auto box"
               :elevation="0"
             ></ImgMember>
 
-            <p v-if="member.role.includes('founder')" class="mt-3">
+            <p v-if="member.role.includes('founder')" class="mt-3 title">
               {{ t(member.role) }}
             </p>
             <b v-if="locale === 'en'">{{ member.englishFullName }}</b>
             <b v-else>{{ member.koreanFullName }}</b>
+
+            <div class="d-flex justify-center">
+              <v-btn
+                v-if="member.sns.gmail"
+                :href="`mailto:${member.sns.gmail.trim()}`"
+                target="_blank"
+                icon="mdi-gmail"
+                :elevation="0"
+                density="compact"
+              ></v-btn>
+
+              <v-btn
+                v-if="member.sns.instagram"
+                :href="`https://www.instagram.com/${member.sns.instagram.trim()}`"
+                target="_blank"
+                icon="mdi-instagram"
+                :elevation="0"
+                density="compact"
+              ></v-btn>
+            </div>
           </v-col>
         </div>
 
-        <v-col style="flex: 2">
-          <div class="container align-center ga-5">
-            <v-col class="inner-col py-auto text-justify">
+        <v-col>
+          <div>
+            <v-col class="inner-col text-justify">
               <div>
                 <span v-if="locale === 'en'">
                   {{ member.englishAboutMe }}
@@ -38,26 +58,6 @@
                 <span v-else-if="locale === 'ko'">
                   {{ member.koreanAboutMe }}
                 </span>
-              </div>
-
-              <div class="mt-3 d-flex ga-4">
-                <v-btn
-                  v-if="member.sns.gmail"
-                  :href="`mailto:${member.sns.gmail}`"
-                  target="_blank"
-                  icon="mdi-gmail"
-                  :elevation="0"
-                  density="compact"
-                ></v-btn>
-
-                <v-btn
-                  v-if="member.sns.instagram"
-                  :href="`https://www.instagram.com/${member.sns.instagram}`"
-                  target="_blank"
-                  icon="mdi-instagram"
-                  :elevation="0"
-                  density="compact"
-                ></v-btn>
               </div>
             </v-col>
 
@@ -120,8 +120,6 @@ useHead({
 .inner-col {
   inline-size: 500px;
   overflow-wrap: break-word;
-  border-right: dotted;
-  padding-right: 30px;
 }
 
 @media (max-width: 900px) {
@@ -133,6 +131,12 @@ useHead({
   .container {
     flex-direction: column;
   }
+}
+
+.title {
+  background: -webkit-linear-gradient(#01a9fd, #4d00f4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .box {

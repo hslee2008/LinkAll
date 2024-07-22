@@ -4,10 +4,20 @@
       {{ t("education") }}
     </h1>
 
+    <div class="d-flex justify-center">
+      <v-select
+        v-model="selected"
+        :items="['English', '한국어']"
+        dense
+        variant="outlined"
+        style="max-width: 150px"
+      ></v-select>
+    </div>
+
     <div>
       <div>
         <v-tabs v-model="tab" grow>
-          <v-tab value="English">
+          <v-tab v-if="selected === 'English'" value="English">
             <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
           </v-tab>
           <v-tab value="Math">
@@ -29,7 +39,11 @@
 
         <v-card-text>
           <v-window v-model="tab">
-            <v-window-item value="English" class="card-container">
+            <v-window-item
+              v-if="selected === 'English'"
+              value="English"
+              class="card-container"
+            >
               <v-card
                 v-if="classes.english && tab === 'English'"
                 v-for="(item, index) in Object.values(
@@ -39,7 +53,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
 
@@ -53,7 +71,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
 
@@ -67,7 +89,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
 
@@ -81,7 +107,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
 
@@ -95,7 +125,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
 
@@ -109,7 +143,11 @@
                 elevation="0"
                 class="ma-3 rounded-lg"
               >
-                <ClassInfo :item="item" width="350"></ClassInfo>
+                <ClassInfo
+                  v-if="item.lang === selected"
+                  :item="item"
+                  width="350"
+                ></ClassInfo>
               </v-card>
             </v-window-item>
           </v-window>
@@ -126,6 +164,8 @@ const { $db } = useNuxtApp();
 const classRef = dbRef($db, "class");
 const classes = ref({});
 const tab = ref("English");
+
+const selected = ref("한국어");
 
 onMounted(() => {
   onValue(classRef, (snapshot) => {

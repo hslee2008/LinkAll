@@ -8,11 +8,11 @@
           <div v-if="classInfo.englishOfficialName">
             <div v-if="locale === 'en'" class="title-container">
               <h1 class="mr-3">{{ classInfo.englishOfficialName }}</h1>
-              <h2 class="my-auto">| {{ classInfo.englishTeacherName }}</h2>
+              <h2 class="my-auto">➤ {{ classInfo.englishTeacherName }}</h2>
             </div>
             <div v-else-if="locale === 'ko'" class="title-container">
               <h1 class="mr-3">{{ classInfo.koreanOfficialName }}</h1>
-              <h2 class="my-auto">| {{ classInfo.koreanTeacherName }}</h2>
+              <h2 class="my-auto">➤ {{ classInfo.koreanTeacherName }}</h2>
             </div>
           </div>
           <v-skeleton-loader v-else type="heading"></v-skeleton-loader>
@@ -140,46 +140,48 @@
           </div>
         </div>
 
-        <h2 class="mb-3">학생들의 후기 보기</h2>
-        <v-slide-group
-          v-model="model"
-          selected-class="bg-success"
-          show-arrows
-        >
-          <v-slide-group-item
-            v-for="review in classInfo.reviews"
-            :key="review.displayName"
+        <div v-if="classInfo.reviews">
+          <h2 class="mb-3">학생들의 후기 보기</h2>
+          <v-slide-group
+            v-model="model"
+            selected-class="bg-success"
+            show-arrows
           >
-            <v-card width="250" variant="tonal">
-              <v-card-text class="text-justify">
-                <v-list-item>
-                  <template v-slot:prepend>
-                    <v-avatar
-                      color="grey-darken-3"
-                      :image="review.userInfo.photoURL"
-                    ></v-avatar>
-                  </template>
+            <v-slide-group-item
+              v-for="review in classInfo.reviews"
+              :key="review.displayName"
+            >
+              <v-card width="250" variant="tonal">
+                <v-card-text class="text-justify">
+                  <v-list-item>
+                    <template v-slot:prepend>
+                      <v-avatar
+                        color="grey-darken-3"
+                        :image="review.userInfo.photoURL"
+                      ></v-avatar>
+                    </template>
 
-                  <v-list-item-title>
-                    {{ review.userInfo.name }}
-                  </v-list-item-title>
+                    <v-list-item-title>
+                      {{ review.userInfo.name }}
+                    </v-list-item-title>
 
-                  <v-list-item-subtitle>LinkAll 학생</v-list-item-subtitle>
-                </v-list-item>
+                    <v-list-item-subtitle>LinkAll 학생</v-list-item-subtitle>
+                  </v-list-item>
 
-                <DivCenter>
-                  <v-rating
-                    v-model="review.rating"
-                    color="amber"
-                    background-color="grey lighten-2"
-                    readonly
-                  ></v-rating>
-                </DivCenter>
-                {{ review.review }}
-              </v-card-text>
-            </v-card>
-          </v-slide-group-item>
-        </v-slide-group>
+                  <DivCenter>
+                    <v-rating
+                      v-model="review.rating"
+                      color="amber"
+                      background-color="grey lighten-2"
+                      readonly
+                    ></v-rating>
+                  </DivCenter>
+                  {{ review.review }}
+                </v-card-text>
+              </v-card>
+            </v-slide-group-item>
+          </v-slide-group>
+        </div>
       </div>
 
       <div class="side-div">
@@ -280,9 +282,9 @@
 
           <template v-slot:default="{ isActive }">
             <v-card>
-              <v-card-title class="text-center"
-                >LinkAll 수업 등록하기</v-card-title
-              >
+              <v-card-title class="text-center">
+                LinkAll 수업 등록하기
+              </v-card-title>
 
               <v-card-text>
                 <div class="mb-2">
@@ -457,15 +459,7 @@
                       thankYou = true;
                     }
                   "
-                  :disabled="
-                    s_name === '' ||
-                    s_email === '' ||
-                    g_name === '' ||
-                    g_email === '' ||
-                    toa1 === false ||
-                    toa2 === false ||
-                    classNumber
-                  "
+                  :disabled="toa1 === false || toa2 === false"
                 ></v-btn>
 
                 <v-spacer></v-spacer>

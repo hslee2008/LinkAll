@@ -1,5 +1,9 @@
 <template>
   <div class="mt-180 mx-5 mb-10">
+    <v-btn variant="outlined" class="mb-2" to="/admin/editteacherlist">
+      <v-icon start>mdi-pencil</v-icon> Edit Who Sees This Page
+    </v-btn>
+
     <v-select
       v-if="isAdmin"
       v-model="parsedEmail"

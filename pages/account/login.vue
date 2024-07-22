@@ -16,17 +16,8 @@
             {{ t("login with google") }}
           </v-btn>
           <v-btn
-            class="mt-1 social-login-btn"
-            color="primary"
-            block
-            prepend-icon="mdi-facebook"
-            @click="loginWithFacebook"
-          >
-            {{ t("login with facebook") }}
-          </v-btn>
-          <v-btn
             to="/account/create"
-            variant="outlined"
+            color="green"
             block
             class="social-login-btn"
           >
@@ -75,7 +66,6 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  FacebookAuthProvider,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -89,13 +79,6 @@ const wrongCredentials = ref(false);
 const loginWithGoogle = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-
-  signInWithPopup(auth, provider).then(() => router.push("/"));
-};
-
-const loginWithFacebook = () => {
-  const auth = getAuth();
-  const provider = new FacebookAuthProvider();
 
   signInWithPopup(auth, provider).then(() => router.push("/"));
 };
@@ -203,6 +186,23 @@ useHead({
   .login-form {
     width: 100%;
     padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    padding: 10px;
+    width: calc(100vw - 100px);
+    margin-top: 15px;
+  }
+
+  .login-container {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
   }
 }
 </style>

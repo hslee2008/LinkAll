@@ -4,15 +4,22 @@
 
     <br />
 
-    <div class="textarea">
-      <v-textarea
-        v-model="teachersList"
-        variant="outlined"
-        label="Teacher List"
-        rows="10"
-        rounded
-      ></v-textarea>
-    </div>
+    <DivCenter>
+      <div class="textarea">
+        <p class="mb-6 text-justify">
+          The "Edit Teachers" page give permissions to teachers to access their
+          "teacher's page". The "teacher's page" is where they see who joined
+          their classes.
+        </p>
+        <v-textarea
+          v-model="teachersList"
+          variant="outlined"
+          label="Teacher List"
+          rows="10"
+          rounded
+        ></v-textarea>
+      </div>
+    </DivCenter>
 
     <br />
 
@@ -49,5 +56,6 @@ onMounted(() => {
 .textarea {
   margin-left: 15px;
   margin-right: 15px;
+  max-width: 500px;
 }
 </style>
