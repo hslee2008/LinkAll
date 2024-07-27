@@ -30,6 +30,12 @@
         variant="outlined"
       ></v-textarea>
 
+      <v-textarea
+        v-model="uid"
+        disabled
+        variant="outlined"
+      ></v-textarea>
+
       <v-img
         :src="photoURL"
         alt="account setting photoURL"
@@ -74,6 +80,7 @@ const name = ref("");
 const photoURL = ref("");
 const email = ref("");
 const emailVerified = ref(false);
+const uid = ref("")
 
 const nameRules = [(v) => !!v || t("display name is required")];
 const photoURLRules = [
@@ -102,6 +109,7 @@ $auth.onAuthStateChanged((user) => {
     photoURL.value = user.photoURL ?? "";
     email.value = user.email;
     emailVerified.value = user.emailVerified;
+    uid.value = user.uid
   } else {
     router.push("/account/login");
   }

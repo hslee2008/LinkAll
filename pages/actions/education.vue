@@ -6,7 +6,7 @@
 
     <div>
       <div>
-        <v-tabs v-model="tab" grow>
+        <v-tabs v-model="tab" grow class="mb-5">
           <v-tab value="English">
             <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
           </v-tab>

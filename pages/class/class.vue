@@ -236,8 +236,8 @@
               color="blue-darken-1"
               :elevation="0"
               :disabled="
-                classInfo?.classDates?.filter((r) => !isAfterOneDay(r)).length ===
-                  0 || alreadyApplied
+                classInfo?.classDates?.filter((r) => !isAfterOneDay(r))
+                  ?.length === 0 || alreadyApplied
               "
             >
               {{ $t("Apply Now") }}
@@ -245,8 +245,8 @@
 
             <p
               v-if="
-                classInfo?.classDates?.filter((r) => !isAfterOneDay(r)).length ===
-                0
+                classInfo?.classDates?.filter((r) => !isAfterOneDay(r))
+                  ?.length === 0
               "
               class="text-red"
             >
@@ -300,9 +300,8 @@
                     style="border: 1px solid grey"
                   >
                     <v-radio
-                      v-for="(radio, index) in classInfo.classDates.filter(
-                        (r) => !isAfterOneDay(r)
-                      )"
+                      v-for="(radio, index) in classInfo?.classDates"
+                      v-show="!isAfterOneDay(radio)"
                       :label="radio"
                       :key="index + 1"
                       :value="index + 1"
@@ -310,8 +309,8 @@
 
                     <div
                       v-if="
-                        classInfo.classDates.filter((r) => !isAfterOneDay(r))
-                          .length === 0
+                        classInfo?.classDates?.filter((r) => !isAfterOneDay(r))
+                          ?.length === 0
                       "
                     >
                       수업이 없습니다
@@ -717,6 +716,10 @@ const saveToDatabase = () => {
   let date = "";
   date = classInfo.value.classDates[parseInt(classNumber.value) - 1];
 
+  console.log(date);
+  console.log(classNumber.value);
+  console.log(classInfo.value.classDates);
+
   update(classRef, {
     classNumber: classNumber.value,
     s_name: s_name.value,
@@ -731,10 +734,6 @@ const saveToDatabase = () => {
       toa3: toa3.value,
       toa4: toa4.value,
     },
-  });
-
-  onValue(classRef, (snapshot) => {
-    console.log(snapshot.val());
   });
 
   if (toa3) {

@@ -10,15 +10,12 @@
         :width="width"
         :to="`/class/class/?subject=${item?.subject}&id=${item?.classID}`"
       >
-        <div :class="`content-container ${width >= 300 ? 'ml-2' : ''}`">
-          <h2
-            :class="`headline ${width >= 300 ? 'ml-3' : 'text-center'}`"
-            :style="`font-size: ${width <= 300 ? 30 : 40}px`"
-          >
-            {{ item?.subject?.toUpperCase() }}
-            <v-icon end size="x-small">{{ item?.icon }}</v-icon>
+        <div class="content-container">
+          <h2 class="headline text-h4 d-flex justify-center align-center">
+            {{ $t(item?.subject) }}
+            <v-icon end>{{ item?.icon }}</v-icon>
           </h2>
-          <p :class="`${width >= 300 ? 'ml-3' : 'text-center'}`">
+          <p class="text-center">
             {{
               locale === "en"
                 ? item?.englishDisplayName
@@ -27,36 +24,19 @@
           </p>
         </div>
 
-        <div v-if="width <= 300" class="image-container-small">
-          <img :src="item?.image" :height="width" />
-        </div>
-
-        <div v-if="width > 300" class="image-container-large">
+        <div class="image-container-large">
           <div>
             <img :src="item?.image" :height="180" />
           </div>
           <div class="info-container">
-            <p
-              v-if="locale === 'en'"
-              class="text-h6 text-decoration-underline text-center"
-            >
-              {{ item?.englishTeacherName }}
-            </p>
-            <p v-else-if="locale === 'ko'" class="text-h4 text-center">
+            <p class="text-h4 text-center">
               {{ item?.koreanTeacherName }}
+            </p>
+            <p class="text-h6 text-center">
+              {{ item?.englishTeacherName }}
             </p>
           </div>
         </div>
-
-        <v-slide-x-transition v-if="!mobile" class="hover-button">
-          <v-btn
-            v-if="isHovering"
-            elevation="0"
-            icon="mdi-arrow-right-circle"
-            size="large"
-            variant="elevated"
-          ></v-btn>
-        </v-slide-x-transition>
       </v-card>
       <v-card
         v-else
