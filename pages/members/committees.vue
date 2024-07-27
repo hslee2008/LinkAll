@@ -15,6 +15,7 @@
             (a) => a.role === 'founder' || a.role === 'co-founder'
           )"
           :key="orgteam.id"
+          class="mx-2"
         >
           <ImgMember
             :src="orgteam.image"
@@ -23,7 +24,7 @@
             :width="width <= 550 ? 150 : 200"
             :name="orgteam.id"
           ></ImgMember>
-          <p class="text-center">{{ t(orgteam.role) }}</p>
+          <p class="text-center title">{{ t(orgteam.role) }}</p>
           <p class="text-center text-h6">
             <span v-if="locale === 'en'">{{ orgteam.englishFullName }}</span>
             <span v-else>{{ orgteam.koreanFullName }}</span>
@@ -36,6 +37,7 @@
             (a) => a.role === 'designer'
           )"
           :key="orgteam.id"
+          class="mx-2"
         >
           <ImgMember
             :src="orgteam.image"
@@ -44,7 +46,7 @@
             :width="width <= 550 ? 150 : 200"
             :name="orgteam.id"
           ></ImgMember>
-          <p class="text-center">{{ t(orgteam.role) }}</p>
+          <p class="text-center title">{{ t(orgteam.role) }}</p>
           <p class="text-center text-h6">
             <span v-if="locale === 'en'">{{ orgteam.englishFullName }}</span>
             <span v-else>{{ orgteam.koreanFullName }}</span>
@@ -70,6 +72,7 @@
             (a) => a.role === 'teacher' || a.role === 'founder'
           )"
           :key="eduteam.id"
+          class="mx-2"
         >
           <ImgMember
             :src="eduteam.image"
@@ -78,7 +81,7 @@
             :width="width <= 550 ? 150 : 200"
             :name="eduteam.id"
           ></ImgMember>
-          <p class="text-center">{{ t("teacher") }}</p>
+          <p class="text-center title">{{ t("teacher") }}</p>
           <p class="text-center text-h6">
             <span v-if="locale === 'en'">{{ eduteam.englishFullName }}</span>
             <span v-else>{{ eduteam.koreanFullName }}</span>
@@ -113,6 +116,12 @@ useHead({
 </script>
 
 <style scoped>
+.title {
+  background: -webkit-linear-gradient(#01a9fd, #4d00f4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 a {
   text-decoration: none;
   color: inherit;

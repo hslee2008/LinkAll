@@ -2,11 +2,21 @@
   <v-sheet :elevation="elevation" class="rounded-lg mb-3">
     <v-img
       :src="src"
+      :lazy-src="src"
       :style="`width: ${width}px; height: ${(width * 198) / 150}px; ${bordered ? 'border: 0.1px black solid' : ''}`"
       alt="member image"
       draggable="false"
       class="rounded-lg ma-auto"
     >
+      <template v-slot:placeholder>
+        <div class="d-flex align-center justify-center fill-height">
+          <v-progress-circular
+            color="grey-lighten-4"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+      </template>
+
       <v-btn
         v-if="showLink"
         icon="mdi-open-in-new"

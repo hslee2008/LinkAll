@@ -48,7 +48,11 @@
             <p class="text">{{ $t("taught_students") }}</p>
           </v-card>
 
-          <v-card class="text-center pa-2 mx-1" variant="tonal" min-width="130px">
+          <v-card
+            class="text-center pa-2 mx-1"
+            variant="tonal"
+            min-width="130px"
+          >
             <v-progress-circular
               v-if="wonDonated === 0"
               class="my-6"
@@ -129,7 +133,9 @@
     <div style="min-width: 300px" class="mx-3">
       <v-sheet height="100%" tile>
         <div class="mb-12 text-h3 text-center">
-          <NuxtLink to="/notification" class="text-black">Notification</NuxtLink>
+          <NuxtLink to="/notification" class="text-black">
+            {{ $t("notifications") }}
+          </NuxtLink>
         </div>
 
         <v-list
@@ -184,7 +190,7 @@
     <div style="width: 100%">
       <h2 class="text-center mb-8 text-h3">
         <NuxtLink to="/actions/education" class="text-black">
-          LinkAll Programs
+          {{ $t("programs") }}
         </NuxtLink>
       </h2>
       <div v-if="width >= 1130">
@@ -267,7 +273,7 @@
   <br /><br />
 
   <v-sheet>
-    <v-slide-group show-arrows>
+    <v-slide-group :show-arrows="!mobile">
       <v-slide-group-item v-for="item in picList" :key="item.title">
         <v-card width="300" elevation="0" class="mx-3">
           <img

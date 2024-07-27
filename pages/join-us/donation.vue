@@ -4,90 +4,98 @@
       {{ t("donation") }}
     </h1>
 
-    <v-card
-      class="mt-10 top-container rounded-lg"
-      elevation="0"
-      color="#ededed"
-    >
-      <v-card-text v-if="locale === 'en'" class="text-justify donation-text">
-        Thank you for your interest in donation. Your steps of actions give the
-        precious opportunity for students to learn, and have education. Your
-        action is changing a person's life. Your thoughtful donation will be
-        used to support young children receive primary education, and minimize
-        the educational inequality. All donating activities will be uploaded to
-        our website. Once again, we appreciate your kindness towards humanity.
-      </v-card-text>
-      <v-card-text
-        v-else-if="locale === 'ko'"
-        class="text-justify donation-text"
-      >
-        기부에 대한 관심에 정말 감사의 마음을 표합니다. 여러분의 작은 행동은
-        누군가의 지원을 가능하게 하며 많은 개인들을 우리 사회와 연결할 수 있는
-        능력을 가지고 있습니다. 여러분의 사려 깊은 기부는 공식 기관을 통해
-        필요한 이들을 지원하는 데 사용될 것입니다. 기부 활동은 모두 우리
-        웹사이트에 업로드될 것입니다.
-      </v-card-text>
-      <h2 style="font-family: Grape Nuts" class="font-weight-black ml-3 mb-3">
-        - Think for All, Link All.
-      </h2>
-    </v-card>
-
-    <div class="pay-container mt-10 pb-5 ga-15">
+    <div class="d-flex justify-center">
       <v-card
-        color="transparent"
-        :elevation="0"
-        class="ma-2 pa-3 rounded-lg"
-        style="border: 1px solid black"
-        @click="openDialog1"
+        class="mt-10 top-container rounded-lg"
+        elevation="0"
+        color="#ededed"
+        max-width="400"
       >
-        <DivCenter>
-          <img
-            class="rounded-pill donation-image"
-            src="/used-images/direct-transfer.jpg"
-          />
-        </DivCenter>
-        <h2 class="text-center">{{ t("transfer") }}</h2>
-        <p v-if="locale === 'en'" class="text-center">Domestic</p>
-        <p v-else-if="locale === 'ko'" class="text-center">국내</p>
+        <v-card-text v-if="locale === 'en'" class="text-justify donation-text">
+          Thank you for your interest in donation. Your steps of actions give
+          the precious opportunity for students to learn, and have education.
+          Your action is changing a person's life. Your thoughtful donation will
+          be used to support young children receive primary education, and
+          minimize the educational inequality. All donating activities will be
+          uploaded to our website. Once again, we appreciate your kindness
+          towards humanity.
+        </v-card-text>
+        <v-card-text
+          v-else-if="locale === 'ko'"
+          class="text-justify donation-text"
+        >
+          기부에 대한 관심에 정말 감사의 마음을 표합니다. 여러분의 작은 행동은
+          누군가의 지원을 가능하게 하며 많은 개인들을 우리 사회와 연결할 수 있는
+          능력을 가지고 있습니다. 여러분의 사려 깊은 기부는 공식 기관을 통해
+          필요한 이들을 지원하는 데 사용될 것입니다. 기부 활동은 모두 우리
+          웹사이트에 업로드될 것입니다.
+        </v-card-text>
+        <h2
+          style="font-family: Grape Nuts"
+          class="font-weight-black text-center ml-3 mb-3"
+        >
+          - Think for All, Link All -
+        </h2>
       </v-card>
 
-      <v-dialog v-model="dialog1" width="500">
-        <v-card>
-          <v-card-title>
-            {{ t("transfer") }}
-          </v-card-title>
+      <div class="mt-10 mr-8">
+        <v-card
+          color="transparent"
+          :elevation="0"
+          class="pa-3 rounded-lg"
+          style="border: 1px solid black"
+          @click="openDialog1"
+        >
+          <DivCenter>
+            <img
+              class="rounded-pill donation-image"
 
-          <v-card-text class="my-3">
-            <div class="transfer">
-              <v-btn
-                icon="mdi-content-copy"
-                elevation="0"
-                :class="mobile ? 'mx-auto' : ''"
-                @click="copy"
-              ></v-btn>
+              src="/used-images/direct-transfer.jpg"
+            />
+          </DivCenter>
+          <h2 class="text-center">{{ t("transfer") }}</h2>
+          <p v-if="locale === 'en'" class="text-center">Domestic</p>
+          <p v-else-if="locale === 'ko'" class="text-center">국내</p>
+        </v-card>
+      </div>
+    </div>
 
-              <div class="ml-2">
-                3333294607629 카카오뱅크<br />
-                (예금주: 김현희)
-              </div>
-            </div>
-          </v-card-text>
+    <v-dialog v-model="dialog1" width="500">
+      <v-card>
+        <v-card-title>
+          {{ t("transfer") }}
+        </v-card-title>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
+        <v-card-text class="my-3">
+          <div class="transfer">
             <v-btn
-              :text="t('close')"
-              color="red"
-              block
-              @click="dialog1 = false"
+              icon="mdi-content-copy"
+              elevation="0"
+              :class="mobile ? 'mx-auto' : ''"
+              @click="copy"
             ></v-btn>
 
-            <v-spacer></v-spacer>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </div>
+            <div class="ml-2">
+              3333294607629 카카오뱅크<br />
+              (예금주: 김현희)
+            </div>
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            :text="t('close')"
+            color="red"
+            block
+            @click="dialog1 = false"
+          ></v-btn>
+
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
     <v-snackbar v-model="snackbar">
       {{ $t("copied") }}
@@ -136,12 +144,6 @@ useHead({
   height: calc(100vh);
 }
 
-.pay-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .donation-text {
   font-family: Libre Baskerville;
   font-size: 18px;
@@ -154,8 +156,8 @@ useHead({
 }
 
 .donation-image {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .transfer {

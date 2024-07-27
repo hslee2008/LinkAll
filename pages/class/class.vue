@@ -3,7 +3,9 @@
     <div class="top-div">
       <div class="bottom-div">
         <div class="d-flex">
-          <v-icon class="my-auto mr-3 ml-1">{{ classInfo.icon }}</v-icon>
+          <v-icon class="my-auto mr-3 ml-1" size="x-large">{{
+            classInfo.icon
+          }}</v-icon>
 
           <div v-if="classInfo.englishOfficialName">
             <div v-if="locale === 'en'" class="title-container">
@@ -234,15 +236,18 @@
               color="blue-darken-1"
               :elevation="0"
               :disabled="
-                !Object.keys(classInfo ?? {})?.includes('classDates') ||
-                alreadyApplied
+                classInfo?.classDates?.filter((r) => !isAfterOneDay(r)).length ===
+                  0 || alreadyApplied
               "
             >
               {{ $t("Apply Now") }}
             </v-btn>
 
             <p
-              v-if="!Object.keys(classInfo ?? {})?.includes('classDates')"
+              v-if="
+                classInfo?.classDates?.filter((r) => !isAfterOneDay(r)).length ===
+                0
+              "
               class="text-red"
             >
               {{ $t("no class") }}
@@ -295,12 +300,22 @@
                     style="border: 1px solid grey"
                   >
                     <v-radio
-                      v-for="(radio, index) in classInfo.classDates"
-                      v-show="!isAfterOneDay(radio)"
+                      v-for="(radio, index) in classInfo.classDates.filter(
+                        (r) => !isAfterOneDay(r)
+                      )"
                       :label="radio"
                       :key="index + 1"
                       :value="index + 1"
                     ></v-radio>
+
+                    <div
+                      v-if="
+                        classInfo.classDates.filter((r) => !isAfterOneDay(r))
+                          .length === 0
+                      "
+                    >
+                      수업이 없습니다
+                    </div>
                   </v-radio-group>
                 </div>
 
@@ -321,7 +336,7 @@
                         </template>
                       </v-expansion-panel-title>
                       <v-expansion-panel-text>
-                        <v-checkbox v-model="toa1">
+                        <v-checkbox v-model="toa1" hide-details>
                           <template v-slot:label>
                             <span v-if="locale === 'en'">
                               Personal Information used for teacher and student
@@ -333,7 +348,7 @@
                             <InputStar></InputStar>
                           </template>
                         </v-checkbox>
-                        <v-checkbox v-model="toa2">
+                        <v-checkbox v-model="toa2" hide-details>
                           <template v-slot:label>
                             <span v-if="locale === 'en'">
                               Personal Information used for class documents of
@@ -345,7 +360,7 @@
                             <InputStar></InputStar>
                           </template>
                         </v-checkbox>
-                        <v-checkbox v-model="toa3">
+                        <v-checkbox v-model="toa3" hide-details>
                           <template v-slot:label>
                             <span v-if="locale === 'en'">
                               Emails Notifications from LinkAll
@@ -355,7 +370,7 @@
                             </span>
                           </template>
                         </v-checkbox>
-                        <v-checkbox v-model="toa4">
+                        <v-checkbox v-model="toa4" hide-details>
                           <template v-slot:label>
                             <span v-if="locale === 'en'">
                               Usage of Class photos (Website upload, SNS upload,
@@ -368,8 +383,9 @@
                         </v-checkbox>
 
                         <v-btn
-                          class="mb-10"
+                          class="mb-5 mt-4"
                           variant="tonal"
+                          block
                           @click="
                             () => {
                               toa1 = true;
@@ -379,6 +395,7 @@
                             }
                           "
                         >
+                          <v-icon>mdi-check</v-icon>
                           <span v-if="locale === 'en'"> Agree to All </span>
                           <span v-else-if="locale === 'ko'">
                             모두 동의하기

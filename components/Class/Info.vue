@@ -2,6 +2,7 @@
   <v-hover>
     <template v-slot:default="{ isHovering, props }">
       <v-card
+        v-if="wWidth >= 784"
         v-bind="props"
         elevation="2"
         variant="tonal"
@@ -57,13 +58,41 @@
           ></v-btn>
         </v-slide-x-transition>
       </v-card>
+      <v-card
+        v-else
+        v-bind="props"
+        variant="tonal"
+        class="rounded-lg"
+        :to="`/class/class/?subject=${item?.subject}&id=${item?.classID}`"
+        height="325"
+      >
+        <div class="text-center mt-2 mb-5 px-1" style="width: 160px">
+          <h2 class="text-h4 d-flex justify-center align-center">
+            {{ t(item?.subject) }}
+            <v-icon end size="x-small">{{ item?.icon }}</v-icon>
+          </h2>
+          <p class="text-center">
+            {{
+              locale === "en"
+                ? item?.englishDisplayName
+                : item?.koreanDisplayName
+            }}
+          </p>
+        </div>
+        <div
+          class="d-flex justify-center"
+          style="position: absolute; bottom: 0"
+        >
+          <img :src="item?.image" width="160" />
+        </div>
+      </v-card>
     </template>
   </v-hover>
 </template>
 
 <script setup>
-const { mobile } = useDisplay();
-const { locale } = useI18n();
+const { mobile, width: wWidth } = useDisplay();
+const { locale, t } = useI18n();
 
 const props = defineProps({
   item: {
@@ -143,10 +172,6 @@ const props = defineProps({
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    #95d6f4 300%
-  );
+  background: linear-gradient(to bottom, transparent, #95d6f4 300%);
 }
 </style>

@@ -6,6 +6,12 @@
 
     <br />
 
+    <DivCenter>
+      <v-img src="/logo-text-long.png" width="200px" />
+    </DivCenter>
+
+    <br />
+
     <div class="d-flex justify-center align-center">
       <div style="width: 600px" class="pl-4 pr-8">
         <h2>{{ t("purpose") }}</h2>

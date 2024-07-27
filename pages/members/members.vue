@@ -61,7 +61,7 @@
               </div>
             </v-col>
 
-            <v-col class="ml-5">
+            <v-col class="inner-col ml-5">
               <ul v-if="locale === 'en'" class="text-justify">
                 <li
                   v-for="eAward in member.englishAwards.split(',')"

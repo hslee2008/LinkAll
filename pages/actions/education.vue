@@ -4,27 +4,17 @@
       {{ t("education") }}
     </h1>
 
-    <div class="d-flex justify-center">
-      <v-select
-        v-model="selected"
-        :items="['English', '한국어']"
-        dense
-        variant="outlined"
-        style="max-width: 150px"
-      ></v-select>
-    </div>
-
     <div>
       <div>
         <v-tabs v-model="tab" grow>
-          <v-tab v-if="selected === 'English'" value="English">
+          <v-tab value="English">
             <v-icon start>mdi-translate</v-icon> {{ $t("english") }}
           </v-tab>
           <v-tab value="Math">
             <v-icon start>mdi-math-compass</v-icon> {{ $t("math") }}
           </v-tab>
-          <v-tab value="Korean">
-            <v-icon start>mdi-ideogram-cjk</v-icon> {{ $t("korean") }}
+          <v-tab value="Language">
+            <v-icon start>mdi-translate</v-icon> {{ $t("Language") }}
           </v-tab>
           <v-tab value="History">
             <v-icon start>mdi-pillar</v-icon> {{ $t("history") }}
@@ -37,121 +27,91 @@
           </v-tab>
         </v-tabs>
 
-        <v-card-text>
-          <v-window v-model="tab">
-            <v-window-item
-              v-if="selected === 'English'"
-              value="English"
-              class="card-container"
+        <v-window v-model="tab">
+          <v-window-item value="English" class="card-container">
+            <v-card
+              v-if="classes.english && tab === 'English'"
+              v-for="(item, index) in Object.values(classes.english ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
             >
-              <v-card
-                v-if="classes.english && tab === 'English'"
-                v-for="(item, index) in Object.values(
-                  classes.english ?? {}
-                ).sort((a, b) => a.order - b.order)"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
 
-            <v-window-item value="Math" class="card-container">
-              <v-card
-                v-if="classes.math && tab === 'Math'"
-                v-for="(item, index) in Object.values(classes.math ?? {}).sort(
-                  (a, b) => a.order - b.order
-                )"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
+          <v-window-item value="Math" class="card-container">
+            <v-card
+              v-if="classes.math && tab === 'Math'"
+              v-for="(item, index) in Object.values(classes.math ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
 
-            <v-window-item value="Korean" class="card-container">
-              <v-card
-                v-if="classes.korean && tab === 'Korean'"
-                v-for="(item, index) in Object.values(
-                  classes.korean ?? {}
-                ).sort((a, b) => a.order - b.order)"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
+          <v-window-item value="Language" class="card-container">
+            <v-card
+              v-if="classes.language && tab === 'Language'"
+              v-for="(item, index) in Object.values(
+                classes.language ?? {}
+              ).sort((a, b) => a.order - b.order)"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
 
-            <v-window-item value="History" class="card-container">
-              <v-card
-                v-if="classes.history && tab === 'History'"
-                v-for="(item, index) in Object.values(
-                  classes.history ?? {}
-                ).sort((a, b) => a.order - b.order)"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
+          <v-window-item value="History" class="card-container">
+            <v-card
+              v-if="classes.history && tab === 'History'"
+              v-for="(item, index) in Object.values(classes.history ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
 
-            <v-window-item value="Science" class="card-container">
-              <v-card
-                v-if="classes.science && tab === 'Science'"
-                v-for="(item, index) in Object.values(
-                  classes.science ?? {}
-                ).sort((a, b) => a.order - b.order)"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
+          <v-window-item value="Science" class="card-container">
+            <v-card
+              v-if="classes.science && tab === 'Science'"
+              v-for="(item, index) in Object.values(classes.science ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
 
-            <v-window-item value="Economy" class="card-container">
-              <v-card
-                v-if="classes.economy && tab === 'Economy'"
-                v-for="(item, index) in Object.values(
-                  classes.economy ?? {}
-                ).sort((a, b) => a.order - b.order)"
-                :key="index"
-                elevation="0"
-                class="ma-3 rounded-lg"
-              >
-                <ClassInfo
-                  v-if="item.lang === selected"
-                  :item="item"
-                  width="350"
-                ></ClassInfo>
-              </v-card>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
+          <v-window-item value="Economy" class="card-container">
+            <v-card
+              v-if="classes.economy && tab === 'Economy'"
+              v-for="(item, index) in Object.values(classes.economy ?? {}).sort(
+                (a, b) => a.order - b.order
+              )"
+              :key="index"
+              elevation="0"
+              class="ma-3 rounded-lg"
+            >
+              <ClassInfo :item="item" width="350"></ClassInfo>
+            </v-card>
+          </v-window-item>
+        </v-window>
       </div>
     </div>
   </div>
@@ -164,8 +124,6 @@ const { $db } = useNuxtApp();
 const classRef = dbRef($db, "class");
 const classes = ref({});
 const tab = ref("English");
-
-const selected = ref("한국어");
 
 onMounted(() => {
   onValue(classRef, (snapshot) => {
